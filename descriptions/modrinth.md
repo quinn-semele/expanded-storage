@@ -100,7 +100,6 @@ Whilst only some conversion kits are pictured above others do exist for example 
 <summary>Contributors</summary>
 
 Current Version:
-
 - Mod code and texture assets - Quinn
 - Mod icon and other item / block renders - [Isometric Renderer mod](https://modrinth.com/mod/isometric-renders)
 - Pumpkin chest textures - Yoghurt4C, these textures, for the modelled chest only, are public domain
