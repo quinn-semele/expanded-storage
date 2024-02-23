@@ -124,3 +124,14 @@ Older versions:
 - Russian translations - Miros77
 
 </details>
+
+<details>
+<summary>Future plans</summary>
+
+I hope with 1.21 I can complete a full rewrite of this mod including a rebranding of the project.
+
+Whilst I don't want to commit to any specific major reworks yet, I will be changing the following:
+- Add the ability to disable different storage types in the config.
+- License the new, rebranded project under Apache 2.0 license.
+
+</details>
