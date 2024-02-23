@@ -3,7 +3,7 @@ This mod adds new storage containers. Namely: chests, old chests, barrels and mi
 
 All but the mini chests are like vanilla containers but can store more items.
 
-For recipes please use a recipe viewing mod like [EMI](https://modrinth.com/mod/emi) or [REI](https://modrinth.com/mod/rei).
+For recipes please use the recipe book or one of the following mods: [EMI](https://modrinth.com/mod/emi), [JEI](https://modrinth.com/mod/jei), or [REI](https://modrinth.com/mod/rei).
 
 Below is more detailed information regarding the mod however please note not all tiers / themes are available for all storage types.
 
