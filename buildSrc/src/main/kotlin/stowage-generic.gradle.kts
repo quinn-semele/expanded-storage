@@ -3,11 +3,13 @@ import semele.quinn.stowage.plugin.Versions
 
 plugins {
     id("java-library")
+    kotlin("jvm")
+    id("dev.yumi.gradle.licenser")
     id("dev.architectury.loom")
 }
 
 group = "semele.quinn"
-version = Versions.stowage
+version = "${Versions.stowage}+${project.name}"
 base.archivesName = Constants.modIdentifier
 
 layout.buildDirectory = rootProject.file("projects/${project.name}/build")
@@ -59,4 +61,8 @@ tasks {
             expand(inputs.properties)
         }
     }
+}
+
+license {
+    rule(rootProject.file("codeformat/license_header.txt"))
 }

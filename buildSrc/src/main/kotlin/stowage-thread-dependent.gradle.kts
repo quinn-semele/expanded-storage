@@ -1,5 +1,6 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
-    id("java-library")
     id("stowage-common-dependent")
 }
 
@@ -11,6 +12,10 @@ dependencies {
 
 tasks.withType<JavaCompile>().configureEach {
     source(project(":thread").sourceSets.main.get().java)
+}
+
+tasks.withType<KotlinCompile>().configureEach {
+    source(project(":thread").sourceSets.main.get().kotlin)
 }
 
 tasks.withType<ProcessResources>().configureEach {
