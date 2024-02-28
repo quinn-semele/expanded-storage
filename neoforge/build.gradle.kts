@@ -1,9 +1,42 @@
+import semele.quinn.stowage.plugin.Constants
 import semele.quinn.stowage.plugin.Versions
 
 plugins {
     id("dev.architectury.loom")
     id("stowage-generic")
     id("stowage-common-dependent")
+}
+
+loom {
+    runs {
+        named("client") {
+            property("neoforge.enabledGameTestNamespaces", Constants.modIdentifier)
+        }
+
+        named("server") {
+            property("neoforge.enabledGameTestNamespaces", Constants.modIdentifier)
+        }
+
+        create("datagen") {
+            data()
+
+            programArgs(
+                "--mod", Constants.modIdentifier,
+                "--all",
+                "--output", file("src/generated/resources/").absolutePath,
+                "--existing", file("src/main/resources/").absolutePath,
+                "--existing", project(":common").file("src/main/resources/").absolutePath
+            )
+        }
+    }
+}
+
+sourceSets {
+    main {
+        resources {
+            srcDir("src/generated/resources/")
+        }
+    }
 }
 
 repositories {

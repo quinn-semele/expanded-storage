@@ -1,9 +1,17 @@
+import semele.quinn.stowage.plugin.Constants
 import semele.quinn.stowage.plugin.Versions
 
 plugins {
     id("dev.architectury.loom")
     id("stowage-generic")
     id("stowage-common-dependent")
+}
+
+fabricApi {
+    configureDataGeneration {
+        modId = Constants.modIdentifier
+        outputDirectory = project.file("src/generated/resources/")
+    }
 }
 
 dependencies {
