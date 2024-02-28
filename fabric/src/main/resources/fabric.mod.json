@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "stowage",
+  "version": "${version}",
+  "name": "Stowage",
+  "description": "A storage mod focusing on UX.",
+  "authors": [ "Quinn Semele" ],
+  "contact": {
+    "homepage": "https://modrinth.com/mod/expanded-storage/",
+    "issues": "https://github.com/quinn-semele/expanded-storage/issues/",
+    "sources": "https://github.com/quinn-semele/expanded-storage/"
+  },
+  "license": "Apache-2.0",
+  "icon": "icon.png",
+
+  "entrypoints": {
+
+  },
+
+  "depends": {
+    "fabricloader": ">=0.15.7",
+    "minecraft": "=1.20.4",
+    "fabric-api": ">=0.96.4"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "quilt_loader": {
+    "group": "semele.quinn",
+    "id": "stowage",
+    "version": "${version}",
+    "intermediate_mappings": "net.fabricmc:intermediary",
+    "metadata": {
+      "name": "Stowage",
+      "description": "A storage mod focusing on UX.",
+      "contributors": { "Quinn Semele": "Owner" },
+      "contact": {
+        "homepage": "https://modrinth.com/mod/expanded-storage/",
+        "issues": "https://github.com/quinn-semele/expanded-storage/issues/",
+        "sources": "https://github.com/quinn-semele/expanded-storage/"
+      },
+      "license": "Apache-2.0",
+      "icon": "icon.png"
+    },
+
+    "entrypoints": {
+
+    },
+
+    "depends": [
+      {
+        "id": "minecraft",
+        "versions": "=1.20.4"
+      },
+      {
+        "id": "org.quiltmc:quilt_loader",
+        "versions": ">=0.23.1"
+      },
+      {
+        "id": "org.quiltmc:quilted_fabric_api",
+        "versions": ">=9.0.0"
+      }
+    ]
+  }
+}
