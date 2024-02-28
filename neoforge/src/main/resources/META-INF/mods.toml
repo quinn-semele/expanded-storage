@@ -1,5 +1,5 @@
-modLoader = "javafml"
-loaderVersion = "[2,)"
+modLoader = "kotlinforforge"
+loaderVersion = "[4.10,)"
 issueTrackerURL = "https://github.com/quinn-semele/expanded-storage/issues/"
 license = "Apache-2.0"
 

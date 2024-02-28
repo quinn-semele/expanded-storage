@@ -12,4 +12,7 @@ dependencies {
 
     modCompileOnly("net.fabricmc.fabric-api:fabric-api:${Versions.fabricApi}")
     modLocalRuntime("net.fabricmc.fabric-api:fabric-api:${Versions.fabricApi}")
+
+    modCompileOnly("net.fabricmc:fabric-language-kotlin:${Versions.fabricLanguageKotlin}")
+    modLocalRuntime("net.fabricmc:fabric-language-kotlin:${Versions.fabricLanguageKotlin}")
 }
