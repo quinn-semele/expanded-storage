@@ -3,6 +3,7 @@ import semele.quinn.stowage.plugin.Versions
 plugins {
     id("dev.architectury.loom")
     id("stowage-generic")
+    id("stowage-thread-dependent")
 }
 
 repositories {

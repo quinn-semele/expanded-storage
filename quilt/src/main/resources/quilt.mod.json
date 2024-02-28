@@ -19,7 +19,7 @@
     },
 
     "entrypoints": {
-
+      "main": "semele.quinn.stowage.thread.Main"
     },
 
     "depends": [

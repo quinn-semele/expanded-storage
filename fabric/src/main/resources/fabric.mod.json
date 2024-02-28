@@ -14,7 +14,7 @@
   "icon": "icon.png",
 
   "entrypoints": {
-
+    "main": [ "semele.quinn.stowage.thread.Main" ]
   },
 
   "depends": {
