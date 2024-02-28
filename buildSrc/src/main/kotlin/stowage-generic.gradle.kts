@@ -13,8 +13,6 @@ group = "semele.quinn"
 version = "${Versions.stowage}+${project.name}"
 base.archivesName = Constants.modIdentifier
 
-layout.buildDirectory = rootProject.file("projects/${project.name}/build")
-
 loom {
     silentMojangMappingsLicense()
 }

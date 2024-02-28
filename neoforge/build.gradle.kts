@@ -27,6 +27,8 @@ loom {
                 "--existing", file("src/main/resources/").absolutePath,
                 "--existing", project(":common").file("src/main/resources/").absolutePath
             )
+
+            runDir("build/datagen")
         }
     }
 }
@@ -60,4 +62,14 @@ dependencies {
     neoForge("net.neoforged:neoforge:${Versions.neoforge}")
 
     implementation("thedarkcolour:kotlinforforge-neoforge:${Versions.kotlinForForge}")
+}
+
+tasks {
+    getByName<Jar>(JavaPlugin.JAR_TASK_NAME) {
+        exclude(".cache/**")
+    }
+
+    getByName<Delete>(LifecycleBasePlugin.CLEAN_TASK_NAME) {
+        delete(file("src/generated/resources/"))
+    }
 }
