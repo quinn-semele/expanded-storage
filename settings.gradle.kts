@@ -15,16 +15,6 @@ pluginManagement {
             url = uri("https://maven.neoforged.net/releases/")
         }
 
-//        maven {
-//            name = "Quilt Release Maven"
-//            url = uri("https://maven.quiltmc.org/repository/release/")
-//        }
-
-//        maven {
-//            name = "Quilt Snapshot Maven"
-//            url = uri("https://maven.quiltmc.org/repository/snapshot/")
-//        }
-
         gradlePluginPortal()
     }
 }
