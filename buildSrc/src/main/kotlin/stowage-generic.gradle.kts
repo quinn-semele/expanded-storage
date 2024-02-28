@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import semele.quinn.stowage.plugin.Constants
 import semele.quinn.stowage.plugin.Versions
 
@@ -53,7 +54,18 @@ dependencies {
     })
 }
 
+java.toolchain.languageVersion = JavaLanguageVersion.of(Versions.java.ordinal + 1)
+
 tasks {
+    withType<JavaCompile>().configureEach {
+        options.encoding = "UTF-8"
+        options.release = Versions.java.ordinal + 1
+    }
+
+    withType<KotlinCompile>().configureEach {
+        kotlinOptions.jvmTarget = Versions.java.toString()
+    }
+
     named<ProcessResources>("processResources") {
         inputs.properties(mutableMapOf("version" to Versions.stowage))
 
