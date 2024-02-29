@@ -73,18 +73,13 @@ object Registration {
             blockProps: BlockProperties,
             itemProps: ItemProperties,
             slots: Int ->
+
             val barrelBlock = NamedValue(id) {
-                BarrelBlock(
-                    blockProps,
-                    stat,
-                    slots
-                )
+                BarrelBlock(blockProps, stat, slots)
             }
+
             val barrelItem = NamedValue(id) {
-                BlockItem(
-                    barrelBlock.value,
-                    itemProps
-                )
+                BlockItem(barrelBlock.value, itemProps)
             }
 
             blocks.add(barrelBlock)
@@ -93,10 +88,10 @@ object Registration {
 
         val copperBlockProperties = BlockProperties.of().barrel().copper().flammable()
 
-        createBarrel(Utils.id("waxed_copper_barrel"), copperStat, copperBlockProperties, ItemProperties(), COPPER_SLOTS);
-        createBarrel(Utils.id("waxed_exposed_copper_barrel"), copperStat, copperBlockProperties, ItemProperties(), COPPER_SLOTS);
-        createBarrel(Utils.id("waxed_weathered_copper_barrel"), copperStat, copperBlockProperties, ItemProperties(), COPPER_SLOTS);
-        createBarrel(Utils.id("waxed_oxidized_copper_barrel"), copperStat, copperBlockProperties, ItemProperties(), COPPER_SLOTS);
+        createBarrel(Utils.id("waxed_copper_barrel"), copperStat, copperBlockProperties, ItemProperties(), COPPER_SLOTS)
+        createBarrel(Utils.id("waxed_exposed_copper_barrel"), copperStat, copperBlockProperties, ItemProperties(), COPPER_SLOTS)
+        createBarrel(Utils.id("waxed_weathered_copper_barrel"), copperStat, copperBlockProperties, ItemProperties(), COPPER_SLOTS)
+        createBarrel(Utils.id("waxed_oxidized_copper_barrel"), copperStat, copperBlockProperties, ItemProperties(), COPPER_SLOTS)
         createBarrel(Utils.id("iron_barrel"), ironStat, BlockProperties.of().barrel().iron().flammable(), ItemProperties(), IRON_SLOTS)
         createBarrel(Utils.id("gold_barrel"), goldStat, BlockProperties.of().barrel().gold().flammable(), ItemProperties(), GOLD_SLOTS)
         createBarrel(Utils.id("diamond_barrel"), diamondStat, BlockProperties.of().barrel().diamond().flammable(), ItemProperties(), DIAMOND_SLOTS)
@@ -112,18 +107,11 @@ object Registration {
 
         for ((id, state) in copperBarrels) {
             val barrelBlock = NamedValue(id) {
-                CopperBarrelBlock(
-                    copperBlockProperties,
-                    copperStat,
-                    COPPER_SLOTS,
-                    state
-                )
+                CopperBarrelBlock(copperBlockProperties, copperStat, COPPER_SLOTS, state)
             }
+
             val barrelItem = NamedValue(id) {
-                BlockItem(
-                    barrelBlock.value,
-                    ItemProperties()
-                )
+                BlockItem(barrelBlock.value, ItemProperties())
             }
 
             blocks.add(barrelBlock as NamedValue<BarrelBlock>)
