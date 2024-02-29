@@ -47,7 +47,7 @@ object Registration {
     val BARREL_OBJECT_TYPE: ResourceLocation = Utils.id("barrel")
     val CHEST_OBJECT_TYPE: ResourceLocation = Utils.id("chest")
     val OLD_CHEST_OBJECT_TYPE: ResourceLocation = Utils.id("old_chest")
-    val MINI_STORAGE_OBJECT_TYPE: ResourceLocation = Utils.id("mini_chest")
+    val MINI_STORAGE_OBJECT_TYPE: ResourceLocation = Utils.id("mini_storage")
 
     fun constructBarrelContent(callback: BarrelContent.() -> Unit) {
         val blocks = arrayListOf<NamedValue<BarrelBlock>>()
