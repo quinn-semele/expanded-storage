@@ -21,7 +21,7 @@ import java.util.function.Supplier
 
 class NamedValue<T>(
     val name: ResourceLocation,
-    val supplier: Supplier<T>
+    private val supplier: Supplier<T>
 ) {
     val value by lazy {
         supplier.get()

@@ -20,38 +20,38 @@ import net.minecraft.core.registries.Registries
 import net.neoforged.bus.api.IEventBus
 import net.neoforged.fml.ModContainer
 import net.neoforged.fml.common.Mod
-import net.neoforged.neoforge.registries.RegisterEvent
+import net.neoforged.neoforge.registries.DeferredRegister
 import semele.quinn.stowage.common.Utils
 import semele.quinn.stowage.common.registration.Registration
 
-@Mod("stowage")
+@Mod(Utils.MOD_ID)
 class Main(container: ModContainer, bus: IEventBus) {
+    private val BLOCKS = DeferredRegister.createBlocks(Utils.MOD_ID)
+    private val ITEMS = DeferredRegister.createItems(Utils.MOD_ID)
+    private val BLOCK_ENTITIES = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, Utils.MOD_ID)
+    private val CUSTOM_STATS = DeferredRegister.create(Registries.CUSTOM_STAT, Utils.MOD_ID)
+
     init {
         Utils.LOGGER.info("Hello from Stowage. (NeoForge)")
 
+        BLOCKS.register(bus)
+        ITEMS.register(bus)
+        BLOCK_ENTITIES.register(bus)
+        CUSTOM_STATS.register(bus)
+
         Registration.constructBarrelContent {
-            bus.addListener<RegisterEvent> { event ->
-                event.register(Registries.BLOCK) { registry ->
-                    for ((name, block) in blocks) {
-                        registry.register(name, block)
-                    }
-                }
+            for (block in blocks) {
+                BLOCKS.register(block.name.path) { _ -> block.value }
+            }
 
-                event.register(Registries.ITEM) { registry ->
-                    for ((name, item) in items) {
-                        registry.register(name, item)
-                    }
-                }
+            for (item in items) {
+                ITEMS.register(item.name.path) { _ -> item.value }
+            }
 
-                event.register((Registries.BLOCK_ENTITY_TYPE)) { registry ->
-                    registry.register(blockEntity.name, blockEntity.value)
-                }
+            BLOCK_ENTITIES.register(blockEntity.name.path) { _ -> blockEntity.value }
 
-                event.register(Registries.CUSTOM_STAT) { registry ->
-                    for (stat in stats) {
-                        registry.register(stat, stat)
-                    }
-                }
+            for (stat in stats) {
+                CUSTOM_STATS.register(stat.path) { _ -> stat }
             }
         }
     }
