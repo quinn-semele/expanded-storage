@@ -1,0 +1,22 @@
+{
+  "block.stowage.copper_barrel":                 "Copper Barrel",
+  "block.stowage.exposed_copper_barrel":         "Exposed Copper Barrel",
+  "block.stowage.weathered_copper_barrel":       "Weathered Copper Barrel",
+  "block.stowage.oxidized_copper_barrel":        "Oxidized Copper Barrel",
+  "block.stowage.waxed_copper_barrel":           "Waxed Copper Barrel",
+  "block.stowage.waxed_exposed_copper_barrel":   "Waxed Exposed Copper Barrel",
+  "block.stowage.waxed_weathered_copper_barrel": "Waxed Weathered Copper Barrel",
+  "block.stowage.waxed_oxidized_copper_barrel":  "Waxed Oxidized Copper Barrel",
+  "block.stowage.iron_barrel":                   "Iron Barrel",
+  "block.stowage.gold_barrel":                   "Gold Barrel",
+  "block.stowage.diamond_barrel":                "Diamond Barrel",
+  "block.stowage.obsidian_barrel":               "Obsidian Barrel",
+  "block.stowage.netherite_barrel":              "Netherite Barrel",
+
+  "stat.stowage.open_copper_barrel":             "Copper Barrels Opened",
+  "stat.stowage.open_iron_barrel":               "Iron Barrels Opened",
+  "stat.stowage.open_gold_barrel":               "Gold Barrels Opened",
+  "stat.stowage.open_diamond_barrel":            "Diamond Barrels Opened",
+  "stat.stowage.open_obsidian_barrel":           "Obsidian Barrels Opened",
+  "stat.stowage.open_netherite_barrel":          "Netherite Barrels Opened"
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "stowage:block/templates/barrel",
+  "textures": {
+    "side": "stowage:block/oxidized_copper_barrel_side"
+  }
+}

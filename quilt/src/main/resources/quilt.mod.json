@@ -19,7 +19,10 @@
     },
 
     "entrypoints": {
-      "main": "semele.quinn.stowage.thread.Main"
+      "main": {
+        "adapter": "kotlin",
+        "value": "semele.quinn.stowage.thread.Main"
+      }
     },
 
     "depends": [

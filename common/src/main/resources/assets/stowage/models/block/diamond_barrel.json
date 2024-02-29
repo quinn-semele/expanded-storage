@@ -1,0 +1,6 @@
+{
+  "parent": "stowage:block/templates/barrel",
+  "textures": {
+    "side": "stowage:block/diamond_barrel_side"
+  }
+}

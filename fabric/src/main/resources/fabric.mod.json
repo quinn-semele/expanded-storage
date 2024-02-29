@@ -12,11 +12,14 @@
   },
   "license": "Apache-2.0",
   "icon": "icon.png",
-
   "entrypoints": {
-    "main": [ "semele.quinn.stowage.thread.Main" ]
+    "main": [
+      {
+        "adapter": "kotlin",
+        "value": "semele.quinn.stowage.thread.Main"
+      }
+    ]
   },
-
   "depends": {
     "fabricloader": ">=0.15.7",
     "minecraft": "=1.20.4",

@@ -15,6 +15,10 @@ repositories {
 
 dependencies {
     modImplementation("org.quiltmc:quilt-loader:${Versions.quiltLoader}")
-    modImplementation("net.fabricmc.fabric-api:fabric-api:${Versions.fabricApi}") // todo: replace with QFAPI when released.
-    modImplementation("net.fabricmc:fabric-language-kotlin:${Versions.fabricLanguageKotlin}") // todo: replace with QKL when released.
+    modImplementation("net.fabricmc.fabric-api:fabric-api:${Versions.fabricApi}") { // todo: replace with QFAPI when released.
+        exclude("net.fabricmc", "fabric-loader")
+    }
+    modImplementation("net.fabricmc:fabric-language-kotlin:${Versions.fabricLanguageKotlin}") { // todo: replace with QKL when released.
+        exclude("net.fabricmc", "fabric-loader")
+    }
 }
