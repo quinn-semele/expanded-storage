@@ -1,0 +1,7 @@
+{
+  "parent": "stowage:block/templates/old_chest_front",
+  "textures": {
+    "atlas": "stowage:block/old_diamond_chest",
+    "particle": "minecraft:block/diamond_block"
+  }
+}

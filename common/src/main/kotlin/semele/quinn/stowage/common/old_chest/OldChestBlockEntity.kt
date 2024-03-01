@@ -14,17 +14,19 @@
  * limitations under the License.
  */
 
-package semele.quinn.stowage.common.registration
+package semele.quinn.stowage.common.old_chest
 
-import net.minecraft.resources.ResourceLocation
-import net.minecraft.world.item.BlockItem
+import net.minecraft.core.BlockPos
+import net.minecraft.core.registries.BuiltInRegistries
+import net.minecraft.world.level.block.entity.BlockEntity
 import net.minecraft.world.level.block.entity.BlockEntityType
-import semele.quinn.stowage.common.barrel.BarrelBlock
-import semele.quinn.stowage.common.barrel.BarrelBlockEntity
+import net.minecraft.world.level.block.state.BlockState
+import semele.quinn.stowage.common.registration.Registration
 
-data class BarrelContent(
-    val blocks: ArrayList<NamedValue<BarrelBlock>>,
-    val items: ArrayList<NamedValue<BlockItem>>,
-    val blockEntity: NamedValue<BlockEntityType<BarrelBlockEntity>>,
-    val stats: ArrayList<ResourceLocation>
-)
+class OldChestBlockEntity(type: BlockEntityType<*>, pos: BlockPos, state: BlockState) : BlockEntity(type, pos, state) {
+    constructor(pos: BlockPos, state: BlockState) : this(blockEntityType, pos, state)
+
+    companion object {
+        val blockEntityType = BuiltInRegistries.BLOCK_ENTITY_TYPE.get(Registration.OLD_CHEST_OBJECT_TYPE)!!
+    }
+}

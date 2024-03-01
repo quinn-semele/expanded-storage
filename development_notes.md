@@ -1,1 +1,1 @@
-- Empty for now, will contain a list of issues that need addressing.
+- Redraw the wood chest texture with a consistent colour palette.

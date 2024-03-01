@@ -49,44 +49,90 @@ object Utils {
         return this
     }
 
-    fun BlockProperties.copper(): BlockProperties {
+    fun BlockProperties.weakMetal(): BlockProperties {
         requiresCorrectToolForDrops()
         strength(3f, 6f)
 
         return this
     }
 
-    fun BlockProperties.iron(): BlockProperties {
+    fun BlockProperties.strongMetal(): BlockProperties {
         requiresCorrectToolForDrops()
         strength(5f, 6f)
 
         return this
     }
 
-    fun BlockProperties.gold(): BlockProperties {
-        requiresCorrectToolForDrops()
-        strength(3f, 6f)
-
-        return this
-    }
-
-    fun BlockProperties.diamond(): BlockProperties {
-        requiresCorrectToolForDrops()
-        strength(5f, 6f)
-
-        return this
-    }
-
-    fun BlockProperties.obsidian(): BlockProperties {
+    fun BlockProperties.explosionProof(): BlockProperties {
         requiresCorrectToolForDrops()
         strength(50f, 1200f)
 
         return this
     }
 
-    fun BlockProperties.netherite(): BlockProperties {
-        requiresCorrectToolForDrops()
-        strength(50f, 1200f)
+    fun BlockProperties.woodChest(): BlockProperties {
+        mapColor(MapColor.WOOD)
+        instrument(NoteBlockInstrument.BASS)
+        sound(SoundType.WOOD)
+        flammable()
+
+        strength(2.5f)
+
+        return this
+    }
+
+    fun BlockProperties.copperChest(): BlockProperties {
+        mapColor(MapColor.COLOR_ORANGE)
+        sound(SoundType.COPPER)
+
+        weakMetal()
+
+        return this
+    }
+
+    fun BlockProperties.ironChest(): BlockProperties {
+        mapColor(MapColor.METAL)
+        instrument(NoteBlockInstrument.IRON_XYLOPHONE)
+        sound(SoundType.METAL)
+
+        strongMetal()
+
+        return this
+    }
+
+    fun BlockProperties.goldChest(): BlockProperties {
+        mapColor(MapColor.GOLD)
+        instrument(NoteBlockInstrument.BELL)
+        sound(SoundType.METAL)
+
+        weakMetal()
+
+        return this
+    }
+
+    fun BlockProperties.diamondChest(): BlockProperties {
+        mapColor(MapColor.DIAMOND)
+        sound(SoundType.METAL)
+
+        strongMetal()
+
+        return this
+    }
+
+    fun BlockProperties.obsidianChest(): BlockProperties {
+        mapColor(MapColor.COLOR_BLACK)
+        instrument(NoteBlockInstrument.BASEDRUM)
+
+        explosionProof()
+
+        return this
+    }
+
+    fun BlockProperties.netheriteChest(): BlockProperties {
+        mapColor(MapColor.COLOR_BLACK)
+        sound(SoundType.NETHERITE_BLOCK)
+
+        explosionProof()
 
         return this
     }

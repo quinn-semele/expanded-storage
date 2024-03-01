@@ -18,5 +18,19 @@
   "stat.stowage.open_gold_barrel":               "Gold Barrels Opened",
   "stat.stowage.open_diamond_barrel":            "Diamond Barrels Opened",
   "stat.stowage.open_obsidian_barrel":           "Obsidian Barrels Opened",
-  "stat.stowage.open_netherite_barrel":          "Netherite Barrels Opened"
+  "stat.stowage.open_netherite_barrel":          "Netherite Barrels Opened",
+
+  "block.stowage.old_wood_chest":                "Old Chest",
+  "block.stowage.old_iron_chest":                "Old Iron Chest",
+  "block.stowage.old_gold_chest":                "Old Gold Chest",
+  "block.stowage.old_diamond_chest":             "Old Diamond Chest",
+  "block.stowage.old_obsidian_chest":            "Old Obsidian Chest",
+  "block.stowage.old_netherite_chest":           "Old Netherite Chest",
+
+  "stat.stowage.open_old_wood_chest":            "Old Chests Opened",
+  "stat.stowage.open_old_iron_chest":            "Old Iron Chests Opened",
+  "stat.stowage.open_old_gold_chest":            "Old Gold Chests Opened",
+  "stat.stowage.open_old_diamond_chest":         "Old Diamond Chests Opened",
+  "stat.stowage.open_old_obsidian_chest":        "Old Obsidian Chests Opened",
+  "stat.stowage.open_old_netherite_chest":       "Old Netherite Chests Opened"
 }

@@ -19,27 +19,33 @@ package semele.quinn.stowage.thread
 import net.fabricmc.api.ModInitializer
 import net.minecraft.core.Registry
 import net.minecraft.core.registries.BuiltInRegistries
+import net.minecraft.world.level.block.Block
+import net.minecraft.world.level.block.entity.BlockEntity
 import semele.quinn.stowage.common.Utils
 import semele.quinn.stowage.common.registration.Registration
+import semele.quinn.stowage.common.registration.SimpleContentHolder
 
 object Main : ModInitializer {
     override fun onInitialize() {
         Utils.LOGGER.info("Hello from Stowage. (Fabric/Quilt)")
 
-        Registration.constructBarrelContent {
-            for ((name, block) in blocks) {
-                Registry.register(BuiltInRegistries.BLOCK, name, block)
-            }
+        Registration.constructBarrelContent { consumeContent() }
+        Registration.constructOldChestContent { consumeContent() }
+    }
 
-            for ((name, item) in items) {
-                Registry.register(BuiltInRegistries.ITEM, name, item)
-            }
+    private fun <B: Block, BE: BlockEntity> SimpleContentHolder<B, BE>.consumeContent() {
+        for ((name, block) in blocks) {
+            Registry.register(BuiltInRegistries.BLOCK, name, block)
+        }
 
-            Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, blockEntity.name, blockEntity.value)
+        for ((name, item) in items) {
+            Registry.register(BuiltInRegistries.ITEM, name, item)
+        }
 
-            for (stat in stats) {
-                Registry.register(BuiltInRegistries.CUSTOM_STAT, stat, stat)
-            }
+        Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, blockEntity.name, blockEntity.value)
+
+        for (stat in stats) {
+            Registry.register(BuiltInRegistries.CUSTOM_STAT, stat, stat)
         }
     }
 }

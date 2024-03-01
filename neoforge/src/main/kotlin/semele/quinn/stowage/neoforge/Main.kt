@@ -17,12 +17,15 @@
 package semele.quinn.stowage.neoforge
 
 import net.minecraft.core.registries.Registries
+import net.minecraft.world.level.block.Block
+import net.minecraft.world.level.block.entity.BlockEntity
 import net.neoforged.bus.api.IEventBus
 import net.neoforged.fml.ModContainer
 import net.neoforged.fml.common.Mod
 import net.neoforged.neoforge.registries.DeferredRegister
 import semele.quinn.stowage.common.Utils
 import semele.quinn.stowage.common.registration.Registration
+import semele.quinn.stowage.common.registration.SimpleContentHolder
 
 @Mod(Utils.MOD_ID)
 class Main(container: ModContainer, bus: IEventBus) {
@@ -39,20 +42,23 @@ class Main(container: ModContainer, bus: IEventBus) {
         BLOCK_ENTITIES.register(bus)
         CUSTOM_STATS.register(bus)
 
-        Registration.constructBarrelContent {
-            for (block in blocks) {
-                BLOCKS.register(block.name.path) { _ -> block.value }
-            }
+        Registration.constructBarrelContent { consumeContent() }
+        Registration.constructOldChestContent { consumeContent() }
+    }
 
-            for (item in items) {
-                ITEMS.register(item.name.path) { _ -> item.value }
-            }
+    private fun <B: Block, BE: BlockEntity> SimpleContentHolder<B, BE>.consumeContent() {
+        for (block in blocks) {
+            BLOCKS.register(block.name.path) { _ -> block.value }
+        }
 
-            BLOCK_ENTITIES.register(blockEntity.name.path) { _ -> blockEntity.value }
+        for (item in items) {
+            ITEMS.register(item.name.path) { _ -> item.value }
+        }
 
-            for (stat in stats) {
-                CUSTOM_STATS.register(stat.path) { _ -> stat }
-            }
+        BLOCK_ENTITIES.register(blockEntity.name.path) { _ -> blockEntity.value }
+
+        for (stat in stats) {
+            CUSTOM_STATS.register(stat.path) { _ -> stat }
         }
     }
 }

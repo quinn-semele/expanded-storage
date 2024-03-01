@@ -17,16 +17,13 @@
 package semele.quinn.stowage.common.registration
 
 import net.minecraft.resources.ResourceLocation
-import java.util.function.Supplier
+import net.minecraft.world.item.BlockItem
+import net.minecraft.world.level.block.entity.BlockEntity
+import net.minecraft.world.level.block.entity.BlockEntityType
 
-class NamedValue<out T>(
-    val name: ResourceLocation,
-    private val supplier: Supplier<T>
-) {
-    val value by lazy {
-        supplier.get()
-    }
-
-    operator fun component1(): ResourceLocation = name
-    operator fun component2(): T = value
-}
+data class SimpleContentHolder<B, BE : BlockEntity>(
+    val blocks: ArrayList<NamedValue<B>>,
+    val items: ArrayList<NamedValue<BlockItem>>,
+    val blockEntity: NamedValue<BlockEntityType<BE>>,
+    val stats: ArrayList<ResourceLocation>
+)

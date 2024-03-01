@@ -14,19 +14,29 @@
  * limitations under the License.
  */
 
-package semele.quinn.stowage.common.registration
+package semele.quinn.stowage.api
 
-import net.minecraft.resources.ResourceLocation
-import java.util.function.Supplier
+import net.minecraft.util.StringRepresentable
+import java.lang.IllegalStateException
 
-class NamedValue<out T>(
-    val name: ResourceLocation,
-    private val supplier: Supplier<T>
-) {
-    val value by lazy {
-        supplier.get()
+enum class StowageChestType : StringRepresentable {
+    TOP,
+    BOTTOM,
+    FRONT,
+    BACK,
+    LEFT,
+    RIGHT,
+    SINGLE;
+
+    fun opposite() = when(this) {
+        TOP -> BOTTOM
+        BOTTOM -> TOP
+        FRONT -> BACK
+        BACK -> FRONT
+        LEFT -> RIGHT
+        RIGHT -> LEFT
+        SINGLE -> throw IllegalStateException("StowageChestType.SINGLE has no opposite.")
     }
 
-    operator fun component1(): ResourceLocation = name
-    operator fun component2(): T = value
+    override fun getSerializedName(): String = name.lowercase()
 }

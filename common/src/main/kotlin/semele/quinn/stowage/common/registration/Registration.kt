@@ -29,17 +29,24 @@ import semele.quinn.stowage.common.Utils.GOLD_SLOTS
 import semele.quinn.stowage.common.Utils.IRON_SLOTS
 import semele.quinn.stowage.common.Utils.NETHERITE_SLOTS
 import semele.quinn.stowage.common.Utils.OBSIDIAN_SLOTS
+import semele.quinn.stowage.common.Utils.WOOD_SLOTS
 import semele.quinn.stowage.common.Utils.barrel
-import semele.quinn.stowage.common.Utils.copper
-import semele.quinn.stowage.common.Utils.diamond
+import semele.quinn.stowage.common.Utils.diamondChest
+import semele.quinn.stowage.common.Utils.strongMetal
 import semele.quinn.stowage.common.Utils.flammable
-import semele.quinn.stowage.common.Utils.gold
-import semele.quinn.stowage.common.Utils.iron
+import semele.quinn.stowage.common.Utils.weakMetal
 import semele.quinn.stowage.common.Utils.netherite
-import semele.quinn.stowage.common.Utils.obsidian
+import semele.quinn.stowage.common.Utils.explosionProof
+import semele.quinn.stowage.common.Utils.goldChest
+import semele.quinn.stowage.common.Utils.ironChest
+import semele.quinn.stowage.common.Utils.netheriteChest
+import semele.quinn.stowage.common.Utils.obsidianChest
+import semele.quinn.stowage.common.Utils.woodChest
 import semele.quinn.stowage.common.barrel.BarrelBlock
 import semele.quinn.stowage.common.barrel.BarrelBlockEntity
 import semele.quinn.stowage.common.barrel.CopperBarrelBlock
+import semele.quinn.stowage.common.old_chest.OldChestBlock
+import semele.quinn.stowage.common.old_chest.OldChestBlockEntity
 import net.minecraft.world.item.Item.Properties as ItemProperties
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties as BlockProperties
 
@@ -49,7 +56,7 @@ object Registration {
     val OLD_CHEST_OBJECT_TYPE: ResourceLocation = Utils.id("old_chest")
     val MINI_STORAGE_OBJECT_TYPE: ResourceLocation = Utils.id("mini_storage")
 
-    fun constructBarrelContent(callback: BarrelContent.() -> Unit) {
+    fun constructBarrelContent(callback: SimpleContentHolder<BarrelBlock, BarrelBlockEntity>.() -> Unit) {
         val blocks = arrayListOf<NamedValue<BarrelBlock>>()
         val items = arrayListOf<NamedValue<BlockItem>>()
         val stats = arrayListOf<ResourceLocation>()
@@ -86,17 +93,17 @@ object Registration {
             items.add(barrelItem)
         }
 
-        val copperBlockProperties = BlockProperties.of().barrel().copper().flammable()
+        val copperBlockProperties = BlockProperties.of().barrel().weakMetal().flammable()
 
         createBarrel(Utils.id("waxed_copper_barrel"), copperStat, copperBlockProperties, ItemProperties(), COPPER_SLOTS)
         createBarrel(Utils.id("waxed_exposed_copper_barrel"), copperStat, copperBlockProperties, ItemProperties(), COPPER_SLOTS)
         createBarrel(Utils.id("waxed_weathered_copper_barrel"), copperStat, copperBlockProperties, ItemProperties(), COPPER_SLOTS)
         createBarrel(Utils.id("waxed_oxidized_copper_barrel"), copperStat, copperBlockProperties, ItemProperties(), COPPER_SLOTS)
-        createBarrel(Utils.id("iron_barrel"), ironStat, BlockProperties.of().barrel().iron().flammable(), ItemProperties(), IRON_SLOTS)
-        createBarrel(Utils.id("gold_barrel"), goldStat, BlockProperties.of().barrel().gold().flammable(), ItemProperties(), GOLD_SLOTS)
-        createBarrel(Utils.id("diamond_barrel"), diamondStat, BlockProperties.of().barrel().diamond().flammable(), ItemProperties(), DIAMOND_SLOTS)
-        createBarrel(Utils.id("obsidian_barrel"), obsidianStat, BlockProperties.of().barrel().obsidian().flammable(), ItemProperties(), OBSIDIAN_SLOTS)
-        createBarrel(Utils.id("netherite_barrel"), netheriteStat, BlockProperties.of().barrel().netherite(), ItemProperties().netherite(), NETHERITE_SLOTS)
+        createBarrel(Utils.id("iron_barrel"), ironStat, BlockProperties.of().barrel().strongMetal().flammable(), ItemProperties(), IRON_SLOTS)
+        createBarrel(Utils.id("gold_barrel"), goldStat, BlockProperties.of().barrel().weakMetal().flammable(), ItemProperties(), GOLD_SLOTS)
+        createBarrel(Utils.id("diamond_barrel"), diamondStat, BlockProperties.of().barrel().strongMetal().flammable(), ItemProperties(), DIAMOND_SLOTS)
+        createBarrel(Utils.id("obsidian_barrel"), obsidianStat, BlockProperties.of().barrel().explosionProof().flammable(), ItemProperties(), OBSIDIAN_SLOTS)
+        createBarrel(Utils.id("netherite_barrel"), netheriteStat, BlockProperties.of().barrel().explosionProof(), ItemProperties().netherite(), NETHERITE_SLOTS)
 
         val copperBarrels = mapOf(
             Utils.id("copper_barrel") to WeatheringCopper.WeatherState.UNAFFECTED,
@@ -125,7 +132,68 @@ object Registration {
                     .build(Util.fetchChoiceType(References.BLOCK_ENTITY, BARREL_OBJECT_TYPE.toString()))
             }
 
-        val content = BarrelContent(
+        val content = SimpleContentHolder(
+            blocks = blocks,
+            items = items,
+            blockEntity = blockEntity,
+            stats = stats
+        )
+
+        callback.invoke(content)
+    }
+
+    fun constructOldChestContent(callback: SimpleContentHolder<OldChestBlock, OldChestBlockEntity>.() -> Unit) {
+        val blocks = arrayListOf<NamedValue<OldChestBlock>>()
+        val items = arrayListOf<NamedValue<BlockItem>>()
+        val stats = arrayListOf<ResourceLocation>()
+
+        val createStat = { id: String ->
+            val stat = Utils.id(id)
+            stats.add(stat)
+            stat
+        }
+
+        val woodStat = createStat("open_old_wood_chest")
+        val ironStat = createStat("open_old_iron_chest")
+        val goldStat = createStat("open_old_gold_chest")
+        val diamondStat = createStat("open_old_diamond_chest")
+        val obsidianStat = createStat("open_old_obsidian_chest")
+        val netheriteStat = createStat("open_old_netherite_chest")
+
+        val createChest = {
+                id: ResourceLocation,
+                stat: ResourceLocation,
+                blockProps: BlockProperties,
+                itemProps: ItemProperties,
+                slots: Int ->
+
+            val chestBlock = NamedValue(id) {
+                OldChestBlock(blockProps, stat, slots)
+            }
+
+            val chestItem = NamedValue(id) {
+                BlockItem(chestBlock.value, itemProps)
+            }
+
+            blocks.add(chestBlock)
+            items.add(chestItem)
+        }
+
+        createChest(Utils.id("old_wood_chest"), woodStat, BlockProperties.of().woodChest(), ItemProperties(), WOOD_SLOTS)
+        createChest(Utils.id("old_iron_chest"), ironStat, BlockProperties.of().ironChest(), ItemProperties(), IRON_SLOTS)
+        createChest(Utils.id("old_gold_chest"), goldStat, BlockProperties.of().goldChest(), ItemProperties(), GOLD_SLOTS)
+        createChest(Utils.id("old_diamond_chest"), diamondStat, BlockProperties.of().diamondChest(), ItemProperties(), DIAMOND_SLOTS)
+        createChest(Utils.id("old_obsidian_chest"), obsidianStat, BlockProperties.of().obsidianChest(), ItemProperties(), OBSIDIAN_SLOTS)
+        createChest(Utils.id("old_netherite_chest"), netheriteStat, BlockProperties.of().netheriteChest(), ItemProperties().netherite(), NETHERITE_SLOTS)
+
+        @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
+        val blockEntity =
+            NamedValue(OLD_CHEST_OBJECT_TYPE) {
+                BlockEntityType.Builder.of(::OldChestBlockEntity, *blocks.map { it.value }.toTypedArray())
+                    .build(Util.fetchChoiceType(References.BLOCK_ENTITY, OLD_CHEST_OBJECT_TYPE.toString()))
+            }
+
+        val content = SimpleContentHolder(
             blocks = blocks,
             items = items,
             blockEntity = blockEntity,
