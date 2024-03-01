@@ -17,7 +17,9 @@
 package semele.quinn.stowage.common
 
 import net.minecraft.resources.ResourceLocation
+import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.SoundType
+import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument
 import net.minecraft.world.level.material.MapColor
 import net.minecraft.world.item.Item.Properties as ItemProperties
@@ -138,4 +140,6 @@ object Utils {
     }
 
     fun ItemProperties.netherite(): ItemProperties = fireResistant()
+
+    fun BlockState.isBlock(block: Block) = this.`is`(block)
 }
