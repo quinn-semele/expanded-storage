@@ -1,1 +1,4 @@
 - Redraw the wood chest texture with a consistent colour palette.
+- Rename resource files to make searching / grouping easier:
+  - e.g. `old_wood_chest_top.json` -> `old_chest_wood_top.json`
+  - Basically `category_tier_state` instead of weird mix of category and tier at beginning and state at end.

@@ -31,6 +31,7 @@ import semele.quinn.stowage.common.Utils.NETHERITE_SLOTS
 import semele.quinn.stowage.common.Utils.OBSIDIAN_SLOTS
 import semele.quinn.stowage.common.Utils.WOOD_SLOTS
 import semele.quinn.stowage.common.Utils.barrel
+import semele.quinn.stowage.common.Utils.copperChest
 import semele.quinn.stowage.common.Utils.diamondChest
 import semele.quinn.stowage.common.Utils.strongMetal
 import semele.quinn.stowage.common.Utils.flammable
@@ -45,6 +46,7 @@ import semele.quinn.stowage.common.Utils.woodChest
 import semele.quinn.stowage.common.barrel.BarrelBlock
 import semele.quinn.stowage.common.barrel.BarrelBlockEntity
 import semele.quinn.stowage.common.barrel.CopperBarrelBlock
+import semele.quinn.stowage.common.old_chest.CopperOldChestBlock
 import semele.quinn.stowage.common.old_chest.OldChestBlock
 import semele.quinn.stowage.common.old_chest.OldChestBlockEntity
 import net.minecraft.world.item.Item.Properties as ItemProperties
@@ -95,24 +97,20 @@ object Registration {
 
         val copperBlockProperties = BlockProperties.of().barrel().weakMetal().flammable()
 
-        createBarrel(Utils.id("waxed_copper_barrel"), copperStat, copperBlockProperties, ItemProperties(), COPPER_SLOTS)
-        createBarrel(Utils.id("waxed_exposed_copper_barrel"), copperStat, copperBlockProperties, ItemProperties(), COPPER_SLOTS)
-        createBarrel(Utils.id("waxed_weathered_copper_barrel"), copperStat, copperBlockProperties, ItemProperties(), COPPER_SLOTS)
-        createBarrel(Utils.id("waxed_oxidized_copper_barrel"), copperStat, copperBlockProperties, ItemProperties(), COPPER_SLOTS)
-        createBarrel(Utils.id("iron_barrel"), ironStat, BlockProperties.of().barrel().strongMetal().flammable(), ItemProperties(), IRON_SLOTS)
-        createBarrel(Utils.id("gold_barrel"), goldStat, BlockProperties.of().barrel().weakMetal().flammable(), ItemProperties(), GOLD_SLOTS)
-        createBarrel(Utils.id("diamond_barrel"), diamondStat, BlockProperties.of().barrel().strongMetal().flammable(), ItemProperties(), DIAMOND_SLOTS)
-        createBarrel(Utils.id("obsidian_barrel"), obsidianStat, BlockProperties.of().barrel().explosionProof().flammable(), ItemProperties(), OBSIDIAN_SLOTS)
-        createBarrel(Utils.id("netherite_barrel"), netheriteStat, BlockProperties.of().barrel().explosionProof(), ItemProperties().netherite(), NETHERITE_SLOTS)
-
         val copperBarrels = mapOf(
-            Utils.id("copper_barrel") to WeatheringCopper.WeatherState.UNAFFECTED,
-            Utils.id("exposed_copper_barrel") to WeatheringCopper.WeatherState.EXPOSED,
-            Utils.id("weathered_copper_barrel") to WeatheringCopper.WeatherState.WEATHERED,
-            Utils.id("oxidized_copper_barrel") to WeatheringCopper.WeatherState.OXIDIZED,
+            "copper_barrel" to WeatheringCopper.WeatherState.UNAFFECTED,
+            "exposed_copper_barrel" to WeatheringCopper.WeatherState.EXPOSED,
+            "weathered_copper_barrel" to WeatheringCopper.WeatherState.WEATHERED,
+            "oxidized_copper_barrel" to WeatheringCopper.WeatherState.OXIDIZED,
         )
 
+        for ((id, _) in copperBarrels) {
+            createBarrel(Utils.id("waxed_$id"), copperStat, copperBlockProperties, ItemProperties(), COPPER_SLOTS)
+        }
+
         for ((id, state) in copperBarrels) {
+            val id = Utils.id(id)
+
             val barrelBlock = NamedValue(id) {
                 CopperBarrelBlock(copperBlockProperties, copperStat, COPPER_SLOTS, state)
             }
@@ -124,6 +122,12 @@ object Registration {
             blocks.add(barrelBlock as NamedValue<BarrelBlock>)
             items.add(barrelItem)
         }
+
+        createBarrel(Utils.id("iron_barrel"), ironStat, BlockProperties.of().barrel().strongMetal().flammable(), ItemProperties(), IRON_SLOTS)
+        createBarrel(Utils.id("gold_barrel"), goldStat, BlockProperties.of().barrel().weakMetal().flammable(), ItemProperties(), GOLD_SLOTS)
+        createBarrel(Utils.id("diamond_barrel"), diamondStat, BlockProperties.of().barrel().strongMetal().flammable(), ItemProperties(), DIAMOND_SLOTS)
+        createBarrel(Utils.id("obsidian_barrel"), obsidianStat, BlockProperties.of().barrel().explosionProof().flammable(), ItemProperties(), OBSIDIAN_SLOTS)
+        createBarrel(Utils.id("netherite_barrel"), netheriteStat, BlockProperties.of().barrel().explosionProof(), ItemProperties().netherite(), NETHERITE_SLOTS)
 
         @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
         val blockEntity =
@@ -154,6 +158,7 @@ object Registration {
         }
 
         val woodStat = createStat("open_old_wood_chest")
+        val copperStat = createStat("open_old_copper_chest")
         val ironStat = createStat("open_old_iron_chest")
         val goldStat = createStat("open_old_gold_chest")
         val diamondStat = createStat("open_old_diamond_chest")
@@ -179,7 +184,36 @@ object Registration {
             items.add(chestItem)
         }
 
+        val copperBlockProperties = BlockProperties.of().copperChest()
+
+        val copperChests = mapOf(
+            "old_copper_chest" to WeatheringCopper.WeatherState.UNAFFECTED,
+            "old_exposed_copper_chest" to WeatheringCopper.WeatherState.EXPOSED,
+            "old_weathered_copper_chest" to WeatheringCopper.WeatherState.WEATHERED,
+            "old_oxidized_copper_chest" to WeatheringCopper.WeatherState.OXIDIZED,
+        )
+
         createChest(Utils.id("old_wood_chest"), woodStat, BlockProperties.of().woodChest(), ItemProperties(), WOOD_SLOTS)
+
+        for ((id, _) in copperChests) {
+            createChest(Utils.id("waxed_$id"), copperStat, copperBlockProperties, ItemProperties(), COPPER_SLOTS)
+        }
+
+        for ((id, state) in copperChests) {
+            val id = Utils.id(id)
+
+            val chestBlock = NamedValue(id) {
+                CopperOldChestBlock(copperBlockProperties, copperStat, COPPER_SLOTS, state)
+            }
+
+            val chestItem = NamedValue(id) {
+                BlockItem(chestBlock.value, ItemProperties())
+            }
+
+            blocks.add(chestBlock as NamedValue<OldChestBlock>)
+            items.add(chestItem)
+        }
+
         createChest(Utils.id("old_iron_chest"), ironStat, BlockProperties.of().ironChest(), ItemProperties(), IRON_SLOTS)
         createChest(Utils.id("old_gold_chest"), goldStat, BlockProperties.of().goldChest(), ItemProperties(), GOLD_SLOTS)
         createChest(Utils.id("old_diamond_chest"), diamondStat, BlockProperties.of().diamondChest(), ItemProperties(), DIAMOND_SLOTS)

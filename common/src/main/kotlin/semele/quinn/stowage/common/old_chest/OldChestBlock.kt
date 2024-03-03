@@ -35,7 +35,7 @@ import semele.quinn.stowage.api.StowageChestType
 import semele.quinn.stowage.common.Utils.isBlock
 import java.lang.IllegalStateException
 
-class OldChestBlock(
+open class OldChestBlock(
     properties: Properties,
     val openingStat: ResourceLocation,
     val slots: Int
