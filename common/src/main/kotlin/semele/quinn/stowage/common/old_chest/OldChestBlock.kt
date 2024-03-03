@@ -102,12 +102,20 @@ open class OldChestBlock(
         } else {
             val otherChest = level.getBlockState(pos.relative(getDirectionToAttached(state)))
 
-            if (!isValidDoubleChest(state, otherChest)) {
-                return state.setValue(CHEST_TYPE, StowageChestType.SINGLE)
+            val newState = checkForOxidisation(state, otherChest)
+
+            return if (!isValidDoubleChest(newState, otherChest)) {
+                state.setValue(CHEST_TYPE, StowageChestType.SINGLE)
+            } else {
+                newState
             }
         }
 
         return super.updateShape(state, direction, neighborState, level, pos, neighborPos)
+    }
+
+    protected open fun checkForOxidisation(chest: BlockState, otherChest: BlockState): BlockState {
+        return chest
     }
 
     private fun isValidMergeTarget(state: BlockState, requiredFacing: Direction): Boolean {
@@ -120,7 +128,7 @@ open class OldChestBlock(
      * @param chest A known good half of a double chest whose type isn't [StowageChestType.SINGLE].
      */
     private fun isValidDoubleChest(chest: BlockState, otherState: BlockState): Boolean {
-        return otherState.isBlock(this) &&
+        return otherState.isBlock(chest.block) &&
                 chest.getValue(FACING) == otherState.getValue(FACING) &&
                 chest.getValue(CHEST_TYPE).opposite() == otherState.getValue(CHEST_TYPE)
     }

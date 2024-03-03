@@ -7,6 +7,8 @@ import net.minecraft.util.RandomSource
 import net.minecraft.world.level.block.WeatheringCopper
 import net.minecraft.world.level.block.WeatheringCopper.WeatherState
 import net.minecraft.world.level.block.state.BlockState
+import semele.quinn.stowage.common.Utils.isBlock
+import semele.quinn.stowage.common.registration.CopperBlockHelper
 import java.util.*
 
 class CopperOldChestBlock(
@@ -16,6 +18,16 @@ class CopperOldChestBlock(
     private val state: WeatherState
 ) : OldChestBlock(properties, openingStat, slots), WeatheringCopper {
 
+    override fun checkForOxidisation(chest: BlockState, otherChest: BlockState): BlockState {
+         val nextState = this.getNext(chest).orElse(chest)
+
+        if (nextState.isBlock(otherChest.block)) {
+            return nextState.block.withPropertiesOf(chest)
+        }
+
+        return chest
+    }
+
     override fun isRandomlyTicking(state: BlockState): Boolean = getNext(state).isPresent
 
     @Suppress("OVERRIDE_DEPRECATION")
@@ -24,7 +36,7 @@ class CopperOldChestBlock(
     }
 
     override fun getNext(state: BlockState): Optional<BlockState> {
-        return Optional.of(state)
+        return CopperBlockHelper.getNextState(state)
     }
 
     override fun getAge(): WeatherState {

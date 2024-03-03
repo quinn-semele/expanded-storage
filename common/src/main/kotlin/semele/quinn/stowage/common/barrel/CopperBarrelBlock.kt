@@ -23,6 +23,7 @@ import net.minecraft.util.RandomSource
 import net.minecraft.world.level.block.WeatheringCopper
 import net.minecraft.world.level.block.WeatheringCopper.WeatherState
 import net.minecraft.world.level.block.state.BlockState
+import semele.quinn.stowage.common.registration.CopperBlockHelper
 import java.util.*
 
 class CopperBarrelBlock(
@@ -40,7 +41,7 @@ class CopperBarrelBlock(
     }
 
     override fun getNext(state: BlockState): Optional<BlockState> {
-        return Optional.of(state)
+        return CopperBlockHelper.getNextState(state)
     }
 
     override fun getAge(): WeatherState = weatherState

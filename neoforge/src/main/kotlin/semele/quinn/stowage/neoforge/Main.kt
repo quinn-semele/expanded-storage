@@ -16,14 +16,21 @@
 
 package semele.quinn.stowage.neoforge
 
+import com.google.common.base.Suppliers
+import com.google.common.collect.ImmutableBiMap
 import net.minecraft.core.registries.Registries
+import net.minecraft.world.item.HoneycombItem
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.entity.BlockEntity
 import net.neoforged.bus.api.IEventBus
 import net.neoforged.fml.ModContainer
 import net.neoforged.fml.common.Mod
+import net.neoforged.neoforge.common.NeoForge
+import net.neoforged.neoforge.common.ToolActions
+import net.neoforged.neoforge.event.level.BlockEvent
 import net.neoforged.neoforge.registries.DeferredRegister
 import semele.quinn.stowage.common.Utils
+import semele.quinn.stowage.common.registration.CopperBlockHelper
 import semele.quinn.stowage.common.registration.Registration
 import semele.quinn.stowage.common.registration.SimpleContentHolder
 
@@ -44,6 +51,27 @@ class Main(container: ModContainer, bus: IEventBus) {
 
         Registration.constructBarrelContent { consumeContent() }
         Registration.constructOldChestContent { consumeContent() }
+
+        val originalWaxables = HoneycombItem.WAXABLES
+
+        HoneycombItem.WAXABLES = Suppliers.memoize {
+            ImmutableBiMap.builder<Block, Block>()
+                .putAll(originalWaxables.get())
+                .putAll(CopperBlockHelper.dewaxingMap().inverse())
+                .build()
+        }
+
+        NeoForge.EVENT_BUS.addListener<BlockEvent.BlockToolModificationEvent> { event ->
+            if (event.toolAction == ToolActions.AXE_SCRAPE) {
+                CopperBlockHelper.getPreviousState(event.state).ifPresent {
+                    event.finalState = it
+                }
+            } else if (event.toolAction == ToolActions.AXE_WAX_OFF) {
+                CopperBlockHelper.getDewaxed(event.state).ifPresent {
+                    event.finalState = it
+                }
+            }
+        }
     }
 
     private fun <B: Block, BE: BlockEntity> SimpleContentHolder<B, BE>.consumeContent() {

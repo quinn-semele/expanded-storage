@@ -17,11 +17,13 @@
 package semele.quinn.stowage.thread
 
 import net.fabricmc.api.ModInitializer
+import net.fabricmc.fabric.api.registry.OxidizableBlocksRegistry
 import net.minecraft.core.Registry
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.entity.BlockEntity
 import semele.quinn.stowage.common.Utils
+import semele.quinn.stowage.common.registration.CopperBlockHelper
 import semele.quinn.stowage.common.registration.Registration
 import semele.quinn.stowage.common.registration.SimpleContentHolder
 
@@ -31,6 +33,9 @@ object Main : ModInitializer {
 
         Registration.constructBarrelContent { consumeContent() }
         Registration.constructOldChestContent { consumeContent() }
+
+        CopperBlockHelper.oxidisationMap().forEach(OxidizableBlocksRegistry::registerOxidizableBlockPair);
+        CopperBlockHelper.dewaxingMap().inverse().forEach(OxidizableBlocksRegistry::registerWaxableBlockPair);
     }
 
     private fun <B: Block, BE: BlockEntity> SimpleContentHolder<B, BE>.consumeContent() {
