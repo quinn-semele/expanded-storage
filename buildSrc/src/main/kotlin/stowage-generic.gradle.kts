@@ -46,6 +46,8 @@ repositories {
 
 dependencies {
     minecraft("com.mojang:minecraft:${Versions.minecraft}")
+
+    @Suppress("UnstableApiUsage")
     mappings(loom.layered {
         officialMojangMappings()
         parchment("org.parchmentmc.data:parchment-${Versions.parchment}")
@@ -70,6 +72,21 @@ tasks {
         filesMatching(listOf("fabric.mod.json", "quilt.mod.json", "META-INF/mods.toml")) {
             expand(inputs.properties)
         }
+    }
+
+    val moveReleaseTask = create("moveRelease") {
+        doLast {
+            val releaseDir = rootProject.file("release")
+            releaseDir.mkdirs()
+
+            val releaseFile = project.file("build/libs/${base.archivesName}-${project.version}.jar")
+            releaseFile.copyTo(rootProject.file("release/${releaseFile.name}"), true)
+        }
+
+    }
+
+    named("build").configure {
+        finalizedBy(moveReleaseTask)
     }
 }
 
