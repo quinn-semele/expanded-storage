@@ -79,7 +79,7 @@ tasks {
             val releaseDir = rootProject.file("release")
             releaseDir.mkdirs()
 
-            val releaseFile = project.file("build/libs/${base.archivesName}-${project.version}.jar")
+            val releaseFile = project.file("build/libs/${base.archivesName.get()}-${project.version}.jar")
             releaseFile.copyTo(rootProject.file("release/${releaseFile.name}"), true)
         }
 

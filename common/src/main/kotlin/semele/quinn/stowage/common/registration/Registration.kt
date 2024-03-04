@@ -109,13 +109,13 @@ object Registration {
         }
 
         for ((id, state) in copperBarrels) {
-            val id = Utils.id(id)
+            val barrelId = Utils.id(id)
 
-            val barrelBlock = NamedValue(id) {
+            val barrelBlock = NamedValue(barrelId) {
                 CopperBarrelBlock(copperBlockProperties, copperStat, COPPER_SLOTS, state)
             }
 
-            val barrelItem = NamedValue(id) {
+            val barrelItem = NamedValue(barrelId) {
                 BlockItem(barrelBlock.value, ItemProperties())
             }
 
@@ -200,13 +200,13 @@ object Registration {
         }
 
         for ((id, state) in copperChests) {
-            val id = Utils.id(id)
+            val chestId = Utils.id(id)
 
-            val chestBlock = NamedValue(id) {
+            val chestBlock = NamedValue(chestId) {
                 CopperOldChestBlock(copperBlockProperties, copperStat, COPPER_SLOTS, state)
             }
 
-            val chestItem = NamedValue(id) {
+            val chestItem = NamedValue(chestId) {
                 BlockItem(chestBlock.value, ItemProperties())
             }
 
