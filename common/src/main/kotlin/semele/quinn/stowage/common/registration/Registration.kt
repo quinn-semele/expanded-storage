@@ -53,11 +53,6 @@ import net.minecraft.world.item.Item.Properties as ItemProperties
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties as BlockProperties
 
 object Registration {
-    val BARREL_OBJECT_TYPE: ResourceLocation = Utils.id("barrel")
-    val CHEST_OBJECT_TYPE: ResourceLocation = Utils.id("chest")
-    val OLD_CHEST_OBJECT_TYPE: ResourceLocation = Utils.id("old_chest")
-    val MINI_STORAGE_OBJECT_TYPE: ResourceLocation = Utils.id("mini_storage")
-
     fun constructBarrelContent(callback: SimpleContentHolder<BarrelBlock, BarrelBlockEntity>.() -> Unit) {
         val blocks = arrayListOf<NamedValue<BarrelBlock>>()
         val items = arrayListOf<NamedValue<BlockItem>>()
@@ -131,9 +126,9 @@ object Registration {
 
         @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
         val blockEntity =
-            NamedValue(BARREL_OBJECT_TYPE) {
+            NamedValue(Utils.BARREL_CONTENT) {
                 BlockEntityType.Builder.of(::BarrelBlockEntity, *blocks.map { it.value }.toTypedArray())
-                    .build(Util.fetchChoiceType(References.BLOCK_ENTITY, BARREL_OBJECT_TYPE.toString()))
+                    .build(Util.fetchChoiceType(References.BLOCK_ENTITY, Utils.BARREL_CONTENT.toString()))
             }
 
         val content = SimpleContentHolder(
@@ -222,9 +217,9 @@ object Registration {
 
         @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
         val blockEntity =
-            NamedValue(OLD_CHEST_OBJECT_TYPE) {
+            NamedValue(Utils.OLD_CHEST_CONTENT) {
                 BlockEntityType.Builder.of(::OldChestBlockEntity, *blocks.map { it.value }.toTypedArray())
-                    .build(Util.fetchChoiceType(References.BLOCK_ENTITY, OLD_CHEST_OBJECT_TYPE.toString()))
+                    .build(Util.fetchChoiceType(References.BLOCK_ENTITY, Utils.OLD_CHEST_CONTENT.toString()))
             }
 
         val content = SimpleContentHolder(

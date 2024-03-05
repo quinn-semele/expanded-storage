@@ -31,6 +31,11 @@ object Utils {
     const val MOD_ID = "stowage"
     val LOGGER: Logger = LoggerFactory.getLogger("Stowage")
 
+    val CHEST_CONTENT = id("chest")
+    val BARREL_CONTENT = id("barrel")
+    val OLD_CHEST_CONTENT = id("old_chest")
+    val MINI_STORAGE_CONTENT = id("mini_storage")
+
     const val WOOD_SLOTS = 27
     const val COPPER_SLOTS = 45
     const val IRON_SLOTS = 54

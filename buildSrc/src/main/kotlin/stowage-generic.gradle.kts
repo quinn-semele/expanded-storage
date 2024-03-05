@@ -5,6 +5,7 @@ import semele.quinn.stowage.plugin.Versions
 plugins {
     id("java-library")
     kotlin("jvm")
+    kotlin("plugin.serialization")
     id("dev.yumi.gradle.licenser")
     id("dev.architectury.loom")
 }

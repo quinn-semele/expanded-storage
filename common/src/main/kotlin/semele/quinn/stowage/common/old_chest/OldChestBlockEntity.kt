@@ -21,12 +21,12 @@ import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.world.level.block.entity.BlockEntity
 import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.world.level.block.state.BlockState
-import semele.quinn.stowage.common.registration.Registration
+import semele.quinn.stowage.common.Utils
 
 class OldChestBlockEntity(type: BlockEntityType<*>, pos: BlockPos, state: BlockState) : BlockEntity(type, pos, state) {
     constructor(pos: BlockPos, state: BlockState) : this(blockEntityType, pos, state)
 
     companion object {
-        val blockEntityType = BuiltInRegistries.BLOCK_ENTITY_TYPE.get(Registration.OLD_CHEST_OBJECT_TYPE)!!
+        val blockEntityType = BuiltInRegistries.BLOCK_ENTITY_TYPE.get(Utils.OLD_CHEST_CONTENT)!!
     }
 }

@@ -14,16 +14,20 @@
  * limitations under the License.
  */
 
-package semele.quinn.stowage.common.barrel
+package semele.quinn.stowage.common.core.config
 
-import net.minecraft.core.BlockPos
-import net.minecraft.core.registries.BuiltInRegistries
-import net.minecraft.world.level.block.entity.BlockEntity
-import net.minecraft.world.level.block.state.BlockState
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
+import net.minecraft.resources.ResourceLocation
 import semele.quinn.stowage.common.Utils
 
-class BarrelBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(blockEntityType, pos, state) {
-    companion object {
-        val blockEntityType = BuiltInRegistries.BLOCK_ENTITY_TYPE.get(Utils.BARREL_CONTENT)!!
-    }
-}
+@Serializable
+data class CommonConfig0(
+    val configVersion: Int = 0,
+    val enabledModules: Map<@Contextual ResourceLocation, Boolean> = mapOf(
+        Utils.CHEST_CONTENT to true,
+        Utils.BARREL_CONTENT to true,
+        Utils.OLD_CHEST_CONTENT to true,
+        Utils.MINI_STORAGE_CONTENT to true
+    )
+)

@@ -28,6 +28,7 @@ dependencies {
     implementation("me.modmuss50:mod-publish-plugin:0.5.1") // https://plugins.gradle.org/plugin/me.modmuss50.mod-publish-plugin
 
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.22") // Should match version of FLK / KFF
+    implementation("org.jetbrains.kotlin:kotlin-serialization:1.9.22") // Should match version of FLK / KFF
 
     implementation("dev.yumi:yumi-gradle-licenser:1.1.1") // https://plugins.gradle.org/plugin/dev.yumi.gradle.licenser
 

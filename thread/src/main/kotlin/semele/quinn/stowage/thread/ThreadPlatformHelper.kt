@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-package semele.quinn.stowage.common.barrel
+package semele.quinn.stowage.thread
 
-import net.minecraft.core.BlockPos
-import net.minecraft.core.registries.BuiltInRegistries
-import net.minecraft.world.level.block.entity.BlockEntity
-import net.minecraft.world.level.block.state.BlockState
-import semele.quinn.stowage.common.Utils
+import net.fabricmc.loader.api.FabricLoader
+import semele.quinn.stowage.common.core.helpers.PlatformHelper
+import java.nio.file.Path
 
-class BarrelBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(blockEntityType, pos, state) {
-    companion object {
-        val blockEntityType = BuiltInRegistries.BLOCK_ENTITY_TYPE.get(Utils.BARREL_CONTENT)!!
+class ThreadPlatformHelper : PlatformHelper {
+    private val fabricLoader = FabricLoader.getInstance()
+
+    override fun getConfigDirectory(): Path {
+        return fabricLoader.configDir
     }
 }
