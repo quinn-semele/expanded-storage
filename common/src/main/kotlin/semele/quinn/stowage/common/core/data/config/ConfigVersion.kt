@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package semele.quinn.stowage.common.core.config
+package semele.quinn.stowage.common.core.data.config
 
 import kotlinx.serialization.Serializable
 

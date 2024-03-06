@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package semele.quinn.stowage.common.core.config
+package semele.quinn.stowage.common.core.data.config
 
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.encodeToString
@@ -54,7 +54,7 @@ object ConfigManager {
         val newConfig = config.function()
 
         if (newConfig != config) {
-            this.config = newConfig
+            ConfigManager.config = newConfig
 
             saveConfig(newConfig, "updated")
         }
@@ -124,7 +124,7 @@ object ConfigManager {
     private fun defaultConfig(): CommonConfig0 {
         val config = CommonConfig0()
 
-        this.config = config
+        ConfigManager.config = config
 
         return config
     }

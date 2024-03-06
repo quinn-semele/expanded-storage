@@ -28,7 +28,7 @@ enum class StowageChestType : StringRepresentable {
     RIGHT,
     SINGLE;
 
-    fun opposite() = when(this) {
+    fun opposite(): StowageChestType = when(this) {
         TOP -> BOTTOM
         BOTTOM -> TOP
         FRONT -> BACK

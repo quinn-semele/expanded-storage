@@ -1,0 +1,36 @@
+{
+  "icons": [
+    "stowage:old_netherite_chest",
+    "stowage:netherite_barrel"
+  ],
+  "values": [
+    "stowage:copper_barrel",
+    "stowage:exposed_copper_barrel",
+    "stowage:weathered_copper_barrel",
+    "stowage:oxidized_copper_barrel",
+    "stowage:waxed_copper_barrel",
+    "stowage:waxed_exposed_copper_barrel",
+    "stowage:waxed_weathered_copper_barrel",
+    "stowage:waxed_oxidized_copper_barrel",
+    "stowage:iron_barrel",
+    "stowage:gold_barrel",
+    "stowage:diamond_barrel",
+    "stowage:obsidian_barrel",
+    "stowage:netherite_barrel",
+
+    "stowage:old_wood_chest",
+    "stowage:old_copper_chest",
+    "stowage:old_exposed_copper_chest",
+    "stowage:old_weathered_copper_chest",
+    "stowage:old_oxidized_copper_chest",
+    "stowage:waxed_old_copper_chest",
+    "stowage:waxed_old_exposed_copper_chest",
+    "stowage:waxed_old_weathered_copper_chest",
+    "stowage:waxed_old_oxidized_copper_chest",
+    "stowage:old_iron_chest",
+    "stowage:old_gold_chest",
+    "stowage:old_diamond_chest",
+    "stowage:old_obsidian_chest",
+    "stowage:old_netherite_chest"
+  ]
+}

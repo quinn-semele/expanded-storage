@@ -1,0 +1,11 @@
+{
+  "entries": {
+    "stowage:copper_barrel": "stowage:exposed_copper_barrel",
+    "stowage:exposed_copper_barrel": "stowage:weathered_copper_barrel",
+    "stowage:weathered_copper_barrel": "stowage:oxidized_copper_barrel",
+
+    "stowage:old_copper_chest": "stowage:old_exposed_copper_chest",
+    "stowage:old_exposed_copper_chest": "stowage:old_weathered_copper_chest",
+    "stowage:old_weathered_copper_chest": "stowage:old_oxidized_copper_chest"
+  }
+}

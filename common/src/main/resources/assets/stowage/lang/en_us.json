@@ -1,4 +1,6 @@
 {
+  "itemGroup.stowage.tab":                          "Stowage",
+
   "block.stowage.copper_barrel":                    "Copper Barrel",
   "block.stowage.exposed_copper_barrel":            "Exposed Copper Barrel",
   "block.stowage.weathered_copper_barrel":          "Weathered Copper Barrel",

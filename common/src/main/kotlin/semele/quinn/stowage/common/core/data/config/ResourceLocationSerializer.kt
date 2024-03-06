@@ -14,20 +14,22 @@
  * limitations under the License.
  */
 
-package semele.quinn.stowage.common.core.config
+package semele.quinn.stowage.common.core.data.config
 
-import kotlinx.serialization.Contextual
-import kotlinx.serialization.Serializable
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.builtins.serializer
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 import net.minecraft.resources.ResourceLocation
-import semele.quinn.stowage.common.Utils
 
-@Serializable
-data class CommonConfig0(
-    val configVersion: Int = 0,
-    val enabledModules: Map<@Contextual ResourceLocation, Boolean> = mapOf(
-        Utils.CHEST_CONTENT to true,
-        Utils.BARREL_CONTENT to true,
-        Utils.OLD_CHEST_CONTENT to true,
-        Utils.MINI_STORAGE_CONTENT to true
-    )
-)
+object ResourceLocationSerializer : KSerializer<ResourceLocation> {
+    override val descriptor = String.serializer().descriptor
+
+    override fun serialize(encoder: Encoder, value: ResourceLocation) {
+        encoder.encodeString(value.toString())
+    }
+
+    override fun deserialize(decoder: Decoder): ResourceLocation {
+        return ResourceLocation(decoder.decodeString())
+    }
+}
