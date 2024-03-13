@@ -1,0 +1,4 @@
+Copyright ${CREATION_YEAR} Quinn Semele
+
+Use of this source code is governed by the MIT license
+which can be found at https://opensource.org/licenses/MIT.

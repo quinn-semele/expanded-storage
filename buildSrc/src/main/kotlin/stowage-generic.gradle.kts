@@ -92,5 +92,6 @@ tasks {
 }
 
 license {
-    rule(rootProject.file("codeformat/license_header.txt"))
+    rule(rootProject.file("codeformat/headers/Apache-2.0.txt"))
+    rule(rootProject.file("codeformat/headers/MIT.txt"))
 }
