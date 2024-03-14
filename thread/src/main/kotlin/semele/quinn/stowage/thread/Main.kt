@@ -17,12 +17,17 @@
 package semele.quinn.stowage.thread
 
 import net.fabricmc.api.ModInitializer
+import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup
 import net.fabricmc.fabric.api.registry.OxidizableBlocksRegistry
+import net.fabricmc.fabric.api.resource.ResourceManagerHelper
 import net.minecraft.core.Registry
 import net.minecraft.core.registries.BuiltInRegistries
+import net.minecraft.network.chat.Component
+import net.minecraft.server.packs.PackType
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.entity.BlockEntity
 import semele.quinn.stowage.common.Utils
+import semele.quinn.stowage.common.core.CreativeTabReloadListener
 import semele.quinn.stowage.common.registration.CopperBlockHelper
 import semele.quinn.stowage.common.registration.Registration
 import semele.quinn.stowage.common.registration.SimpleContentHolder
@@ -34,8 +39,21 @@ object Main : ModInitializer {
         Registration.constructBarrelContent { consumeContent() }
         Registration.constructOldChestContent { consumeContent() }
 
-        CopperBlockHelper.oxidisationMap().forEach(OxidizableBlocksRegistry::registerOxidizableBlockPair);
-        CopperBlockHelper.dewaxingMap().inverse().forEach(OxidizableBlocksRegistry::registerWaxableBlockPair);
+        CopperBlockHelper.oxidisationMap().forEach(OxidizableBlocksRegistry::registerOxidizableBlockPair)
+        CopperBlockHelper.dewaxingMap().inverse().forEach(OxidizableBlocksRegistry::registerWaxableBlockPair)
+
+        ResourceManagerHelper.get(PackType.SERVER_DATA).registerReloadListener(ThreadWrappedListener(Utils.id("creative_tab"), CreativeTabReloadListener))
+
+        Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, Utils.id("tab"), FabricItemGroup.builder()
+            .title(Component.translatable("itemGroup.stowage.tab"))
+            .icon {
+                CreativeTabReloadListener.getIcon()
+            }
+            .displayItems { _, output ->
+                CreativeTabReloadListener.getContents().forEach(output::accept)
+            }
+            .build()
+        )
     }
 
     private fun <B: Block, BE: BlockEntity> SimpleContentHolder<B, BE>.consumeContent() {

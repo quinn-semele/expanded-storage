@@ -1,0 +1,11 @@
+{
+  "package": "semele.quinn.stowage.common.mixin",
+  "required": true,
+  "injectors": { "defaultRequire": 1 },
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8.5",
+  "client": [
+    "UpdateCreativeTabCache",
+    "UpdateCreativeTabIcon"
+  ]
+}

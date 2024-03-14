@@ -19,6 +19,8 @@ package semele.quinn.stowage.neoforge
 import com.google.common.base.Suppliers
 import com.google.common.collect.ImmutableBiMap
 import net.minecraft.core.registries.Registries
+import net.minecraft.network.chat.Component
+import net.minecraft.world.item.CreativeModeTab
 import net.minecraft.world.item.HoneycombItem
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.entity.BlockEntity
@@ -27,9 +29,12 @@ import net.neoforged.fml.ModContainer
 import net.neoforged.fml.common.Mod
 import net.neoforged.neoforge.common.NeoForge
 import net.neoforged.neoforge.common.ToolActions
+import net.neoforged.neoforge.event.AddReloadListenerEvent
 import net.neoforged.neoforge.event.level.BlockEvent
 import net.neoforged.neoforge.registries.DeferredRegister
+import net.neoforged.neoforge.registries.RegisterEvent
 import semele.quinn.stowage.common.Utils
+import semele.quinn.stowage.common.core.CreativeTabReloadListener
 import semele.quinn.stowage.common.registration.CopperBlockHelper
 import semele.quinn.stowage.common.registration.Registration
 import semele.quinn.stowage.common.registration.SimpleContentHolder
@@ -71,6 +76,29 @@ class Main(container: ModContainer, bus: IEventBus) {
                     event.finalState = it
                 }
             }
+        }
+
+        NeoForge.EVENT_BUS.addListener(AddReloadListenerEvent::class.java, this::registerReloadListeners)
+
+        bus.addListener(RegisterEvent::class.java, this::registerCreativeTab)
+    }
+
+    private fun registerReloadListeners(event: AddReloadListenerEvent) {
+        event.addListener(CreativeTabReloadListener)
+    }
+
+    private fun registerCreativeTab(event: RegisterEvent) {
+        event.register(Registries.CREATIVE_MODE_TAB) {
+            it.register(Utils.id("tab"), CreativeModeTab.builder()
+                .title(Component.translatable("itemGroup.stowage.tab"))
+                .icon {
+                    CreativeTabReloadListener.getIcon()
+                }
+                .displayItems { _, output ->
+                    CreativeTabReloadListener.getContents().forEach(output::accept)
+                }
+                .build()
+            )
         }
     }
 

@@ -46,6 +46,7 @@ import semele.quinn.stowage.common.Utils.woodChest
 import semele.quinn.stowage.common.barrel.BarrelBlock
 import semele.quinn.stowage.common.barrel.BarrelBlockEntity
 import semele.quinn.stowage.common.barrel.CopperBarrelBlock
+import semele.quinn.stowage.common.core.data.config.ConfigManager
 import semele.quinn.stowage.common.old_chest.CopperOldChestBlock
 import semele.quinn.stowage.common.old_chest.OldChestBlock
 import semele.quinn.stowage.common.old_chest.OldChestBlockEntity
@@ -54,6 +55,10 @@ import net.minecraft.world.level.block.state.BlockBehaviour.Properties as BlockP
 
 object Registration {
     fun constructBarrelContent(callback: SimpleContentHolder<BarrelBlock, BarrelBlockEntity>.() -> Unit) {
+        if (!ConfigManager.getConfig().enabledModules.getOrDefault(Utils.BARREL_CONTENT, true)) {
+            return
+        }
+
         val blocks = arrayListOf<NamedValue<BarrelBlock>>()
         val items = arrayListOf<NamedValue<BlockItem>>()
         val stats = arrayListOf<ResourceLocation>()
@@ -142,6 +147,10 @@ object Registration {
     }
 
     fun constructOldChestContent(callback: SimpleContentHolder<OldChestBlock, OldChestBlockEntity>.() -> Unit) {
+        if (!ConfigManager.getConfig().enabledModules.getOrDefault(Utils.OLD_CHEST_CONTENT, true)) {
+            return
+        }
+
         val blocks = arrayListOf<NamedValue<OldChestBlock>>()
         val items = arrayListOf<NamedValue<BlockItem>>()
         val stats = arrayListOf<ResourceLocation>()

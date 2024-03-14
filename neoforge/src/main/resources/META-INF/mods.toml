@@ -26,4 +26,4 @@ ordering = "NONE"
 side = "BOTH"
 
 [[mixins]]
-config = "stowage-forge.mixins.json"
+config = "stowage-common.mixins.json"
