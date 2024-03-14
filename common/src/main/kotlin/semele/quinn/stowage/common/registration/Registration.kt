@@ -129,11 +129,10 @@ object Registration {
         createBarrel(Utils.id("obsidian_barrel"), obsidianStat, BlockProperties.of().barrel().explosionProof().flammable(), ItemProperties(), OBSIDIAN_SLOTS)
         createBarrel(Utils.id("netherite_barrel"), netheriteStat, BlockProperties.of().barrel().explosionProof(), ItemProperties().netherite(), NETHERITE_SLOTS)
 
-        @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
         val blockEntity =
             NamedValue(Utils.BARREL_CONTENT) {
                 BlockEntityType.Builder.of(::BarrelBlockEntity, *blocks.map { it.value }.toTypedArray())
-                    .build(Util.fetchChoiceType(References.BLOCK_ENTITY, Utils.BARREL_CONTENT.toString()))
+                    .build(Util.fetchChoiceType(References.BLOCK_ENTITY, Utils.BARREL_CONTENT.toString())!!)
             }
 
         val content = SimpleContentHolder(
@@ -224,11 +223,10 @@ object Registration {
         createChest(Utils.id("old_obsidian_chest"), obsidianStat, BlockProperties.of().obsidianChest(), ItemProperties(), OBSIDIAN_SLOTS)
         createChest(Utils.id("old_netherite_chest"), netheriteStat, BlockProperties.of().netheriteChest(), ItemProperties().netherite(), NETHERITE_SLOTS)
 
-        @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
         val blockEntity =
             NamedValue(Utils.OLD_CHEST_CONTENT) {
                 BlockEntityType.Builder.of(::OldChestBlockEntity, *blocks.map { it.value }.toTypedArray())
-                    .build(Util.fetchChoiceType(References.BLOCK_ENTITY, Utils.OLD_CHEST_CONTENT.toString()))
+                    .build(Util.fetchChoiceType(References.BLOCK_ENTITY, Utils.OLD_CHEST_CONTENT.toString())!!)
             }
 
         val content = SimpleContentHolder(

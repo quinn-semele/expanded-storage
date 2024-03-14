@@ -69,11 +69,11 @@ class Main(container: ModContainer, bus: IEventBus) {
         NeoForge.EVENT_BUS.addListener<BlockEvent.BlockToolModificationEvent> { event ->
             if (event.toolAction == ToolActions.AXE_SCRAPE) {
                 CopperBlockHelper.getPreviousState(event.state).ifPresent {
-                    event.finalState = it
+                    event.setFinalState(it)
                 }
             } else if (event.toolAction == ToolActions.AXE_WAX_OFF) {
                 CopperBlockHelper.getDewaxed(event.state).ifPresent {
-                    event.finalState = it
+                    event.setFinalState(it)
                 }
             }
         }
