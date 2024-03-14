@@ -35,7 +35,6 @@ class CopperBarrelBlock(
 
     override fun isRandomlyTicking(state: BlockState): Boolean = getNext(state).isPresent
 
-    @Suppress("OVERRIDE_DEPRECATION")
     override fun randomTick(state: BlockState, level: ServerLevel, pos: BlockPos, random: RandomSource) {
         changeOverTime(state, level, pos, random)
     }

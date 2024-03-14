@@ -38,7 +38,7 @@ public record CreativeTabData(List<ProtoItemStack> icons, List<ProtoItemStack> v
             var holder = BuiltInRegistries.ITEM.getHolder(ResourceKey.create(Registries.ITEM, icon.itemId()));
 
             if (holder.isPresent()) {
-                return new ItemStack(holder.get(), 1, icon.tag());
+                return new ItemStack(holder.get(), 1, icon.components());
             }
         }
 
@@ -49,7 +49,7 @@ public record CreativeTabData(List<ProtoItemStack> icons, List<ProtoItemStack> v
         return values.stream().map(proto -> {
             var holder = BuiltInRegistries.ITEM.getHolder(ResourceKey.create(Registries.ITEM, proto.itemId()));
 
-            return holder.map(item -> new ItemStack(item, 1, proto.tag())).orElse(null);
+            return holder.map(item -> new ItemStack(item, 1, proto.components())).orElse(null);
         }).filter(Objects::nonNull).toList();
     }
 }

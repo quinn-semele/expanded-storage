@@ -52,7 +52,6 @@ open class BarrelBlock(
         builder.add(BlockStateProperties.FACING, BlockStateProperties.OPEN)
     }
 
-    @Suppress("OVERRIDE_DEPRECATION")
     override fun rotate(state: BlockState, rotation: Rotation): BlockState {
         return state.setValue(
             BlockStateProperties.FACING,
@@ -60,7 +59,6 @@ open class BarrelBlock(
         )
     }
 
-    @Suppress("OVERRIDE_DEPRECATION")
     override fun mirror(state: BlockState, mirror: Mirror): BlockState {
         return state.rotate(mirror.getRotation(state.getValue(BlockStateProperties.FACING)))
     }

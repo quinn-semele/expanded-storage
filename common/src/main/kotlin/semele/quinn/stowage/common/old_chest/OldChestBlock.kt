@@ -82,7 +82,6 @@ open class OldChestBlock(
         return defaultBlockState().setValue(FACING, chestFacing).setValue(CHEST_TYPE, chestType)
     }
 
-    @Suppress("OVERRIDE_DEPRECATION", "DEPRECATION")
     override fun updateShape(
         state: BlockState,
         direction: Direction,
@@ -133,7 +132,6 @@ open class OldChestBlock(
                 chest.getValue(CHEST_TYPE).opposite() == otherState.getValue(CHEST_TYPE)
     }
 
-    @Suppress("OVERRIDE_DEPRECATION", "DEPRECATION")
     override fun rotate(state: BlockState, rotation: Rotation): BlockState {
         if (state.getValue(CHEST_TYPE) == StowageChestType.SINGLE) {
             return state.setValue(FACING, rotation.rotate(state.getValue(FACING)))
@@ -142,7 +140,6 @@ open class OldChestBlock(
         return super.rotate(state, rotation)
     }
 
-    @Suppress("OVERRIDE_DEPRECATION")
     override fun mirror(state: BlockState, mirror: Mirror): BlockState {
         return state.rotate(mirror.getRotation(state.getValue(FACING)))
     }

@@ -14,14 +14,14 @@ logoFile = "icon.png"
 [[dependencies.stowage]]
 modId = "neoforge"
 type = "required"
-versionRange = "[20.4,)"
+versionRange = "[20.5,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.stowage]]
 modId = "minecraft"
 type = "required"
-versionRange = "1.20.4"
+versionRange = "24w10a"
 ordering = "NONE"
 side = "BOTH"
 

@@ -47,6 +47,8 @@ repositories {
         url = uri("https://maven.neoforged.net/releases/")
     }
 
+    mavenLocal()
+
     exclusiveContent {
         forRepository {
             maven {

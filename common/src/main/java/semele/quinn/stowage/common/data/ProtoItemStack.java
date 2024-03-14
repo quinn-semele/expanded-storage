@@ -19,29 +19,28 @@ package semele.quinn.stowage.common.data;
 import com.mojang.datafixers.util.Either;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.resources.ResourceLocation;
 
-import java.util.Optional;
 import java.util.function.Function;
 
 public record ProtoItemStack(
         ResourceLocation itemId,
-        Optional<CompoundTag> tag
+        DataComponentPatch components
 ) {
     private static final Codec<ProtoItemStack> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             ResourceLocation.CODEC.fieldOf("itemId").forGetter(ProtoItemStack::itemId),
-            CompoundTag.CODEC.optionalFieldOf("tag").forGetter(ProtoItemStack::tag)
+            DataComponentPatch.CODEC.optionalFieldOf("components", DataComponentPatch.EMPTY).forGetter(ProtoItemStack::components)
     ).apply(instance, ProtoItemStack::new));
 
-    private static final Codec<ProtoItemStack> SIMPLE_CODEC = ResourceLocation.CODEC.xmap(itemId -> new ProtoItemStack(itemId, Optional.empty()), ProtoItemStack::itemId);
+    private static final Codec<ProtoItemStack> SIMPLE_CODEC = ResourceLocation.CODEC.xmap(itemId -> new ProtoItemStack(itemId, DataComponentPatch.EMPTY), ProtoItemStack::itemId);
 
     public static final Codec<ProtoItemStack> FULL_CODEC = Codec.either(CODEC, SIMPLE_CODEC)
     .xmap(either -> either.map(Function.identity(), Function.identity()), stack -> {
-        if (stack.tag().isPresent()) {
-            return Either.left(stack);
-        } else {
+        if (stack.components().isEmpty()) {
             return Either.right(stack);
+        } else {
+            return Either.left(stack);
         }
     });
 }
