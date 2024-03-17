@@ -113,14 +113,12 @@ class Main(val container: ModContainer, bus: IEventBus) {
         val waxingData = BiConvertibleMapData.fromFile(modFile.findResource("data/${Utils.MOD_ID}/waxing.json"))
         val oxidizingData = BiConvertibleMapData.fromFile(modFile.findResource("data/${Utils.MOD_ID}/oxidizing.json"))
 
-        event.getRegistry(Registries.BLOCK).addCallback(object : BakeCallback<Block> {
-            override fun onBake(registry: Registry<Block>) {
-                val waxingBlocks = waxingData?.toBlocks() ?: mapOf()
-                val oxidizingBlocks = oxidizingData?.toBlocks() ?: mapOf()
+        event.getRegistry(Registries.BLOCK).addCallback(BakeCallback {
+            val waxingBlocks = waxingData?.toBlocks() ?: mapOf()
+            val oxidizingBlocks = oxidizingData?.toBlocks() ?: mapOf()
 
-                CopperBlockHelper.setWaxingMap(waxingBlocks)
-                CopperBlockHelper.setOxidizingMap(oxidizingBlocks)
-            }
+            CopperBlockHelper.setWaxingMap(waxingBlocks)
+            CopperBlockHelper.setOxidizingMap(oxidizingBlocks)
         })
     }
 
