@@ -30,7 +30,7 @@ import java.util.Objects;
 public record CreativeTabData(List<ProtoItemStack> icons, List<ProtoItemStack> values) {
     public static final Codec<CreativeTabData> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             ProtoItemStack.FULL_CODEC.listOf().fieldOf("icons").forGetter(CreativeTabData::icons),
-            ProtoItemStack.FULL_CODEC.listOf().fieldOf("values").forGetter(CreativeTabData::values)
+            ProtoItemStack.FULL_CODEC.listOf().fieldOf("entries").forGetter(CreativeTabData::values)
     ).apply(instance, CreativeTabData::new));
 
     public ItemStack tabIcon() {

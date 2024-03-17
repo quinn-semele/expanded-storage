@@ -33,6 +33,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties.HOR
 import net.minecraft.world.level.block.state.properties.EnumProperty
 import semele.quinn.stowage.api.StowageChestType
 import semele.quinn.stowage.common.Utils.isBlock
+import semele.quinn.stowage.common.registration.CopperBlockHelper
 import java.lang.IllegalStateException
 
 open class OldChestBlock(
@@ -102,7 +103,7 @@ open class OldChestBlock(
         } else {
             val otherChest = level.getBlockState(pos.relative(getDirectionToAttached(state)))
 
-            val newState = checkForOxidisation(state, otherChest)
+            val newState = checkForCopperChanges(state, otherChest)
 
             return if (!isValidDoubleChest(newState, otherChest)) {
                 state.setValue(CHEST_TYPE, StowageChestType.SINGLE)
@@ -114,7 +115,27 @@ open class OldChestBlock(
         return super.updateShape(state, direction, neighborState, level, pos, neighborPos)
     }
 
-    protected open fun checkForOxidisation(chest: BlockState, otherChest: BlockState): BlockState {
+    protected open fun checkForCopperChanges(chest: BlockState, otherChest: BlockState): BlockState {
+        val maybeWaxed = CopperBlockHelper.waxed(chest)
+
+        if (maybeWaxed.isPresent) {
+            val waxedState = maybeWaxed.get()
+
+            if (waxedState.isBlock(otherChest.block)) {
+                return waxedState.block.withPropertiesOf(chest)
+            }
+        }
+
+        val maybeUnwaxed = CopperBlockHelper.unwaxed(chest)
+
+        if (maybeUnwaxed.isPresent) {
+            val unwaxedState = maybeUnwaxed.get()
+
+            if (unwaxedState.isBlock(otherChest.block)) {
+                return unwaxedState.block.withPropertiesOf(chest)
+            }
+        }
+
         return chest
     }
 

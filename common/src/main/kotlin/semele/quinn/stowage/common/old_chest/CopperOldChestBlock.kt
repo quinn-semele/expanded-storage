@@ -34,11 +34,37 @@ class CopperOldChestBlock(
     private val state: WeatherState
 ) : OldChestBlock(properties, openingStat, slots), WeatheringCopper {
 
-    override fun checkForOxidisation(chest: BlockState, otherChest: BlockState): BlockState {
-         val nextState = this.getNext(chest).orElse(chest)
+    override fun checkForCopperChanges(chest: BlockState, otherChest: BlockState): BlockState {
+        val moreOxidizedState = CopperBlockHelper.moreOxidized(chest).orElse(chest)
 
-        if (nextState.isBlock(otherChest.block)) {
-            return nextState.block.withPropertiesOf(chest)
+        if (moreOxidizedState.isBlock(otherChest.block)) {
+            return moreOxidizedState.block.withPropertiesOf(chest)
+        }
+
+        val lessOxidizedState = CopperBlockHelper.lessOxidized(chest).orElse(chest)
+
+        if (lessOxidizedState.isBlock(otherChest.block)) {
+            return lessOxidizedState.block.withPropertiesOf(chest)
+        }
+
+        val maybeWaxed = CopperBlockHelper.waxed(chest)
+
+        if (maybeWaxed.isPresent) {
+            val waxedState = maybeWaxed.get()
+
+            if (waxedState.isBlock(otherChest.block)) {
+                return waxedState.block.withPropertiesOf(chest)
+            }
+        }
+
+        val maybeUnwaxed = CopperBlockHelper.unwaxed(chest)
+
+        if (maybeUnwaxed.isPresent) {
+            val unwaxedState = maybeUnwaxed.get()
+
+            if (unwaxedState.isBlock(otherChest.block)) {
+                return unwaxedState.block.withPropertiesOf(chest)
+            }
         }
 
         return chest
@@ -52,7 +78,7 @@ class CopperOldChestBlock(
     }
 
     override fun getNext(state: BlockState): Optional<BlockState> {
-        return CopperBlockHelper.getNextState(state)
+        return CopperBlockHelper.moreOxidized(state)
     }
 
     override fun getAge(): WeatherState {
