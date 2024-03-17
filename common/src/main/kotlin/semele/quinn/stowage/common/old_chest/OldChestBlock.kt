@@ -182,7 +182,8 @@ open class OldChestBlock(
         private fun getDirectionToAttached(chestType: StowageChestType, facing: Direction): Direction = when(chestType) {
             StowageChestType.TOP -> Direction.DOWN
             StowageChestType.BOTTOM -> Direction.UP
-            StowageChestType.FRONT, StowageChestType.BACK -> facing.opposite
+            StowageChestType.FRONT -> facing.opposite
+            StowageChestType.BACK -> facing
             StowageChestType.LEFT -> facing.counterClockWise
             StowageChestType.RIGHT -> facing.clockWise
             StowageChestType.SINGLE -> throw IllegalStateException("StowageChestType.SINGLE has no attached direction.")
