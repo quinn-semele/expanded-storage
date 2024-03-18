@@ -132,7 +132,7 @@ object Registration {
         val blockEntity =
             NamedValue(Utils.BARREL_CONTENT) {
                 BlockEntityType.Builder.of(::BarrelBlockEntity, *blocks.map { it.value }.toTypedArray())
-                    .build(Util.fetchChoiceType(References.BLOCK_ENTITY, Utils.BARREL_CONTENT.toString()))
+                    .build(Util.fetchChoiceType(References.BLOCK_ENTITY, Utils.BARREL_CONTENT.toString())!!)
             }
 
         val content = SimpleContentHolder(
@@ -226,7 +226,7 @@ object Registration {
         val blockEntity =
             NamedValue(Utils.OLD_CHEST_CONTENT) {
                 BlockEntityType.Builder.of(::OldChestBlockEntity, *blocks.map { it.value }.toTypedArray())
-                    .build(Util.fetchChoiceType(References.BLOCK_ENTITY, Utils.OLD_CHEST_CONTENT.toString()))
+                    .build(Util.fetchChoiceType(References.BLOCK_ENTITY, Utils.OLD_CHEST_CONTENT.toString())!!)
             }
 
         val content = SimpleContentHolder(

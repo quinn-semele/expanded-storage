@@ -23,47 +23,56 @@ import net.minecraft.world.level.block.state.BlockState
 import java.util.Optional
 
 object CopperBlockHelper {
-    private val OXIDISATION_MAP = ImmutableBiMap.builder<Block, Block>()
-//        .put(ModBlocks.COPPER_BARREL, ModBlocks.EXPOSED_COPPER_BARREL)
-//        .put(ModBlocks.EXPOSED_COPPER_BARREL, ModBlocks.WEATHERED_COPPER_BARREL)
-//        .put(ModBlocks.WEATHERED_COPPER_BARREL, ModBlocks.OXIDIZED_COPPER_BARREL)
-//        .put(ModBlocks.OLD_COPPER_CHEST, ModBlocks.OLD_EXPOSED_COPPER_CHEST)
-//        .put(ModBlocks.OLD_EXPOSED_COPPER_CHEST, ModBlocks.OLD_WEATHERED_COPPER_CHEST)
-//        .put(ModBlocks.OLD_WEATHERED_COPPER_CHEST, ModBlocks.OLD_OXIDIZED_COPPER_CHEST)
-        .build()
+    private var oxidizingMap: BiMap<Block, Block>? = null
+    private var oxidizingInverseMap: BiMap<Block, Block>? = null
+    private var waxingMap: BiMap<Block, Block>? = null
+    private var waxingInverseMap: BiMap<Block, Block>? = null
 
-    private val INVERSE_MAP = OXIDISATION_MAP.inverse()
+    fun setOxidizingMap(map: Map<Block, Block>) {
+        if (oxidizingMap == null) {
+            val immutableMap = ImmutableBiMap.builder<Block, Block>()
 
-    private val DEWAXED_MAP = ImmutableBiMap.builder<Block, Block>()
-//        .put(ModBlocks.WAXED_COPPER_BARREL, ModBlocks.COPPER_BARREL)
-//        .put(ModBlocks.WAXED_EXPOSED_COPPER_BARREL, ModBlocks.EXPOSED_COPPER_BARREL)
-//        .put(ModBlocks.WAXED_WEATHERED_COPPER_BARREL, ModBlocks.WEATHERED_COPPER_BARREL)
-//        .put(ModBlocks.WAXED_OXIDIZED_COPPER_BARREL, ModBlocks.OXIDIZED_COPPER_BARREL)
-//        .put(ModBlocks.WAXED_OLD_COPPER_CHEST, ModBlocks.OLD_COPPER_CHEST)
-//        .put(ModBlocks.WAXED_OLD_EXPOSED_COPPER_CHEST, ModBlocks.OLD_EXPOSED_COPPER_CHEST)
-//        .put(ModBlocks.WAXED_OLD_WEATHERED_COPPER_CHEST, ModBlocks.OLD_WEATHERED_COPPER_CHEST)
-//        .put(ModBlocks.WAXED_OLD_OXIDIZED_COPPER_CHEST, ModBlocks.OLD_OXIDIZED_COPPER_CHEST)
-    .build()
+            immutableMap.putAll(map)
 
-    fun getNextState(state: BlockState): Optional<BlockState> {
-        return Optional.ofNullable(OXIDISATION_MAP.getOrDefault(state.block, null)).map {
+            oxidizingMap = immutableMap.build()
+            oxidizingInverseMap = oxidizingMap!!.inverse()
+        }
+    }
+
+    fun setWaxingMap(map: Map<Block, Block>) {
+        if (waxingMap == null) {
+            val immutableMap = ImmutableBiMap.builder<Block, Block>()
+
+            immutableMap.putAll(map)
+
+            waxingMap = immutableMap.build()
+            waxingInverseMap = waxingMap!!.inverse()
+        }
+    }
+
+    fun moreOxidized(state: BlockState): Optional<BlockState> {
+        return Optional.ofNullable(oxidizingMap!!.getOrDefault(state.block, null)).map {
             it.withPropertiesOf(state)
         }
     }
 
-    fun getPreviousState(state: BlockState): Optional<BlockState> {
-        return Optional.ofNullable(INVERSE_MAP.getOrDefault(state.block, null)).map {
+    fun lessOxidized(state: BlockState): Optional<BlockState> {
+        return Optional.ofNullable(oxidizingInverseMap!!.getOrDefault(state.block, null)).map {
             it.withPropertiesOf(state)
         }
     }
 
-    fun getDewaxed(state: BlockState): Optional<BlockState> {
-        return Optional.ofNullable(DEWAXED_MAP.getOrDefault(state.block, null)).map {
+    fun waxed(state: BlockState): Optional<BlockState> {
+        return Optional.ofNullable(waxingMap!!.getOrDefault(state.block, null)).map {
             it.withPropertiesOf(state)
         }
     }
 
-    fun oxidisationMap(): Map<Block, Block> = OXIDISATION_MAP
+    fun unwaxed(state: BlockState): Optional<BlockState> {
+        return Optional.ofNullable(waxingInverseMap!!.getOrDefault(state.block, null)).map {
+            it.withPropertiesOf(state)
+        }
+    }
 
-    fun dewaxingMap(): BiMap<Block, Block> = DEWAXED_MAP
+    fun waxingMap(): Map<Block, Block> = waxingMap!!
 }

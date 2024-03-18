@@ -18,12 +18,14 @@ package semele.quinn.stowage.neoforge
 
 import com.google.common.base.Suppliers
 import com.google.common.collect.ImmutableBiMap
+import net.minecraft.core.Registry
 import net.minecraft.core.registries.Registries
 import net.minecraft.network.chat.Component
 import net.minecraft.world.item.CreativeModeTab
 import net.minecraft.world.item.HoneycombItem
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.entity.BlockEntity
+import net.neoforged.bus.api.EventPriority
 import net.neoforged.bus.api.IEventBus
 import net.neoforged.fml.ModContainer
 import net.neoforged.fml.common.Mod
@@ -32,15 +34,18 @@ import net.neoforged.neoforge.common.ToolActions
 import net.neoforged.neoforge.event.AddReloadListenerEvent
 import net.neoforged.neoforge.event.level.BlockEvent
 import net.neoforged.neoforge.registries.DeferredRegister
+import net.neoforged.neoforge.registries.ModifyRegistriesEvent
 import net.neoforged.neoforge.registries.RegisterEvent
+import net.neoforged.neoforge.registries.callback.BakeCallback
 import semele.quinn.stowage.common.Utils
 import semele.quinn.stowage.common.core.CreativeTabReloadListener
+import semele.quinn.stowage.common.data.BiConvertibleMapData
 import semele.quinn.stowage.common.registration.CopperBlockHelper
 import semele.quinn.stowage.common.registration.Registration
 import semele.quinn.stowage.common.registration.SimpleContentHolder
 
 @Mod(Utils.MOD_ID)
-class Main(container: ModContainer, bus: IEventBus) {
+class Main(val container: ModContainer, bus: IEventBus) {
     private val BLOCKS = DeferredRegister.createBlocks(Utils.MOD_ID)
     private val ITEMS = DeferredRegister.createItems(Utils.MOD_ID)
     private val BLOCK_ENTITIES = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, Utils.MOD_ID)
@@ -62,18 +67,18 @@ class Main(container: ModContainer, bus: IEventBus) {
         HoneycombItem.WAXABLES = Suppliers.memoize {
             ImmutableBiMap.builder<Block, Block>()
                 .putAll(originalWaxables.get())
-                .putAll(CopperBlockHelper.dewaxingMap().inverse())
+                .putAll(CopperBlockHelper.waxingMap())
                 .build()
         }
 
         NeoForge.EVENT_BUS.addListener<BlockEvent.BlockToolModificationEvent> { event ->
             if (event.toolAction == ToolActions.AXE_SCRAPE) {
-                CopperBlockHelper.getPreviousState(event.state).ifPresent {
-                    event.finalState = it
+                CopperBlockHelper.lessOxidized(event.state).ifPresent {
+                    event.setFinalState(it)
                 }
             } else if (event.toolAction == ToolActions.AXE_WAX_OFF) {
-                CopperBlockHelper.getDewaxed(event.state).ifPresent {
-                    event.finalState = it
+                CopperBlockHelper.unwaxed(event.state).ifPresent {
+                    event.setFinalState(it)
                 }
             }
         }
@@ -81,6 +86,7 @@ class Main(container: ModContainer, bus: IEventBus) {
         NeoForge.EVENT_BUS.addListener(AddReloadListenerEvent::class.java, this::registerReloadListeners)
 
         bus.addListener(RegisterEvent::class.java, this::registerCreativeTab)
+        bus.addListener(EventPriority.HIGH, ModifyRegistriesEvent::class.java, this::loadStaticData)
     }
 
     private fun registerReloadListeners(event: AddReloadListenerEvent) {
@@ -100,6 +106,20 @@ class Main(container: ModContainer, bus: IEventBus) {
                 .build()
             )
         }
+    }
+
+    private fun loadStaticData(event: ModifyRegistriesEvent) {
+        val modFile = container.modInfo.owningFile.file
+        val waxingData = BiConvertibleMapData.fromFile(modFile.findResource("data/${Utils.MOD_ID}/waxing.json"))
+        val oxidizingData = BiConvertibleMapData.fromFile(modFile.findResource("data/${Utils.MOD_ID}/oxidizing.json"))
+
+        event.getRegistry(Registries.BLOCK).addCallback(BakeCallback {
+            val waxingBlocks = waxingData?.toBlocks() ?: mapOf()
+            val oxidizingBlocks = oxidizingData?.toBlocks() ?: mapOf()
+
+            CopperBlockHelper.setWaxingMap(waxingBlocks)
+            CopperBlockHelper.setOxidizingMap(oxidizingBlocks)
+        })
     }
 
     private fun <B: Block, BE: BlockEntity> SimpleContentHolder<B, BE>.consumeContent() {

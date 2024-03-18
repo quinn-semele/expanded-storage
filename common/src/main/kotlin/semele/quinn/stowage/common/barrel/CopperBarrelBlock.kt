@@ -40,7 +40,7 @@ class CopperBarrelBlock(
     }
 
     override fun getNext(state: BlockState): Optional<BlockState> {
-        return CopperBlockHelper.getNextState(state)
+        return CopperBlockHelper.moreOxidized(state)
     }
 
     override fun getAge(): WeatherState = weatherState

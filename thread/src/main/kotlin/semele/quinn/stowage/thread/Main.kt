@@ -20,6 +20,8 @@ import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup
 import net.fabricmc.fabric.api.registry.OxidizableBlocksRegistry
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper
+import net.fabricmc.loader.api.FabricLoader
+import net.fabricmc.loader.api.ModContainer
 import net.minecraft.core.Registry
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.network.chat.Component
@@ -28,6 +30,7 @@ import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.entity.BlockEntity
 import semele.quinn.stowage.common.Utils
 import semele.quinn.stowage.common.core.CreativeTabReloadListener
+import semele.quinn.stowage.common.data.BiConvertibleMapData
 import semele.quinn.stowage.common.registration.CopperBlockHelper
 import semele.quinn.stowage.common.registration.Registration
 import semele.quinn.stowage.common.registration.SimpleContentHolder
@@ -35,12 +38,22 @@ import semele.quinn.stowage.common.registration.SimpleContentHolder
 object Main : ModInitializer {
     override fun onInitialize() {
         Utils.LOGGER.info("Hello from Stowage. (Fabric/Quilt)")
+        val container: ModContainer = FabricLoader.getInstance().getModContainer(Utils.MOD_ID).orElseThrow()
 
         Registration.constructBarrelContent { consumeContent() }
         Registration.constructOldChestContent { consumeContent() }
 
-        CopperBlockHelper.oxidisationMap().forEach(OxidizableBlocksRegistry::registerOxidizableBlockPair)
-        CopperBlockHelper.dewaxingMap().inverse().forEach(OxidizableBlocksRegistry::registerWaxableBlockPair)
+        val waxingData = BiConvertibleMapData.fromFile(container.findPath("data/${Utils.MOD_ID}/waxing.json").orElseThrow())
+        val oxidizingData = BiConvertibleMapData.fromFile(container.findPath("data/${Utils.MOD_ID}/oxidizing.json").orElseThrow())
+
+        val waxingBlocks = waxingData?.toBlocks() ?: mapOf()
+        val oxidizingBlocks = oxidizingData?.toBlocks() ?: mapOf()
+
+        oxidizingBlocks.forEach(OxidizableBlocksRegistry::registerOxidizableBlockPair)
+        waxingBlocks.forEach(OxidizableBlocksRegistry::registerWaxableBlockPair)
+
+        CopperBlockHelper.setOxidizingMap(oxidizingBlocks)
+        CopperBlockHelper.setWaxingMap(waxingBlocks)
 
         ResourceManagerHelper.get(PackType.SERVER_DATA).registerReloadListener(ThreadWrappedListener(Utils.id("creative_tab"), CreativeTabReloadListener))
 
