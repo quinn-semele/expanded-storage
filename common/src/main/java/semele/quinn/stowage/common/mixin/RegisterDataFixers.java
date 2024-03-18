@@ -28,7 +28,11 @@ import semele.quinn.stowage.common.core.fixers.Fixers;
 public class RegisterDataFixers {
     @Inject(
             method = "addFixers(Lcom/mojang/datafixers/DataFixerBuilder;)V",
-            at = @At("TAIL")
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lcom/mojang/datafixers/DataFixerBuilder;addSchema(ILjava/util/function/BiFunction;)Lcom/mojang/datafixers/schemas/Schema;",
+                    ordinal = 191
+            )
     )
     private static void stowage$addFixers(DataFixerBuilder builder, CallbackInfo ci) {
         Fixers.INSTANCE.addSchema3693(builder);
