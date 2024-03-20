@@ -1,0 +1,25 @@
+{
+  "variants": {
+    "type=single": {
+      "model": "expandedstorage:block/red_present"
+    },
+    "type=left": {
+      "model": "expandedstorage:block/white_present"
+    },
+    "type=right": {
+      "model": "expandedstorage:block/white_present"
+    },
+    "type=top": {
+      "model": "expandedstorage:block/candy_cane_present"
+    },
+    "type=bottom": {
+      "model": "expandedstorage:block/candy_cane_present"
+    },
+    "type=front": {
+      "model": "expandedstorage:block/green_present"
+    },
+    "type=back": {
+      "model": "expandedstorage:block/green_present"
+    }
+  }
+}

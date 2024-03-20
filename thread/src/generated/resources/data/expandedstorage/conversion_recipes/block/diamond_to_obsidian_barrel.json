@@ -1,0 +1,12 @@
+{
+  "type": "expandedstorage:block_conversion",
+  "inputs": {
+    "id": "expandedstorage:diamond_barrel"
+  },
+  "result": {
+    "id": "expandedstorage:obsidian_barrel"
+  },
+  "tool": {
+    "id": "expandedstorage:diamond_to_obsidian_conversion_kit"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "values": [
+    "#expandedstorage:wooden_chest_minecarts",
+    "expandedstorage:iron_chest_minecart",
+    "expandedstorage:gold_chest_minecart",
+    "expandedstorage:diamond_chest_minecart",
+    "expandedstorage:obsidian_chest_minecart",
+    "expandedstorage:netherite_chest_minecart"
+  ]
+}

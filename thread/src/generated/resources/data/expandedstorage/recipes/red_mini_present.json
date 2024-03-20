@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "expandedstorage:red_mini_present",
+  "key": {
+    "B": {
+      "item": "expandedstorage:present"
+    },
+    "P": {
+      "item": "minecraft:paper"
+    }
+  },
+  "pattern": [
+    " P ",
+    "PBP",
+    " P "
+  ],
+  "result": {
+    "count": 4,
+    "item": "expandedstorage:red_mini_present"
+  },
+  "show_notification": true
+}

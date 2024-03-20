@@ -1,0 +1,36 @@
+{
+  "variants": {
+    "facing=north,sparrow=false": {
+      "y": 0,
+      "model": "expandedstorage:block/pink_amethyst_mini_present"
+    },
+    "facing=east,sparrow=false": {
+      "y": 90,
+      "model": "expandedstorage:block/pink_amethyst_mini_present"
+    },
+    "facing=south,sparrow=false": {
+      "y": 180,
+      "model": "expandedstorage:block/pink_amethyst_mini_present"
+    },
+    "facing=west,sparrow=false": {
+      "y": 270,
+      "model": "expandedstorage:block/pink_amethyst_mini_present"
+    },
+    "facing=north,sparrow=true": {
+      "y": 0,
+      "model": "expandedstorage:block/pink_amethyst_mini_present_with_sparrow"
+    },
+    "facing=east,sparrow=true": {
+      "y": 90,
+      "model": "expandedstorage:block/pink_amethyst_mini_present_with_sparrow"
+    },
+    "facing=south,sparrow=true": {
+      "y": 180,
+      "model": "expandedstorage:block/pink_amethyst_mini_present_with_sparrow"
+    },
+    "facing=west,sparrow=true": {
+      "y": 270,
+      "model": "expandedstorage:block/pink_amethyst_mini_present_with_sparrow"
+    }
+  }
+}

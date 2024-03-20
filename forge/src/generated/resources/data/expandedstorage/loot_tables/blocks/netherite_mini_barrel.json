@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "block": "expandedstorage:netherite_mini_barrel",
+              "function": "minecraft:copy_state",
+              "properties": [
+                "sparrow"
+              ]
+            }
+          ],
+          "name": "expandedstorage:netherite_mini_barrel"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "expandedstorage:blocks/netherite_mini_barrel"
+}

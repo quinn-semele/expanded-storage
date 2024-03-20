@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "entrypoints": {
+    "main": [ "compasses.expandedstorage.impl.ThreadMain" ],
+    "client": [ "compasses.expandedstorage.impl.ThreadClient" ],
+    "fabric-datagen": [ "compasses.expandedstorage.impl.datagen.Main" ]
+  },
+  "environment": "*",
+  "authors": [ "Quinn Semele" ],
+  "mixins": [
+    "expandedstorage-common.mixins.json",
+    "expandedstorage-thread.mixins.json"
+  ],
+  "id": "expandedstorage",
+  "name": "Expanded Storage",
+  "version": "${version}"
+}

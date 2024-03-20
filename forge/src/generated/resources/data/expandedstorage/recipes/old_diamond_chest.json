@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "expandedstorage:old_diamond_chest",
+  "key": {
+    "B": {
+      "item": "expandedstorage:old_gold_chest"
+    },
+    "D": {
+      "tag": "forge:gems/diamond"
+    },
+    "G": {
+      "tag": "forge:glass"
+    }
+  },
+  "pattern": [
+    "GGG",
+    "DBD",
+    "GGG"
+  ],
+  "result": {
+    "item": "expandedstorage:old_diamond_chest"
+  },
+  "show_notification": true
+}

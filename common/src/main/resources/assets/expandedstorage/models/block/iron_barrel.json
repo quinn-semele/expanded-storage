@@ -1,0 +1,6 @@
+{
+  "parent": "expandedstorage:block/parent/barrel",
+  "textures": {
+    "side": "expandedstorage:block/iron_barrel_side"
+  }
+}

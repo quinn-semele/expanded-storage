@@ -1,0 +1,12 @@
+{
+  "type": "expandedstorage:block_conversion",
+  "inputs": {
+    "id": "expandedstorage:iron_chest"
+  },
+  "result": {
+    "id": "expandedstorage:gold_chest"
+  },
+  "tool": {
+    "id": "expandedstorage:iron_to_gold_conversion_kit"
+  }
+}

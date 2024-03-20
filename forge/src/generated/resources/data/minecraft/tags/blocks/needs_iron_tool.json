@@ -1,0 +1,14 @@
+{
+  "values": [
+    "expandedstorage:gold_barrel",
+    "expandedstorage:diamond_barrel",
+    "expandedstorage:gold_chest",
+    "expandedstorage:diamond_chest",
+    "expandedstorage:old_gold_chest",
+    "expandedstorage:old_diamond_chest",
+    "expandedstorage:gold_mini_chest",
+    "expandedstorage:diamond_mini_chest",
+    "expandedstorage:gold_mini_barrel",
+    "expandedstorage:diamond_mini_barrel"
+  ]
+}

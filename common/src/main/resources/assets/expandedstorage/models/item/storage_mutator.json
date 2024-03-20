@@ -1,0 +1,28 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "expandedstorage:item/storage_mutator"
+  },
+  "overrides": [
+    {
+      "predicate": { "expandedstorage:tool_mode": 0.2 },
+      "model": "expandedstorage:item/merge_storage_mutator"
+    },
+    {
+      "predicate": { "expandedstorage:tool_mode": 0.4 },
+      "model": "expandedstorage:item/split_storage_mutator"
+    },
+    {
+      "predicate": { "expandedstorage:tool_mode": 0.6 },
+      "model": "expandedstorage:item/rotate_storage_mutator"
+    },
+    {
+      "predicate": { "expandedstorage:tool_mode": 0.8 },
+      "model": "expandedstorage:item/swap_theme_storage_mutator"
+    },
+    {
+      "predicate": { "expandedstorage:tool_mode": 1.0 },
+      "model": "expandedstorage:item/sparrow_storage_mutator"
+    }
+  ]
+}

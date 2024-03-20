@@ -1,0 +1,17 @@
+{
+  "type": "expandedstorage:block_conversion",
+  "inputs": [
+    {
+      "tag": "forge:barrels/wooden"
+    },
+    {
+      "condition": "expandedstorage:is_wooden_barrel"
+    }
+  ],
+  "result": {
+    "id": "expandedstorage:gold_barrel"
+  },
+  "tool": {
+    "id": "expandedstorage:wood_to_gold_conversion_kit"
+  }
+}

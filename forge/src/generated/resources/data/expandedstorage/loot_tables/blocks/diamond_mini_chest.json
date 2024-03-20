@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "block": "expandedstorage:diamond_mini_chest",
+              "function": "minecraft:copy_state",
+              "properties": [
+                "sparrow"
+              ]
+            }
+          ],
+          "name": "expandedstorage:diamond_mini_chest"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "expandedstorage:blocks/diamond_mini_chest"
+}

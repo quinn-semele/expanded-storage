@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "expandedstorage:wood_chest"
+    },
+    "I": {
+      "item": "minecraft:diamond"
+    },
+    "P": {
+      "item": "minecraft:paper"
+    }
+  },
+  "pattern": [
+    " I ",
+    "PBP",
+    " P "
+  ],
+  "result": {
+    "count": 8,
+    "item": "expandedstorage:diamond_mini_chest"
+  },
+  "show_notification": true
+}

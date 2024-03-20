@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "expandedstorage:pumpkin_chest",
+    "expandedstorage:present",
+    "expandedstorage:bamboo_chest",
+    "expandedstorage:moss_chest",
+    "#c:wooden_chests"
+  ]
+}

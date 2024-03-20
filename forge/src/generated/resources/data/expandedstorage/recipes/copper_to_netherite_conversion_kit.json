@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "tag": "forge:ingots/netherite"
+  },
+  "base": {
+    "item": "expandedstorage:copper_to_obsidian_conversion_kit"
+  },
+  "result": {
+    "item": "expandedstorage:copper_to_netherite_conversion_kit"
+  },
+  "template": {
+    "item": "minecraft:netherite_upgrade_smithing_template"
+  }
+}

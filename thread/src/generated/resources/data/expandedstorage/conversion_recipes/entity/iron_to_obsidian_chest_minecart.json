@@ -1,0 +1,10 @@
+{
+  "type": "expandedstorage:entity_conversion",
+  "inputs": {
+    "id": "expandedstorage:iron_chest_minecart"
+  },
+  "result": "expandedstorage:obsidian_chest_minecart",
+  "tool": {
+    "id": "expandedstorage:iron_to_obsidian_conversion_kit"
+  }
+}

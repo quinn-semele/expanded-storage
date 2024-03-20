@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "expandedstorage:gold_chest",
+  "key": {
+    "B": {
+      "item": "expandedstorage:iron_chest"
+    },
+    "G": {
+      "tag": "forge:ingots/gold"
+    }
+  },
+  "pattern": [
+    "GGG",
+    "GBG",
+    "GGG"
+  ],
+  "result": {
+    "item": "expandedstorage:gold_chest"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "plugin": "compasses.expandedstorage.forge.ForgeMixinPlugin",
+  "package": "compasses.expandedstorage.forge.mixin",
+  "compatibilityLevel": "JAVA_16",
+  "mixins": [ "OxidizableBlockMixin" ],
+  "client": [
+    "QuarkButtonAllowedMixin"
+  ],
+  "injectors": { "defaultRequire": 1 },
+  "minVersion": "0.8",
+  "refmap": "expandedstorage-refmap.json"
+}

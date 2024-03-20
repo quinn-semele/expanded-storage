@@ -1,0 +1,12 @@
+{
+  "type": "expandedstorage:block_conversion",
+  "inputs": {
+    "id": "expandedstorage:old_gold_chest"
+  },
+  "result": {
+    "id": "expandedstorage:old_netherite_chest"
+  },
+  "tool": {
+    "id": "expandedstorage:gold_to_netherite_conversion_kit"
+  }
+}

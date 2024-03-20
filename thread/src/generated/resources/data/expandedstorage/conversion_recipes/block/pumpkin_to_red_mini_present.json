@@ -1,0 +1,12 @@
+{
+  "type": "expandedstorage:block_conversion",
+  "inputs": {
+    "id": "expandedstorage:pumpkin_mini_chest"
+  },
+  "result": {
+    "id": "expandedstorage:red_mini_present"
+  },
+  "tool": {
+    "id": "expandedstorage:storage_mutator"
+  }
+}

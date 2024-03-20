@@ -1,0 +1,12 @@
+{
+  "type": "expandedstorage:block_conversion",
+  "inputs": {
+    "id": "expandedstorage:old_obsidian_chest"
+  },
+  "result": {
+    "id": "expandedstorage:obsidian_chest"
+  },
+  "tool": {
+    "id": "expandedstorage:storage_mutator"
+  }
+}

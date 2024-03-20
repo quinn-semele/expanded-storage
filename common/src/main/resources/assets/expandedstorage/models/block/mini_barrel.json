@@ -1,0 +1,7 @@
+{
+  "parent": "expandedstorage:block/parent/mini_barrel",
+  "textures": {
+    "atlas": "expandedstorage:block/mini_barrel",
+    "particle": "minecraft:block/barrel_side"
+  }
+}

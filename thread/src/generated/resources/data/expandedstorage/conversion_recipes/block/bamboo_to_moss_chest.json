@@ -1,0 +1,12 @@
+{
+  "type": "expandedstorage:block_conversion",
+  "inputs": {
+    "id": "expandedstorage:bamboo_chest"
+  },
+  "result": {
+    "id": "expandedstorage:moss_chest"
+  },
+  "tool": {
+    "id": "expandedstorage:storage_mutator"
+  }
+}

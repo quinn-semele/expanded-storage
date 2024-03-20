@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "tag": "forge:barrels/wooden"
+    },
+    "I": {
+      "item": "minecraft:obsidian"
+    },
+    "P": {
+      "item": "minecraft:paper"
+    }
+  },
+  "pattern": [
+    " I ",
+    "PBP",
+    " P "
+  ],
+  "result": {
+    "count": 8,
+    "item": "expandedstorage:obsidian_mini_barrel"
+  },
+  "show_notification": true
+}

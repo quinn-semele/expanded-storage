@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "expandedstorage:bamboo_chest",
+  "key": {
+    "B": {
+      "tag": "forge:bamboo"
+    },
+    "C": {
+      "tag": "forge:chests/wooden"
+    }
+  },
+  "pattern": [
+    "BBB",
+    "BCB",
+    "BBB"
+  ],
+  "result": {
+    "item": "expandedstorage:bamboo_chest"
+  },
+  "show_notification": true
+}

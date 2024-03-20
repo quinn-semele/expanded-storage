@@ -1,0 +1,12 @@
+{
+  "type": "expandedstorage:block_conversion",
+  "inputs": {
+    "id": "expandedstorage:old_wood_chest"
+  },
+  "result": {
+    "id": "expandedstorage:old_iron_chest"
+  },
+  "tool": {
+    "id": "expandedstorage:wood_to_iron_conversion_kit"
+  }
+}

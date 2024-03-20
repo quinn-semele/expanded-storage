@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "package": "compasses.expandedstorage.impl.mixin",
+  "compatibilityLevel": "JAVA_16",
+  "mixins": [
+    "common.BlockEntityIdFix",
+    "common.DataFixerEntrypoint",
+    "common.SparrowBlockFix",
+    "common.SparrowItemIdFix",
+    "common.SpectatorBlockInventoryViewingFix",
+    "common.SpectatorEntityInventoryViewingFix"
+  ],
+  "client": [
+    "client.ErrorlessTextureManager"
+  ],
+  "injectors": { "defaultRequire": 1 },
+  "minVersion": "0.8",
+  "refmap": "expandedstorage-refmap.json"
+}

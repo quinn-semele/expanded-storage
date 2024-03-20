@@ -1,0 +1,7 @@
+{
+  "parent": "expandedstorage:block/parent/mini_chest_with_sparrow",
+  "textures": {
+    "atlas": "expandedstorage:block/netherite_mini_chest",
+    "particle": "minecraft:block/netherite_block"
+  }
+}

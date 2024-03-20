@@ -1,0 +1,19 @@
+{
+  "type": "expandedstorage:block_conversion",
+  "inputs": {
+    "id": "expandedstorage:diamond_mini_chest",
+    "state": {
+      "sparrow": "false"
+    }
+  },
+  "result": {
+    "id": "expandedstorage:diamond_mini_chest",
+    "state": {
+      "sparrow": "true"
+    }
+  },
+  "tool": {
+    "id": "expandedstorage:storage_mutator",
+    "name": "sparrow"
+  }
+}

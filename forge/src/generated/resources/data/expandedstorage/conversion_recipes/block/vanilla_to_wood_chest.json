@@ -1,0 +1,17 @@
+{
+  "type": "expandedstorage:block_conversion",
+  "inputs": [
+    {
+      "tag": "forge:chests/wooden"
+    },
+    {
+      "condition": "expandedstorage:is_wooden_chest"
+    }
+  ],
+  "result": {
+    "id": "expandedstorage:wood_chest"
+  },
+  "tool": {
+    "id": "expandedstorage:storage_mutator"
+  }
+}

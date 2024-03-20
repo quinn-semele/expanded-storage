@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "expandedstorage:iron_chest",
+  "key": {
+    "B": {
+      "tag": "expandedstorage:wooden_chests"
+    },
+    "I": {
+      "tag": "forge:ingots/iron"
+    }
+  },
+  "pattern": [
+    "III",
+    "IBI",
+    "III"
+  ],
+  "result": {
+    "item": "expandedstorage:iron_chest"
+  },
+  "show_notification": true
+}

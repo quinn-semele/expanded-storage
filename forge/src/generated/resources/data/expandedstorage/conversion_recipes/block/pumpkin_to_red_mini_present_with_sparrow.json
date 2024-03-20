@@ -1,0 +1,19 @@
+{
+  "type": "expandedstorage:block_conversion",
+  "inputs": {
+    "id": "expandedstorage:pumpkin_mini_chest",
+    "state": {
+      "sparrow": "true"
+    }
+  },
+  "result": {
+    "id": "expandedstorage:red_mini_present",
+    "state": {
+      "sparrow": "true"
+    }
+  },
+  "tool": {
+    "id": "expandedstorage:storage_mutator",
+    "name": "sparrow"
+  }
+}

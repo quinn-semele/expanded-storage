@@ -1,0 +1,12 @@
+{
+  "type": "expandedstorage:block_conversion",
+  "inputs": {
+    "id": "expandedstorage:diamond_chest"
+  },
+  "result": {
+    "id": "expandedstorage:netherite_chest"
+  },
+  "tool": {
+    "id": "expandedstorage:diamond_to_netherite_conversion_kit"
+  }
+}

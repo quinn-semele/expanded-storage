@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "tag": "c:wooden_barrels"
+    },
+    "I": {
+      "tag": "c:copper_ingots"
+    }
+  },
+  "pattern": [
+    "III",
+    "IBI",
+    "III"
+  ],
+  "result": {
+    "item": "expandedstorage:copper_barrel"
+  },
+  "show_notification": true
+}

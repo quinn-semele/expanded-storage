@@ -1,0 +1,12 @@
+{
+  "type": "expandedstorage:block_conversion",
+  "inputs": {
+    "id": "expandedstorage:lavender_mini_present"
+  },
+  "result": {
+    "id": "expandedstorage:pink_amethyst_mini_present"
+  },
+  "tool": {
+    "id": "expandedstorage:storage_mutator"
+  }
+}

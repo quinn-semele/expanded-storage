@@ -1,0 +1,12 @@
+{
+  "type": "expandedstorage:block_conversion",
+  "inputs": {
+    "id": "expandedstorage:gold_chest"
+  },
+  "result": {
+    "id": "expandedstorage:obsidian_chest"
+  },
+  "tool": {
+    "id": "expandedstorage:gold_to_obsidian_conversion_kit"
+  }
+}

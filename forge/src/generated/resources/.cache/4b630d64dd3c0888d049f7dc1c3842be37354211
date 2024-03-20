@@ -1,0 +1,11 @@
+// 1.20.1	2024-03-19T15:49:38.4459449	Expanded Storage - Block Tags
+311c475108d99cd330b77e1460e9c0b1fd8134ff data/expandedstorage/tags/blocks/copper_barrels.json
+a9e669d548f5da1f0ec9384d893b8139a0dc9fcb data/expandedstorage/tags/blocks/wooden_chests.json
+2451ad96a8a6e48fd8ff670e334631db2b4bbbe6 data/forge/tags/blocks/chests/wooden.json
+a5fb06427dce73974674776920a7afdc887c70b7 data/minecraft/tags/blocks/guarded_by_piglins.json
+be486ad73493e4aeace8638de78b298ec7630e06 data/minecraft/tags/blocks/mineable/axe.json
+fd0bcd75aa8cb8ca2b340cd79a08d0d870e6f40e data/minecraft/tags/blocks/mineable/hoe.json
+0fb33f6095d3bc3a371bfd17b45fc862162b957a data/minecraft/tags/blocks/mineable/pickaxe.json
+70d55b827a6494908c03ab3c008c8b4237bc5ecf data/minecraft/tags/blocks/needs_diamond_tool.json
+a45febe26d806dfc76b777455a0a765836a35b8a data/minecraft/tags/blocks/needs_iron_tool.json
+23a420394830aaed094e5e48d3b363b6eb7abbba data/minecraft/tags/blocks/needs_stone_tool.json

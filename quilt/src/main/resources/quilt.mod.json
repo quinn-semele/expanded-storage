@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "quilt_loader": {
+    "group": "ellemes.expandedstorage",
+    "id": "expandedstorage",
+    "version": "${version}",
+    "metadata": {
+      "name": "Expanded Storage",
+      "contributors": {
+        "Quinn Semele": "Owner"
+      },
+      "contact": {
+        "homepage": "https://modrinth.com/mod/expanded-storage",
+        "issues": "https://github.com/quinn-semele/expanded-storage/issues"
+      },
+      "icon": "icon.png"
+    },
+    "intermediate_mappings": "net.fabricmc:intermediary",
+    "entrypoints": {
+      "main": "compasses.expandedstorage.impl.ThreadMain",
+      "client": "compasses.expandedstorage.impl.ThreadClient",
+      "fabric-datagen": "compasses.expandedstorage.impl.datagen.Main",
+      "emi": "compasses.expandedstorage.impl.client.compat.EmiCompat",
+      "jei_mod_plugin": "compasses.expandedstorage.impl.client.compat.JeiCompat",
+      "modmenu": "compasses.expandedstorage.impl.client.compat.ModMenuCompat",
+      "rei_client": "compasses.expandedstorage.impl.client.compat.ReiCompat"
+    },
+    "depends": [
+      {
+        "id": "quilt_loader",
+        "versions": ">=0.20.2"
+      },
+      {
+        "id": "quilted_fabric_api",
+        "versions": ">=7.5.0"
+      },
+      {
+        "id": "minecraft",
+        "versions": "=1.20.1"
+      }
+    ]
+  },
+  "mixin": [
+    "expandedstorage-common.mixins.json",
+    "expandedstorage-thread.mixins.json"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "block": "expandedstorage:mini_barrel",
+              "function": "minecraft:copy_state",
+              "properties": [
+                "sparrow"
+              ]
+            }
+          ],
+          "name": "expandedstorage:mini_barrel"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "expandedstorage:blocks/mini_barrel"
+}

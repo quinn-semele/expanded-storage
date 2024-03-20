@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "expandedstorage:netherite_chest",
+  "ingredients": [
+    {
+      "item": "expandedstorage:old_netherite_chest"
+    }
+  ],
+  "result": {
+    "item": "expandedstorage:netherite_chest"
+  }
+}

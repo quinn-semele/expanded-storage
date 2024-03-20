@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "tag": "forge:ingots/iron"
+    },
+    "K": {
+      "item": "expandedstorage:wood_to_copper_conversion_kit"
+    },
+    "N": {
+      "tag": "forge:nuggets/iron"
+    }
+  },
+  "pattern": [
+    "NNN",
+    "IKI",
+    "NNN"
+  ],
+  "result": {
+    "item": "expandedstorage:wood_to_iron_conversion_kit"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:chest_minecart",
+    "expandedstorage:wood_chest_minecart",
+    "expandedstorage:pumpkin_chest_minecart",
+    "expandedstorage:present_minecart",
+    "expandedstorage:bamboo_chest_minecart",
+    "expandedstorage:moss_chest_minecart"
+  ]
+}

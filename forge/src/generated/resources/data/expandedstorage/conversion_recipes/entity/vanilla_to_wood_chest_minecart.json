@@ -1,0 +1,10 @@
+{
+  "type": "expandedstorage:entity_conversion",
+  "inputs": {
+    "tag": "forge:chest_minecarts/wooden"
+  },
+  "result": "expandedstorage:wood_chest_minecart",
+  "tool": {
+    "id": "expandedstorage:storage_mutator"
+  }
+}

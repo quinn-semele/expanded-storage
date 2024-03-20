@@ -1,0 +1,10 @@
+{
+  "type": "expandedstorage:entity_conversion",
+  "inputs": {
+    "id": "expandedstorage:gold_chest_minecart"
+  },
+  "result": "expandedstorage:diamond_chest_minecart",
+  "tool": {
+    "id": "expandedstorage:gold_to_diamond_conversion_kit"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "expandedstorage:entity_conversion",
+  "inputs": {
+    "id": "expandedstorage:pumpkin_chest_minecart"
+  },
+  "result": "expandedstorage:present_minecart",
+  "tool": {
+    "id": "expandedstorage:storage_mutator"
+  }
+}

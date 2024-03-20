@@ -1,0 +1,9 @@
+{
+  "parent": "expandedstorage:block/vanilla_wood_mini_chest",
+  "overrides": [
+    {
+      "predicate": { "expandedstorage:sparrow": 1.0 },
+      "model": "expandedstorage:block/vanilla_wood_mini_chest_with_sparrow"
+    }
+  ]
+}

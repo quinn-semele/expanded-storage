@@ -1,0 +1,12 @@
+{
+  "type": "expandedstorage:block_conversion",
+  "inputs": {
+    "tag": "expandedstorage:copper_barrels"
+  },
+  "result": {
+    "id": "expandedstorage:iron_barrel"
+  },
+  "tool": {
+    "id": "expandedstorage:copper_to_iron_conversion_kit"
+  }
+}

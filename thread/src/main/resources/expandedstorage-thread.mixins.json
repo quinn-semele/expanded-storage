@@ -1,0 +1,18 @@
+{
+  "required": true,
+  "package": "compasses.expandedstorage.impl.mixin",
+  "plugin": "compasses.expandedstorage.impl.MixinPlugin",
+  "compatibilityLevel": "JAVA_16",
+  "mixins": [
+    "common.HTMChestCompat",
+    "common.HTMLockableBlockEntityCompat",
+    "common.MiniStorageHeadEquipment",
+    "common.ToweletteCompat",
+    "common.SyncRecipesMixin"
+  ],
+  "client": [
+    "client.LastAfterInitCallbackMixin"
+  ],
+  "injectors": { "defaultRequire": 1 },
+  "refmap": "expandedstorage-refmap.json"
+}

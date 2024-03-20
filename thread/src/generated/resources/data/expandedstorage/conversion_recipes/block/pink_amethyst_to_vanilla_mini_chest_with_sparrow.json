@@ -1,0 +1,19 @@
+{
+  "type": "expandedstorage:block_conversion",
+  "inputs": {
+    "id": "expandedstorage:pink_amethyst_mini_present",
+    "state": {
+      "sparrow": "false"
+    }
+  },
+  "result": {
+    "id": "expandedstorage:vanilla_wood_mini_chest",
+    "state": {
+      "sparrow": "true"
+    }
+  },
+  "tool": {
+    "id": "expandedstorage:storage_mutator",
+    "name": "sparrow"
+  }
+}

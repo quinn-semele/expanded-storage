@@ -1,0 +1,9 @@
+{
+  "parent": "expandedstorage:block/pink_amethyst_mini_present",
+  "overrides": [
+    {
+      "predicate": { "expandedstorage:sparrow": 1.0 },
+      "model": "expandedstorage:block/pink_amethyst_mini_present_with_sparrow"
+    }
+  ]
+}

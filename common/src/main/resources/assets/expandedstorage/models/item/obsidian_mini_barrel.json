@@ -1,0 +1,9 @@
+{
+  "parent": "expandedstorage:block/obsidian_mini_barrel",
+  "overrides": [
+    {
+      "predicate": { "expandedstorage:sparrow": 1.0 },
+      "model": "expandedstorage:block/obsidian_mini_barrel_with_sparrow"
+    }
+  ]
+}

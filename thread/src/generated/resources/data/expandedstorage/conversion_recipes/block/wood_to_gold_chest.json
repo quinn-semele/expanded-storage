@@ -1,0 +1,12 @@
+{
+  "type": "expandedstorage:block_conversion",
+  "inputs": {
+    "tag": "expandedstorage:wooden_chests"
+  },
+  "result": {
+    "id": "expandedstorage:gold_chest"
+  },
+  "tool": {
+    "id": "expandedstorage:wood_to_gold_conversion_kit"
+  }
+}

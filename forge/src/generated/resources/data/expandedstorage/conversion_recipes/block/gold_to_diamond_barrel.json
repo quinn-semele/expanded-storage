@@ -1,0 +1,12 @@
+{
+  "type": "expandedstorage:block_conversion",
+  "inputs": {
+    "id": "expandedstorage:gold_barrel"
+  },
+  "result": {
+    "id": "expandedstorage:diamond_barrel"
+  },
+  "tool": {
+    "id": "expandedstorage:gold_to_diamond_conversion_kit"
+  }
+}
