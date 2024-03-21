@@ -1,3 +1,9 @@
 {
-  "parent": "expandedstorage:block/mini_barrel"
+  "parent": "expandedstorage:block/mini_barrel",
+  "overrides": [
+    {
+      "predicate": { "expandedstorage:sparrow": 1.0 },
+      "model": "expandedstorage:block/mini_barrel_with_sparrow"
+    }
+  ]
 }
