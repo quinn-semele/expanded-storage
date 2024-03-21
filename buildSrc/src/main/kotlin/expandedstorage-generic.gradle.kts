@@ -26,8 +26,9 @@ loom {
         }
     }
 
+    @Suppress("UnstableApiUsage")
     mixin {
-        defaultRefmapName = "expandedstorage-refmap.json"
+        defaultRefmapName = "expandedstorage.refmap.json"
     }
 }
 

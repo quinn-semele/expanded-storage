@@ -1,5 +1,5 @@
 import org.gradle.kotlin.dsl.*
-import semele.quinn.expandedstorage.plugin.new_dependency.ModDependencies
+import semele.quinn.expandedstorage.plugin.dependency.ModDependencies
 
 plugins {
     id("java-library")
@@ -107,7 +107,7 @@ repositories {
         }
     }
 
-    exclusiveContent { // Mod Menu
+    exclusiveContent { // Mod Menu, EMI
         forRepository {
             maven {
                 name = "TerraformersMC"

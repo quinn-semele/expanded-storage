@@ -16,5 +16,5 @@
     "client.LastAfterInitCallbackMixin"
   ],
   "injectors": { "defaultRequire": 1 },
-  "refmap": "expandedstorage-refmap.json"
+  "refmap": "expandedstorage.refmap.json"
 }

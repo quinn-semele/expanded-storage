@@ -2,7 +2,7 @@ import me.modmuss50.mpp.ReleaseType
 import org.codehaus.groovy.runtime.ProcessGroovyMethods
 import semele.quinn.expandedstorage.plugin.Constants
 import semele.quinn.expandedstorage.plugin.Versions
-import semele.quinn.expandedstorage.plugin.new_dependency.ModDependencies
+import semele.quinn.expandedstorage.plugin.dependency.ModDependencies
 import semele.quinn.expandedstorage.plugin.task.AbstractJsonTask
 import semele.quinn.expandedstorage.plugin.task.AbstractRestrictedTask
 import semele.quinn.expandedstorage.plugin.task.BuildModTask
@@ -90,6 +90,8 @@ val threadModrinthOptions = publishMods.modrinthOptions {
     }
 }
 
+val forgeDependencies = project(":forge").extra["mod_dependencies"] as ModDependencies
+
 publishMods {
     changelog = modChangelog.joinToString("\n")
     type = releaseType
@@ -113,10 +115,9 @@ publishMods {
     curseforge("CurseForgeForge") {
         from(commonCurseForgeOptions, forgeOptions)
 
-        optional("jei")
-        optional("quark")
-        optional("inventory-profiles-next")
-        optional("roughly-enough-items")
+        forgeDependencies.getCurseforgeIds().forEach {
+            optional(it)
+        }
     }
 
     modrinth("ModrinthFabric") {
@@ -136,10 +137,9 @@ publishMods {
     modrinth("ModrinthForge") {
         from(commonModrinthOptions, forgeOptions)
 
-        optional("jei")
-        optional("quark")
-        optional("inventory-profiles-next")
-        optional("rei")
+        forgeDependencies.getModrinthIds().forEach {
+            optional(it)
+        }
     }
 }
 

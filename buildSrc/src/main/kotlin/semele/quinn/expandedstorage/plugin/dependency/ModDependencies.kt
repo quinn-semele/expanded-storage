@@ -1,4 +1,4 @@
-package semele.quinn.expandedstorage.plugin.new_dependency
+package semele.quinn.expandedstorage.plugin.dependency
 
 class ModDependencies {
     private val dependencies = mutableListOf<ModDependency>()
