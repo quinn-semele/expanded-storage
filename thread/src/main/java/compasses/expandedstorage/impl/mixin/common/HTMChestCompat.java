@@ -3,7 +3,7 @@ package compasses.expandedstorage.impl.mixin.common;
 import com.github.fabricservertools.htm.HTMContainerLock;
 import com.github.fabricservertools.htm.api.LockableChestBlock;
 import compasses.expandedstorage.impl.block.AbstractChestBlock;
-import compasses.expandedstorage.impl.client.compat.htm.HTMChestProperties;
+import compasses.expandedstorage.impl.compat.htm.HTMChestProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;

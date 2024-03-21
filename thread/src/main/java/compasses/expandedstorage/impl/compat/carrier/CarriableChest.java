@@ -1,4 +1,4 @@
-package compasses.expandedstorage.impl.client.compat.carrier;
+package compasses.expandedstorage.impl.compat.carrier;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;

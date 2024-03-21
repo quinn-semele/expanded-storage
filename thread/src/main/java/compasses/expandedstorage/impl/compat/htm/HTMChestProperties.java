@@ -1,4 +1,4 @@
-package compasses.expandedstorage.impl.client.compat.htm;
+package compasses.expandedstorage.impl.compat.htm;
 
 import com.github.fabricservertools.htm.HTMContainerLock;
 import com.github.fabricservertools.htm.api.LockableObject;

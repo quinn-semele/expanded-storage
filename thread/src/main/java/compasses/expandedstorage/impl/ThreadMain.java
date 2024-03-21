@@ -5,6 +5,8 @@ import compasses.expandedstorage.impl.block.OpenableBlock;
 import compasses.expandedstorage.impl.block.misc.BasicLockable;
 import compasses.expandedstorage.impl.block.misc.CopperBlockHelper;
 import compasses.expandedstorage.impl.block.strategies.ItemAccess;
+import compasses.expandedstorage.impl.compat.carrier.CarrierCompat;
+import compasses.expandedstorage.impl.compat.htm.HTMLockable;
 import compasses.expandedstorage.impl.item.ChestMinecartItem;
 import compasses.expandedstorage.impl.misc.Utils;
 import compasses.expandedstorage.impl.recipe.ConversionRecipeReloadListener;
@@ -12,8 +14,6 @@ import compasses.expandedstorage.impl.registration.Content;
 import compasses.expandedstorage.impl.registration.NamedValue;
 import compasses.expandedstorage.impl.block.misc.ChestItemAccess;
 import compasses.expandedstorage.impl.block.misc.GenericItemAccess;
-import compasses.expandedstorage.impl.client.compat.carrier.CarrierCompat;
-import compasses.expandedstorage.impl.client.compat.htm.HTMLockable;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
@@ -141,6 +141,8 @@ public class ThreadMain implements ModInitializer {
 
         if (FabricLoader.getInstance().isModLoaded("carrier")) {
             for (NamedValue<? extends OpenableBlock> block : content.getBlocks()) {
+                CarrierCompat.removeEntry(block.getValue());
+
                 if (block.getValue() instanceof ChestBlock chestBlock) {
                     CarrierCompat.registerChestBlock(chestBlock);
                 } else {

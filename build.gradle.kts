@@ -2,6 +2,7 @@ import me.modmuss50.mpp.ReleaseType
 import org.codehaus.groovy.runtime.ProcessGroovyMethods
 import semele.quinn.expandedstorage.plugin.Constants
 import semele.quinn.expandedstorage.plugin.Versions
+import semele.quinn.expandedstorage.plugin.new_dependency.ModDependencies
 import semele.quinn.expandedstorage.plugin.task.AbstractJsonTask
 import semele.quinn.expandedstorage.plugin.task.AbstractRestrictedTask
 import semele.quinn.expandedstorage.plugin.task.BuildModTask
@@ -75,31 +76,18 @@ val quiltOptions = publishMods.publishOptions {
     file = project(":quilt").tasks.named<AbstractJsonTask>("minJar").map { it.archiveFile.get() }
 }
 
-val threadCurseForgeOptions = publishMods.curseforgeOptions {
-    optional("htm")
-    optional("carrier")
-    optional("towelette")
-    optional("roughly-enough-items")
-    optional("modmenu")
-    optional("amecs")
-    optional("inventory-profiles-next")
-    optional("emi")
-    optional("inventory-tabs-updated")
-    optional("jei")
+val threadDependencies = project(":thread").extra["mod_dependencies"] as ModDependencies
 
+val threadCurseForgeOptions = publishMods.curseforgeOptions {
+    threadDependencies.getCurseforgeIds().forEach {
+        optional(it)
+    }
 }
 
 val threadModrinthOptions = publishMods.modrinthOptions {
-    optional("htm")
-    optional("carrier")
-    optional("towelette")
-    optional("rei")
-    optional("modmenu")
-    optional("amecs")
-    optional("inventory-profiles-next")
-    optional("emi")
-    optional("inventory-tabs-updated")
-    optional("jei")
+    threadDependencies.getModrinthIds().forEach {
+        optional(it)
+    }
 }
 
 publishMods {

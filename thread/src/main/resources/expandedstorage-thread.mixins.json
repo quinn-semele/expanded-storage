@@ -8,7 +8,9 @@
     "common.HTMLockableBlockEntityCompat",
     "common.MiniStorageHeadEquipment",
     "common.ToweletteCompat",
-    "common.SyncRecipesMixin"
+    "common.SyncRecipesMixin",
+    "common.AllowCarryingESBlocks",
+    "common.CarrierRegistryMixin"
   ],
   "client": [
     "client.LastAfterInitCallbackMixin"

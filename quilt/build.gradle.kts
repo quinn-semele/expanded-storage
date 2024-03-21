@@ -2,9 +2,9 @@ import semele.quinn.expandedstorage.plugin.Versions
 
 plugins {
     id("expandedstorage-generic")
+    id("expandedstorage-thread-dependencies")
     id("expandedstorage-thread-dependent")
     id("expandedstorage-release-project")
-    id("expandedstorage-dependency-helper")
 }
 
 loom {

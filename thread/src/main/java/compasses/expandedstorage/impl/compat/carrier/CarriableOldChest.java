@@ -1,16 +1,18 @@
-package compasses.expandedstorage.impl.client.compat.carrier;
+package compasses.expandedstorage.impl.compat.carrier;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import compasses.expandedstorage.impl.block.entity.extendable.OpenableBlockEntity;
 import me.steven.carrier.api.Carriable;
 import me.steven.carrier.api.CarriablePlacementContext;
 import me.steven.carrier.api.CarrierComponent;
 import me.steven.carrier.api.CarryingData;
+import me.steven.carrier.mixin.AccessorBlockEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
@@ -43,39 +45,52 @@ class CarriableOldChest implements Carriable<Block> {
         return parent;
     }
 
-    @NotNull
     @Override
-    public final InteractionResult tryPickup(@NotNull CarrierComponent component, @NotNull Level level, @NotNull BlockPos pos, @Nullable Entity entity) {
-        if (level.isClientSide()) return InteractionResult.PASS;
-        BlockEntity blockEntity = level.getBlockEntity(pos);
-        if (blockEntity instanceof OpenableBlockEntity && !blockEntity.isRemoved()) {
-            BlockState state = level.getBlockState(pos);
-            CarryingData carrying = new CarryingData(id, state, blockEntity);
-            level.removeBlockEntity(pos);
-            level.removeBlock(pos, false); // todo: may return false if failed to remove block?
-            component.setCarryingData(carrying);
-            return InteractionResult.SUCCESS;
+    public @NotNull InteractionResult tryPickup(@NotNull Player player, @NotNull Level level, @NotNull BlockPos blockPos, @Nullable Entity entity) {
+        if (level.isClientSide()) {
+            return InteractionResult.PASS;
         }
-        return InteractionResult.PASS;
+
+            BlockEntity blockEntity = level.getBlockEntity(blockPos);
+            BlockState state = level.getBlockState(blockPos);
+
+            new CarryingData(id, state, blockEntity);
+
+            level.removeBlockEntity(blockPos);
+            level.removeBlock(blockPos, false);
+
+            return InteractionResult.SUCCESS;
     }
 
-    @NotNull
     @Override
-    public final InteractionResult tryPlace(@NotNull CarrierComponent component, @NotNull Level level, @NotNull CarriablePlacementContext context) {
-        if (level.isClientSide()) return InteractionResult.PASS;
-        CarryingData carrying = component.getCarryingData();
-        if (carrying == null) return InteractionResult.PASS; // Should never be null, but if it is just ignore.
+    public @NotNull InteractionResult tryPlace(@NotNull CarryingData carryingData, @NotNull Level level, @NotNull CarriablePlacementContext context) {
+        if (level.isClientSide()) {
+            return InteractionResult.PASS;
+        }
+
         BlockPos pos = context.getBlockPos();
-        BlockState state = this.parent.getStateForPlacement(new BlockPlaceContext(component.getOwner(), InteractionHand.MAIN_HAND, ItemStack.EMPTY, new BlockHitResult(new Vec3(pos.getX(), pos.getY(), pos.getZ()), context.getSide(), context.getBlockPos(), false)));
+
+        BlockState state = parent.getStateForPlacement(new BlockPlaceContext(level, null, InteractionHand.MAIN_HAND, ItemStack.EMPTY, new BlockHitResult(new Vec3(pos.getX(), pos.getY(), pos.getZ()), context.getSide(), context.getBlockPos(), false)) {
+            public Direction getHorizontalDirection() {
+                return context.getPlayerLook();
+            }
+
+            public boolean isSecondaryUseActive() {
+                return context.isSneaking();
+            }
+        });
+
         level.setBlockAndUpdate(pos, state);
         BlockEntity blockEntity = level.getBlockEntity(pos);
-        if (blockEntity == null) { // Should be very rare if not impossible to be null.
-            level.removeBlock(pos, false);
-            return InteractionResult.FAIL;
+
+        if (blockEntity != null) {
+            CompoundTag tag = carryingData.getBlockEntityTag();
+            ((AccessorBlockEntity)blockEntity).carrier_writeIdentifyingData(tag);
+            blockEntity.load(tag);
         }
-        blockEntity.load(carrying.getBlockEntityTag());
-        component.setCarryingData(null);
+
         level.blockUpdated(pos, state.getBlock());
+
         return InteractionResult.SUCCESS;
     }
 

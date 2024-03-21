@@ -108,7 +108,7 @@ public class ChestMinecart extends AbstractMinecart implements ExposedInventory,
                 }
                 this.spawnAtLocation(stack);
             }
-            if (!level().isClientSide) {
+            if (!level().isClientSide()) {
                 if (breaker != null && breaker.getType() == EntityType.PLAYER) {
                     PiglinAi.angerNearbyPiglins((Player) breaker, true);
                 }
