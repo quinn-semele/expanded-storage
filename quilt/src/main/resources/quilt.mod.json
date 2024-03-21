@@ -6,12 +6,14 @@
     "version": "${version}",
     "metadata": {
       "name": "Expanded Storage",
+      "description": "A mod adding various storage types, including double iron chests.",
       "contributors": {
         "Quinn Semele": "Owner"
       },
       "contact": {
         "homepage": "https://modrinth.com/mod/expanded-storage",
-        "issues": "https://github.com/quinn-semele/expanded-storage/issues"
+        "issues": "https://github.com/quinn-semele/expanded-storage/issues",
+        "sources": "https://github.com/quinn-semele/expanded-storage/tree/expandedstorage/1.20.1"
       },
       "icon": "icon.png"
     },

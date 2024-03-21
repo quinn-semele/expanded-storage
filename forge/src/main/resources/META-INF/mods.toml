@@ -9,6 +9,8 @@ version = "${version}"
 displayName = "Expanded Storage"
 authors = "Quinn Semele"
 logoFile = "icon.png"
+displayURL = "https://modrinth.com/mod/expanded-storage"
+description = "A mod adding various storage types, including double iron chests."
 
 [[dependencies.expandedstorage]]
 modId = "forge"
