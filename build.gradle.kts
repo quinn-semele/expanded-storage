@@ -2,7 +2,7 @@ import me.modmuss50.mpp.ReleaseType
 import org.codehaus.groovy.runtime.ProcessGroovyMethods
 import semele.quinn.expandedstorage.plugin.Constants
 import semele.quinn.expandedstorage.plugin.Versions
-import semele.quinn.expandedstorage.plugin.dependency.ModDependencies
+import semele.quinn.expandedstorage.plugin.dependency.FreezableDependencyList
 import semele.quinn.expandedstorage.plugin.task.AbstractJsonTask
 import semele.quinn.expandedstorage.plugin.task.AbstractRestrictedTask
 import semele.quinn.expandedstorage.plugin.task.BuildModTask
@@ -76,21 +76,17 @@ val quiltOptions = publishMods.publishOptions {
     file = project(":quilt").tasks.named<AbstractJsonTask>("minJar").map { it.archiveFile.get() }
 }
 
-val threadDependencies = project(":thread").extra["mod_dependencies"] as ModDependencies
+val threadDependencies = project(":thread").extra["mod_dependencies"] as FreezableDependencyList
 
 val threadCurseForgeOptions = publishMods.curseforgeOptions {
-    threadDependencies.getCurseforgeIds().forEach {
-        optional(it)
-    }
+    threadDependencies.curseForgeIds().forEach(::optional)
 }
 
 val threadModrinthOptions = publishMods.modrinthOptions {
-    threadDependencies.getModrinthIds().forEach {
-        optional(it)
-    }
+    threadDependencies.modrinthIds().forEach(::optional)
 }
 
-val forgeDependencies = project(":forge").extra["mod_dependencies"] as ModDependencies
+val forgeDependencies = project(":forge").extra["mod_dependencies"] as FreezableDependencyList
 
 publishMods {
     changelog = modChangelog.joinToString("\n")
@@ -115,9 +111,7 @@ publishMods {
     curseforge("CurseForgeForge") {
         from(commonCurseForgeOptions, forgeOptions)
 
-        forgeDependencies.getCurseforgeIds().forEach {
-            optional(it)
-        }
+        forgeDependencies.curseForgeIds().forEach(::optional)
     }
 
     modrinth("ModrinthFabric") {
@@ -137,9 +131,7 @@ publishMods {
     modrinth("ModrinthForge") {
         from(commonModrinthOptions, forgeOptions)
 
-        forgeDependencies.getModrinthIds().forEach {
-            optional(it)
-        }
+        forgeDependencies.modrinthIds().forEach(::optional)
     }
 }
 

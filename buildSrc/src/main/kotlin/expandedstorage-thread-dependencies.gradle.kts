@@ -1,12 +1,14 @@
 import org.gradle.kotlin.dsl.*
-import semele.quinn.expandedstorage.plugin.dependency.ModDependencies
+import semele.quinn.expandedstorage.plugin.dependency.FreezableDependencyList
 
 plugins {
     id("java-library")
     id("dev.architectury.loom")
 }
 
-val modDependencies = ModDependencies().apply {
+val modDependencies = FreezableDependencyList().apply {
+    from(project(":common").extra["mod_dependencies"])
+
     add("amecs") {
         val amecsMcVersion = "1.20"
         val amecsApiVersion = "1.3.9+mc1.20-pre1" // https://maven.siphalor.de/de/siphalor/amecsapi-1.20/
@@ -44,7 +46,7 @@ val modDependencies = ModDependencies().apply {
         implementation("maven.modrinth:inventory-profiles-next:$ipnVersion")
         implementation("maven.modrinth:libipn:$libIpnVersion")
 
-        if (project.name == "quilt") {
+        if (it.name == "quilt") {
             implementation("org.quiltmc.quilt-kotlin-libraries:quilt-kotlin-libraries:$qklVersion")
         } else {
             implementation("net.fabricmc:fabric-language-kotlin:$flkVersion")
@@ -54,17 +56,16 @@ val modDependencies = ModDependencies().apply {
     add("jei") {
         val jeiMcVersion = "1.20.1"
         val jeiVersion = "15.2.0.27" // https://modrinth.com/mod/jei/versions
-        compileOnly("mezz.jei:jei-$jeiMcVersion-common-api:$jeiVersion")
         compileOnly("mezz.jei:jei-$jeiMcVersion-fabric-api:$jeiVersion")
         runtimeOnly("mezz.jei:jei-$jeiMcVersion-fabric:$jeiVersion")
     }
 
-    add("modmenu", curseforgeDependencyName = null) {
+    add("modmenu", cfDependencyName = null) {
         val modmenuVersion = "7.2.2" // https://modrinth.com/mod/modmenu/versions
         implementation("com.terraformersmc:modmenu:$modmenuVersion")
     }
 
-    add("rei", curseforgeDependencyName = "roughly-enough-items") {
+    add("rei", cfDependencyName = "roughly-enough-items") {
         val reiVersion = "12.0.684" // https://modrinth.com/mod/rei/versions
         implementation("me.shedaniel:RoughlyEnoughItems-fabric:$reiVersion")
     }
@@ -76,13 +77,13 @@ val modDependencies = ModDependencies().apply {
         implementation("maven.modrinth:statement:$statementVersion")
     }
 
-    add("inventory-tabs", curseforgeDependencyName = null) {
+    add("inventory-tabs", cfDependencyName = null) {
         val inventoryTabsVersion = "1.1.1+1.20" // https://modrinth.com/mod/inventory-tabs/versions
         implementation("folk.sisby:inventory-tabs:$inventoryTabsVersion")
     }
 }
 
-modDependencies.enableMods()
+modDependencies.freeze()
 
 project.extra["mod_dependencies"] = modDependencies
 
@@ -149,15 +150,15 @@ repositories {
 }
 
 dependencies {
-    modDependencies.iterateCompileDependencies { dependency ->
-        add("modCompileOnly", dependency) {
+    modDependencies.compileDependencies(project).forEach {
+        modCompileOnly(it) {
             exclude(group = "net.fabricmc")
             exclude(group = "net.fabricmc.fabric-api")
         }
     }
 
-    modDependencies.iterateRuntimeDependencies { dependency ->
-        add("modRuntimeOnly", dependency) {
+    modDependencies.runtimeDependencies(project).forEach {
+        modRuntimeOnly(it) {
             exclude(group = "net.fabricmc")
             exclude(group = "net.fabricmc.fabric-api")
         }

@@ -1,6 +1,6 @@
 import semele.quinn.expandedstorage.plugin.Constants
 import semele.quinn.expandedstorage.plugin.Versions
-import semele.quinn.expandedstorage.plugin.dependency.ModDependencies
+import semele.quinn.expandedstorage.plugin.dependency.FreezableDependencyList
 
 plugins {
     id("expandedstorage-generic")
@@ -51,7 +51,9 @@ tasks.getByName<Jar>("jar") {
     ))
 }
 
-val modDependencies = ModDependencies().apply {
+val modDependencies = FreezableDependencyList().apply {
+    from(project(":common").extra["mod_dependencies"])
+
     add("emi") {
         val emiVersion = "1.1.3+1.20.1" // https://modrinth.com/mod/emi/versions
 
@@ -63,7 +65,6 @@ val modDependencies = ModDependencies().apply {
         val minecraftVersion = "1.20.1"
         val version = "15.3.0.4"
 
-        compileOnly("mezz.jei:jei-$minecraftVersion-common-api:$version")
         compileOnly("mezz.jei:jei-$minecraftVersion-forge-api:$version")
         runtimeOnly("mezz.jei:jei-$minecraftVersion-forge:$version")
     }
@@ -87,7 +88,7 @@ val modDependencies = ModDependencies().apply {
         implementation("maven.modrinth:kotlin-for-forge:4.10.0")
     }
 
-    add("rei", curseforgeDependencyName = "roughly-enough-items") {
+    add("rei", cfDependencyName = "roughly-enough-items") {
         val version = "12.0.684"
 
         compileOnly("me.shedaniel:RoughlyEnoughItems-api:$version")
@@ -96,9 +97,9 @@ val modDependencies = ModDependencies().apply {
     }
 }
 
-modDependencies.enableMods()
+modDependencies.freeze()
 
-project.extra["mod_dependencies"] = modDependencies
+extra["mod_dependencies"] = modDependencies
 
 repositories {
     maven { // Quark, JEI
@@ -127,11 +128,6 @@ repositories {
 dependencies {
     forge("net.minecraftforge:forge:${Versions.MINECRAFT}-${Versions.FORGE}")
 
-    modDependencies.iterateCompileDependencies { dependency ->
-        modCompileOnly(dependency)
-    }
-
-    modDependencies.iterateRuntimeDependencies { dependency ->
-        modRuntimeOnly(dependency)
-    }
+    modDependencies.compileDependencies(project).forEach(::modCompileOnly)
+    modDependencies.runtimeDependencies(project).forEach(::modRuntimeOnly)
 }
