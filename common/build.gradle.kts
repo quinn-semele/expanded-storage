@@ -33,9 +33,9 @@ val modDependencies = FreezableDependencyList().apply {
 
         compileOnly("maven.modrinth:inventory-profiles-next:fabric-$minecraftVersion-$version")
     }
-}
 
-modDependencies.freeze()
+    freeze()
+}
 
 extra["mod_dependencies"] = modDependencies
 

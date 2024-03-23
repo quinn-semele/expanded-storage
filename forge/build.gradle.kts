@@ -95,9 +95,9 @@ val modDependencies = FreezableDependencyList().apply {
         compileOnly("me.shedaniel:RoughlyEnoughItems-api-forge:$version")
         runtimeOnly("me.shedaniel:RoughlyEnoughItems-forge:$version")
     }
-}
 
-modDependencies.freeze()
+    freeze()
+}
 
 extra["mod_dependencies"] = modDependencies
 
