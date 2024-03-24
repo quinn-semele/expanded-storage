@@ -22,4 +22,38 @@ object Versions {
     // Quilt
     const val QUILT_LOADER = "0.20.2"
     const val QUILT_FABRIC_API = "7.5.0+0.91.0-1.20.1"
+
+    // Dependencies
+    const val EMI = "1.1.3+1.20.1" // https://modrinth.com/mod/emi/versions
+
+    const val REI = "12.0.684" // https://modrinth.com/mod/rei/
+
+    const val JEI = "15.3.0.4" // https://modrinth.com/mod/jei/
+    const val JEI_MINECRAFT = MINECRAFT
+
+    const val IPN = "1.10.9" // https://modrinth.com/mod/inventory-profiles-next/
+    const val IPN_MINECRAFT_FABRIC = "1.20"
+    const val IPN_MINECRAFT_FORGE = MINECRAFT
+
+    const val LIB_IPN = "4.0.1" // https://modrinth.com/mod/libipn/
+    const val LIB_IPN_MINECRAFT = "1.20"
+
+    const val KFF = "4.10.0" // https://modrinth.com/mod/kotlin-for-forge/
+
+    const val TOWELETTE = "5.0.1+1.14.4-1.20.4" // https://modrinth.com/mod/towelette/
+    const val STATEMENT = "4.2.9+1.14.4-1.20.4" // https://modrinth.com/mod/statement/
+
+    const val INVENTORY_TABS = "1.1.8+1.20" // https://modrinth.com/mod/inventory-tabs/
+
+    const val MOD_MENU = "7.2.2" // https://modrinth.com/mod/modmenu/
+
+    const val HTM = "1.1.9" // https://modrinth.com/mod/htm/
+
+    const val AMECS = "1.3.10+mc.1.20.1" // https://maven.siphalor.de/de/siphalor/amecs-1.20/
+    const val AMECS_API = "1.3.9+mc1.20-pre1" // https://maven.siphalor.de/de/siphalor/amecsapi-1.20/
+    const val AMECS_MINECRAFT = "1.20"
+
+    const val CARRIER = "1.12.0" // https://modrinth.com/mod/carrier/
+    const val CARDINAL_COMPONENTS = "5.2.2" // https://modrinth.com/mod/cardinal-components-api/
+    const val ARRP = "0.8.1" // https://modrinth.com/mod/arrp/
 }

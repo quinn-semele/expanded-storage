@@ -55,18 +55,13 @@ val modDependencies = FreezableDependencyList().apply {
     from(project(":common").extra["mod_dependencies"])
 
     add("emi") {
-        val emiVersion = "1.1.3+1.20.1" // https://modrinth.com/mod/emi/versions
-
-        compileOnly("dev.emi:emi-forge:${emiVersion}:api")
-        runtimeOnly("dev.emi:emi-forge:${emiVersion}")
+//        compileOnly("dev.emi:emi-forge:${Versions.EMI}:api")
+        implementation("dev.emi:emi-forge:${Versions.EMI}")
     }
 
     add("jei") {
-        val minecraftVersion = "1.20.1"
-        val version = "15.3.0.4"
-
-        compileOnly("mezz.jei:jei-$minecraftVersion-forge-api:$version")
-        runtimeOnly("mezz.jei:jei-$minecraftVersion-forge:$version")
+        compileOnly("mezz.jei:jei-${Versions.JEI_MINECRAFT}-forge-api:${Versions.JEI}")
+        runtimeOnly("mezz.jei:jei-${Versions.JEI_MINECRAFT}-forge:${Versions.JEI}")
     }
 
     add("quark") {
@@ -78,22 +73,15 @@ val modDependencies = FreezableDependencyList().apply {
     }
 
     add("inventory-profiles-next") {
-        val libVersion = "4.0.1"
-        val libMinecraftVersion = "1.20"
-        val minecraftVersion = "1.20.1"
-        val version = "1.10.9"
-
-        implementation("maven.modrinth:inventory-profiles-next:forge-$minecraftVersion-$version")
-        implementation("maven.modrinth:libipn:forge-$libMinecraftVersion-$libVersion")
-        implementation("maven.modrinth:kotlin-for-forge:4.10.0")
+        implementation("maven.modrinth:inventory-profiles-next:forge-${Versions.IPN_MINECRAFT_FORGE}-${Versions.IPN}")
+        implementation("maven.modrinth:libipn:forge-${Versions.LIB_IPN_MINECRAFT}-${Versions.LIB_IPN}")
+        implementation("maven.modrinth:kotlin-for-forge:${Versions.KFF}")
     }
 
     add("rei", cfDependencyName = "roughly-enough-items") {
-        val version = "12.0.684"
-
-        compileOnly("me.shedaniel:RoughlyEnoughItems-api:$version")
-        compileOnly("me.shedaniel:RoughlyEnoughItems-api-forge:$version")
-        runtimeOnly("me.shedaniel:RoughlyEnoughItems-forge:$version")
+        compileOnly("me.shedaniel:RoughlyEnoughItems-api:${Versions.REI}")
+        compileOnly("me.shedaniel:RoughlyEnoughItems-api-forge:${Versions.REI}")
+        runtimeOnly("me.shedaniel:RoughlyEnoughItems-forge:${Versions.REI}")
     }
 
     freeze()
