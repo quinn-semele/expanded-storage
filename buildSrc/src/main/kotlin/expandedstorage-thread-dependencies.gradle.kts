@@ -44,6 +44,18 @@ repositories {
         }
     }
 
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "JitPack"
+                url = uri("https://jitpack.io/")
+            }
+        }
+        filter {
+            includeGroup("com.github.Virtuoel")
+        }
+    }
+
     maven { // Quark, JEI
         name = "Jared"
         url = uri("https://maven.blamejared.com/")

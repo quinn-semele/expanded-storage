@@ -55,8 +55,8 @@ val modDependencies = FreezableDependencyList().apply {
     }
 
     add("towelette") {
-        implementation("maven.modrinth:towelette:${Versions.TOWELETTE}")
-        implementation("maven.modrinth:statement:${Versions.STATEMENT}")
+        implementation("com.github.Virtuoel:Towelette:${Versions.TOWELETTE}")
+        implementation("com.github.Virtuoel:Statement:${Versions.STATEMENT}")
     }
 
     add("inventory-tabs", cfDependencyName = null) {

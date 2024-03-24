@@ -94,7 +94,8 @@ public class ChestBlock extends AbstractChestBlock implements SimpleWaterloggedB
     }
 
     @Override
-    protected void appendAdditionalStateDefinitions(StateDefinition.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
         builder.add(BlockStateProperties.WATERLOGGED);
     }
 

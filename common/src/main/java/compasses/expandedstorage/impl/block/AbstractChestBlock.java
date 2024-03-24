@@ -129,14 +129,9 @@ public class AbstractChestBlock extends OpenableBlock implements WorldlyContaine
     }
 
     @Override
-    protected final void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(AbstractChestBlock.CURSED_CHEST_TYPE);
         builder.add(BlockStateProperties.HORIZONTAL_FACING);
-        this.appendAdditionalStateDefinitions(builder);
-    }
-
-    protected void appendAdditionalStateDefinitions(StateDefinition.Builder<Block, BlockState> builder) {
-
     }
 
     @Nullable

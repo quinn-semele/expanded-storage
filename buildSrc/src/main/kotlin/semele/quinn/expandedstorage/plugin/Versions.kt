@@ -13,7 +13,7 @@ object Versions {
     val SUPPORTED_GAME_VERSIONS: List<String> = listOf(MINECRAFT)
 
     // Fabric
-    const val FABRIC_LOADER = "0.14.21"
+    const val FABRIC_LOADER = "0.15.3"
     const val FABRIC_API = "0.91.0+1.20.1"
 
     // Forge
@@ -40,8 +40,8 @@ object Versions {
 
     const val KFF = "4.10.0" // https://modrinth.com/mod/kotlin-for-forge/
 
-    const val TOWELETTE = "5.0.1+1.14.4-1.20.4" // https://modrinth.com/mod/towelette/
-    const val STATEMENT = "4.2.9+1.14.4-1.20.4" // https://modrinth.com/mod/statement/
+    const val TOWELETTE = "5.0.1" // https://modrinth.com/mod/towelette/
+    const val STATEMENT = "4.2.9" // https://modrinth.com/mod/statement/
 
     const val INVENTORY_TABS = "1.1.8+1.20" // https://modrinth.com/mod/inventory-tabs/
 
