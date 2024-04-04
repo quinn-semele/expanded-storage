@@ -1,6 +1,5 @@
 package compasses.expandedstorage.forge.misc;
 
-import compasses.expandedstorage.impl.inventory.ServerScreenHandlerFactory;
 import compasses.expandedstorage.impl.misc.CommonPlatformHelper;
 import compasses.expandedstorage.impl.misc.Utils;
 import compasses.expandedstorage.impl.recipe.BlockConversionRecipe;
@@ -23,6 +22,7 @@ import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.network.simple.SimpleChannel;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -43,17 +43,17 @@ public class ForgeCommonHelper implements CommonPlatformHelper {
     }
 
     @Override
-    public void openScreenHandler(ServerPlayer player, Container inventory, ServerScreenHandlerFactory factory, Component title, ResourceLocation forcedScreenType) {
+    public void openScreenHandler(ServerPlayer player, Container inventory,Component title, ResourceLocation forcedScreenType) {
         NetworkHooks.openScreen(player, new MenuProvider() {
             @Override
             public Component getDisplayName() {
                 return title;
             }
 
-            @Nullable
+            @NotNull
             @Override
             public AbstractContainerMenu createMenu(int syncId, Inventory playerInventory, Player player) {
-                return factory.create(syncId, inventory, playerInventory);
+                return new AbstractHandler(syncId, inventory, playerInventory, forcedScreenType);
             }
         }, buffer -> {
             buffer.writeInt(inventory.getContainerSize());

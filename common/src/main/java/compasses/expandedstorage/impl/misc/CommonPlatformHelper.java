@@ -1,6 +1,5 @@
 package compasses.expandedstorage.impl.misc;
 
-import compasses.expandedstorage.impl.inventory.ServerScreenHandlerFactory;
 import compasses.expandedstorage.impl.recipe.BlockConversionRecipe;
 import compasses.expandedstorage.impl.recipe.EntityConversionRecipe;
 import compasses.expandedstorage.impl.inventory.handler.AbstractHandler;
@@ -17,7 +16,7 @@ import java.util.List;
 public interface CommonPlatformHelper {
     MenuType<AbstractHandler> getScreenHandlerType();
 
-    void openScreenHandler(ServerPlayer player, Container inventory, ServerScreenHandlerFactory factory, Component title, ResourceLocation forcedScreenType);
+    void openScreenHandler(ServerPlayer player, Container inventory, Component title, ResourceLocation forcedScreenType);
 
     void sendConversionRecipesToClient(@Nullable ServerPlayer target, List<BlockConversionRecipe<?>> blockRecipes, List<EntityConversionRecipe<?>> entityRecipes);
 

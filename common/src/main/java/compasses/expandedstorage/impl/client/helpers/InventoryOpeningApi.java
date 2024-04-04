@@ -30,14 +30,17 @@ public class InventoryOpeningApi {
 
     private static void s_openInventory(ServerPlayer player, OpenableInventory inventory, Consumer<ServerPlayer> onInitialOpen, ResourceLocation forcedScreenType) {
         Component title = inventory.getInventoryTitle();
+
         if (!inventory.canBeUsedBy(player)) {
             player.displayClientMessage(Component.translatable("container.isLocked", title), true);
             player.playNotifySound(SoundEvents.CHEST_LOCKED, SoundSource.BLOCKS, 1.0F, 1.0F);
             return;
         }
+
         if (!player.isSpectator()) {
             onInitialOpen.accept(player);
         }
-        CommonMain.platformHelper().openScreenHandler(player, inventory.getInventory(), (syncId, inv, playerInv) -> new AbstractHandler(syncId, inv, playerInv, null), title, forcedScreenType);
+
+        CommonMain.platformHelper().openScreenHandler(player, inventory.getInventory(), title, forcedScreenType);
     }
 }

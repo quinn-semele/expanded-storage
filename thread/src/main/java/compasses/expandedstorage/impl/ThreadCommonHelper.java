@@ -1,6 +1,5 @@
 package compasses.expandedstorage.impl;
 
-import compasses.expandedstorage.impl.inventory.ServerScreenHandlerFactory;
 import compasses.expandedstorage.impl.misc.CommonPlatformHelper;
 import compasses.expandedstorage.impl.misc.Utils;
 import compasses.expandedstorage.impl.recipe.BlockConversionRecipe;
@@ -39,8 +38,8 @@ public class ThreadCommonHelper implements CommonPlatformHelper {
     }
 
     @Override
-    public void openScreenHandler(ServerPlayer player, Container inventory, ServerScreenHandlerFactory factory, Component title, ResourceLocation forcedScreenType) {
-        player.openMenu(new ScreenHandlerFactoryAdapter(title, inventory, factory, forcedScreenType));
+    public void openScreenHandler(ServerPlayer player, Container inventory, Component title, ResourceLocation forcedScreenType) {
+        player.openMenu(new ScreenHandlerFactoryAdapter(title, inventory, forcedScreenType));
     }
 
     @Override

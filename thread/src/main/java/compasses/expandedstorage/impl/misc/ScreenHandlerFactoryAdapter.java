@@ -1,6 +1,6 @@
 package compasses.expandedstorage.impl.misc;
 
-import compasses.expandedstorage.impl.inventory.ServerScreenHandlerFactory;
+import compasses.expandedstorage.impl.inventory.handler.AbstractHandler;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
@@ -12,7 +12,6 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 // Note: MenuProvider is important without it dependants will crash in development when opening inventories.
 //       Yes java / mc modding is blessed.
@@ -20,12 +19,10 @@ public final class ScreenHandlerFactoryAdapter implements ExtendedScreenHandlerF
     private final ResourceLocation forcedScreenType;
     private final Component title;
     private final Container inventory;
-    private final ServerScreenHandlerFactory factory;
 
-    public ScreenHandlerFactoryAdapter(Component title, Container inventory, ServerScreenHandlerFactory factory, ResourceLocation forcedScreenType) {
+    public ScreenHandlerFactoryAdapter(Component title, Container inventory, ResourceLocation forcedScreenType) {
         this.title = title;
         this.inventory = inventory;
-        this.factory = factory;
         this.forcedScreenType = forcedScreenType;
     }
 
@@ -43,9 +40,9 @@ public final class ScreenHandlerFactoryAdapter implements ExtendedScreenHandlerF
         return title;
     }
 
-    @Nullable
+    @NotNull
     @Override
     public AbstractContainerMenu createMenu(int syncId, Inventory playerInventory, Player player) {
-        return factory.create(syncId, inventory, playerInventory);
+        return new AbstractHandler(syncId, inventory, playerInventory, forcedScreenType);
     }
 }
