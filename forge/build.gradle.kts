@@ -44,7 +44,7 @@ sourceSets.main {
     resources.srcDir(file("src/generated/resources"))
 }
 
-tasks.getByName<Jar>("jar") {
+tasks.getByName<Jar>("minJar") {
     manifest.attributes(mapOf(
             "Automatic-Module-Name" to "ellemes.expandedstorage",
             "MixinConfigs" to loom.forge.mixinConfigs.get().joinToString(",")

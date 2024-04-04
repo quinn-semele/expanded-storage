@@ -4,7 +4,7 @@ import org.gradle.api.file.RegularFileProperty
 import org.gradle.api.provider.ListProperty
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.InputFile
-import org.gradle.jvm.tasks.Jar
+import org.gradle.api.tasks.bundling.Jar
 import java.io.FilterReader
 import javax.inject.Inject
 

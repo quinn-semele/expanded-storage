@@ -21,10 +21,12 @@ tasks {
     val minJarTask = register("minJar", AbstractJsonTask::class.java, JsonNormalizerReader::class.java)
 
     minJarTask.configure {
-
         input.set(remapJar.get().outputs.files.singleFile)
         archiveClassifier.set(project.name)
 
+        manifest {
+            from(zipTree(remapJar.get().outputs.files.first()).single { it.name == "MANIFEST.MF" })
+        }
 
         dependsOn(remapJar)
     }
