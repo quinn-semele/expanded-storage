@@ -3,6 +3,7 @@ package compasses.expandedstorage.impl.client.gui;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.datafixers.util.Pair;
 import compasses.expandedstorage.impl.CommonClient;
+import compasses.expandedstorage.impl.client.config.Config;
 import compasses.expandedstorage.impl.client.gui.widget.PageButton;
 import compasses.expandedstorage.impl.misc.Utils;
 import compasses.expandedstorage.impl.client.function.ScreenSize;
@@ -58,6 +59,10 @@ public final class PageScreen extends AbstractScreen {
     }
 
     public static ScreenSize retrieveScreenSize(int slots, int scaledWidth, int scaledHeight) {
+        if (CommonClient.platformHelper().configWrapper().fitVanillaConstraints()) {
+            return ScreenSize.of(9, 6);
+        }
+
         ArrayList<Pair<ScreenSize, ScreenSize>> options = new ArrayList<>();
         PageScreen.addEntry(options, slots, 9, 3);
         PageScreen.addEntry(options, slots, 9, 6);

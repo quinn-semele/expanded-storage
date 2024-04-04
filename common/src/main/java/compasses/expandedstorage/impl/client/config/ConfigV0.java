@@ -10,12 +10,13 @@ public class ConfigV0 implements Config {
     private final boolean restrictiveScrolling;
     private final boolean preferSmallerScreens;
     private ResourceLocation screenType;
+    private final boolean fitVanillaConstraints;
 
     public ConfigV0() {
-        this(null, false, true);
+        this(null, false, true, false);
     }
 
-    public ConfigV0(ResourceLocation screenType, boolean restrictiveScrolling, boolean preferSmallerScreens) {
+    public ConfigV0(ResourceLocation screenType, boolean restrictiveScrolling, boolean preferSmallerScreens, boolean fitVanillaConstraints) {
         if (String.valueOf(screenType).equals("expandedstorage:auto")) {
             this.screenType = null;
         } else {
@@ -23,6 +24,7 @@ public class ConfigV0 implements Config {
         }
         this.restrictiveScrolling = restrictiveScrolling;
         this.preferSmallerScreens = preferSmallerScreens;
+        this.fitVanillaConstraints = fitVanillaConstraints;
     }
 
     public ResourceLocation getScreenType() {
@@ -39,6 +41,10 @@ public class ConfigV0 implements Config {
 
     public boolean preferSmallerScreens() {
         return this.preferSmallerScreens;
+    }
+
+    public boolean fitVanillaConstraints() {
+        return this.fitVanillaConstraints;
     }
 
     @Override
@@ -62,8 +68,12 @@ public class ConfigV0 implements Config {
         @Override
         public ConfigV0 fromSource(Map<String, Object> source) {
             if (source.get("container_type") instanceof String screenType && source.get("restrictive_scrolling") instanceof Boolean restrictiveScrolling) {
-                Boolean preferSmallerScreens = Boolean.TRUE;
+                Boolean preferSmallerScreens = Boolean.FALSE;
                 if (source.containsKey("prefer_smaller_screens") && source.get("prefer_smaller_screens") instanceof Boolean bool) {
+                    preferSmallerScreens = bool;
+                }
+                // Accidentally serialised this under the wrong name...
+                if (source.containsKey("prefer_bigger_screens")  && source.get("prefer_bigger_screens") instanceof Boolean bool) {
                     preferSmallerScreens = bool;
                 }
 
@@ -73,7 +83,12 @@ public class ConfigV0 implements Config {
                     default -> ResourceLocation.tryParse(screenType);
                 };
 
-                return new ConfigV0(screenTypeRl, restrictiveScrolling, preferSmallerScreens);
+                Boolean fitVanillaConstraints = Boolean.FALSE;
+                if (source.containsKey("fit_vanilla_constraints")  && source.get("fit_vanilla_constraints") instanceof Boolean bool) {
+                    fitVanillaConstraints = bool;
+                }
+
+                return new ConfigV0(screenTypeRl, restrictiveScrolling, preferSmallerScreens, fitVanillaConstraints);
             }
             return null;
         }
@@ -83,7 +98,8 @@ public class ConfigV0 implements Config {
             Map<String, Object> values = new HashMap<>();
             values.put("container_type", target.screenType);
             values.put("restrictive_scrolling", target.restrictiveScrolling);
-            values.put("prefer_bigger_screens", target.preferSmallerScreens);
+            values.put("prefer_smaller_screens", target.preferSmallerScreens);
+            values.put("fit_vanilla_constraints", target.fitVanillaConstraints);
             return values;
         }
 

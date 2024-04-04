@@ -48,7 +48,6 @@ public final class Utils {
     public static final ResourceLocation SINGLE_SCREEN_TYPE = new ResourceLocation(Utils.MOD_ID, "single");
     public static final ResourceLocation SCROLLABLE_SCREEN_TYPE = new ResourceLocation(Utils.MOD_ID, "scrollable");
     public static final ResourceLocation MINI_STORAGE_SCREEN_TYPE = new ResourceLocation(Utils.MOD_ID, "mini_storage");
-    public static final ResourceLocation UNSET_SCREEN_TYPE = new ResourceLocation(Utils.MOD_ID, "auto");
 
     private Utils() {
         throw new IllegalStateException("Should not instantiate this class.");

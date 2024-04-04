@@ -1,7 +1,7 @@
 package compasses.expandedstorage.impl;
 
 import compasses.expandedstorage.impl.misc.ClientPlatformHelper;
-import compasses.expandedstorage.impl.misc.ConfigWrapper;
+import compasses.expandedstorage.impl.client.config.ConfigWrapper;
 import compasses.expandedstorage.impl.misc.Utils;
 import compasses.expandedstorage.impl.client.Keybinding;
 import compasses.expandedstorage.impl.client.WrappedAmecsKeybind;

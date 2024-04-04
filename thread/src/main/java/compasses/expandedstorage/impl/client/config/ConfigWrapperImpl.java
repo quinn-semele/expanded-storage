@@ -1,9 +1,5 @@
 package compasses.expandedstorage.impl.client.config;
 
-import compasses.expandedstorage.impl.client.config.ConfigV0;
-import compasses.expandedstorage.impl.client.config.LegacyFactory;
-import compasses.expandedstorage.impl.misc.ConfigWrapper;
-
 import java.nio.file.Path;
 
 public final class ConfigWrapperImpl extends ConfigWrapper {

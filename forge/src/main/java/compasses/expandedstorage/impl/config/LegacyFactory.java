@@ -25,7 +25,7 @@ public final class LegacyFactory implements Converter<Config, ConfigV0> {
                 } else if ("expandedstorage:scrollable".equals(screenType)) {
                     screenType = Utils.SCROLLABLE_SCREEN_TYPE.toString();
                 }
-                return new ConfigV0(ResourceLocation.tryParse(screenType), restrictiveScrolling, false);
+                return new ConfigV0(ResourceLocation.tryParse(screenType), restrictiveScrolling, false, false);
             }
         }
         return null;

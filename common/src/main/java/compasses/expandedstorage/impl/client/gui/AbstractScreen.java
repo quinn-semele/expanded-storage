@@ -241,6 +241,11 @@ public abstract class AbstractScreen extends AbstractContainerScreen<AbstractHan
         if (slots <= 54) {
             return true;
         }
+
+        if (CommonClient.platformHelper().configWrapper().fitVanillaConstraints()) {
+            return false;
+        }
+
         if (scaledHeight >= 276) {
             if (slots <= 81) {
                 return true;

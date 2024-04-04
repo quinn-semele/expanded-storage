@@ -40,6 +40,10 @@ public final class ScrollScreen extends AbstractScreen {
     }
 
     public static ScreenSize retrieveScreenSize(int slots, int scaledWidth, int scaledHeight) {
+        if (CommonClient.platformHelper().configWrapper().fitVanillaConstraints()) {
+            return ScreenSize.of(9, 6);
+        }
+
         ArrayList<ScreenSize> options = new ArrayList<>();
         options.add(ScreenSize.of(9, 6));
         if (slots > 90) {

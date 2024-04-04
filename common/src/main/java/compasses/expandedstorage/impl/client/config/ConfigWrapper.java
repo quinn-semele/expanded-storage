@@ -1,10 +1,7 @@
-package compasses.expandedstorage.impl.misc;
+package compasses.expandedstorage.impl.client.config;
 
 import com.google.gson.JsonParseException;
-import compasses.expandedstorage.impl.client.config.Config;
-import compasses.expandedstorage.impl.client.config.ConfigV0;
-import compasses.expandedstorage.impl.client.config.Converter;
-import compasses.expandedstorage.impl.client.gui.AbstractScreen;
+import compasses.expandedstorage.impl.misc.Utils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import org.apache.logging.log4j.LogManager;
@@ -46,6 +43,10 @@ public abstract class ConfigWrapper {
 
     public final boolean preferSmallerScreens() {
         return config.preferSmallerScreens();
+    }
+
+    public final boolean fitVanillaConstraints() {
+        return config.fitVanillaConstraints();
     }
 
     public final ResourceLocation getPreferredScreenType() {
