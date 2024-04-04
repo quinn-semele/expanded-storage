@@ -2,8 +2,8 @@
   "parent": "minecraft:builtin/entity",
   "display": {
     "gui": {
-      "rotation": [ 30, 45, 0 ],
-      "translation": [ 6.5, -0.2, 0 ],
+      "rotation": [ 30, 135, 0 ],
+      "translation": [ 0, 3, 0 ],
       "scale": [ 0.5625, 0.5625, 0.5625 ]
     },
     "ground": {
