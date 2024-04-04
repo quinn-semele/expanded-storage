@@ -209,16 +209,32 @@ public class AbstractChestBlock extends OpenableBlock implements WorldlyContaine
     @Override
     @SuppressWarnings("deprecation")
     public BlockState mirror(BlockState state, Mirror mirror) {
-        return state.rotate(mirror.getRotation(state.getValue(BlockStateProperties.HORIZONTAL_FACING)));
+        EsChestType chestType = state.getValue(AbstractChestBlock.CURSED_CHEST_TYPE);
+
+        if (chestType == EsChestType.SINGLE || chestType == EsChestType.BOTTOM || chestType == EsChestType.TOP) {
+            return state.rotate(mirror.getRotation(state.getValue(BlockStateProperties.HORIZONTAL_FACING)));
+        }
+
+        // todo: handle double chests, not needed for now though.
+
+        return super.mirror(state, mirror);
     }
 
     @NotNull
     @Override
     @SuppressWarnings("deprecation")
     public BlockState rotate(BlockState state, Rotation rotation) {
-        if (state.getValue(AbstractChestBlock.CURSED_CHEST_TYPE) == EsChestType.SINGLE) {
+        EsChestType chestType = state.getValue(AbstractChestBlock.CURSED_CHEST_TYPE);
+
+        if (chestType == EsChestType.SINGLE || chestType == EsChestType.BOTTOM || chestType == EsChestType.TOP) {
             return state.setValue(BlockStateProperties.HORIZONTAL_FACING, rotation.rotate(state.getValue(BlockStateProperties.HORIZONTAL_FACING)));
         }
+
+        // note: this is what Create expects though I'm not sure if this is really how it should function
+        if (rotation == Rotation.CLOCKWISE_180) {
+            return state.setValue(BlockStateProperties.HORIZONTAL_FACING, state.getValue(BlockStateProperties.HORIZONTAL_FACING).getOpposite());
+        }
+
         return super.rotate(state, rotation);
     }
 
