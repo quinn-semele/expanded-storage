@@ -5,7 +5,7 @@ import compasses.expandedstorage.impl.block.strategies.ItemAccess;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
-public class GenericItemAccess implements ItemAccess {
+public class GenericItemAccess implements ItemAccess<IItemHandlerModifiable> {
     private final OpenableBlockEntity entity;
     private IItemHandlerModifiable handler = null;
 
@@ -14,10 +14,11 @@ public class GenericItemAccess implements ItemAccess {
     }
 
     @Override
-    public Object get() {
+    public IItemHandlerModifiable get() {
         if (handler == null) {
             handler = new InvWrapper(entity.getInventory());
         }
+
         return handler;
     }
 }

@@ -1,5 +1,5 @@
 package compasses.expandedstorage.impl.block.strategies;
 
-public interface ItemAccess {
-    Object get();
+public interface ItemAccess<T> {
+    T get();
 }

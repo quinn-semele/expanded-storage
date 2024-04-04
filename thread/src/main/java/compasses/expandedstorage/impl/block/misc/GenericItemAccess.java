@@ -3,6 +3,8 @@ package compasses.expandedstorage.impl.block.misc;
 import compasses.expandedstorage.impl.block.entity.extendable.OpenableBlockEntity;
 import compasses.expandedstorage.impl.block.strategies.ItemAccess;
 import net.fabricmc.fabric.api.transfer.v1.item.InventoryStorage;
+import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
+import net.fabricmc.fabric.api.transfer.v1.storage.Storage;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
@@ -10,7 +12,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
-public class GenericItemAccess implements ItemAccess {
+public class GenericItemAccess implements ItemAccess<Storage<ItemVariant>> {
     private final OpenableBlockEntity entity;
     @SuppressWarnings("UnstableApiUsage")
     private InventoryStorage storage = null;
@@ -20,7 +22,7 @@ public class GenericItemAccess implements ItemAccess {
     }
 
     @Override
-    public Object get() {
+    public Storage<ItemVariant> get() {
         if (storage == null) {
             NonNullList<ItemStack> items = entity.getItems();
             Container wrapped = entity.getInventory();

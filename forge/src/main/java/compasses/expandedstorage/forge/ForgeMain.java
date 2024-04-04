@@ -7,7 +7,6 @@ import compasses.expandedstorage.impl.CommonMain;
 import compasses.expandedstorage.impl.block.entity.extendable.OpenableBlockEntity;
 import compasses.expandedstorage.impl.block.misc.BasicLockable;
 import compasses.expandedstorage.impl.block.misc.CopperBlockHelper;
-import compasses.expandedstorage.impl.block.strategies.ItemAccess;
 import compasses.expandedstorage.impl.misc.Utils;
 import compasses.expandedstorage.impl.recipe.ConversionRecipeManager;
 import compasses.expandedstorage.impl.recipe.ConversionRecipeReloadListener;
@@ -74,10 +73,9 @@ public final class ForgeMain {
                     @Override
                     public <T> LazyOptional<T> getCapability(@NotNull Capability<T> capability, @Nullable Direction side) {
                         if (capability == ForgeCapabilities.ITEM_HANDLER) {
-                            return LazyOptional.of(() -> {
-                                //noinspection unchecked
-                                return (T) CommonMain.getItemAccess(entity.getLevel(), entity.getBlockPos(), entity.getBlockState(), entity).map(ItemAccess::get).orElseThrow();
-                            });
+                            return CommonMain.getItemAccess(entity.getLevel(), entity.getBlockPos(), entity.getBlockState(), entity).map(access -> {
+                                return LazyOptional.of(() -> (T) access.get());
+                            }).orElse(LazyOptional.empty());
                         }
                         return LazyOptional.empty();
                     }

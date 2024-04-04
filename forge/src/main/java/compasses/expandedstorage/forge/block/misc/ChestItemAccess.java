@@ -5,7 +5,7 @@ import compasses.expandedstorage.impl.block.misc.DoubleItemAccess;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.wrapper.CombinedInvWrapper;
 
-public final class ChestItemAccess extends GenericItemAccess implements DoubleItemAccess {
+public final class ChestItemAccess extends GenericItemAccess implements DoubleItemAccess<IItemHandlerModifiable> {
     private IItemHandlerModifiable cache;
 
     public ChestItemAccess(OpenableBlockEntity entity) {
@@ -13,18 +13,18 @@ public final class ChestItemAccess extends GenericItemAccess implements DoubleIt
     }
 
     @Override
-    public Object get() {
+    public IItemHandlerModifiable get() {
         return this.hasCachedAccess() ? cache : this.getSingle();
     }
 
     @Override
-    public Object getSingle() {
+    public IItemHandlerModifiable getSingle() {
         return super.get();
     }
 
     @Override
-    public void setOther(DoubleItemAccess other) {
-        cache = other == null ? null : new CombinedInvWrapper((IItemHandlerModifiable) this.getSingle(), (IItemHandlerModifiable) other.getSingle());
+    public void setOther(DoubleItemAccess<IItemHandlerModifiable> other) {
+        cache = other == null ? null : new CombinedInvWrapper(this.getSingle(), other.getSingle());
     }
 
     @Override
