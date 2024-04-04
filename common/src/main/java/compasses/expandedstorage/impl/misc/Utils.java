@@ -57,8 +57,4 @@ public final class Utils {
     public static ResourceLocation id(String path) {
         return new ResourceLocation(Utils.MOD_ID, path);
     }
-
-    public static ResourceLocation containerId(String path) {
-        return new ResourceLocation("ellemes_container_lib", path);
-    }
 }

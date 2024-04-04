@@ -164,7 +164,7 @@ public final class PageScreen extends AbstractScreen {
     }
 
     private void setPageText() {
-        currentPageText = Component.translatable("screen.ellemes_container_lib.page_x_y", page, pages);
+        currentPageText = Component.translatable("screen.expandedstorage.page_x_y", page, pages);
         pageTextX = (leftPageButton.getX() + leftPageButton.getWidth() + rightPageButton.getX()) / 2.0f - font.width(currentPageText) / 2.0f + 0.5f;
     }
 
@@ -233,11 +233,11 @@ public final class PageScreen extends AbstractScreen {
             x -= 14;
         }
         leftPageButton = new PageButton(x, y, 0,
-                Component.translatable("screen.ellemes_container_lib.prev_page"), button -> this.setPage(page, page - 1));
+                Component.translatable("screen.expandedstorage.prev_page"), button -> this.setPage(page, page - 1));
         leftPageButton.active = page != 1;
         this.addRenderableWidget(leftPageButton);
         rightPageButton = new PageButton(x + 42, y, 1,
-                Component.translatable("screen.ellemes_container_lib.next_page"), button -> this.setPage(page, page + 1));
+                Component.translatable("screen.expandedstorage.next_page"), button -> this.setPage(page, page + 1));
         rightPageButton.active = page != pages;
         this.addRenderableWidget(rightPageButton);
         this.setPageText();

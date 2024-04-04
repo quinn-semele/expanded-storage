@@ -21,22 +21,22 @@ import java.util.Set;
 import java.util.function.Supplier;
 
 public final class PickScreen extends Screen {
-    public static final Component CURRENT_OPTION_TEXT = Component.translatable("screen.ellemes_container_lib.current_option_notice").withStyle(ChatFormatting.GOLD);
+    public static final Component CURRENT_OPTION_TEXT = Component.translatable("screen.expandedstorage.current_option_notice").withStyle(ChatFormatting.GOLD);
     public static final Map<ResourceLocation, PickButton> BUTTON_SETTINGS = Map.of(
             Utils.PAGINATED_SCREEN_TYPE, new PickButton(
                     Utils.id("textures/gui/page_button.png"),
-                    Component.translatable("screen.ellemes_container_lib.page_screen")
+                    Component.translatable("screen.expandedstorage.page_screen")
             ),
             Utils.SCROLLABLE_SCREEN_TYPE, new PickButton(
                     Utils.id("textures/gui/scroll_button.png"),
-                    Component.translatable("screen.ellemes_container_lib.scroll_screen")
+                    Component.translatable("screen.expandedstorage.scroll_screen")
             ),
             Utils.SINGLE_SCREEN_TYPE, new PickButton(
                     Utils.id("textures/gui/single_button.png"),
-                    Component.translatable("screen.ellemes_container_lib.single_screen"),
+                    Component.translatable("screen.expandedstorage.single_screen"),
 
-                    Component.translatable("screen.ellemes_container_lib.off_screen_warning_1").withStyle(ChatFormatting.GRAY),
-                    Component.translatable("screen.ellemes_container_lib.off_screen_warning_2").withStyle(ChatFormatting.GRAY)
+                    Component.translatable("screen.expandedstorage.off_screen_warning_1").withStyle(ChatFormatting.GRAY),
+                    Component.translatable("screen.expandedstorage.off_screen_warning_2").withStyle(ChatFormatting.GRAY)
             ) {
                 @Override
                 public boolean shouldShowWarning(int scaledWidth, int scaledHeight) {
@@ -60,7 +60,7 @@ public final class PickScreen extends Screen {
     }
 
     private PickScreen(@Nullable AbstractHandler handler, Supplier<Screen> returnToScreen) {
-        super(Component.translatable("screen.ellemes_container_lib.screen_picker_title"));
+        super(Component.translatable("screen.expandedstorage.screen_picker_title"));
         this.handler = handler;
         this.returnToScreen = returnToScreen;
     }
@@ -75,7 +75,7 @@ public final class PickScreen extends Screen {
                 return;
             }
             else if (AbstractScreen.getScreenSize(preference, handler.getInventory().getContainerSize(), minecraft.getWindow().getGuiScaledWidth(), minecraft.getWindow().getGuiScaledHeight()) == null) {
-                minecraft.player.displayClientMessage(Component.translatable("text.expandedstorage.short_prefix").withStyle(ChatFormatting.GOLD).append(Component.translatable("chat.ellemes_container_lib.cannot_display_screen", Component.translatable("screen." + preference.getNamespace() + "." + preference.getPath() + "_screen")).withStyle(ChatFormatting.WHITE)), false);
+                minecraft.player.displayClientMessage(Component.translatable("text.expandedstorage.short_prefix").withStyle(ChatFormatting.GOLD).append(Component.translatable("chat.expandedstorage.cannot_display_screen", Component.translatable("screen." + preference.getNamespace() + "." + preference.getPath() + "_screen")).withStyle(ChatFormatting.WHITE)), false);
                 minecraft.player.closeContainer();
                 return;
             }

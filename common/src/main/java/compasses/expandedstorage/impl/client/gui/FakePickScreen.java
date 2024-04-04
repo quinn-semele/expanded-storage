@@ -20,7 +20,7 @@ import net.minecraft.world.inventory.Slot;
 import java.util.Set;
 
 public final class FakePickScreen extends AbstractScreen {
-    private static final Component TITLE = Component.translatable("screen.ellemes_container_lib.screen_picker_title");
+    private static final Component TITLE = Component.translatable("screen.expandedstorage.screen_picker_title");
     private final Set<ResourceLocation> options = ImmutableSortedSet.copyOf(PickScreen.BUTTON_SETTINGS.keySet());
     private int topPadding;
 
@@ -53,7 +53,7 @@ public final class FakePickScreen extends AbstractScreen {
         } else {
             int invSize = menu.getInventory().getContainerSize();
             if (getScreenSize(preference, invSize, minecraft.getWindow().getGuiScaledWidth(), minecraft.getWindow().getGuiScaledHeight()) == null) {
-                minecraft.player.displayClientMessage(Component.translatable("text.expandedstorage.short_prefix").withStyle(ChatFormatting.GOLD).append(Component.translatable("chat.ellemes_container_lib.cannot_display_screen", Component.translatable("screen." + preference.getNamespace() + "." + preference.getPath() + "_screen")).withStyle(ChatFormatting.WHITE)), false);
+                minecraft.player.displayClientMessage(Component.translatable("text.expandedstorage.short_prefix").withStyle(ChatFormatting.GOLD).append(Component.translatable("chat.expandedstorage.cannot_display_screen", Component.translatable("screen." + preference.getNamespace() + "." + preference.getPath() + "_screen")).withStyle(ChatFormatting.WHITE)), false);
                 minecraft.player.closeContainer();
                 return;
             }
