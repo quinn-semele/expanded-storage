@@ -7,7 +7,6 @@
     "common.HTMChestCompat",
     "common.HTMLockableBlockEntityCompat",
     "common.MiniStorageHeadEquipment",
-    "common.ToweletteCompat",
     "common.SyncRecipesMixin",
     "common.AllowCarryingESBlocks",
     "common.CarrierRegistryMixin"

@@ -54,11 +54,6 @@ val modDependencies = FreezableDependencyList().apply {
         implementation("me.shedaniel:RoughlyEnoughItems-fabric:${Versions.REI}")
     }
 
-    add("towelette") {
-        implementation("com.github.Virtuoel:Towelette:${Versions.TOWELETTE}")
-        implementation("com.github.Virtuoel:Statement:${Versions.STATEMENT}")
-    }
-
     add("inventory-tabs", cfDependencyName = null) {
         implementation("folk.sisby:inventory-tabs:${Versions.INVENTORY_TABS}")
     }
