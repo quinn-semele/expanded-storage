@@ -1,6 +1,7 @@
 package compasses.expandedstorage.impl;
 
 import compasses.expandedstorage.impl.block.ChestBlock;
+import compasses.expandedstorage.impl.block.MiniStorageBlock;
 import compasses.expandedstorage.impl.block.OpenableBlock;
 import compasses.expandedstorage.impl.block.misc.BasicLockable;
 import compasses.expandedstorage.impl.block.misc.CopperBlockHelper;
@@ -145,6 +146,8 @@ public class ThreadMain implements ModInitializer {
 
                 if (block.getValue() instanceof ChestBlock chestBlock) {
                     CarrierCompat.registerChestBlock(chestBlock);
+                } else if (block.getValue() instanceof MiniStorageBlock storageBlock) {
+                  CarrierCompat.registerMiniBlock(storageBlock);
                 } else {
                     CarrierCompat.registerOpenableBlock(block.getValue());
                 }

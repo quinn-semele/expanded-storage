@@ -31,6 +31,10 @@ public class BarrelBlock extends OpenableBlock {
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
+        if (context.getPlayer() == null) {
+            return this.defaultBlockState().setValue(BlockStateProperties.FACING, Direction.UP);
+        }
+
         return this.defaultBlockState().setValue(BlockStateProperties.FACING, context.getNearestLookingDirection().getOpposite());
     }
 

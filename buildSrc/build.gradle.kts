@@ -23,6 +23,6 @@ repositories {
 }
 
 dependencies {
-    implementation("dev.architectury:architectury-loom:1.5-SNAPSHOT")
+    implementation("dev.architectury:architectury-loom:1.6-SNAPSHOT")
     implementation("com.google.code.gson:gson:2.10.1")
 }

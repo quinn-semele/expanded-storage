@@ -4,12 +4,13 @@
   "plugin": "compasses.expandedstorage.impl.MixinPlugin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
+    "common.AllowCarryingESBlocks",
+    "common.CarrierRegistryMixin",
+    "common.HijackBlockPickup",
     "common.HTMChestCompat",
     "common.HTMLockableBlockEntityCompat",
     "common.MiniStorageHeadEquipment",
-    "common.SyncRecipesMixin",
-    "common.AllowCarryingESBlocks",
-    "common.CarrierRegistryMixin"
+    "common.SyncRecipesMixin"
   ],
   "client": [
     "client.LastAfterInitCallbackMixin"

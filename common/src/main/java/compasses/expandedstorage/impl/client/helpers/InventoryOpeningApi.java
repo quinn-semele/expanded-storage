@@ -1,7 +1,6 @@
 package compasses.expandedstorage.impl.client.helpers;
 
 import compasses.expandedstorage.impl.CommonMain;
-import compasses.expandedstorage.impl.inventory.handler.AbstractHandler;
 import compasses.expandedstorage.impl.inventory.OpenableInventory;
 import compasses.expandedstorage.impl.inventory.OpenableInventoryProvider;
 import compasses.expandedstorage.impl.inventory.context.BaseContext;
