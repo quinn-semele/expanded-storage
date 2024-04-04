@@ -20,6 +20,10 @@ val modDependencies = FreezableDependencyList().apply {
         compileOnly("mezz.jei:jei-${Versions.JEI_MINECRAFT}-common-api:${Versions.JEI}")
     }
 
+    add("carry-on") {
+        compileOnly("maven.modrinth:carry-on:${Versions.CARRY_ON}")
+    }
+
     add("inventory-profiles-next") {
         if (it.name != "common") return@add // IPN doesn't have an easily accessible common api.
 

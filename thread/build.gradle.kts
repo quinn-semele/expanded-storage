@@ -27,6 +27,10 @@ val modDependencies = FreezableDependencyList().apply {
         implementation("net.devtech:arrp:${Versions.ARRP}")
     }
 
+    add("carry-on") {
+        runtimeOnly("maven.modrinth:carry-on:${Versions.CARRY_ON}")
+    }
+
     add("emi") {
         compileOnly("dev.emi:emi-fabric:${Versions.EMI}:api")
         runtimeOnly("dev.emi:emi-fabric:${Versions.EMI}")

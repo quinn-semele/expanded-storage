@@ -1,6 +1,6 @@
 package compasses.expandedstorage.impl;
 
-import net.fabricmc.loader.api.FabricLoader;
+import net.minecraftforge.fml.loading.FMLLoader;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
@@ -8,19 +8,17 @@ import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 import java.util.List;
 import java.util.Set;
 
-@SuppressWarnings("unused")
-public final class MixinPlugin implements IMixinConfigPlugin {
-    private static final int MIXIN_PACKAGE_LENGTH = MixinPlugin.class.getPackageName().length() + 7;
+public class MixinPlugin implements IMixinConfigPlugin {
+    private static final int MIXIN_PACKAGE_LENGTH = "compasses.expandedstorage.impl.mixin".length() + 1;
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
+        boolean isQuarkPresent = FMLLoader.getLoadingModList().getModFileById("quark") != null;
+        boolean isCarryOnPresent = FMLLoader.getLoadingModList().getModFileById("carryon") != null;
         String className = mixinClassName.substring(MIXIN_PACKAGE_LENGTH);
-
         return switch (className) {
-            case "common.HTMChestCompat", "common.HTMLockableBlockEntityCompat" -> FabricLoader.getInstance().isModLoaded("htm");
-            case "common.ToweletteCompat" -> FabricLoader.getInstance().isModLoaded("towelette");
-            case "common.CarrierRegistryMixin", "common.AllowCarryingESBlocks", "common.HijackBlockPickup" -> FabricLoader.getInstance().isModLoaded("carrier");
-            case "common.CarryOnCompatFix" -> FabricLoader.getInstance().isModLoaded("carryon");
+            case "common.QuarkButtonAllowedMixin" -> isQuarkPresent;
+            case "common.CarryOnCompatFix" -> isCarryOnPresent;
             default -> true;
         };
     }

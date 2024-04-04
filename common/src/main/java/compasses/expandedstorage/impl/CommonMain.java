@@ -18,7 +18,6 @@ import compasses.expandedstorage.impl.block.entity.extendable.OpenableBlockEntit
 import compasses.expandedstorage.impl.block.misc.DoubleItemAccess;
 import compasses.expandedstorage.impl.block.strategies.ItemAccess;
 import compasses.expandedstorage.impl.block.strategies.Lockable;
-import compasses.expandedstorage.impl.client.gui.MiniStorageScreen;
 import compasses.expandedstorage.impl.entity.ChestMinecart;
 import compasses.expandedstorage.impl.item.BlockMutatorBehaviour;
 import compasses.expandedstorage.impl.item.ChestMinecartItem;

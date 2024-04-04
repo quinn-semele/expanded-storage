@@ -56,4 +56,6 @@ object Versions {
     const val CARRIER = "1.12.0" // https://modrinth.com/mod/carrier/
     const val CARDINAL_COMPONENTS = "5.2.2" // https://modrinth.com/mod/cardinal-components-api/
     const val ARRP = "0.8.1" // https://modrinth.com/mod/arrp/
+
+    const val CARRY_ON = "Mkla4B3q" // https://modrinth.com/mod/carry-on/
 }

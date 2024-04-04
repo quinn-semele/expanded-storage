@@ -178,24 +178,18 @@ public class AbstractChestBlock extends OpenableBlock implements WorldlyContaine
     @SuppressWarnings("deprecation")
     public BlockState updateShape(BlockState state, Direction offset, BlockState offsetState, LevelAccessor level,
                                   BlockPos pos, BlockPos offsetPos) {
-        DoubleBlockCombiner.BlockType mergeType = AbstractChestBlock.getBlockType(state.getValue(AbstractChestBlock.CURSED_CHEST_TYPE));
-        if (mergeType == DoubleBlockCombiner.BlockType.SINGLE) {
-            Direction facing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
-            if (!offsetState.is(this)) {
-                return state.setValue(AbstractChestBlock.CURSED_CHEST_TYPE, EsChestType.SINGLE);
+        if (offsetState.is(this)) {
+            EsChestType offsetType = offsetState.getValue(CURSED_CHEST_TYPE);
+            if (state.getValue(CURSED_CHEST_TYPE) == EsChestType.SINGLE
+                    && offsetType != EsChestType.SINGLE
+                    && state.getValue(BlockStateProperties.HORIZONTAL_FACING) == offsetState.getValue(BlockStateProperties.HORIZONTAL_FACING)
+                    && AbstractChestBlock.getDirectionToAttached(offsetState) == offset.getOpposite()) {
+                return state.setValue(CURSED_CHEST_TYPE, offsetType.getOpposite());
             }
-            EsChestType newType = AbstractChestBlock.getChestType(facing, offset);
-            if (offsetState.getValue(AbstractChestBlock.CURSED_CHEST_TYPE) == newType.getOpposite() && facing == offsetState.getValue(BlockStateProperties.HORIZONTAL_FACING)) {
-                return state.setValue(AbstractChestBlock.CURSED_CHEST_TYPE, newType);
-            }
-        } else {
-            BlockState otherState = level.getBlockState(pos.relative(AbstractChestBlock.getDirectionToAttached(state)));
-            if (!otherState.is(this) ||
-                    otherState.getValue(CURSED_CHEST_TYPE) != state.getValue(CURSED_CHEST_TYPE).getOpposite() ||
-                    state.getValue(BlockStateProperties.HORIZONTAL_FACING) != state.getValue(BlockStateProperties.HORIZONTAL_FACING)) {
-                return state.setValue(AbstractChestBlock.CURSED_CHEST_TYPE, EsChestType.SINGLE);
-            }
+        } else if (state.getValue(CURSED_CHEST_TYPE) != EsChestType.SINGLE && AbstractChestBlock.getDirectionToAttached(state) == offset) {
+            return state.setValue(CURSED_CHEST_TYPE, EsChestType.SINGLE);
         }
+
         return super.updateShape(state, offset, offsetState, level, pos, offsetPos);
     }
 
