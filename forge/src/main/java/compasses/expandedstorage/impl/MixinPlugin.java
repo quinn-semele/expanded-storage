@@ -17,7 +17,7 @@ public class MixinPlugin implements IMixinConfigPlugin {
         boolean isCarryOnPresent = FMLLoader.getLoadingModList().getModFileById("carryon") != null;
         String className = mixinClassName.substring(MIXIN_PACKAGE_LENGTH);
         return switch (className) {
-            case "common.QuarkButtonAllowedMixin" -> isQuarkPresent;
+            case "client.QuarkButtonAllowedMixin" -> isQuarkPresent;
             case "common.CarryOnCompatFix" -> isCarryOnPresent;
             default -> true;
         };
