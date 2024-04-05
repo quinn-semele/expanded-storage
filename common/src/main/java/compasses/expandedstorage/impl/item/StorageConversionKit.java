@@ -1,9 +1,11 @@
 package compasses.expandedstorage.impl.item;
 
+import compasses.expandedstorage.impl.CommonMain;
 import compasses.expandedstorage.impl.misc.Utils;
 import compasses.expandedstorage.impl.recipe.BlockConversionRecipe;
 import compasses.expandedstorage.impl.recipe.ConversionRecipeManager;
 import compasses.expandedstorage.impl.recipe.EntityConversionRecipe;
+import compasses.expandedstorage.impl.registration.ModItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -61,6 +63,14 @@ public final class StorageConversionKit extends Item implements EntityInteractab
                         player.getCooldowns().addCooldown(this, Utils.TOOL_USAGE_DELAY);
                         return InteractionResult.SUCCESS;
                     }
+                } else {
+                    if (!level.isClientSide()) {
+                        if (this == ModItems.WOOD_TO_COPPER_CONVERSION_KIT && CommonMain.platformHelper().isWoodenChest(state)) {
+                            player.displayClientMessage(Component.translatable("tooltip.expandedstorage.conversion_kit.copper_chests_not_implemented"), true);
+                        } else {
+                            player.displayClientMessage(Component.translatable("tooltip.expandedstorage.conversion_kit.not_work_on_block"), true);
+                        }
+                    }
                 }
             }
         }
@@ -70,7 +80,7 @@ public final class StorageConversionKit extends Item implements EntityInteractab
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag context) {
         list.add(instructionsFirst);
-        if (!instructionsSecond.getString().equals("")) {
+        if (!instructionsSecond.getString().isEmpty()) {
             list.add(instructionsSecond);
         }
     }
