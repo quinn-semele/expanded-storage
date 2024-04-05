@@ -1,12 +1,12 @@
 package compasses.expandedstorage.impl.datagen.providers;
 
 import compasses.expandedstorage.impl.misc.Utils;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
-public final class ItemModelProvider extends net.minecraftforge.client.model.generators.ItemModelProvider {
+public final class ItemModelProvider extends net.neoforged.neoforge.client.model.generators.ItemModelProvider {
     public ItemModelProvider(PackOutput output, ExistingFileHelper fileHelper) {
         super(output, Utils.MOD_ID, fileHelper);
     }
@@ -40,7 +40,7 @@ public final class ItemModelProvider extends net.minecraftforge.client.model.gen
 
     @SuppressWarnings("ConstantConditions")
     private void simple(Item item) {
-        String itemId = ForgeRegistries.ITEMS.getKey(item).getPath();
+        String itemId = BuiltInRegistries.ITEM.getKey(item).getPath();
         this.withExistingParent(itemId, mcLoc("item/generated")).texture("layer0", "item/" + itemId);
     }
 

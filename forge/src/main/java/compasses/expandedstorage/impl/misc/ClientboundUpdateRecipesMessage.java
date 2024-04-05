@@ -4,13 +4,15 @@ import compasses.expandedstorage.impl.recipe.BlockConversionRecipe;
 import compasses.expandedstorage.impl.recipe.ConversionRecipeManager;
 import compasses.expandedstorage.impl.recipe.EntityConversionRecipe;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraftforge.network.NetworkEvent;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.resources.ResourceLocation;
+import net.neoforged.neoforge.network.handling.PlayPayloadContext;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Supplier;
 
-public class ClientboundUpdateRecipesMessage {
+public class ClientboundUpdateRecipesMessage implements CustomPacketPayload {
+    public static final ResourceLocation ID = Utils.id("update_conversion_recipes");
     private final List<BlockConversionRecipe<?>> blockRecipes;
     private final List<EntityConversionRecipe<?>> entityRecipes;
 
@@ -19,9 +21,10 @@ public class ClientboundUpdateRecipesMessage {
         this.entityRecipes = entityRecipes;
     }
 
-    public static void encode(ClientboundUpdateRecipesMessage msg, FriendlyByteBuf buffer) {
-        buffer.writeCollection(msg.blockRecipes, (b, recipe) -> recipe.writeToBuffer(b));
-        buffer.writeCollection(msg.entityRecipes, (b, recipe) -> recipe.writeToBuffer(b));
+    @Override
+    public void write(FriendlyByteBuf buffer) {
+        buffer.writeCollection(blockRecipes, (b, recipe) -> recipe.writeToBuffer(b));
+        buffer.writeCollection(entityRecipes, (b, recipe) -> recipe.writeToBuffer(b));
     }
 
     public static ClientboundUpdateRecipesMessage decode(FriendlyByteBuf buffer) {
@@ -30,9 +33,12 @@ public class ClientboundUpdateRecipesMessage {
         return new ClientboundUpdateRecipesMessage(blockRecipes, entityRecipes);
     }
 
-    public static void handle(ClientboundUpdateRecipesMessage msg, Supplier<NetworkEvent.Context> context) {
-        context.get().enqueueWork(() -> {
-            ConversionRecipeManager.INSTANCE.replaceAllRecipes(msg.blockRecipes, msg.entityRecipes);
-        });
+    public void handle(PlayPayloadContext context) {
+        context.workHandler().execute(() -> ConversionRecipeManager.INSTANCE.replaceAllRecipes(blockRecipes, entityRecipes));
+    }
+
+    @Override
+    public ResourceLocation id() {
+        return ID;
     }
 }

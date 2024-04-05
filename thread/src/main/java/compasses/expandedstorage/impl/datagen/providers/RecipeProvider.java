@@ -4,10 +4,8 @@ import compasses.expandedstorage.impl.datagen.content.ThreadTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.RecipeOutput;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.function.Consumer;
 
 public class RecipeProvider extends FabricRecipeProvider {
     public RecipeProvider(FabricDataOutput output) {
@@ -15,7 +13,7 @@ public class RecipeProvider extends FabricRecipeProvider {
     }
 
     @Override
-    public void buildRecipes(Consumer<FinishedRecipe> exporter) {
+    public void buildRecipes(RecipeOutput output) {
         RecipeHelper recipeHelper = new RecipeHelper(
                 BuiltInRegistries.ITEM::getKey,
                 ThreadTags.Items.COPPER_INGOTS, ThreadTags.Items.IRON_NUGGETS, ThreadTags.Items.IRON_INGOTS, ThreadTags.Items.GOLD_INGOTS, ThreadTags.Items.DIAMONDS, ThreadTags.Items.OBSIDIAN, ThreadTags.Items.NETHERITE_INGOTS,
@@ -23,7 +21,7 @@ public class RecipeProvider extends FabricRecipeProvider {
                 ThreadTags.Items.GLASS_BLOCKS, ThreadTags.Items.RED_DYES, ThreadTags.Items.WHITE_DYES, ThreadTags.Items.BAMBOO
         );
 
-        recipeHelper.registerRecipes(exporter);
+        recipeHelper.registerRecipes(output);
     }
 
     @NotNull

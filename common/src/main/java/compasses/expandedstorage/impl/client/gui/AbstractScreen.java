@@ -286,7 +286,6 @@ public abstract class AbstractScreen extends AbstractContainerScreen<AbstractHan
 
     @Override
     public void render(GuiGraphics graphics, int mouseX, int mouseY, float delta) {
-        this.renderBackground(graphics);
         super.render(graphics, mouseX, mouseY, delta);
         this.renderTooltip(graphics, mouseX, mouseY);
     }

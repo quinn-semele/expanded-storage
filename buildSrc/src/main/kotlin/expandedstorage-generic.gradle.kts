@@ -28,6 +28,9 @@ loom {
 
     @Suppress("UnstableApiUsage")
     mixin {
+        if (project.name == "forge") {
+            useLegacyMixinAp = true
+        }
         defaultRefmapName = "expandedstorage.refmap.json"
     }
 }

@@ -29,9 +29,7 @@ public final class ScreenHandlerFactoryAdapter implements ExtendedScreenHandlerF
     @Override
     public void writeScreenOpeningData(ServerPlayer player, FriendlyByteBuf buffer) {
         buffer.writeInt(inventory.getContainerSize());
-        if (forcedScreenType != null) {
-            buffer.writeResourceLocation(forcedScreenType);
-        }
+        buffer.writeNullable(forcedScreenType, FriendlyByteBuf::writeResourceLocation);
     }
 
     @NotNull

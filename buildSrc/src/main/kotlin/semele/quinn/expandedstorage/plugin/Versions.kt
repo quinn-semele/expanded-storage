@@ -7,33 +7,33 @@ object Versions {
 
     // Generic
     val java = JavaVersion.VERSION_17
-    const val MINECRAFT = "1.20.1"
-    const val PARCHMENT = "1.20.1:2023.09.03"
+    const val MINECRAFT = "1.20.4"
+    const val PARCHMENT = "1.20.4:2024.02.25"
     const val JETBRAINS_ANNOTATIONS_VERSION = "24.1.0"
     val SUPPORTED_GAME_VERSIONS: List<String> = listOf(MINECRAFT)
 
     // Fabric
     const val FABRIC_LOADER = "0.15.3"
-    const val FABRIC_API = "0.91.0+1.20.1"
+    const val FABRIC_API = "0.96.11+1.20.4"
 
-    // Forge
-    const val FORGE = "47.1.47"
+    // NeoForge
+    const val NEOFORGE = "20.4.222"
 
     // Quilt
-    const val QUILT_LOADER = "0.20.2"
-    const val QUILT_FABRIC_API = "7.5.0+0.91.0-1.20.1"
+    const val QUILT_LOADER = "0.24.0"
+    const val QUILT_FABRIC_API = "9.0.0-alpha.6+0.96.11-1.20.4"
 
     // Dependencies
     const val EMI = "1.1.3+1.20.1" // https://modrinth.com/mod/emi/versions
 
-    const val REI = "12.0.684" // https://modrinth.com/mod/rei/
+    const val REI = "14.0.688" // https://modrinth.com/mod/rei/
 
     const val JEI = "15.3.0.4" // https://modrinth.com/mod/jei/
-    const val JEI_MINECRAFT = MINECRAFT
+    const val JEI_MINECRAFT = "1.20.1"
 
     const val IPN = "1.10.9" // https://modrinth.com/mod/inventory-profiles-next/
     const val IPN_MINECRAFT_FABRIC = "1.20"
-    const val IPN_MINECRAFT_FORGE = MINECRAFT
+    const val IPN_MINECRAFT_FORGE = "1.20.1"
 
     const val LIB_IPN = "4.0.1" // https://modrinth.com/mod/libipn/
     const val LIB_IPN_MINECRAFT = "1.20"

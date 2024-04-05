@@ -2,8 +2,8 @@ package compasses.expandedstorage.impl.item;
 
 import compasses.expandedstorage.impl.entity.ChestMinecart;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.BlockSource;
 import net.minecraft.core.Direction;
+import net.minecraft.core.dispenser.BlockSource;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.resources.ResourceLocation;
@@ -27,12 +27,12 @@ public class ChestMinecartItem extends Item {
         @NotNull
         @Override
         public ItemStack execute(BlockSource block, ItemStack stack) {
-            Direction forward = block.getBlockState().getValue(DispenserBlock.FACING);
-            double x = block.x() + forward.getStepX() * 1.125D;
-            double y = Math.floor(block.y()) + forward.getStepY();
-            double z = block.z() + forward.getStepZ() * 1.125D;
-            BlockPos frontPos = block.getPos().relative(forward);
-            Level level = block.getLevel();
+            Direction forward = block.state().getValue(DispenserBlock.FACING);
+            double x = block.pos().getX() + forward.getStepX() * 1.125D;
+            double y = block.pos().getY() + forward.getStepY();
+            double z = block.pos().getZ() + forward.getStepZ() * 1.125D;
+            BlockPos frontPos = block.pos().relative(forward);
+            Level level = block.level();
             BlockState frontState = level.getBlockState(frontPos);
             double railHeight = -2;
             if (BaseRailBlock.isRail(frontState)) {

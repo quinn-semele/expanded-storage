@@ -99,7 +99,7 @@ public final class FakePickScreen extends AbstractScreen {
 
     @Override
     public void render(GuiGraphics graphics, int mouseX, int mouseY, float delta) {
-        this.renderBackground(graphics);
+        this.renderBackground(graphics, mouseX, mouseY, delta);
         for (Renderable widget : this.renderables) {
             widget.render(graphics, mouseX, mouseY, delta);
         }

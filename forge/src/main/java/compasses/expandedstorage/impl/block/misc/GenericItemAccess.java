@@ -2,8 +2,8 @@ package compasses.expandedstorage.impl.block.misc;
 
 import compasses.expandedstorage.impl.block.entity.extendable.OpenableBlockEntity;
 import compasses.expandedstorage.impl.block.strategies.ItemAccess;
-import net.minecraftforge.items.IItemHandlerModifiable;
-import net.minecraftforge.items.wrapper.InvWrapper;
+import net.neoforged.neoforge.items.IItemHandlerModifiable;
+import net.neoforged.neoforge.items.wrapper.InvWrapper;
 
 public class GenericItemAccess implements ItemAccess<IItemHandlerModifiable> {
     private final OpenableBlockEntity entity;

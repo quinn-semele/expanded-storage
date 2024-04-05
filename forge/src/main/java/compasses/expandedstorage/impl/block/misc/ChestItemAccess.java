@@ -1,8 +1,8 @@
 package compasses.expandedstorage.impl.block.misc;
 
 import compasses.expandedstorage.impl.block.entity.extendable.OpenableBlockEntity;
-import net.minecraftforge.items.IItemHandlerModifiable;
-import net.minecraftforge.items.wrapper.CombinedInvWrapper;
+import net.neoforged.neoforge.items.IItemHandlerModifiable;
+import net.neoforged.neoforge.items.wrapper.CombinedInvWrapper;
 
 public final class ChestItemAccess extends GenericItemAccess implements DoubleItemAccess<IItemHandlerModifiable> {
     private IItemHandlerModifiable cache;

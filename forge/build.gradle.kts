@@ -11,13 +11,6 @@ plugins {
 loom {
     accessWidenerPath = project(":common").loom.accessWidenerPath
 
-    forge {
-        mixinConfig("expandedstorage-common.mixins.json")
-        mixinConfig("expandedstorage-forge.mixins.json")
-
-        convertAccessWideners = true
-    }
-
     runs {
         create("datagen") {
             data()
@@ -46,8 +39,7 @@ sourceSets.main {
 
 tasks.getByName<Jar>("minJar") {
     manifest.attributes(mapOf(
-            "Automatic-Module-Name" to "ellemes.expandedstorage",
-            "MixinConfigs" to loom.forge.mixinConfigs.get().joinToString(",")
+            "Automatic-Module-Name" to "ellemes.expandedstorage"
     ))
 }
 
@@ -84,8 +76,8 @@ val modDependencies = FreezableDependencyList().apply {
 
     add("rei", cfDependencyName = "roughly-enough-items") {
         compileOnly("me.shedaniel:RoughlyEnoughItems-api:${Versions.REI}")
-        compileOnly("me.shedaniel:RoughlyEnoughItems-api-forge:${Versions.REI}")
-        runtimeOnly("me.shedaniel:RoughlyEnoughItems-forge:${Versions.REI}")
+        compileOnly("me.shedaniel:RoughlyEnoughItems-api-neoforge:${Versions.REI}")
+        runtimeOnly("me.shedaniel:RoughlyEnoughItems-neoforge:${Versions.REI}")
     }
 
     freeze()
@@ -115,11 +107,20 @@ repositories {
             includeGroup("dev.emi")
         }
     }
+
+    maven {
+        name = "NeoForge Maven"
+        url = uri("https://maven.neoforged.net/releases/")
+    }
 }
 
 dependencies {
-    forge("net.minecraftforge:forge:${Versions.MINECRAFT}-${Versions.FORGE}")
+    neoForge("net.neoforged:neoforge:${Versions.NEOFORGE}")
 
     modDependencies.compileDependencies(project).forEach(::modCompileOnly)
     modDependencies.runtimeDependencies(project).forEach(::modRuntimeOnly)
+}
+
+tasks.remapJar {
+    atAccessWideners.add("expandedstorage.accessWidener")
 }
