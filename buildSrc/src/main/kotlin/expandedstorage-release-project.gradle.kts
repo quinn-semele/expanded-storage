@@ -24,8 +24,10 @@ tasks {
         input.set(remapJar.get().outputs.files.singleFile)
         archiveClassifier.set(project.name)
 
-        manifest {
-            from(zipTree(remapJar.get().outputs.files.first()).single { it.name == "MANIFEST.MF" })
+        doLast {
+            manifest {
+                from(zipTree(remapJar.get().outputs.files.first()).single { it.name == "MANIFEST.MF" })
+            }
         }
 
         dependsOn(remapJar)
