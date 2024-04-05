@@ -3,7 +3,7 @@ package semele.quinn.expandedstorage.plugin
 import org.gradle.api.JavaVersion
 
 object Versions {
-    const val EXPANDEDSTORAGE = "10.3.0-alpha.1"
+    const val EXPANDEDSTORAGE = "10.3.0-beta.1"
 
     // Generic
     val java = JavaVersion.VERSION_17
