@@ -12,6 +12,8 @@ plugins {
     id("me.modmuss50.mod-publish-plugin") version "0.5.1"
 }
 
+version = Versions.EXPANDEDSTORAGE
+
 tasks.create(Constants.BUILD_MOD_TASK, BuildModTask::class.java)
 val releaseTask = tasks.register(Constants.RELEASE_MOD_TASK, ReleaseModTask::class.java) {
     dependsOn(":publishMods")
@@ -96,17 +98,17 @@ publishMods {
     dryRun = providers.systemProperty("MOD_UPLOAD_DEBUG").orElse("false").map { it == "true" }
 
     curseforge("CurseForgeFabric") {
+        from(threadCurseForgeOptions)
         from(commonCurseForgeOptions, fabricOptions)
 
         requires("fabric-api")
-        from(threadCurseForgeOptions)
     }
 
     curseforge("CurseForgeQuilt") {
+        from(threadCurseForgeOptions)
         from(commonCurseForgeOptions, quiltOptions)
 
         requires("qsl")
-        from(threadCurseForgeOptions)
     }
 
     curseforge("CurseForgeForge") {
@@ -116,17 +118,17 @@ publishMods {
     }
 
     modrinth("ModrinthFabric") {
+        from(threadModrinthOptions)
         from(commonModrinthOptions, fabricOptions)
 
         requires("fabric-api")
-        from(threadModrinthOptions)
     }
 
     modrinth("ModrinthQuilt") {
+        from(threadModrinthOptions)
         from(commonModrinthOptions, quiltOptions)
 
         requires("qsl")
-        from(threadModrinthOptions)
     }
 
     modrinth("ModrinthForge") {

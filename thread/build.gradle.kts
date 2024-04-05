@@ -28,7 +28,7 @@ val modDependencies = FreezableDependencyList().apply {
     }
 
     add("carry-on") {
-        runtimeOnly("maven.modrinth:carry-on:${Versions.CARRY_ON}")
+        implementation("maven.modrinth:carry-on:${Versions.CARRY_ON_FABRIC}")
     }
 
     add("emi") {

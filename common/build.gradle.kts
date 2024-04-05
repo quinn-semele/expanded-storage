@@ -21,7 +21,9 @@ val modDependencies = FreezableDependencyList().apply {
     }
 
     add("carry-on") {
-        compileOnly("maven.modrinth:carry-on:${Versions.CARRY_ON}")
+        if (it.name != "common") return@add
+
+        compileOnly("maven.modrinth:carry-on:${Versions.CARRY_ON_FABRIC}")
     }
 
     add("inventory-profiles-next") {

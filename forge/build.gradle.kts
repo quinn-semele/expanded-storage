@@ -64,6 +64,10 @@ val modDependencies = FreezableDependencyList().apply {
         runtimeOnly("mezz.jei:jei-${Versions.JEI_MINECRAFT}-forge:${Versions.JEI}")
     }
 
+    add("carry-on") {
+        implementation("maven.modrinth:carry-on:${Versions.CARRY_ON_FORGE}")
+    }
+
     add("quark") {
         val zetaVersion = "1.0-14.69"
         val quarkVersion = "4.0-437.3290"
