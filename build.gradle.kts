@@ -1,4 +1,6 @@
 import me.modmuss50.mpp.ReleaseType
+import me.modmuss50.mpp.platforms.curseforge.CurseforgeOptions
+import me.modmuss50.mpp.platforms.modrinth.ModrinthOptions
 import org.codehaus.groovy.runtime.ProcessGroovyMethods
 import semele.quinn.expandedstorage.plugin.Constants
 import semele.quinn.expandedstorage.plugin.Versions
@@ -81,11 +83,11 @@ val quiltOptions = publishMods.publishOptions {
 
 val threadDependencies = project(":thread").extra["mod_dependencies"] as FreezableDependencyList
 
-val threadCurseForgeOptions = publishMods.curseforgeOptions {
+fun CurseforgeOptions.threadDependencies() {
     threadDependencies.curseForgeIds().forEach(::optional)
 }
 
-val threadModrinthOptions = publishMods.modrinthOptions {
+fun ModrinthOptions.threadDependencies() {
     threadDependencies.modrinthIds().forEach(::optional)
 }
 
@@ -98,17 +100,17 @@ publishMods {
     dryRun = providers.systemProperty("MOD_UPLOAD_DEBUG").orElse("false").map { it == "true" }
 
     curseforge("CurseForgeFabric") {
-        from(threadCurseForgeOptions)
         from(commonCurseForgeOptions, fabricOptions)
 
         requires("fabric-api")
+        threadDependencies()
     }
 
     curseforge("CurseForgeQuilt") {
-        from(threadCurseForgeOptions)
         from(commonCurseForgeOptions, quiltOptions)
 
         requires("qsl")
+        threadDependencies()
     }
 
     curseforge("CurseForgeForge") {
@@ -118,17 +120,17 @@ publishMods {
     }
 
     modrinth("ModrinthFabric") {
-        from(threadModrinthOptions)
         from(commonModrinthOptions, fabricOptions)
 
         requires("fabric-api")
+        threadDependencies()
     }
 
     modrinth("ModrinthQuilt") {
-        from(threadModrinthOptions)
         from(commonModrinthOptions, quiltOptions)
 
         requires("qsl")
+        threadDependencies()
     }
 
     modrinth("ModrinthForge") {
