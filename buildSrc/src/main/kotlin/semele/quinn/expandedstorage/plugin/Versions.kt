@@ -20,7 +20,7 @@ object Versions {
     const val NEOFORGE = "20.4.222"
 
     // Quilt
-    const val QUILT_LOADER = "0.24.0"
+    const val QUILT_LOADER = "0.23.1"
     const val QUILT_FABRIC_API = "9.0.0-alpha.6+0.96.11-1.20.4"
 
     // Dependencies

@@ -15,7 +15,7 @@ public abstract class DataFixerEntrypoint {
             at = @At(
                     value = "INVOKE",
                     target = "Lcom/mojang/datafixers/DataFixerBuilder;addSchema(ILjava/util/function/BiFunction;)Lcom/mojang/datafixers/schemas/Schema;",
-                    ordinal = 132,
+                    ordinal = 133,
                     remap = false
             )
     )
@@ -28,7 +28,7 @@ public abstract class DataFixerEntrypoint {
             at = @At(
                     value = "INVOKE",
                     target = "Lcom/mojang/datafixers/DataFixerBuilder;addSchema(ILjava/util/function/BiFunction;)Lcom/mojang/datafixers/schemas/Schema;",
-                    ordinal = 144,
+                    ordinal = 145,
                     remap = false
             )
     )
