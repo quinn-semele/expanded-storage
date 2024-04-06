@@ -142,7 +142,7 @@ public class ChestMinecart extends AbstractMinecart implements ExposedInventory,
 
     @Override
     public boolean stillValid(Player player) {
-        return this.isAlive() && player.distanceToSqr(this) <= 36.0D;
+        return this.isAlive() && player.distanceToSqr(this) <= 64.0D;
     }
 
     @Override
