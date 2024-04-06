@@ -3,3 +3,4 @@
 - Fix dependencies not being set properly on CurseForge and Modrinth for Fabric and Quilt.
 - Improved the chest minecart tags a little bit.
 - Fix chest unmerging when done with the storage mutator tool.
+- Improve responses provided by conversion kits when used on entities.
