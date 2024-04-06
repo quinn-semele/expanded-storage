@@ -20,14 +20,13 @@
   },
   "requirements": [
     [
-      "has_chest",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_chest"
     ]
   ],
   "rewards": {
     "recipes": [
       "expandedstorage:storage_mutator"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

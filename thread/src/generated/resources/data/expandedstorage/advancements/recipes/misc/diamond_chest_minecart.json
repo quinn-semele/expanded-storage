@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_chest",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_chest"
     ]
   ],
   "rewards": {
     "recipes": [
       "expandedstorage:diamond_chest_minecart"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

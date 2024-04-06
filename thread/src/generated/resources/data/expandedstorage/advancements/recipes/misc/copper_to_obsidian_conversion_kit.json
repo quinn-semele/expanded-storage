@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_previous_kit",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_previous_kit"
     ]
   ],
   "rewards": {
     "recipes": [
       "expandedstorage:copper_to_obsidian_conversion_kit"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

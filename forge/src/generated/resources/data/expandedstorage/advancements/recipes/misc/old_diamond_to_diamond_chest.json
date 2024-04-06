@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_item",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_item"
     ]
   ],
   "rewards": {
     "recipes": [
       "expandedstorage:old_diamond_to_diamond_chest"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }
