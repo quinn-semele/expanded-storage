@@ -47,13 +47,13 @@ val modDependencies = FreezableDependencyList().apply {
     from(project(":common").extra["mod_dependencies"])
 
     add("emi") {
-//        compileOnly("dev.emi:emi-forge:${Versions.EMI}:api")
-        implementation("dev.emi:emi-forge:${Versions.EMI}")
+        compileOnly("dev.emi:emi-neoforge:${Versions.EMI}:api")
+        runtimeOnly("dev.emi:emi-neoforge:${Versions.EMI}")
     }
 
     add("jei") {
-        compileOnly("mezz.jei:jei-${Versions.JEI_MINECRAFT}-forge-api:${Versions.JEI}")
-        runtimeOnly("mezz.jei:jei-${Versions.JEI_MINECRAFT}-forge:${Versions.JEI}")
+        compileOnly("mezz.jei:jei-${Versions.JEI_MINECRAFT}-neoforge-api:${Versions.JEI}")
+        runtimeOnly("mezz.jei:jei-${Versions.JEI_MINECRAFT}-neoforge:${Versions.JEI}")
     }
 
     add("carry-on") {
@@ -61,17 +61,8 @@ val modDependencies = FreezableDependencyList().apply {
     }
 
     add("quark") {
-        val zetaVersion = "1.0-14.69"
-        val quarkVersion = "4.0-437.3290"
-
-        implementation("org.violetmoon.quark:Quark:$quarkVersion")
-        runtimeOnly("org.violetmoon.zeta:Zeta:$zetaVersion")
-    }
-
-    add("inventory-profiles-next") {
-        implementation("maven.modrinth:inventory-profiles-next:forge-${Versions.IPN_MINECRAFT_FORGE}-${Versions.IPN}")
-        implementation("maven.modrinth:libipn:forge-${Versions.LIB_IPN_MINECRAFT}-${Versions.LIB_IPN}")
-        implementation("maven.modrinth:kotlin-for-forge:${Versions.KFF}")
+        implementation("org.violetmoon.quark:Quark:${Versions.QUARK}")
+        runtimeOnly("org.violetmoon.zeta:Zeta:${Versions.ZETA}")
     }
 
     add("rei", cfDependencyName = "roughly-enough-items") {

@@ -26,12 +26,6 @@ val modDependencies = FreezableDependencyList().apply {
         compileOnly("maven.modrinth:carry-on:${Versions.CARRY_ON_FABRIC}")
     }
 
-    add("inventory-profiles-next") {
-        if (it.name != "common") return@add // IPN doesn't have an easily accessible common api.
-
-        compileOnly("maven.modrinth:inventory-profiles-next:fabric-${Versions.IPN_MINECRAFT_FABRIC}-${Versions.IPN}")
-    }
-
     freeze()
 }
 

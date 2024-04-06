@@ -13,7 +13,8 @@
     "common.SyncRecipesMixin"
   ],
   "client": [
-    "client.LastAfterInitCallbackMixin"
+    "client.LastAfterInitCallbackMixin",
+    "client.InventoryProfilesNextSupport"
   ],
   "injectors": { "defaultRequire": 1 },
   "refmap": "expandedstorage.refmap.json"
