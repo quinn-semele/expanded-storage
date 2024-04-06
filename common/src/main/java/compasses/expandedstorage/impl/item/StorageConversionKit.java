@@ -8,11 +8,14 @@ import compasses.expandedstorage.impl.recipe.EntityConversionRecipe;
 import compasses.expandedstorage.impl.registration.ModItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -26,6 +29,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public final class StorageConversionKit extends Item implements EntityInteractableItem {
+    private static final TagKey<EntityType<?>> ES_WOODEN_CHEST_MINECARTS = TagKey.create(Registries.ENTITY_TYPE, Utils.id("wooden_chest_minecarts"));
     public static final ToolUsageResult NOT_ENOUGH_UPGRADES = ToolUsageResult.fail();
     private final Component instructionsFirst;
     private final Component instructionsSecond;
@@ -92,6 +96,14 @@ public final class StorageConversionKit extends Item implements EntityInteractab
             if (recipe.process(level, player, stack, entity).shouldSwing()) {
                 player.getCooldowns().addCooldown(this, Utils.TOOL_USAGE_DELAY);
                 return InteractionResult.SUCCESS;
+            }
+        } else {
+            if (!level.isClientSide()) {
+                if (this == ModItems.WOOD_TO_COPPER_CONVERSION_KIT && entity.getType().is(ES_WOODEN_CHEST_MINECARTS)) {
+                    player.displayClientMessage(Component.translatable("tooltip.expandedstorage.conversion_kit.copper_chests_not_implemented"), true);
+                } else {
+                    player.displayClientMessage(Component.translatable("tooltip.expandedstorage.conversion_kit.not_work_on_entity"), true);
+                }
             }
         }
         return InteractionResult.FAIL;
