@@ -253,13 +253,6 @@ public class TagHelper {
     }
 
     public static void registerEntityTypeTags(Function<TagKey<EntityType<?>>, TagsProvider.TagAppender<EntityType<?>>> tagMaker) {
-        tagMaker.apply(ModTags.Entities.ES_WOODEN_CHEST_MINECARTS)
-                .add(entityType(EntityType.CHEST_MINECART))
-                .add(entityType(ModEntityTypes.WOOD_CHEST_MINECART))
-                .add(entityType(ModEntityTypes.PUMPKIN_CHEST_MINECART))
-                .add(entityType(ModEntityTypes.PRESENT_MINECART))
-                .add(entityType(ModEntityTypes.BAMBOO_CHEST_MINECART))
-                .add(entityType(ModEntityTypes.MOSS_CHEST_MINECART));
         tagMaker.apply(ModTags.Entities.ES_CHEST_MINECARTS)
                 .addTag(ModTags.Entities.ES_WOODEN_CHEST_MINECARTS)
                 .add(entityType(ModEntityTypes.IRON_CHEST_MINECART))

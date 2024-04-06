@@ -1,5 +1,6 @@
 package compasses.expandedstorage.impl.datagen.providers;
 
+import compasses.expandedstorage.impl.datagen.content.ModEntityTypes;
 import compasses.expandedstorage.impl.datagen.content.ModTags;
 import compasses.expandedstorage.impl.misc.Utils;
 import compasses.expandedstorage.impl.registration.ModBlocks;
@@ -15,6 +16,8 @@ import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 import java.util.concurrent.CompletableFuture;
+
+import static net.minecraft.world.entity.EntityType.CHEST_MINECART;
 
 public final class TagProvider {
     public static final class Block extends BlockTagsProvider {
@@ -64,6 +67,17 @@ public final class TagProvider {
 
         @Override
         protected void addTags(HolderLookup.Provider provider) {
+            this.tag(ForgeTags.Entities.WOODEN_CHEST_MINECARTS)
+                    .add(CHEST_MINECART);
+
+            this.tag(ModTags.Entities.ES_WOODEN_CHEST_MINECARTS)
+                .addTag(ForgeTags.Entities.WOODEN_CHEST_MINECARTS)
+                .add(ModEntityTypes.WOOD_CHEST_MINECART)
+                .add(ModEntityTypes.PUMPKIN_CHEST_MINECART)
+                .add(ModEntityTypes.PRESENT_MINECART)
+                .add(ModEntityTypes.BAMBOO_CHEST_MINECART)
+                .add(ModEntityTypes.MOSS_CHEST_MINECART);
+
             TagHelper.registerEntityTypeTags(this::tag);
         }
 
