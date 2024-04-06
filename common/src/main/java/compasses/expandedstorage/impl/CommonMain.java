@@ -375,8 +375,9 @@ public final class CommonMain {
             CommonMain.registerMutationBehaviour(isChestBlock, MutationMode.SPLIT, (context, level, state, pos, stack) -> {
                 if (state.getValue(AbstractChestBlock.CURSED_CHEST_TYPE) != EsChestType.SINGLE) {
                     if (!level.isClientSide()) {
+                        BlockPos otherPos = pos.relative(AbstractChestBlock.getDirectionToAttached(state));
                         level.setBlockAndUpdate(pos, state.setValue(AbstractChestBlock.CURSED_CHEST_TYPE, EsChestType.SINGLE));
-                        // note: other state is updated to single via neighbour update
+                        level.setBlockAndUpdate(otherPos, state.setValue(AbstractChestBlock.CURSED_CHEST_TYPE, EsChestType.SINGLE));
                     }
                     return ToolUsageResult.slowSuccess();
                 }

@@ -1,6 +1,6 @@
 {
   "values": [
-    "minecraft:chest_minecart",
+    "#forge:chest_minecarts/wooden",
     "expandedstorage:wood_chest_minecart",
     "expandedstorage:pumpkin_chest_minecart",
     "expandedstorage:present_minecart",
