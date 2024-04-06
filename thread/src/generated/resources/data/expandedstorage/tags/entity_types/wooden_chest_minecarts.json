@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "minecraft:chest_minecart",
+    "#c:wooden_chest_minecarts",
     "expandedstorage:wood_chest_minecart",
     "expandedstorage:pumpkin_chest_minecart",
     "expandedstorage:present_minecart",
