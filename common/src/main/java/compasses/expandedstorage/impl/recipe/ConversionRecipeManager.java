@@ -41,9 +41,14 @@ public class ConversionRecipeManager {
     }
 
     public void replaceAllRecipes(List<BlockConversionRecipe<?>> blockRecipes, List<EntityConversionRecipe<?>> entityRecipes) {
-        this.blockRecipes.clear();
-        this.blockRecipes.addAll(blockRecipes);
-        this.entityRecipes.clear();
-        this.entityRecipes.addAll(entityRecipes);
+        if (!blockRecipes.equals(this.blockRecipes)) {
+            this.blockRecipes.clear();
+            this.blockRecipes.addAll(blockRecipes);
+        }
+
+        if (!entityRecipes.equals(this.entityRecipes)) {
+            this.entityRecipes.clear();
+            this.entityRecipes.addAll(entityRecipes);
+        }
     }
 }
