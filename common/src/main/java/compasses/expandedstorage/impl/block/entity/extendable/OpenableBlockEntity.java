@@ -40,7 +40,7 @@ public abstract class OpenableBlockEntity extends BlockEntity implements Openabl
 
     protected final boolean isValidAndPlayerInRange(Player player) {
         //noinspection DataFlowIssue
-        return this.getLevel().getBlockEntity(this.getBlockPos()) == this && player.distanceToSqr(Vec3.atCenterOf(this.getBlockPos())) <= 36.0D;
+        return this.getLevel().getBlockEntity(this.getBlockPos()) == this && player.distanceToSqr(Vec3.atCenterOf(this.getBlockPos())) <= 64.0D;
     }
 
     @Override
