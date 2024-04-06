@@ -67,10 +67,9 @@ val fabricOptions = publishMods.publishOptions {
 }
 
 val forgeOptions = publishMods.publishOptions {
-    modLoaders.add("forge")
     modLoaders.add("neoforge")
-    displayName = "ES Neo/Forge ${Versions.EXPANDEDSTORAGE}"
-    version = "${Versions.EXPANDEDSTORAGE}+forge"
+    displayName = "ES NeoForge ${Versions.EXPANDEDSTORAGE}"
+    version = "${Versions.EXPANDEDSTORAGE}+neoforge"
     file = project(":forge").tasks.named<AbstractJsonTask>("minJar").map { it.archiveFile.get() }
 }
 
