@@ -103,6 +103,7 @@
 
   "tooltip.expandedstorage.conversion_kit.need_x_upgrades":               "Upgrade failed, you need %s more upgrade(s).",
   "tooltip.expandedstorage.conversion_kit.not_work_on_block":             "This conversion kit does not work on that block.",
+  "tooltip.expandedstorage.conversion_kit.not_work_on_entity":            "This conversion kit does not work on that entity.",
   "tooltip.expandedstorage.conversion_kit.copper_chests_not_implemented": "Sorry, copper chests haven't been added yet.",
 
   "block.expandedstorage.copper_barrel":                                  "Copper Barrel",
