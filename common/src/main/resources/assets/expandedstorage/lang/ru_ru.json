@@ -102,6 +102,9 @@
   "tooltip.expandedstorage.conversion_kit_obsidian_netherite_2":        "чтобы превратить его в незеритовое.",
 
   "tooltip.expandedstorage.conversion_kit.need_x_upgrades":             "Улучшение неудачно: вам нужно ещё %s улучшений.",
+  "tooltip.expandedstorage.conversion_kit.not_work_on_block":             "Это улучшение не применимо к этому блоку.",
+  "tooltip.expandedstorage.conversion_kit.not_work_on_entity":            "Это улучшение не применимо к этой сущности.",
+  "tooltip.expandedstorage.conversion_kit.copper_chests_not_implemented": "Извините, медные сундуки ещё не были добавлены.",
 
   "block.expandedstorage.copper_barrel":                                "Медная бочка",
   "block.expandedstorage.exposed_copper_barrel":                        "Потемневшая медная бочка",
