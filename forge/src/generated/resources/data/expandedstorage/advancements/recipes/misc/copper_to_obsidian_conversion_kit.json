@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "expandedstorage:copper_to_diamond_conversion_kit"
-            ]
+            "items": "expandedstorage:copper_to_diamond_conversion_kit"
           }
         ]
       },

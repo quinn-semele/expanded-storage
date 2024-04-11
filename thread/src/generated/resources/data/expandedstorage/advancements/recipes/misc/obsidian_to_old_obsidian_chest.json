@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "expandedstorage:obsidian_chest"
-            ]
+            "items": "expandedstorage:obsidian_chest"
           }
         ]
       },

@@ -15,6 +15,7 @@
     "S  "
   ],
   "result": {
-    "item": "expandedstorage:storage_mutator"
+    "count": 1,
+    "id": "expandedstorage:storage_mutator"
   }
 }

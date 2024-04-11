@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "expandedstorage:iron_to_obsidian_conversion_kit"
-            ]
+            "items": "expandedstorage:iron_to_obsidian_conversion_kit"
           }
         ]
       },

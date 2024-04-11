@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "expandedstorage:bamboo_chest"
-            ]
+            "items": "expandedstorage:bamboo_chest"
           }
         ]
       },

@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "forge:barrels/wooden"
+            "items": "#forge:barrels/wooden"
           }
         ]
       },

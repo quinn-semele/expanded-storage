@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "c:copper_ingots"
+            "items": "#c:copper_ingots"
           }
         ]
       },

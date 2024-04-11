@@ -1,16 +1,16 @@
-// 1.20.4	2024-04-06T14:18:39.0091897	Expanded Storage/Expanded Storage - Item Tags
-57eeddef4b6816f683fea2de80ba2a1a52841be9 data\minecraft\tags\items\piglin_loved.json
-a2306be4be3fce48840c4976924fe52a106a5c3e data\c\tags\items\netherite_ingots.json
-3c51fa2acfb5400ab1b142008f974fb8e55669c4 data\c\tags\items\wooden_barrels.json
-989b799a247e595b14e76a145d6ff3566337b58f data\c\tags\items\iron_nuggets.json
-204c20e23f4b41548367455cdd7ffbaf90bdd9fb data\c\tags\items\obsidian.json
-b1030a3d32c63b98b5506740a13d3a545c5f9063 data\c\tags\items\gold_ingots.json
-fa959bb4c753f3ffba423703f0ff39d76a9a8a4b data\c\tags\items\red_dyes.json
-ef347f6724a4e2743851d8ddf77b8424e340de90 data\c\tags\items\white_dyes.json
-5235d62cd50a4d466869950a0c123c2b12ff7321 data\expandedstorage\tags\items\wooden_chests.json
-0140c403834e21308623168927f1bd151b5d918b data\c\tags\items\copper_ingots.json
-e21225b848494580aaf5fc6ce45b6e9c1f440be0 data\c\tags\items\iron_ingots.json
-627d5d50f067ef65eb6b787f778f574555ed7e4f data\c\tags\items\glass.json
-f50e7503aca0e13844b6b954182fc1268b375000 data\c\tags\items\bamboo.json
-4633ea804479d6427e896568197d631a53b810e8 data\c\tags\items\wooden_chests.json
-03d61905c2291410834b794b56d8bf4f2cd73312 data\c\tags\items\diamonds.json
+// 24w14a	2024-04-11T02:11:37.349398	Expanded Storage/Expanded Storage - Item Tags
+b87e81b303e998a4b22b225b406534e1ec96e978 data\minecraft\tags\items\piglin_loved.json
+f7a8c659163fbac23438e07049cc42e0aa39eb9a data\c\tags\items\netherite_ingots.json
+c7ec0dbc18e9c1b58e568ed925287b89df11a136 data\c\tags\items\wooden_barrels.json
+a600f08f3b82ea64e2da4220752cea0537967e95 data\c\tags\items\iron_nuggets.json
+26d89c4e3cfa827f5d2a7ef1ef43ec4c8c63cd6e data\c\tags\items\obsidian.json
+f2aa87f54e7951ea0cf81ac252c2abe279b0c936 data\c\tags\items\gold_ingots.json
+d587dbfdf136de5d3e50fd038557299b64ad4549 data\c\tags\items\red_dyes.json
+03f99f90ec5b88b010783cca4e9afb6c05a6dd93 data\c\tags\items\white_dyes.json
+d7977222eb0e97427d28c6bd9c59ca6d1a434325 data\expandedstorage\tags\items\wooden_chests.json
+6222fd0d7d2ce08ee1f70be68a61f4e167dda650 data\c\tags\items\copper_ingots.json
+736f4ef35696340b932cdb679c5a32e7b28db783 data\c\tags\items\iron_ingots.json
+5244889de6708d47a8ef776192b1799a04d09fb7 data\c\tags\items\glass.json
+578dd629e6c69bf5641983afdf5f54ca2d3b5882 data\c\tags\items\bamboo.json
+9c8d38cb1b9fd4ca91bcb086daf088641a300cd2 data\c\tags\items\wooden_chests.json
+fdab8ddd5529ae14b26bc1853b004131135318a4 data\c\tags\items\diamonds.json

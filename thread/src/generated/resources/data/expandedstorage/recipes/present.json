@@ -25,6 +25,7 @@
     " S "
   ],
   "result": {
-    "item": "expandedstorage:present"
+    "count": 1,
+    "id": "expandedstorage:present"
   }
 }

@@ -7,7 +7,8 @@
     "tag": "forge:obsidian"
   },
   "result": {
-    "item": "expandedstorage:obsidian_to_netherite_conversion_kit"
+    "count": 1,
+    "id": "expandedstorage:obsidian_to_netherite_conversion_kit"
   },
   "template": []
 }

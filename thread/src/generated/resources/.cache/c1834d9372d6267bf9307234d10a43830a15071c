@@ -1,12 +1,12 @@
-// 1.20.4	2024-04-06T14:18:39.0123857	Expanded Storage/Expanded Storage - Block Tags
-749aec27fbd7253ab54bb4e3f0f1410e4c41e660 data\expandedstorage\tags\blocks\copper_barrels.json
-35b13c0210b4fbaf06a15a56bc62e72582edf2bd data\minecraft\tags\blocks\guarded_by_piglins.json
-acdde50e65957c177ff51895197a1b1ab3f186ce data\minecraft\tags\blocks\needs_diamond_tool.json
-deffb6d73200691bcb54dd6dbfaa7f663df5dd3a data\minecraft\tags\blocks\mineable\hoe.json
-6a31e87b257f3a1c243bd337b71419a2f732c563 data\minecraft\tags\blocks\mineable\axe.json
-4d02985b19f0564c124d72de01ce9d254b02fe82 data\minecraft\tags\blocks\needs_iron_tool.json
-5235d62cd50a4d466869950a0c123c2b12ff7321 data\expandedstorage\tags\blocks\wooden_chests.json
-4633ea804479d6427e896568197d631a53b810e8 data\c\tags\blocks\wooden_chests.json
-3c51fa2acfb5400ab1b142008f974fb8e55669c4 data\c\tags\blocks\wooden_barrels.json
-c5b48fc6b75752bf3c89e149915d1ead48cecde6 data\minecraft\tags\blocks\mineable\pickaxe.json
-89be7a611b9c769cee199c2af379a9da3d4d063a data\minecraft\tags\blocks\needs_stone_tool.json
+// 24w14a	2024-04-11T02:11:37.3528663	Expanded Storage/Expanded Storage - Block Tags
+311c475108d99cd330b77e1460e9c0b1fd8134ff data\expandedstorage\tags\blocks\copper_barrels.json
+70d55b827a6494908c03ab3c008c8b4237bc5ecf data\minecraft\tags\blocks\needs_diamond_tool.json
+a5fb06427dce73974674776920a7afdc887c70b7 data\minecraft\tags\blocks\guarded_by_piglins.json
+be486ad73493e4aeace8638de78b298ec7630e06 data\minecraft\tags\blocks\mineable\axe.json
+fd0bcd75aa8cb8ca2b340cd79a08d0d870e6f40e data\minecraft\tags\blocks\mineable\hoe.json
+a45febe26d806dfc76b777455a0a765836a35b8a data\minecraft\tags\blocks\needs_iron_tool.json
+d7977222eb0e97427d28c6bd9c59ca6d1a434325 data\expandedstorage\tags\blocks\wooden_chests.json
+9c8d38cb1b9fd4ca91bcb086daf088641a300cd2 data\c\tags\blocks\wooden_chests.json
+c7ec0dbc18e9c1b58e568ed925287b89df11a136 data\c\tags\blocks\wooden_barrels.json
+0fb33f6095d3bc3a371bfd17b45fc862162b957a data\minecraft\tags\blocks\mineable\pickaxe.json
+23a420394830aaed094e5e48d3b363b6eb7abbba data\minecraft\tags\blocks\needs_stone_tool.json
