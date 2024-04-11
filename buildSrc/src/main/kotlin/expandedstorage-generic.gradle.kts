@@ -51,7 +51,7 @@ tasks.withType<ProcessResources>().configureEach {
     )
 
     inputs.properties(props)
-    filesMatching(listOf("fabric.mod.json", "META-INF/mods.toml", "quilt.mod.json")) { expand(props) }
+    filesMatching(listOf("fabric.mod.json", "META-INF/neoforge.mods.toml", "quilt.mod.json")) { expand(props) }
 
     exclude(".cache/*")
 }

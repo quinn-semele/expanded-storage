@@ -6,11 +6,11 @@ import compasses.expandedstorage.impl.inventory.context.BlockContext;
 import compasses.expandedstorage.impl.misc.Utils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.BlockItemStateProperties;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -85,13 +85,12 @@ public class MiniStorageBlock extends OpenableBlock implements SimpleWaterlogged
     }
 
     public static boolean hasSparrowProperty(ItemStack stack) {
-        CompoundTag tag = stack.getTag();
-        if (tag != null) {
-            Tag blockStateTag = tag.get("BlockStateTag");
-            if (blockStateTag != null && blockStateTag.getId() == Tag.TAG_COMPOUND) {
-                return ((CompoundTag) blockStateTag).getString("sparrow").equals("true");
-            }
+        if (stack.has(DataComponents.BLOCK_STATE)) {
+            BlockItemStateProperties properties = stack.get(DataComponents.BLOCK_STATE);
+
+            return Boolean.TRUE.equals(properties.get(MiniStorageBlock.SPARROW));
         }
+
         return false;
     }
 

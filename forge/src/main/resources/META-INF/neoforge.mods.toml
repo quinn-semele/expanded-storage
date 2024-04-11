@@ -1,5 +1,5 @@
 modLoader = "javafml"
-loaderVersion = "[2,)"
+loaderVersion = "[3,)"
 issueTrackerURL = "https://github.com/quinn-semele/expanded-storage/issues"
 license = "See LICENSE file"
 
@@ -15,16 +15,16 @@ description = "A mod adding various storage types, including double iron chests.
 [[dependencies.expandedstorage]]
 modId = "neoforge"
 type = "required"
-versionRange = "[20.4,)"
+versionRange = "[20.5.0-alpha,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.expandedstorage]]
-modId = "minecraft"
-type = "required"
-versionRange = "1.20.4"
-ordering = "NONE"
-side = "BOTH"
+#[[dependencies.expandedstorage]]
+#modId = "minecraft"
+#type = "required"
+#versionRange = "1.20.4"
+#ordering = "NONE"
+#side = "BOTH"
 
 [[mixins]]
 config = "expandedstorage-common.mixins.json"

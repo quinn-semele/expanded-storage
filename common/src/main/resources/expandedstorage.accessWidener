@@ -7,7 +7,7 @@ accessible field net/minecraft/world/inventory/AbstractContainerMenu remoteSlots
 accessible field net/minecraft/world/inventory/AbstractContainerMenu lastSlots Lnet/minecraft/core/NonNullList;
 accessible method net/minecraft/client/Minecraft startUseItem ()V
 accessible field net/minecraft/client/gui/screens/Screen renderables Ljava/util/List;
-accessible method net/minecraft/world/level/block/entity/RandomizableContainerBlockEntity getItems ()Lnet/minecraft/core/NonNullList;
+accessible method net/minecraft/world/level/block/entity/BaseContainerBlockEntity getItems ()Lnet/minecraft/core/NonNullList;
 
 accessible method net/minecraft/client/multiplayer/MultiPlayerGameMode startPrediction (Lnet/minecraft/client/multiplayer/ClientLevel;Lnet/minecraft/client/multiplayer/prediction/PredictiveAction;)V
 

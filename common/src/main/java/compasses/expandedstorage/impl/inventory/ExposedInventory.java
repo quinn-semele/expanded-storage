@@ -1,5 +1,6 @@
 package compasses.expandedstorage.impl.inventory;
 
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.Container;
@@ -11,8 +12,8 @@ import org.jetbrains.annotations.NotNull;
 public interface ExposedInventory extends Container {
     NonNullList<ItemStack> getItems();
 
-    default void loadInventoryFromTag(CompoundTag tag) {
-        ContainerHelper.loadAllItems(tag, getItems());
+    default void loadInventoryFromTag(CompoundTag tag, HolderLookup.Provider provider) {
+        ContainerHelper.loadAllItems(tag, getItems(), provider);
     }
 
     default int replaceInventoryWith(NonNullList<ItemStack> items) {
@@ -31,8 +32,8 @@ public interface ExposedInventory extends Container {
         return size;
     }
 
-    default void saveInventoryToTag(CompoundTag tag) {
-        ContainerHelper.saveAllItems(tag, getItems());
+    default void saveInventoryToTag(CompoundTag tag, HolderLookup.Provider provider) {
+        ContainerHelper.saveAllItems(tag, getItems(), provider);
     }
 
     @Override

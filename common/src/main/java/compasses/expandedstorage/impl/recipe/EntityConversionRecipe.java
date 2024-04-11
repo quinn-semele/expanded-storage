@@ -46,7 +46,7 @@ public class EntityConversionRecipe<O extends Entity> extends ConversionRecipe<E
 
         ServerLevel serverLevel = (ServerLevel) level;
         //noinspection unchecked
-        ChestMinecart newCart = ((EntityType<ChestMinecart>) output).create(serverLevel, null, cart -> {
+        ChestMinecart newCart = ((EntityType<ChestMinecart>) output).create(serverLevel, cart -> {
             boolean isMinecraftCart = input instanceof AbstractMinecartContainer;
             NonNullList<ItemStack> items = isMinecraftCart ? ((AbstractMinecartContainer) input).getItemStacks() : ((ChestMinecart) input).getItems();
             int inserted = cart.replaceInventoryWith(items);

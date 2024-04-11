@@ -7,6 +7,7 @@ import compasses.expandedstorage.impl.inventory.OpenableInventoryProvider;
 import compasses.expandedstorage.impl.inventory.context.BaseContext;
 import compasses.expandedstorage.impl.client.helpers.InventoryOpeningApi;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -97,14 +98,14 @@ public class ChestMinecart extends AbstractMinecart implements ExposedInventory,
             if (breaker != null && breaker.isShiftKeyDown()) {
                 ItemStack stack = new ItemStack(chestItem);
                 if (this.hasCustomName()) {
-                    stack.setHoverName(this.getCustomName());
+                    stack.set(DataComponents.CUSTOM_NAME, this.getCustomName());
                 }
                 this.spawnAtLocation(stack);
                 this.spawnAtLocation(Items.MINECART);
             } else {
                 ItemStack stack = new ItemStack(this.getDropItem());
                 if (this.hasCustomName()) {
-                    stack.setHoverName(this.getCustomName());
+                    stack.set(DataComponents.CUSTOM_NAME, this.getCustomName());
                 }
                 this.spawnAtLocation(stack);
             }
@@ -148,13 +149,15 @@ public class ChestMinecart extends AbstractMinecart implements ExposedInventory,
     @Override
     protected void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
-        this.saveInventoryToTag(tag);
+
+        this.saveInventoryToTag(tag, level().registryAccess());
     }
 
     @Override
     protected void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
-        this.loadInventoryFromTag(tag);
+
+        this.loadInventoryFromTag(tag, level().registryAccess());
     }
 
     @Override

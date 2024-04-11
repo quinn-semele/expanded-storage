@@ -4,6 +4,7 @@ import compasses.expandedstorage.impl.block.strategies.Observable;
 import compasses.expandedstorage.impl.inventory.WrappedInventory;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -128,15 +129,17 @@ public abstract class InventoryBlockEntity extends OpenableBlockEntity implement
     }
 
     @Override
-    public void load(CompoundTag tag) {
-        super.load(tag);
-        ContainerHelper.loadAllItems(tag, items);
+    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider provider) {
+        super.loadAdditional(tag, provider);
+
+        ContainerHelper.loadAllItems(tag, items, provider);
     }
 
     @Override
-    public void saveAdditional(CompoundTag tag) {
-        super.saveAdditional(tag);
-        ContainerHelper.saveAllItems(tag, items);
+    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider provider) {
+        super.saveAdditional(tag, provider);
+
+        ContainerHelper.saveAllItems(tag, items, provider);
     }
 
     protected void setObservable(Observable observable) {

@@ -5,6 +5,7 @@ import compasses.expandedstorage.impl.item.MutationMode;
 import compasses.expandedstorage.impl.item.StorageMutator;
 import compasses.expandedstorage.impl.misc.ClientPlatformHelper;
 import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
@@ -24,7 +25,7 @@ public class CommonClient {
     @SuppressWarnings("unused")
     public static float currentMutatorToolMode(ItemStack stack, @Nullable ClientLevel level, @Nullable LivingEntity entity, int i) {
         MutationMode mode = StorageMutator.getMode(stack);
-        boolean isSparrow = stack.hasCustomHoverName() && stack.getHoverName().getString().equalsIgnoreCase("sparrow");
+        boolean isSparrow = stack.has(DataComponents.CUSTOM_NAME) && stack.getHoverName().getString().equalsIgnoreCase("sparrow");
         if (mode == MutationMode.SWAP_THEME) {
             if (isSparrow) {
                 return 1.0F;

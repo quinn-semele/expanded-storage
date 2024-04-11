@@ -31,7 +31,7 @@ public abstract class SpectatorBlockInventoryViewingFix {
             ServerPlayer player, Level level, ItemStack handStack, InteractionHand hand, BlockHitResult blockHit, CallbackInfoReturnable<InteractionResult> cir,
             BlockPos pos, BlockState state) {
         if (state.getBlock() instanceof OpenableInventoryProvider<?>) {
-            state.use(level, player, hand, blockHit);
+            state.useWithoutItem(level, player, blockHit);
             cir.setReturnValue(InteractionResult.SUCCESS);
         }
     }

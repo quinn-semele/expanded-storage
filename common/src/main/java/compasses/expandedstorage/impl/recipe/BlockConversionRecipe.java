@@ -82,7 +82,7 @@ public class BlockConversionRecipe<O extends Block> extends ConversionRecipe<Blo
             if (newState != originalState) {
                 List<ItemStack> originalItems;
                 Component customName = null;
-                CompoundTag tagForLock = input.entity().saveWithoutMetadata();
+                CompoundTag tagForLock = input.entity().saveWithoutMetadata(level.registryAccess());
 
                 if (input.entity() instanceof OpenableBlockEntity entity) {
                     originalItems = entity.getItems();

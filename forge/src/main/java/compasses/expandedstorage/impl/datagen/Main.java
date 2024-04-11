@@ -28,8 +28,8 @@ public final class Main {
         generator.addProvider(event.includeServer(), blockTagsProvider);
         generator.addProvider(event.includeServer(), new TagProvider.Item(output, lookupProvider, blockTagsProvider, fileHelper));
         generator.addProvider(event.includeServer(), new TagProvider.EntityType(output, lookupProvider, fileHelper));
-        generator.addProvider(event.includeServer(), new RecipeProvider(output));
-        generator.addProvider(event.includeServer(), new LootTableProvider(output));
+        generator.addProvider(event.includeServer(), new RecipeProvider(output, lookupProvider));
+        generator.addProvider(event.includeServer(), new LootTableProvider(output, lookupProvider));
         generator.addProvider(event.includeClient(), new ItemModelProvider(output, fileHelper));
         generator.addProvider(event.includeServer(), new ForgeConversionRecipeProvider(output));
     }

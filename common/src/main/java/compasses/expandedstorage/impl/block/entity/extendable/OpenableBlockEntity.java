@@ -4,6 +4,7 @@ import compasses.expandedstorage.impl.block.strategies.ItemAccess;
 import compasses.expandedstorage.impl.block.strategies.Lockable;
 import compasses.expandedstorage.impl.inventory.OpenableInventory;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
@@ -51,20 +52,20 @@ public abstract class OpenableBlockEntity extends BlockEntity implements Openabl
     public abstract NonNullList<ItemStack> getItems();
 
     @Override
-    public void load(CompoundTag tag) {
-        super.load(tag);
+    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider provider) {
         lockable.readLock(tag);
+
         if (tag.contains("CustomName", Tag.TAG_STRING)) {
-            customName = Component.Serializer.fromJson(tag.getString("CustomName"));
+            customName = Component.Serializer.fromJson(tag.getString("CustomName"), provider);
         }
     }
 
     @Override
-    public void saveAdditional(CompoundTag tag) {
-        super.saveAdditional(tag);
+    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider provider) {
         lockable.writeLock(tag);
+
         if (this.hasCustomName()) {
-            tag.putString("CustomName", Component.Serializer.toJson(customName));
+            tag.putString("CustomName", Component.Serializer.toJson(customName, provider));
         }
     }
 
@@ -105,11 +106,13 @@ public abstract class OpenableBlockEntity extends BlockEntity implements Openabl
 
     @NotNull
     @Override
-    public CompoundTag getUpdateTag() {
-        CompoundTag updateTag = super.getUpdateTag();
+    public CompoundTag getUpdateTag(HolderLookup.Provider provider) {
+        CompoundTag updateTag = super.getUpdateTag(provider);
+
         if (customName != null) {
-            updateTag.putString("CustomName", Component.Serializer.toJson(customName));
+            updateTag.putString("CustomName", Component.Serializer.toJson(customName, provider));
         }
+
         return updateTag;
     }
 

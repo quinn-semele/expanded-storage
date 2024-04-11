@@ -81,9 +81,9 @@ public final class ForgeMain {
 
     @SubscribeEvent
     private void registerPayloads(RegisterPayloadHandlerEvent event) {
-        IPayloadRegistrar registrar = event.registrar(Utils.MOD_ID).versioned("1.0.0");
+        IPayloadRegistrar registrar = event.registrar(Utils.MOD_ID).versioned("2.0.0");
 
-        registrar.play(ClientboundUpdateRecipesMessage.ID, ClientboundUpdateRecipesMessage::decode, handler -> {
+        registrar.play(ClientboundUpdateRecipesMessage.TYPE, ClientboundUpdateRecipesMessage.CODEC, handler -> {
             handler.client(ClientboundUpdateRecipesMessage::handle);
         });
     }

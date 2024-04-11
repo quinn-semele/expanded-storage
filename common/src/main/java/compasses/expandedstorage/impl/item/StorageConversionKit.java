@@ -82,7 +82,7 @@ public final class StorageConversionKit extends Item implements EntityInteractab
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag context) {
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> list, TooltipFlag flag) {
         list.add(instructionsFirst);
         if (!instructionsSecond.getString().isEmpty()) {
             list.add(instructionsSecond);

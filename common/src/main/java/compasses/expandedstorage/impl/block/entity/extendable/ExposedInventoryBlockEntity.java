@@ -2,6 +2,7 @@ package compasses.expandedstorage.impl.block.entity.extendable;
 
 import compasses.expandedstorage.impl.inventory.ExposedInventory;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -26,15 +27,17 @@ public abstract class ExposedInventoryBlockEntity extends OpenableBlockEntity im
     }
 
     @Override
-    public void load(CompoundTag tag) {
-        super.load(tag);
-        this.loadInventoryFromTag(tag);
+    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider provider) {
+        super.loadAdditional(tag, provider);
+
+        this.loadInventoryFromTag(tag, provider);
     }
 
     @Override
-    public void saveAdditional(CompoundTag tag) {
-        super.saveAdditional(tag);
-        this.saveInventoryToTag(tag);
+    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider provider) {
+        super.saveAdditional(tag, provider);
+
+        this.saveInventoryToTag(tag, provider);
     }
 
     @Override

@@ -6,18 +6,18 @@ object Versions {
     const val EXPANDEDSTORAGE = "12.1.0-beta.1"
 
     // Generic
-    val java = JavaVersion.VERSION_17
-    const val MINECRAFT = "1.20.4"
+    val java = JavaVersion.VERSION_21
+    const val MINECRAFT = "24w14a"
     const val PARCHMENT = "1.20.4:2024.02.25"
     const val JETBRAINS_ANNOTATIONS_VERSION = "24.1.0"
     val SUPPORTED_GAME_VERSIONS: List<String> = listOf(MINECRAFT)
 
     // Fabric
-    const val FABRIC_LOADER = "0.15.3"
-    const val FABRIC_API = "0.96.11+1.20.4"
+    const val FABRIC_LOADER = "0.15.9"
+    const val FABRIC_API = "0.96.14+1.20.5"
 
     // NeoForge
-    const val NEOFORGE = "20.4.222"
+    const val NEOFORGE = "20.5.0-alpha.24w14a.20240408.221956"
 
     // Quilt
     const val QUILT_LOADER = "0.23.1"

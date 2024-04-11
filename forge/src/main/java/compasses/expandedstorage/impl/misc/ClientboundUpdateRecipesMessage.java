@@ -4,15 +4,17 @@ import compasses.expandedstorage.impl.recipe.BlockConversionRecipe;
 import compasses.expandedstorage.impl.recipe.ConversionRecipeManager;
 import compasses.expandedstorage.impl.recipe.EntityConversionRecipe;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
-import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.network.handling.PlayPayloadContext;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ClientboundUpdateRecipesMessage implements CustomPacketPayload {
-    public static final ResourceLocation ID = Utils.id("update_conversion_recipes");
+    public static final Type<ClientboundUpdateRecipesMessage> TYPE = new Type<>(Utils.id("update_conversion_recipes"));
+    public static final StreamCodec<RegistryFriendlyByteBuf, ClientboundUpdateRecipesMessage> CODEC = StreamCodec.of(ClientboundUpdateRecipesMessage::encode, ClientboundUpdateRecipesMessage::decode);
     private final List<BlockConversionRecipe<?>> blockRecipes;
     private final List<EntityConversionRecipe<?>> entityRecipes;
 
@@ -21,10 +23,9 @@ public class ClientboundUpdateRecipesMessage implements CustomPacketPayload {
         this.entityRecipes = entityRecipes;
     }
 
-    @Override
-    public void write(FriendlyByteBuf buffer) {
-        buffer.writeCollection(blockRecipes, (b, recipe) -> recipe.writeToBuffer(b));
-        buffer.writeCollection(entityRecipes, (b, recipe) -> recipe.writeToBuffer(b));
+    public static void encode(FriendlyByteBuf buffer, ClientboundUpdateRecipesMessage message) {
+        buffer.writeCollection(message.blockRecipes, (b, recipe) -> recipe.writeToBuffer(b));
+        buffer.writeCollection(message.entityRecipes, (b, recipe) -> recipe.writeToBuffer(b));
     }
 
     public static ClientboundUpdateRecipesMessage decode(FriendlyByteBuf buffer) {
@@ -38,7 +39,7 @@ public class ClientboundUpdateRecipesMessage implements CustomPacketPayload {
     }
 
     @Override
-    public ResourceLocation id() {
-        return ID;
+    public Type<ClientboundUpdateRecipesMessage> type() {
+        return TYPE;
     }
 }

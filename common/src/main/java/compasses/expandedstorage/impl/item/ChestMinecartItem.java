@@ -3,6 +3,7 @@ package compasses.expandedstorage.impl.item;
 import compasses.expandedstorage.impl.entity.ChestMinecart;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.dispenser.BlockSource;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
@@ -50,7 +51,7 @@ public class ChestMinecartItem extends Item {
             } else {
                 Vec3 posVec = new Vec3(x, y + railHeight + 0.0625, z);
                 ChestMinecart cart = ChestMinecart.createMinecart(level, posVec, ((ChestMinecartItem) stack.getItem()).cartId); // 1/16th of a block above the rail
-                if (stack.hasCustomHoverName()) {
+                if (stack.has(DataComponents.CUSTOM_NAME)) {
                     cart.setCustomName(stack.getHoverName());
                 }
                 level.addFreshEntity(cart);
@@ -80,7 +81,7 @@ public class ChestMinecartItem extends Item {
             double railHeight = railShape.isAscending() ? 0.5 : 0;
             Vec3 posVec = new Vec3(pos.getX() + 0.5, pos.getY() + railHeight + 0.0625, pos.getZ() + 0.5);
             ChestMinecart cart = ChestMinecart.createMinecart(level, posVec, cartId); // 1/16th of a block above the rail
-            if (stack.hasCustomHoverName()) cart.setCustomName(stack.getHoverName());
+            if (stack.has(DataComponents.CUSTOM_NAME)) cart.setCustomName(stack.getHoverName());
             level.addFreshEntity(cart);
             level.gameEvent(GameEvent.ENTITY_PLACE, pos, GameEvent.Context.of(context.getPlayer(), level.getBlockState(pos.below())));
         }

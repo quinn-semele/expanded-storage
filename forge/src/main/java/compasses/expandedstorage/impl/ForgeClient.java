@@ -19,16 +19,16 @@ import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModLoadingContext;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-import net.neoforged.neoforge.client.ConfigScreenHandler;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.ScreenEvent;
+import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.common.NeoForge;
 
 public class ForgeClient {
     public static void initialize(IEventBus modBus, Content content) {
         CommonClient.initialize(new ForgeClientHelper(modBus));
-        ModLoadingContext.get().getActiveContainer().registerExtensionPoint(ConfigScreenHandler.ConfigScreenFactory.class,
-                () -> new ConfigScreenHandler.ConfigScreenFactory((client, screen) -> new PickScreen(screen))
+        ModLoadingContext.get().getActiveContainer().registerExtensionPoint(IConfigScreenFactory.class,
+                (client, screen) -> new PickScreen(screen)
         );
 
         NeoForge.EVENT_BUS.addListener(EventPriority.LOW, (ScreenEvent.Init.Post event) -> {

@@ -103,6 +103,16 @@ repositories {
         name = "NeoForge Maven"
         url = uri("https://maven.neoforged.net/releases/")
     }
+
+    maven {
+        name = "NeoForge PR Maven #787' "// https://github.com/neoforged/NeoForge/pull/787
+        url = uri("https://prmaven.neoforged.net/NeoForge/pr787")
+
+        content {
+            includeModule("net.neoforged", "testframework")
+            includeModule("net.neoforged", "neoforge")
+        }
+    }
 }
 
 dependencies {
