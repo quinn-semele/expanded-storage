@@ -9,6 +9,7 @@ import compasses.expandedstorage.impl.block.strategies.ItemAccess;
 import compasses.expandedstorage.impl.compat.carrier.CarrierCompat;
 import compasses.expandedstorage.impl.compat.htm.HTMLockable;
 import compasses.expandedstorage.impl.item.ChestMinecartItem;
+import compasses.expandedstorage.impl.misc.UpdateRecipesPacketPayload;
 import compasses.expandedstorage.impl.misc.Utils;
 import compasses.expandedstorage.impl.recipe.ConversionRecipeReloadListener;
 import compasses.expandedstorage.impl.registration.Content;
@@ -20,6 +21,7 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.player.UseEntityCallback;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.registry.OxidizableBlocksRegistry;
 import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
@@ -99,6 +101,8 @@ public class ThreadMain implements ModInitializer {
         ServerLifecycleEvents.SERVER_STOPPED.register(server -> {
             ((ThreadCommonHelper) CommonMain.platformHelper()).setServerInstance(null);
         });
+
+        PayloadTypeRegistry.playS2C().register(UpdateRecipesPacketPayload.TYPE, UpdateRecipesPacketPayload.CODEC);
     }
 
     @SuppressWarnings({"UnstableApiUsage"})

@@ -26,7 +26,9 @@ public class ForgeCommonHelper implements CommonPlatformHelper {
     private final MenuType<AbstractHandler> menuType;
 
     {
-        menuType = new MenuType<>((IContainerFactory<AbstractHandler>) AbstractHandler::createClientMenu, FeatureFlags.VANILLA_SET);
+        menuType = new MenuType<>((IContainerFactory<AbstractHandler>) (syncId, playerInventory, buffer) -> {
+            return AbstractHandler.createClientMenu(syncId, playerInventory, buffer.readInt(), buffer.readNullable(FriendlyByteBuf::readResourceLocation));
+        }, FeatureFlags.VANILLA_SET);
     }
 
     @Override

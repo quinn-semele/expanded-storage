@@ -38,7 +38,7 @@
       },
       {
         "id": "minecraft",
-        "versions": "=1.20.4"
+        "versions": ">=1.20.5-alpha.24.14.a"
       }
     ]
   },

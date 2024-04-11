@@ -42,10 +42,8 @@ public final class AbstractHandler extends AbstractContainerMenu {
     }
 
     // Client only
-    public static AbstractHandler createClientMenu(int syncId, Inventory playerInventory, FriendlyByteBuf buffer) {
-        int inventorySize = buffer.readInt();
-        ResourceLocation forcedScreenType = buffer.readNullable(FriendlyByteBuf::readResourceLocation);
-        return new AbstractHandler(syncId, new SimpleContainer(inventorySize), playerInventory, forcedScreenType);
+    public static AbstractHandler createClientMenu(int syncId, Inventory playerInventory, int slots, ResourceLocation forcedScreenType) {
+        return new AbstractHandler(syncId, new SimpleContainer(slots), playerInventory, forcedScreenType);
     }
 
     @Override

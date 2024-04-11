@@ -1,19 +1,19 @@
 package compasses.expandedstorage.impl;
 
 import compasses.expandedstorage.impl.misc.CommonPlatformHelper;
+import compasses.expandedstorage.impl.misc.InventoryOpeningData;
+import compasses.expandedstorage.impl.misc.UpdateRecipesPacketPayload;
 import compasses.expandedstorage.impl.misc.Utils;
 import compasses.expandedstorage.impl.recipe.BlockConversionRecipe;
 import compasses.expandedstorage.impl.recipe.EntityConversionRecipe;
 import compasses.expandedstorage.impl.misc.ScreenHandlerFactoryAdapter;
 import compasses.expandedstorage.impl.inventory.handler.AbstractHandler;
 import compasses.expandedstorage.impl.registration.ModBlocks;
-import io.netty.buffer.Unpooled;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
@@ -30,12 +30,14 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class ThreadCommonHelper implements CommonPlatformHelper {
-    private final ExtendedScreenHandlerType<AbstractHandler> menuType;
+    private final ExtendedScreenHandlerType<AbstractHandler, InventoryOpeningData> menuType;
     private final TagKey<Block> woodenChestTag = TagKey.create(Registries.BLOCK, new ResourceLocation("c", "wooden_chests"));
     private MinecraftServer minecraftServer;
 
     {
-        menuType = Registry.register(BuiltInRegistries.MENU, Utils.HANDLER_TYPE_ID, new ExtendedScreenHandlerType<>(AbstractHandler::createClientMenu));
+        menuType = Registry.register(BuiltInRegistries.MENU, Utils.HANDLER_TYPE_ID, new ExtendedScreenHandlerType<>((syncId, playerInventory, data) -> {
+            return AbstractHandler.createClientMenu(syncId, playerInventory, data.slots(), data.forcedScreenType());
+        }, InventoryOpeningData.CODEC));
     }
 
     @Override
@@ -50,20 +52,14 @@ public class ThreadCommonHelper implements CommonPlatformHelper {
 
     @Override
     public void sendConversionRecipesToClient(@Nullable ServerPlayer target, List<BlockConversionRecipe<?>> blockRecipes, List<EntityConversionRecipe<?>> entityRecipes) {
-        FriendlyByteBuf buffer = new FriendlyByteBuf(Unpooled.buffer());
-        buffer.writeCollection(blockRecipes, (b, recipe) -> recipe.writeToBuffer(b));
-        buffer.writeCollection(entityRecipes, (b, recipe) -> recipe.writeToBuffer(b));
+        UpdateRecipesPacketPayload packet = new UpdateRecipesPacketPayload(blockRecipes, entityRecipes);
         if (target == null) {
             for (ServerPlayer player : minecraftServer.getPlayerList().getPlayers()) {
-                sendPacket(player, ThreadMain.UPDATE_RECIPES_ID, buffer);
+                ServerPlayNetworking.send(player, packet);
             }
         } else {
-            sendPacket(target, ThreadMain.UPDATE_RECIPES_ID, buffer);
+            ServerPlayNetworking.send(target, packet);
         }
-    }
-
-    protected void sendPacket(ServerPlayer player, ResourceLocation packetId, FriendlyByteBuf buffer) {
-        ServerPlayNetworking.send(player, packetId, buffer); // canSend doesn't work :think:
     }
 
     @Override

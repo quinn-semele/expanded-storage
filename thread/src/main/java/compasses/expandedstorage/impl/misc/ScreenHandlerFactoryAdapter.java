@@ -2,7 +2,6 @@ package compasses.expandedstorage.impl.misc;
 
 import compasses.expandedstorage.impl.inventory.handler.AbstractHandler;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -15,7 +14,7 @@ import org.jetbrains.annotations.NotNull;
 
 // Note: MenuProvider is important without it dependants will crash in development when opening inventories.
 //       Yes java / mc modding is blessed.
-public final class ScreenHandlerFactoryAdapter implements ExtendedScreenHandlerFactory, MenuProvider {
+public final class ScreenHandlerFactoryAdapter implements ExtendedScreenHandlerFactory<InventoryOpeningData>, MenuProvider {
     private final ResourceLocation forcedScreenType;
     private final Component title;
     private final Container inventory;
@@ -27,9 +26,8 @@ public final class ScreenHandlerFactoryAdapter implements ExtendedScreenHandlerF
     }
 
     @Override
-    public void writeScreenOpeningData(ServerPlayer player, FriendlyByteBuf buffer) {
-        buffer.writeInt(inventory.getContainerSize());
-        buffer.writeNullable(forcedScreenType, FriendlyByteBuf::writeResourceLocation);
+    public InventoryOpeningData getScreenOpeningData(ServerPlayer player) {
+        return new InventoryOpeningData(inventory.getContainerSize(), forcedScreenType);
     }
 
     @NotNull

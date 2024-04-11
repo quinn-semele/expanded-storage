@@ -6,10 +6,9 @@ import compasses.expandedstorage.impl.client.ChestBlockEntityRenderer;
 import compasses.expandedstorage.impl.client.compat.inventory_tabs.ExpandedBlockTabProvider;
 import compasses.expandedstorage.impl.entity.ChestMinecart;
 import compasses.expandedstorage.impl.item.ChestMinecartItem;
+import compasses.expandedstorage.impl.misc.UpdateRecipesPacketPayload;
 import compasses.expandedstorage.impl.misc.Utils;
-import compasses.expandedstorage.impl.recipe.BlockConversionRecipe;
 import compasses.expandedstorage.impl.recipe.ConversionRecipeManager;
-import compasses.expandedstorage.impl.recipe.EntityConversionRecipe;
 import compasses.expandedstorage.impl.registration.ModItems;
 import compasses.expandedstorage.impl.client.gui.AbstractScreen;
 import compasses.expandedstorage.impl.registration.NamedValue;
@@ -23,16 +22,13 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.model.geom.ModelLayers;
-import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.entity.MinecartRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BlockItem;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
@@ -55,17 +51,13 @@ public class ThreadClient implements ClientModInitializer {
         ItemProperties.register(ModItems.STORAGE_MUTATOR, Utils.id("tool_mode"), CommonClient::currentMutatorToolMode);
 
         ClientPlayConnectionEvents.INIT.register((_listener, _client) -> {
-            ClientPlayNetworking.registerReceiver(ThreadMain.UPDATE_RECIPES_ID, (client, listener, buffer, responseSender) -> {
-                ThreadClient.handleUpdateRecipesPacket(client, listener, buffer);
-            });
+            ClientPlayNetworking.registerReceiver(UpdateRecipesPacketPayload.TYPE, ThreadClient::handleUpdateRecipesPacket);
         });
     }
 
     @SuppressWarnings("unused")
-    public static void handleUpdateRecipesPacket(Minecraft client, ClientPacketListener listener, FriendlyByteBuf buffer) {
-        List<BlockConversionRecipe<?>> blockRecipes = new ArrayList<>(buffer.readCollection(ArrayList::new, BlockConversionRecipe::readFromBuffer));
-        List<EntityConversionRecipe<?>> entityRecipes = new ArrayList<>(buffer.readCollection(ArrayList::new, EntityConversionRecipe::readFromBuffer));
-        client.execute(() -> ConversionRecipeManager.INSTANCE.replaceAllRecipes(blockRecipes, entityRecipes));
+    public static void handleUpdateRecipesPacket(UpdateRecipesPacketPayload payload, ClientPlayNetworking.Context context) {
+        context.client().execute(() -> ConversionRecipeManager.INSTANCE.replaceAllRecipes(payload.blockRecipes(), payload.entityRecipes()));
     }
 
     public static void registerChestBlockEntityRenderer() {

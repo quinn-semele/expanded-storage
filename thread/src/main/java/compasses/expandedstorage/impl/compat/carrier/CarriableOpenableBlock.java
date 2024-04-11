@@ -35,8 +35,6 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.UUID;
-
 class CarriableOpenableBlock implements Carriable<Block> {
     private final ResourceLocation id;
     private final Block parent;
@@ -110,7 +108,7 @@ class CarriableOpenableBlock implements Carriable<Block> {
         if (blockEntity != null) {
             CompoundTag entityTag = carryingData.getBlockEntityTag();
             ((AccessorBlockEntity)blockEntity).carrier_writeIdentifyingData(entityTag);
-            blockEntity.load(entityTag);
+            blockEntity.loadWithComponents(entityTag, level.registryAccess());
         }
 
         level.blockUpdated(pos, state.getBlock());
