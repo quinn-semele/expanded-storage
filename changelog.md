@@ -1,6 +1,1 @@
-- Fixed entity conversion recipes on forge crashing.
-- Bumped the distance in which you can open chests to hopefully minimize the "chest is locked" issue.
-- Fix dependencies not being set properly on CurseForge and Modrinth for Fabric and Quilt.
-- Improved the chest minecart tags a little bit.
-- Fix chest unmerging when done with the storage mutator tool.
-- Improve responses provided by conversion kits when used on entities.
+- Update Russian translations thanks to [@mpustovoi](https://github.com/quinn-semele/expanded-storage/pull/13).
