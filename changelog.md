@@ -1,1 +1,1 @@
-- Port of 10.3.0-beta.2 to 1.20.4
+- Update Russian translations thanks to [@mpustovoi](https://github.com/quinn-semele/expanded-storage/pull/13).
