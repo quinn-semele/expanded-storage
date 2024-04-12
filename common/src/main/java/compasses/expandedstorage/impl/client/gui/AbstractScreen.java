@@ -141,7 +141,7 @@ public abstract class AbstractScreen extends AbstractContainerScreen<AbstractHan
         } else if (Utils.SINGLE_SCREEN_TYPE.equals(type)) {
             return SingleScreen.retrieveScreenSize(slots, scaledWidth, scaledHeight);
         } else if (Utils.MINI_STORAGE_SCREEN_TYPE.equals(type)) {
-            return MiniStorageScreen.retrieveScreenSize(slots, scaledWidth, scaledHeight);
+            return new ScreenSize(1, 1);
         }
 
         return null;

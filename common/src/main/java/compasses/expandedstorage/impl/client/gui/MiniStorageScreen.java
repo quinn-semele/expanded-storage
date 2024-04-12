@@ -2,7 +2,6 @@ package compasses.expandedstorage.impl.client.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import compasses.expandedstorage.impl.client.function.ScreenSize;
-import compasses.expandedstorage.impl.client.gui.AbstractScreen;
 import compasses.expandedstorage.impl.inventory.handler.AbstractHandler;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
@@ -13,10 +12,6 @@ public final class MiniStorageScreen extends AbstractScreen {
     public MiniStorageScreen(AbstractHandler handler, Inventory playerInventory, Component title, ScreenSize screenSize) {
         super(handler, playerInventory, title, screenSize);
         this.initializeSlots(playerInventory);
-    }
-
-    public static ScreenSize retrieveScreenSize(int slots, int scaledWidth, int scaledHeight) {
-        return new ScreenSize(1, 1);
     }
 
     private void initializeSlots(Inventory playerInventory) {
