@@ -27,6 +27,7 @@ import compasses.expandedstorage.impl.item.StorageConversionKit;
 import compasses.expandedstorage.impl.item.StorageMutator;
 import compasses.expandedstorage.impl.item.ToolUsageResult;
 import compasses.expandedstorage.impl.misc.CommonPlatformHelper;
+import compasses.expandedstorage.impl.misc.ESDataComponents;
 import compasses.expandedstorage.impl.misc.Tier;
 import compasses.expandedstorage.impl.misc.Utils;
 import compasses.expandedstorage.impl.recipe.BlockConversionRecipe;
@@ -41,10 +42,7 @@ import net.minecraft.Util;
 import net.minecraft.client.renderer.texture.MissingTextureAtlasSprite;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.NbtUtils;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
@@ -62,7 +60,6 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.BlockItemStateProperties;
-import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DoubleBlockCombiner;
@@ -323,8 +320,8 @@ public final class CommonMain {
                     return ToolUsageResult.fail();
                 }
                 if (state.getValue(AbstractChestBlock.CURSED_CHEST_TYPE) == EsChestType.SINGLE) {
-                    if (stack.has(DataComponents.CUSTOM_DATA) && stack.get(DataComponents.CUSTOM_DATA).contains("pos")) {
-                        BlockPos otherPos = NbtUtils.readBlockPos(stack.get(DataComponents.CUSTOM_DATA).getUnsafe(), "pos").get();
+                    if (stack.has(ESDataComponents.STORED_LOCATION)) {
+                        BlockPos otherPos = stack.get(ESDataComponents.STORED_LOCATION);
 
                         BlockState otherState = level.getBlockState(otherPos);
                         BlockPos delta = otherPos.subtract(pos);
@@ -341,7 +338,7 @@ public final class CommonMain {
                                                 EsChestType chestType = AbstractChestBlock.getChestType(state.getValue(BlockStateProperties.HORIZONTAL_FACING), direction);
                                                 level.setBlockAndUpdate(pos, state.setValue(AbstractChestBlock.CURSED_CHEST_TYPE, chestType));
                                                 // note: other state is updated via neighbour update
-                                                stack.update(DataComponents.CUSTOM_DATA, CustomData.EMPTY, data -> data.update(tag -> tag.remove("pos")));
+                                                stack.remove(ESDataComponents.STORED_LOCATION);
                                                 //noinspection ConstantConditions
                                                 player.displayClientMessage(Component.translatable("tooltip.expandedstorage.storage_mutator.merge_end"), true);
                                             }
@@ -364,10 +361,10 @@ public final class CommonMain {
                             //noinspection ConstantConditions
                             player.displayClientMessage(Component.translatable("tooltip.expandedstorage.storage_mutator.merge_not_adjacent"), true);
                         }
-                        stack.update(DataComponents.CUSTOM_DATA, CustomData.EMPTY, data -> data.update(tag -> tag.remove("pos")));
+                        stack.remove(ESDataComponents.STORED_LOCATION);
                     } else {
                         if (!level.isClientSide()) {
-                            stack.update(DataComponents.CUSTOM_DATA, CustomData.EMPTY, data -> data.update(tag -> tag.put("pos", NbtUtils.writeBlockPos(pos))));
+                            stack.set(ESDataComponents.STORED_LOCATION, pos);
                             //noinspection ConstantConditions
                             player.displayClientMessage(Component.translatable("tooltip.expandedstorage.storage_mutator.merge_start", Utils.ALT_USE), true);
                         }
@@ -659,23 +656,19 @@ public final class CommonMain {
             wrap.accept(item);
 
             ItemStack stack = new ItemStack(item);
-            stack.applyComponents(DataComponentPatch.builder().set(DataComponents.BLOCK_STATE, BlockItemStateProperties.EMPTY.with(MiniStorageBlock.SPARROW, Boolean.TRUE)).build());
+            stack.set(DataComponents.BLOCK_STATE, BlockItemStateProperties.EMPTY.with(MiniStorageBlock.SPARROW, Boolean.TRUE));
             output.accept(stack);
         };
 
         for (MutationMode mode : MutationMode.values()) {
             ItemStack stack = new ItemStack(ModItems.STORAGE_MUTATOR);
-            CompoundTag tag = new CompoundTag();
-            tag.putByte("mode", mode.toByte());
-            stack.set(DataComponents.CUSTOM_DATA, CustomData.of(tag));
+            stack.set(ESDataComponents.MUTATOR_MODE, mode);
             output.accept(stack);
         }
 
         {
             ItemStack sparrowMutator = new ItemStack(ModItems.STORAGE_MUTATOR);
-            CompoundTag tag = new CompoundTag();
-            tag.putByte("mode", MutationMode.SWAP_THEME.toByte());
-            sparrowMutator.set(DataComponents.CUSTOM_DATA, CustomData.of(tag));
+            sparrowMutator.set(ESDataComponents.MUTATOR_MODE, MutationMode.SWAP_THEME);
             sparrowMutator.set(DataComponents.CUSTOM_NAME, Component.literal("Sparrow").withStyle(ChatFormatting.ITALIC));
             output.accept(sparrowMutator);
         }

@@ -9,6 +9,7 @@ import compasses.expandedstorage.impl.block.strategies.ItemAccess;
 import compasses.expandedstorage.impl.compat.carrier.CarrierCompat;
 import compasses.expandedstorage.impl.compat.htm.HTMLockable;
 import compasses.expandedstorage.impl.item.ChestMinecartItem;
+import compasses.expandedstorage.impl.misc.ESDataComponents;
 import compasses.expandedstorage.impl.misc.Utils;
 import compasses.expandedstorage.impl.networking.UpdateRecipesPacketPayload;
 import compasses.expandedstorage.impl.recipe.ConversionRecipeReloadListener;
@@ -81,6 +82,8 @@ public class ThreadMain implements ModInitializer {
                 /*Old Chest*/
                 /*Barrel*/ TagKey.create(Registries.BLOCK, new ResourceLocation("c", "wooden_barrels")),
                 /*Mini Storage*/ BlockItem::new);
+
+        ESDataComponents.register();
 
         UseEntityCallback.EVENT.register((player, world, hand, entity, hit) -> CommonMain.interactWithEntity(world, player, hand, entity));
         ResourceManagerHelper.get(PackType.SERVER_DATA).registerReloadListener(new IdentifiableResourceReloadListener() {

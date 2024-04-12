@@ -7,6 +7,7 @@ import compasses.expandedstorage.impl.block.OpenableBlock;
 import compasses.expandedstorage.impl.block.misc.BasicLockable;
 import compasses.expandedstorage.impl.block.misc.CopperBlockHelper;
 import compasses.expandedstorage.impl.block.strategies.ItemAccess;
+import compasses.expandedstorage.impl.misc.ESDataComponents;
 import compasses.expandedstorage.impl.misc.Utils;
 import compasses.expandedstorage.impl.networking.UpdateRecipesPacketPayload;
 import compasses.expandedstorage.impl.recipe.ConversionRecipeManager;
@@ -138,6 +139,10 @@ public final class ForgeMain {
                         .build()
                 );
             });
+
+            if (event.getRegistry() == BuiltInRegistries.DATA_COMPONENT_TYPE) {
+                ESDataComponents.register();
+            }
         });
 
         // Hopefully if another mod replaces this supplier we'll capture theirs here.

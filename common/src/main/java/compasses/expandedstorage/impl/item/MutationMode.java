@@ -1,12 +1,23 @@
 package compasses.expandedstorage.impl.item;
 
+import com.mojang.serialization.Codec;
+import io.netty.buffer.ByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.util.StringRepresentable;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Locale;
 
-public enum MutationMode {
+public enum MutationMode implements StringRepresentable {
     MERGE,
     SPLIT,
     ROTATE,
     SWAP_THEME;
+
+    public static final Codec<MutationMode> CODEC = StringRepresentable.fromValues(MutationMode::values);
+
+    public static final StreamCodec<ByteBuf, MutationMode> STREAM_CODEC = ByteBufCodecs.BYTE.map(MutationMode::from, MutationMode::toByte);
 
     private static final MutationMode[] VALUES = MutationMode.values();
 
@@ -28,5 +39,11 @@ public enum MutationMode {
 
     public MutationMode next() {
         return MutationMode.VALUES[(ordinal() + 1) % MutationMode.VALUES.length];
+    }
+
+    @NotNull
+    @Override
+    public String getSerializedName() {
+        return toString();
     }
 }
