@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "quilt_loader": {
-    "group": "ellemes.expandedstorage",
+    "group": "semele.quinn.expandedstorage",
     "id": "expandedstorage",
     "version": "${version}",
     "metadata": {
@@ -34,11 +34,11 @@
       },
       {
         "id": "quilted_fabric_api",
-        "versions": ">=9.0.0-alpha.6"
+        "versions": ">=10.0.0-alpha.1"
       },
       {
         "id": "minecraft",
-        "versions": ">=1.20.5-alpha.24.14.a"
+        "versions": ">=1.20.5-beta.1"
       }
     ]
   },

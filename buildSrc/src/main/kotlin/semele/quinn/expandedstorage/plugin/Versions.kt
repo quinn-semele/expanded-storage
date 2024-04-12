@@ -3,25 +3,28 @@ package semele.quinn.expandedstorage.plugin
 import org.gradle.api.JavaVersion
 
 object Versions {
-    const val EXPANDEDSTORAGE = "12.1.0-beta.1"
+    const val EXPANDEDSTORAGE = "13.0.0-beta.1"
 
     // Generic
-    val java = JavaVersion.VERSION_21
-    const val MINECRAFT = "24w14a"
+    val JAVA = JavaVersion.VERSION_21
+    const val MINECRAFT = "1.20.5-pre1"
     const val PARCHMENT = "1.20.4:2024.02.25"
     const val JETBRAINS_ANNOTATIONS_VERSION = "24.1.0"
-    val SUPPORTED_GAME_VERSIONS: List<String> = listOf(MINECRAFT)
+    val CF_SUPPORTED_GAME_VERSIONS: List<String> = listOf("1.20.5-Snapshot")
+    val MR_SUPPORTED_GAME_VERSIONS: List<String> = listOf(MINECRAFT)
 
     // Fabric
-    const val FABRIC_LOADER = "0.15.9"
-    const val FABRIC_API = "0.96.14+1.20.5"
+    const val FABRIC_LOADER = "0.15.10"
+    const val FABRIC_API = "0.96.15+1.20.5"
+    const val FABRIC_KOTLIN = "1.10.19+kotlin.1.9.23" // https://modrinth.com/mod/fabric-language-kotlin/
 
     // NeoForge
-    const val NEOFORGE = "20.5.0-alpha.24w14a.20240408.221956"
+    const val NEOFORGE = "20.5.0-alpha.1.20.5-pre1.20240412.132656"
 
     // Quilt
     const val QUILT_LOADER = "0.23.1"
-    const val QUILT_FABRIC_API = "9.0.0-alpha.6+0.96.11-1.20.4"
+    const val QUILT_API = "9.0.0-alpha.6+0.96.11-1.20.4"
+    const val QUILT_KOTLIN = "4.0.0+kt.1.9.23+flk.1.10.19"
 
     // Dependencies
     const val EMI = "1.1.4+1.20.4" // https://modrinth.com/mod/emi/
@@ -36,8 +39,6 @@ object Versions {
 
     const val LIB_IPN = "4.0.2" // https://modrinth.com/mod/libipn/
     const val LIB_IPN_MINECRAFT = "1.20.2"
-
-    const val FABRIC_KOTLIN = "1.10.19+kotlin.1.9.23" // https://modrinth.com/mod/fabric-language-kotlin/
 
     const val INVENTORY_TABS = "1.1.8+1.20" // https://modrinth.com/mod/inventory-tabs/
 

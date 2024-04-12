@@ -16,9 +16,8 @@ val modDependencies = FreezableDependencyList().apply {
     from(project(":thread").extra["mod_dependencies"])
 
     add("inventory-profiles-next") {
-        val qklVersion = "2.1.3+kt.1.9.10+flk.1.10.10" // https://modrinth.com/mod/qkl/versions
-
-        implementation("org.quiltmc.quilt-kotlin-libraries:quilt-kotlin-libraries:$qklVersion")
+//        implementation("org.quiltmc.quilt-kotlin-libraries:quilt-kotlin-libraries:${Versions.QUILT_KOTLIN}")
+        implementation("net.fabricmc:fabric-language-kotlin:${Versions.FABRIC_KOTLIN}")
     }
 
     freeze()
@@ -46,7 +45,8 @@ repositories {
 
 dependencies {
     modImplementation("org.quiltmc:quilt-loader:${Versions.QUILT_LOADER}")
-    modImplementation("org.quiltmc.quilted-fabric-api:quilted-fabric-api:${Versions.QUILT_FABRIC_API}")
+//    modImplementation("org.quiltmc.quilted-fabric-api:quilted-fabric-api:${Versions.QUILT_API}")
+    modImplementation("net.fabricmc.fabric-api:fabric-api:${Versions.FABRIC_API}")
 
     modDependencies.compileDependencies(project).forEach {
         modCompileOnly(it) {

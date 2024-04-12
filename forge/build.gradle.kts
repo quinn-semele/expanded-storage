@@ -39,7 +39,7 @@ sourceSets.main {
 
 tasks.getByName<Jar>("minJar") {
     manifest.attributes(mapOf(
-            "Automatic-Module-Name" to "ellemes.expandedstorage"
+            "Automatic-Module-Name" to "semele.quinn.expandedstorage"
     ))
 }
 
@@ -105,8 +105,8 @@ repositories {
     }
 
     maven {
-        name = "NeoForge PR Maven #787' "// https://github.com/neoforged/NeoForge/pull/787
-        url = uri("https://prmaven.neoforged.net/NeoForge/pr787")
+        name = "Maven for PR #794" // https://github.com/neoforged/NeoForge/pull/794
+        url = uri("https://prmaven.neoforged.net/NeoForge/pr794")
 
         content {
             includeModule("net.neoforged", "testframework")

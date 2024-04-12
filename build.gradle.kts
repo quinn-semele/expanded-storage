@@ -48,15 +48,15 @@ val commonCurseForgeOptions = publishMods.curseforgeOptions {
     clientRequired = true
     serverRequired = true
 
-    minecraftVersions.addAll(Versions.SUPPORTED_GAME_VERSIONS)
-    javaVersions.add(JavaVersion.VERSION_17)
+    minecraftVersions.addAll(Versions.CF_SUPPORTED_GAME_VERSIONS)
+    javaVersions.add(Versions.JAVA)
 }
 
 val commonModrinthOptions = publishMods.modrinthOptions {
     accessToken = providers.environmentVariable("QUINN_MR_TOKEN")
     projectId = "jCCPlP3c"
 
-    minecraftVersions.addAll(Versions.SUPPORTED_GAME_VERSIONS)
+    minecraftVersions.addAll(Versions.MR_SUPPORTED_GAME_VERSIONS)
 }
 
 val fabricOptions = publishMods.publishOptions {
