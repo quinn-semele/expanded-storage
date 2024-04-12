@@ -16,8 +16,8 @@ import java.util.function.Supplier;
 @Mixin(value = Schema.class, remap = false)
 public class DataFixerSchemaImpl {
 
-    @Shadow(remap = false)
     @Final
+    @Shadow(remap = false)
     private int versionKey;
 
     @Inject(

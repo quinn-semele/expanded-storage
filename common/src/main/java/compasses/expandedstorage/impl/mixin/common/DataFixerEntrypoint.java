@@ -21,8 +21,8 @@ public abstract class DataFixerEntrypoint {
                     remap = false
             )
     )
-    private static void expandedstorage$register1_17DataFixer(DataFixerBuilder builder, CallbackInfo ci, @Local(name = "schema140") Schema schema) {
-        DataFixerUtils.register1_17DataFixer(builder, schema);
+    private static void expandedstorage$register1_17DataFixer(DataFixerBuilder builder, CallbackInfo ci, @Local(ordinal = 139) Schema schema2707) {
+        DataFixerUtils.register1_17DataFixer(builder, schema2707);
     }
 
     @Inject(
@@ -34,7 +34,7 @@ public abstract class DataFixerEntrypoint {
                     remap = false
             )
     )
-    private static void expandedstorage$register1_18DataFixer(DataFixerBuilder builder, CallbackInfo ci, @Local(name = "schema152") Schema schema) {
-        DataFixerUtils.register1_18DataFixer(builder, schema);
+    private static void expandedstorage$register1_18DataFixer(DataFixerBuilder builder, CallbackInfo ci, @Local(ordinal = 151) Schema schema2852) {
+        DataFixerUtils.register1_18DataFixer(builder, schema2852);
     }
 }
