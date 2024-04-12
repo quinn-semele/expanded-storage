@@ -59,7 +59,6 @@ public class MiniStorageBlock extends OpenableBlock implements SimpleWaterlogged
 
     @NotNull
     @Override
-    @SuppressWarnings("deprecation")
     public VoxelShape getShape(BlockState state, BlockGetter blockLevel, BlockPos pos, CollisionContext context) {
         boolean hasSparrow = state.hasProperty(SPARROW) && state.getValue(SPARROW);
         if (hasRibbon) {

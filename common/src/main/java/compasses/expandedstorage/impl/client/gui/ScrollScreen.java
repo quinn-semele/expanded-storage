@@ -70,7 +70,7 @@ public final class ScrollScreen extends AbstractScreen {
             options.add(new ScreenSize(18, 15));
         }
 
-        return options.get(options.size() - 1);
+        return options.getLast();
     }
 
     private void initializeSlots(Inventory playerInventory) {

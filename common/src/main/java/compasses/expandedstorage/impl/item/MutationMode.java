@@ -17,8 +17,6 @@ public enum MutationMode implements StringRepresentable {
 
     public static final Codec<MutationMode> CODEC = StringRepresentable.fromValues(MutationMode::values);
 
-    public static final StreamCodec<ByteBuf, MutationMode> STREAM_CODEC = ByteBufCodecs.BYTE.map(MutationMode::from, MutationMode::toByte);
-
     private static final MutationMode[] VALUES = MutationMode.values();
 
     public static MutationMode from(byte index) {

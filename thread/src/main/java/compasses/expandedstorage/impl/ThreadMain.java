@@ -55,7 +55,6 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 
 public class ThreadMain implements ModInitializer {
-    public static final ResourceLocation UPDATE_RECIPES_ID = Utils.id("update_conversion_recipes");
     private static Content temporaryContent;
 
     @Override
