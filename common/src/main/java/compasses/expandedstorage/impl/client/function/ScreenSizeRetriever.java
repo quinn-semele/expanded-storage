@@ -1,6 +1,5 @@
 package compasses.expandedstorage.impl.client.function;
 
-import compasses.expandedstorage.impl.client.function.ScreenSize;
 import org.jetbrains.annotations.Nullable;
 
 public interface ScreenSizeRetriever {

@@ -58,7 +58,7 @@ public final class SingleScreen extends AbstractScreen {
             height = 15;
         } // slots is guaranteed to be 270 or below when getting width.
 
-        return ScreenSize.of(width, height);
+        return new ScreenSize(width, height);
     }
 
     @Override

@@ -175,7 +175,6 @@ public class AbstractChestBlock extends OpenableBlock implements WorldlyContaine
 
     @NotNull
     @Override
-    @SuppressWarnings("deprecation")
     public BlockState updateShape(BlockState state, Direction offset, BlockState offsetState, LevelAccessor level,
                                   BlockPos pos, BlockPos offsetPos) {
         if (offsetState.is(this)) {
@@ -194,14 +193,15 @@ public class AbstractChestBlock extends OpenableBlock implements WorldlyContaine
     }
 
     // todo: look into making this return not null?
+    @Nullable
     @Override
+    @SuppressWarnings("NullableProblems")
     public WorldlyContainer getContainer(BlockState state, LevelAccessor level, BlockPos pos) {
         return AbstractChestBlock.createPropertyRetriever(this, state, level, pos, true).get(AbstractChestBlock.INVENTORY_GETTER).orElse(null);
     }
 
     @NotNull
     @Override
-    @SuppressWarnings("deprecation")
     public BlockState mirror(BlockState state, Mirror mirror) {
         EsChestType chestType = state.getValue(AbstractChestBlock.CURSED_CHEST_TYPE);
 
@@ -216,7 +216,6 @@ public class AbstractChestBlock extends OpenableBlock implements WorldlyContaine
 
     @NotNull
     @Override
-    @SuppressWarnings("deprecation")
     public BlockState rotate(BlockState state, Rotation rotation) {
         EsChestType chestType = state.getValue(AbstractChestBlock.CURSED_CHEST_TYPE);
 
@@ -233,13 +232,11 @@ public class AbstractChestBlock extends OpenableBlock implements WorldlyContaine
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public boolean hasAnalogOutputSignal(BlockState state) {
         return true;
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
         WorldlyContainer inventory = this.getContainer(state, level, pos);
         if (inventory != null) return AbstractContainerMenu.getRedstoneSignalFromContainer(inventory);

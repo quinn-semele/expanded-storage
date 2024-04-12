@@ -53,6 +53,8 @@ public abstract class OpenableBlockEntity extends BlockEntity implements Openabl
 
     @Override
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider provider) {
+        super.loadAdditional(tag, provider);
+
         lockable.readLock(tag);
 
         if (tag.contains("CustomName", Tag.TAG_STRING)) {
@@ -62,6 +64,8 @@ public abstract class OpenableBlockEntity extends BlockEntity implements Openabl
 
     @Override
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider provider) {
+        super.saveAdditional(tag, provider);
+
         lockable.writeLock(tag);
 
         if (this.hasCustomName()) {

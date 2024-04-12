@@ -12,9 +12,6 @@
     "common.SpectatorBlockInventoryViewingFix",
     "common.SpectatorEntityInventoryViewingFix"
   ],
-  "client": [
-    "client.ErrorlessTextureManager"
-  ],
   "injectors": { "defaultRequire": 1 },
   "minVersion": "0.8",
   "refmap": "expandedstorage.refmap.json"

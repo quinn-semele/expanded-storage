@@ -16,7 +16,7 @@ public final class MiniStorageScreen extends AbstractScreen {
     }
 
     public static ScreenSize retrieveScreenSize(int slots, int scaledWidth, int scaledHeight) {
-        return ScreenSize.of(1, 1);
+        return new ScreenSize(1, 1);
     }
 
     private void initializeSlots(Inventory playerInventory) {

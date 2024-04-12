@@ -60,7 +60,6 @@ public class ChestBlock extends AbstractChestBlock implements SimpleWaterloggedB
 
     @NotNull
     @Override
-    @SuppressWarnings("deprecation")
     public VoxelShape getShape(BlockState state, BlockGetter blockLevel, BlockPos pos, CollisionContext context) {
         boolean upsideDown = false;
 
@@ -108,7 +107,6 @@ public class ChestBlock extends AbstractChestBlock implements SimpleWaterloggedB
 
     @NotNull
     @Override
-    @SuppressWarnings("deprecation")
     public FluidState getFluidState(BlockState state) {
         return state.getValue(BlockStateProperties.WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
@@ -124,7 +122,6 @@ public class ChestBlock extends AbstractChestBlock implements SimpleWaterloggedB
 
     @NotNull
     @Override
-    @SuppressWarnings("deprecation")
     public RenderShape getRenderShape(BlockState state) {
         return RenderShape.ENTITYBLOCK_ANIMATED;
     }
@@ -142,7 +139,6 @@ public class ChestBlock extends AbstractChestBlock implements SimpleWaterloggedB
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public boolean triggerEvent(BlockState state, Level level, BlockPos pos, int event, int value) {
         super.triggerEvent(state, level, pos, event, value);
         BlockEntity blockEntity = level.getBlockEntity(pos);
@@ -150,7 +146,6 @@ public class ChestBlock extends AbstractChestBlock implements SimpleWaterloggedB
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         if (level.getBlockEntity(pos) instanceof ChestBlockEntity entity) {
             entity.updateViewerCount(level, pos, state);
