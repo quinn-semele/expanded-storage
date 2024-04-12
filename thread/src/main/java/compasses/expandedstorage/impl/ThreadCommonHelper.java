@@ -2,8 +2,8 @@ package compasses.expandedstorage.impl;
 
 import compasses.expandedstorage.impl.misc.CommonPlatformHelper;
 import compasses.expandedstorage.impl.misc.InventoryOpeningData;
-import compasses.expandedstorage.impl.misc.UpdateRecipesPacketPayload;
 import compasses.expandedstorage.impl.misc.Utils;
+import compasses.expandedstorage.impl.networking.UpdateRecipesPacketPayload;
 import compasses.expandedstorage.impl.recipe.BlockConversionRecipe;
 import compasses.expandedstorage.impl.recipe.EntityConversionRecipe;
 import compasses.expandedstorage.impl.misc.ScreenHandlerFactoryAdapter;

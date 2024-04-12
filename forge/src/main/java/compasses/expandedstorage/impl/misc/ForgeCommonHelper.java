@@ -1,5 +1,6 @@
 package compasses.expandedstorage.impl.misc;
 
+import compasses.expandedstorage.impl.networking.UpdateRecipesPacketPayload;
 import compasses.expandedstorage.impl.recipe.BlockConversionRecipe;
 import compasses.expandedstorage.impl.recipe.EntityConversionRecipe;
 import compasses.expandedstorage.impl.inventory.handler.AbstractHandler;
@@ -38,7 +39,7 @@ public class ForgeCommonHelper implements CommonPlatformHelper {
 
     @Override
     public void openScreenHandler(ServerPlayer player, Container inventory,Component title, ResourceLocation forcedScreenType) {
-        player.openMenu(new SimpleMenuProvider((syncId, playerInventory, _p) -> {
+        player.openMenu(new SimpleMenuProvider((syncId, playerInventory, _player) -> {
             return new AbstractHandler(syncId, inventory, playerInventory, forcedScreenType);
         }, title), buffer -> {
             buffer.writeInt(inventory.getContainerSize());
@@ -50,9 +51,9 @@ public class ForgeCommonHelper implements CommonPlatformHelper {
     public void sendConversionRecipesToClient(@Nullable ServerPlayer target, List<BlockConversionRecipe<?>> blockRecipes, List<EntityConversionRecipe<?>> entityRecipes) {
         if (target == null) {
             // Should be valid to send updates here as remote present check has been done on join.
-            PacketDistributor.ALL.noArg().send(new ClientboundUpdateRecipesMessage(blockRecipes, entityRecipes));
+            PacketDistributor.ALL.noArg().send(new UpdateRecipesPacketPayload(blockRecipes, entityRecipes));
         } else {
-            PacketDistributor.PLAYER.with(target).send(new ClientboundUpdateRecipesMessage(blockRecipes, entityRecipes));
+            PacketDistributor.PLAYER.with(target).send(new UpdateRecipesPacketPayload(blockRecipes, entityRecipes));
         }
     }
 

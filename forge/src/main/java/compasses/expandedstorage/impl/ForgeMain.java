@@ -6,8 +6,9 @@ import com.google.common.collect.ImmutableBiMap;
 import compasses.expandedstorage.impl.block.OpenableBlock;
 import compasses.expandedstorage.impl.block.misc.BasicLockable;
 import compasses.expandedstorage.impl.block.misc.CopperBlockHelper;
-import compasses.expandedstorage.impl.misc.ClientboundUpdateRecipesMessage;
+import compasses.expandedstorage.impl.block.strategies.ItemAccess;
 import compasses.expandedstorage.impl.misc.Utils;
+import compasses.expandedstorage.impl.networking.UpdateRecipesPacketPayload;
 import compasses.expandedstorage.impl.recipe.ConversionRecipeManager;
 import compasses.expandedstorage.impl.recipe.ConversionRecipeReloadListener;
 import compasses.expandedstorage.impl.registration.Content;
@@ -83,8 +84,10 @@ public final class ForgeMain {
     private void registerPayloads(RegisterPayloadHandlerEvent event) {
         IPayloadRegistrar registrar = event.registrar(Utils.MOD_ID).versioned("2.0.0");
 
-        registrar.play(ClientboundUpdateRecipesMessage.TYPE, ClientboundUpdateRecipesMessage.CODEC, handler -> {
-            handler.client(ClientboundUpdateRecipesMessage::handle);
+        registrar.play(UpdateRecipesPacketPayload.TYPE, UpdateRecipesPacketPayload.CODEC, handler -> {
+            handler.client((payload, context) -> {
+                context.workHandler().execute(() -> ConversionRecipeManager.INSTANCE.replaceAllRecipes(payload.blockRecipes(), payload.entityRecipes()));
+            });
         });
     }
 
@@ -92,9 +95,7 @@ public final class ForgeMain {
         modBus.addListener((RegisterCapabilitiesEvent event) -> {
             event.registerBlock(Capabilities.ItemHandler.BLOCK,
                 (level, pos, state, entity, side) -> {
-                    return CommonMain.getItemAccess(level, pos, state, entity).map(access -> {
-                        return (IItemHandlerModifiable) access.get();
-                    }).orElse(null);
+                    return CommonMain.<IItemHandlerModifiable>getItemAccess(level, pos, state, entity).map(ItemAccess::get).orElse(null);
                 },
                 content.getBlocks().stream().map(NamedValue::getValue).toArray(OpenableBlock[]::new)
             );
