@@ -23,6 +23,7 @@ import compasses.expandedstorage.impl.item.BlockMutatorBehaviour;
 import compasses.expandedstorage.impl.item.ChestMinecartItem;
 import compasses.expandedstorage.impl.item.EntityInteractableItem;
 import compasses.expandedstorage.impl.item.MutationMode;
+import compasses.expandedstorage.impl.item.MutatorData;
 import compasses.expandedstorage.impl.item.StorageConversionKit;
 import compasses.expandedstorage.impl.item.StorageMutator;
 import compasses.expandedstorage.impl.item.ToolUsageResult;
@@ -320,8 +321,9 @@ public final class CommonMain {
                     return ToolUsageResult.fail();
                 }
                 if (state.getValue(AbstractChestBlock.CURSED_CHEST_TYPE) == EsChestType.SINGLE) {
-                    if (stack.has(ESDataComponents.STORED_LOCATION)) {
-                        BlockPos otherPos = stack.get(ESDataComponents.STORED_LOCATION);
+                    MutatorData data = stack.get(ESDataComponents.MUTATOR_DATA);
+                    if (data.pos().isPresent()) {
+                        BlockPos otherPos = data.pos().get();
 
                         BlockState otherState = level.getBlockState(otherPos);
                         BlockPos delta = otherPos.subtract(pos);
@@ -338,7 +340,7 @@ public final class CommonMain {
                                                 EsChestType chestType = AbstractChestBlock.getChestType(state.getValue(BlockStateProperties.HORIZONTAL_FACING), direction);
                                                 level.setBlockAndUpdate(pos, state.setValue(AbstractChestBlock.CURSED_CHEST_TYPE, chestType));
                                                 // note: other state is updated via neighbour update
-                                                stack.remove(ESDataComponents.STORED_LOCATION);
+                                                stack.set(ESDataComponents.MUTATOR_DATA, new MutatorData(data.mode(), Optional.empty()));
                                                 //noinspection ConstantConditions
                                                 player.displayClientMessage(Component.translatable("tooltip.expandedstorage.storage_mutator.merge_end"), true);
                                             }
@@ -361,10 +363,10 @@ public final class CommonMain {
                             //noinspection ConstantConditions
                             player.displayClientMessage(Component.translatable("tooltip.expandedstorage.storage_mutator.merge_not_adjacent"), true);
                         }
-                        stack.remove(ESDataComponents.STORED_LOCATION);
+                        stack.set(ESDataComponents.MUTATOR_DATA, new MutatorData(data.mode(), Optional.empty()));
                     } else {
                         if (!level.isClientSide()) {
-                            stack.set(ESDataComponents.STORED_LOCATION, pos);
+                            stack.set(ESDataComponents.MUTATOR_DATA, new MutatorData(data.mode(), Optional.of(pos)));
                             //noinspection ConstantConditions
                             player.displayClientMessage(Component.translatable("tooltip.expandedstorage.storage_mutator.merge_start", Utils.ALT_USE), true);
                         }
@@ -662,13 +664,13 @@ public final class CommonMain {
 
         for (MutationMode mode : MutationMode.values()) {
             ItemStack stack = new ItemStack(ModItems.STORAGE_MUTATOR);
-            stack.set(ESDataComponents.MUTATOR_MODE, mode);
+            stack.set(ESDataComponents.MUTATOR_DATA, new MutatorData(mode, Optional.empty()));
             output.accept(stack);
         }
 
         {
             ItemStack sparrowMutator = new ItemStack(ModItems.STORAGE_MUTATOR);
-            sparrowMutator.set(ESDataComponents.MUTATOR_MODE, MutationMode.SWAP_THEME);
+            sparrowMutator.set(ESDataComponents.MUTATOR_DATA, new MutatorData(MutationMode.SWAP_THEME, Optional.empty()));
             sparrowMutator.set(DataComponents.CUSTOM_NAME, Component.literal("Sparrow").withStyle(ChatFormatting.ITALIC));
             output.accept(sparrowMutator);
         }

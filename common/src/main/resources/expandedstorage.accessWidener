@@ -17,7 +17,8 @@ extendable method net/minecraft/data/tags/TagsProvider getName ()Ljava/lang/Stri
 extendable method net/minecraft/data/models/ModelProvider getName ()Ljava/lang/String;
 extendable method net/minecraft/data/loot/LootTableProvider getName ()Ljava/lang/String;
 
-accessible method net/minecraft/world/item/ItemStack <init> (Lnet/minecraft/nbt/CompoundTag;)V
 accessible method net/minecraft/data/recipes/RecipeProvider has (Lnet/minecraft/world/level/ItemLike;)Lnet/minecraft/advancements/Criterion;
 accessible method net/minecraft/data/recipes/RecipeProvider has (Lnet/minecraft/tags/TagKey;)Lnet/minecraft/advancements/Criterion;
 extendable method net/minecraft/world/entity/vehicle/VehicleEntity getDropItem ()Lnet/minecraft/world/item/Item;
+
+accessible class net/minecraft/util/datafix/fixes/ItemStackComponentizationFix$ItemStackData

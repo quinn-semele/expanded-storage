@@ -21,6 +21,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 import java.util.List;
+import java.util.Optional;
 
 public final class StorageMutator extends Item implements EntityInteractableItem {
     public StorageMutator(Properties settings) {
@@ -28,11 +29,11 @@ public final class StorageMutator extends Item implements EntityInteractableItem
     }
 
     public static MutationMode getMode(ItemStack stack) {
-        if (!stack.has(ESDataComponents.MUTATOR_MODE)) {
-            stack.set(ESDataComponents.MUTATOR_MODE, MutationMode.MERGE);
+        if (!stack.has(ESDataComponents.MUTATOR_DATA)) {
+            stack.set(ESDataComponents.MUTATOR_DATA, new MutatorData(MutationMode.MERGE, Optional.empty()));
         }
 
-        return stack.get(ESDataComponents.MUTATOR_MODE);
+        return stack.get(ESDataComponents.MUTATOR_DATA).mode();
     }
 
     @NotNull
@@ -62,8 +63,7 @@ public final class StorageMutator extends Item implements EntityInteractableItem
 
             MutationMode nextMode = StorageMutator.getMode(stack).next();
 
-            stack.set(ESDataComponents.MUTATOR_MODE, nextMode);
-            stack.remove(ESDataComponents.STORED_LOCATION);
+            stack.set(ESDataComponents.MUTATOR_DATA, new MutatorData(nextMode, Optional.empty()));
 
             if (!level.isClientSide())
                 player.displayClientMessage(Component.translatable("tooltip.expandedstorage.storage_mutator.description_" + nextMode, Utils.ALT_USE), true);

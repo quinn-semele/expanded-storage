@@ -7,6 +7,8 @@
     "common.BlockEntityIdFix",
     "common.CarryOnCompatFix",
     "common.DataFixerEntrypoint",
+    "common.DataFixerSchemaImpl",
+    "common.ESItemStackComponentizationFix",
     "common.SparrowBlockFix",
     "common.SparrowItemIdFix",
     "common.SpectatorBlockInventoryViewingFix",
