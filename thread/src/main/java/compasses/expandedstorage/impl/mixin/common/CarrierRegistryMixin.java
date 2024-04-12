@@ -9,14 +9,14 @@ import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
-@Mixin(CarriableRegistry.class)
+@Mixin(value = CarriableRegistry.class, remap = false)
 public class CarrierRegistryMixin implements AccessibleCarrierRegistry {
-    @Shadow(remap = false)
     @Final
+    @Shadow(remap = false)
     private HashBiMap<ResourceLocation, Carriable<?>> idToEntry;
 
-    @Shadow(remap = false)
     @Final
+    @Shadow(remap = false)
     private HashBiMap<Object, Carriable<?>> objToEntry;
 
     @Override

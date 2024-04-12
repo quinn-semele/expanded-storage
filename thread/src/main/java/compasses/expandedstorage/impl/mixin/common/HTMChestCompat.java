@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.Mixin;
 
 import java.util.Optional;
 
-@Mixin(AbstractChestBlock.class)
+@Mixin(value = AbstractChestBlock.class, remap = false)
 public abstract class HTMChestCompat implements LockableChestBlock {
     @Override
     public HTMContainerLock getLockAt(BlockState state, Level level, BlockPos pos) {

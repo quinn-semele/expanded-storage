@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(Carrier.class)
+@Mixin(value = Carrier.class, remap = false)
 public class AllowCarryingESBlocks {
     @Shadow(remap = false)
     public static Config CONFIG;
