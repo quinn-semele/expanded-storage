@@ -49,7 +49,8 @@ val commonCurseForgeOptions = publishMods.curseforgeOptions {
     serverRequired = true
 
     minecraftVersions.addAll(Versions.CF_SUPPORTED_GAME_VERSIONS)
-    javaVersions.add(Versions.JAVA)
+        // todo: re-enable when curseforge updates this.
+//    javaVersions.add(Versions.JAVA)
 }
 
 val commonModrinthOptions = publishMods.modrinthOptions {
