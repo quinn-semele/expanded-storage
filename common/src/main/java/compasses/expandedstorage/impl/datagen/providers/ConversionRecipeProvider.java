@@ -150,7 +150,6 @@ public abstract class ConversionRecipeProvider implements DataProvider {
         // Chest upgrade recipes
         {
             var isWoodTier = new IsInTagCondition(ModTags.Blocks.ES_WOODEN_CHESTS);
-//            var isCopperTier = List.of(new IsInTagCondition(ModTags.Blocks.COPPER_CHESTS));
             var isIronTier = new IsRegistryObject(BuiltInRegistries.BLOCK, ModBlocks.IRON_CHEST.getBlockId());
             var isGoldTier = new IsRegistryObject(BuiltInRegistries.BLOCK, ModBlocks.GOLD_CHEST.getBlockId());
             var isDiamondTier = new IsRegistryObject(BuiltInRegistries.BLOCK, ModBlocks.DIAMOND_CHEST.getBlockId());
@@ -160,9 +159,7 @@ public abstract class ConversionRecipeProvider implements DataProvider {
             var diamondChest = new PartialBlockState<>(ModBlocks.DIAMOND_CHEST);
             var obsidianChest = new PartialBlockState<>(ModBlocks.OBSIDIAN_CHEST);
             var netheriteChest = new PartialBlockState<>(ModBlocks.NETHERITE_CHEST);
-//            registerBlockRecipe(Utils.id("wood_to_copper_chest"),
-//                    new BlockConversionRecipe<>(ConversionRecipeProvider.WOOD_TO_COPPER_CONVERSION_KIT, new PartialBlockState<>(ModBlocks.COPPER_CHEST), isWoodBarrel)
-//            );
+
             registerBlockRecipe(Utils.id("wood_to_iron_chest"),
                     new BlockConversionRecipe<>(ConversionRecipeProvider.WOOD_TO_IRON_CONVERSION_KIT, ironChest, isWoodTier)
             );
@@ -178,21 +175,7 @@ public abstract class ConversionRecipeProvider implements DataProvider {
             registerBlockRecipe(Utils.id("wood_to_netherite_chest"),
                     new BlockConversionRecipe<>(ConversionRecipeProvider.WOOD_TO_NETHERITE_CONVERSION_KIT, netheriteChest, isWoodTier)
             );
-//            registerBlockRecipe(Utils.id("copper_to_iron_chest"),
-//                    new BlockConversionRecipe<>(ConversionRecipeProvider.COPPER_TO_IRON_CONVERSION_KIT, ironChest, isCopperTier)
-//            );
-//            registerBlockRecipe(Utils.id("copper_to_gold_chest"),
-//                    new BlockConversionRecipe<>(ConversionRecipeProvider.COPPER_TO_GOLD_CONVERSION_KIT, goldChest, isCopperTier)
-//            );
-//            registerBlockRecipe(Utils.id("copper_to_diamond_chest"),
-//                    new BlockConversionRecipe<>(ConversionRecipeProvider.COPPER_TO_DIAMOND_CONVERSION_KIT, diamondChest, isCopperTier)
-//            );
-//            registerBlockRecipe(Utils.id("copper_to_obsidian_chest"),
-//                    new BlockConversionRecipe<>(ConversionRecipeProvider.COPPER_TO_OBSIDIAN_CONVERSION_KIT, obsidianChest, isCopperTier)
-//            );
-//            registerBlockRecipe(Utils.id("copper_to_netherite_chest"),
-//                    new BlockConversionRecipe<>(ConversionRecipeProvider.COPPER_TO_NETHERITE_CONVERSION_KIT, netheriteChest, isCopperTier)
-//            );
+
             registerBlockRecipe(Utils.id("iron_to_gold_chest"),
                     new BlockConversionRecipe<>(ConversionRecipeProvider.IRON_TO_GOLD_CONVERSION_KIT, goldChest, isIronTier)
             );
@@ -205,6 +188,7 @@ public abstract class ConversionRecipeProvider implements DataProvider {
             registerBlockRecipe(Utils.id("iron_to_netherite_chest"),
                     new BlockConversionRecipe<>(ConversionRecipeProvider.IRON_TO_NETHERITE_CONVERSION_KIT, netheriteChest, isIronTier)
             );
+
             registerBlockRecipe(Utils.id("gold_to_diamond_chest"),
                     new BlockConversionRecipe<>(ConversionRecipeProvider.GOLD_TO_DIAMOND_CONVERSION_KIT, diamondChest, isGoldTier)
             );
@@ -214,12 +198,14 @@ public abstract class ConversionRecipeProvider implements DataProvider {
             registerBlockRecipe(Utils.id("gold_to_netherite_chest"),
                     new BlockConversionRecipe<>(ConversionRecipeProvider.GOLD_TO_NETHERITE_CONVERSION_KIT, netheriteChest, isGoldTier)
             );
+
             registerBlockRecipe(Utils.id("diamond_to_obsidian_chest"),
                     new BlockConversionRecipe<>(ConversionRecipeProvider.DIAMOND_TO_OBSIDIAN_CONVERSION_KIT, obsidianChest, isDiamondTier)
             );
             registerBlockRecipe(Utils.id("diamond_to_netherite_chest"),
                     new BlockConversionRecipe<>(ConversionRecipeProvider.DIAMOND_TO_NETHERITE_CONVERSION_KIT, netheriteChest, isDiamondTier)
             );
+
             registerBlockRecipe(Utils.id("obsidian_to_netherite_chest"),
                     new BlockConversionRecipe<>(ConversionRecipeProvider.OBSIDIAN_TO_NETHERITE_CONVERSION_KIT, netheriteChest, isObsidianTier)
             );
@@ -228,20 +214,16 @@ public abstract class ConversionRecipeProvider implements DataProvider {
         // Old chest upgrade recipes
         {
             var isWoodTier = new IsRegistryObject(BuiltInRegistries.BLOCK, ModBlocks.OLD_WOOD_CHEST.getBlockId());
-//            var isCopperTier = List.of(new IsInTagCondition(ModTags.Blocks.OLD_COPPER_CHESTS));
             var isIronTier = new IsRegistryObject(BuiltInRegistries.BLOCK, ModBlocks.OLD_IRON_CHEST.getBlockId());
             var isGoldTier = new IsRegistryObject(BuiltInRegistries.BLOCK, ModBlocks.OLD_GOLD_CHEST.getBlockId());
             var isDiamondTier = new IsRegistryObject(BuiltInRegistries.BLOCK, ModBlocks.OLD_DIAMOND_CHEST.getBlockId());
             var isObsidianTier = new IsRegistryObject(BuiltInRegistries.BLOCK, ModBlocks.OLD_OBSIDIAN_CHEST.getBlockId());
-//            var copperChest = new PartialBlockState<>(ModBlocks.OLD_COPPER_CHEST);
             var ironChest = new PartialBlockState<>(ModBlocks.OLD_IRON_CHEST);
             var goldChest = new PartialBlockState<>(ModBlocks.OLD_GOLD_CHEST);
             var diamondChest = new PartialBlockState<>(ModBlocks.OLD_DIAMOND_CHEST);
             var obsidianChest = new PartialBlockState<>(ModBlocks.OLD_OBSIDIAN_CHEST);
             var netheriteChest = new PartialBlockState<>(ModBlocks.OLD_NETHERITE_CHEST);
-//            registerBlockRecipe(Utils.id("wood_to_copper_old_chest"),
-//                    new BlockConversionRecipe<>(ConversionRecipeProvider.WOOD_TO_IRON_CONVERSION_KIT, copperChest, isWoodTier)
-//            );
+
             registerBlockRecipe(Utils.id("wood_to_iron_old_chest"),
                     new BlockConversionRecipe<>(ConversionRecipeProvider.WOOD_TO_IRON_CONVERSION_KIT, ironChest, isWoodTier)
             );
@@ -257,21 +239,7 @@ public abstract class ConversionRecipeProvider implements DataProvider {
             registerBlockRecipe(Utils.id("wood_to_netherite_old_chest"),
                     new BlockConversionRecipe<>(ConversionRecipeProvider.WOOD_TO_NETHERITE_CONVERSION_KIT, netheriteChest, isWoodTier)
             );
-//            registerBlockRecipe(Utils.id("copper_to_iron_old_chest"),
-//                    new BlockConversionRecipe<>(ConversionRecipeProvider.COPPER_TO_IRON_CONVERSION_KIT, ironChest, isCopperTier)
-//            );
-//            registerBlockRecipe(Utils.id("copper_to_gold_old_chest"),
-//                    new BlockConversionRecipe<>(ConversionRecipeProvider.COPPER_TO_GOLD_CONVERSION_KIT, goldChest, isCopperTier)
-//            );
-//            registerBlockRecipe(Utils.id("copper_to_diamond_old_chest"),
-//                    new BlockConversionRecipe<>(ConversionRecipeProvider.COPPER_TO_DIAMOND_CONVERSION_KIT, diamondChest, isCopperTier)
-//            );
-//            registerBlockRecipe(Utils.id("copper_to_obsidian_old_chest"),
-//                    new BlockConversionRecipe<>(ConversionRecipeProvider.COPPER_TO_OBSIDIAN_CONVERSION_KIT, obsidianChest, isCopperTier)
-//            );
-//            registerBlockRecipe(Utils.id("copper_to_netherite_old_chest"),
-//                    new BlockConversionRecipe<>(ConversionRecipeProvider.COPPER_TO_NETHERITE_CONVERSION_KIT, netheriteChest, isCopperTier)
-//            );
+
             registerBlockRecipe(Utils.id("iron_to_gold_old_chest"),
                     new BlockConversionRecipe<>(ConversionRecipeProvider.IRON_TO_GOLD_CONVERSION_KIT, goldChest, isIronTier)
             );
@@ -284,6 +252,7 @@ public abstract class ConversionRecipeProvider implements DataProvider {
             registerBlockRecipe(Utils.id("iron_to_netherite_old_chest"),
                     new BlockConversionRecipe<>(ConversionRecipeProvider.IRON_TO_NETHERITE_CONVERSION_KIT, netheriteChest, isIronTier)
             );
+
             registerBlockRecipe(Utils.id("gold_to_diamond_old_chest"),
                     new BlockConversionRecipe<>(ConversionRecipeProvider.GOLD_TO_DIAMOND_CONVERSION_KIT, diamondChest, isGoldTier)
             );
@@ -293,12 +262,14 @@ public abstract class ConversionRecipeProvider implements DataProvider {
             registerBlockRecipe(Utils.id("gold_to_netherite_old_chest"),
                     new BlockConversionRecipe<>(ConversionRecipeProvider.GOLD_TO_NETHERITE_CONVERSION_KIT, netheriteChest, isGoldTier)
             );
+
             registerBlockRecipe(Utils.id("diamond_to_obsidian_old_chest"),
                     new BlockConversionRecipe<>(ConversionRecipeProvider.DIAMOND_TO_OBSIDIAN_CONVERSION_KIT, obsidianChest, isDiamondTier)
             );
             registerBlockRecipe(Utils.id("diamond_to_netherite_old_chest"),
                     new BlockConversionRecipe<>(ConversionRecipeProvider.DIAMOND_TO_NETHERITE_CONVERSION_KIT, netheriteChest, isDiamondTier)
             );
+
             registerBlockRecipe(Utils.id("obsidian_to_netherite_old_chest"),
                     new BlockConversionRecipe<>(ConversionRecipeProvider.OBSIDIAN_TO_NETHERITE_CONVERSION_KIT, netheriteChest, isObsidianTier)
             );
@@ -316,6 +287,7 @@ public abstract class ConversionRecipeProvider implements DataProvider {
             var diamondBarrel = new PartialBlockState<>(ModBlocks.DIAMOND_BARREL);
             var obsidianBarrel = new PartialBlockState<>(ModBlocks.OBSIDIAN_BARREL);
             var netheriteBarrel = new PartialBlockState<>(ModBlocks.NETHERITE_BARREL);
+
             registerBlockRecipe(Utils.id("wood_to_copper_barrel"),
                     new BlockConversionRecipe<>(ConversionRecipeProvider.WOOD_TO_COPPER_CONVERSION_KIT, new PartialBlockState<>(ModBlocks.COPPER_BARREL), isWoodBarrel)
             );
@@ -334,6 +306,7 @@ public abstract class ConversionRecipeProvider implements DataProvider {
             registerBlockRecipe(Utils.id("wood_to_netherite_barrel"),
                     new BlockConversionRecipe<>(ConversionRecipeProvider.WOOD_TO_NETHERITE_CONVERSION_KIT, netheriteBarrel, isWoodBarrel)
             );
+
             registerBlockRecipe(Utils.id("copper_to_iron_barrel"),
                     new BlockConversionRecipe<>(ConversionRecipeProvider.COPPER_TO_IRON_CONVERSION_KIT, ironBarrel, isCopperTier)
             );
@@ -349,6 +322,7 @@ public abstract class ConversionRecipeProvider implements DataProvider {
             registerBlockRecipe(Utils.id("copper_to_netherite_barrel"),
                     new BlockConversionRecipe<>(ConversionRecipeProvider.COPPER_TO_NETHERITE_CONVERSION_KIT, netheriteBarrel, isCopperTier)
             );
+
             registerBlockRecipe(Utils.id("iron_to_gold_barrel"),
                     new BlockConversionRecipe<>(ConversionRecipeProvider.IRON_TO_GOLD_CONVERSION_KIT, goldBarrel, isIronTier)
             );
@@ -361,6 +335,7 @@ public abstract class ConversionRecipeProvider implements DataProvider {
             registerBlockRecipe(Utils.id("iron_to_netherite_barrel"),
                     new BlockConversionRecipe<>(ConversionRecipeProvider.IRON_TO_NETHERITE_CONVERSION_KIT, netheriteBarrel, isIronTier)
             );
+
             registerBlockRecipe(Utils.id("gold_to_diamond_barrel"),
                     new BlockConversionRecipe<>(ConversionRecipeProvider.GOLD_TO_DIAMOND_CONVERSION_KIT, diamondBarrel, isGoldTier)
             );
@@ -370,12 +345,14 @@ public abstract class ConversionRecipeProvider implements DataProvider {
             registerBlockRecipe(Utils.id("gold_to_netherite_barrel"),
                     new BlockConversionRecipe<>(ConversionRecipeProvider.GOLD_TO_NETHERITE_CONVERSION_KIT, netheriteBarrel, isGoldTier)
             );
+
             registerBlockRecipe(Utils.id("diamond_to_obsidian_barrel"),
                     new BlockConversionRecipe<>(ConversionRecipeProvider.DIAMOND_TO_OBSIDIAN_CONVERSION_KIT, obsidianBarrel, isDiamondTier)
             );
             registerBlockRecipe(Utils.id("diamond_to_netherite_barrel"),
                     new BlockConversionRecipe<>(ConversionRecipeProvider.DIAMOND_TO_NETHERITE_CONVERSION_KIT, netheriteBarrel, isDiamondTier)
             );
+
             registerBlockRecipe(Utils.id("obsidian_to_netherite_barrel"),
                     new BlockConversionRecipe<>(ConversionRecipeProvider.OBSIDIAN_TO_NETHERITE_CONVERSION_KIT, netheriteBarrel, isObsidianTier)
             );
@@ -468,19 +445,15 @@ public abstract class ConversionRecipeProvider implements DataProvider {
             registerEntityRecipe(Utils.id("wood_to_iron_chest_minecart"),
                     new EntityConversionRecipe<>(ConversionRecipeProvider.WOOD_TO_IRON_CONVERSION_KIT, ModEntityTypes.IRON_CHEST_MINECART, isWoodTier)
             );
-
             registerEntityRecipe(Utils.id("wood_to_gold_chest_minecart"),
                     new EntityConversionRecipe<>(ConversionRecipeProvider.WOOD_TO_GOLD_CONVERSION_KIT, ModEntityTypes.GOLD_CHEST_MINECART, isWoodTier)
             );
-
             registerEntityRecipe(Utils.id("wood_to_diamond_chest_minecart"),
                     new EntityConversionRecipe<>(ConversionRecipeProvider.WOOD_TO_DIAMOND_CONVERSION_KIT, ModEntityTypes.DIAMOND_CHEST_MINECART, isWoodTier)
             );
-
             registerEntityRecipe(Utils.id("wood_to_obsidian_chest_minecart"),
                     new EntityConversionRecipe<>(ConversionRecipeProvider.WOOD_TO_OBSIDIAN_CONVERSION_KIT, ModEntityTypes.OBSIDIAN_CHEST_MINECART, isWoodTier)
             );
-
             registerEntityRecipe(Utils.id("wood_to_netherite_chest_minecart"),
                     new EntityConversionRecipe<>(ConversionRecipeProvider.WOOD_TO_NETHERITE_CONVERSION_KIT, ModEntityTypes.NETHERITE_CHEST_MINECART, isWoodTier)
             );
@@ -488,15 +461,12 @@ public abstract class ConversionRecipeProvider implements DataProvider {
             registerEntityRecipe(Utils.id("iron_to_gold_chest_minecart"),
                     new EntityConversionRecipe<>(ConversionRecipeProvider.IRON_TO_GOLD_CONVERSION_KIT, ModEntityTypes.GOLD_CHEST_MINECART, isIronTier)
             );
-
             registerEntityRecipe(Utils.id("iron_to_diamond_chest_minecart"),
                     new EntityConversionRecipe<>(ConversionRecipeProvider.IRON_TO_DIAMOND_CONVERSION_KIT, ModEntityTypes.DIAMOND_CHEST_MINECART, isIronTier)
             );
-
             registerEntityRecipe(Utils.id("iron_to_obsidian_chest_minecart"),
                     new EntityConversionRecipe<>(ConversionRecipeProvider.IRON_TO_OBSIDIAN_CONVERSION_KIT, ModEntityTypes.OBSIDIAN_CHEST_MINECART, isIronTier)
             );
-
             registerEntityRecipe(Utils.id("iron_to_netherite_chest_minecart"),
                     new EntityConversionRecipe<>(ConversionRecipeProvider.IRON_TO_NETHERITE_CONVERSION_KIT, ModEntityTypes.NETHERITE_CHEST_MINECART, isIronTier)
             );
@@ -504,11 +474,9 @@ public abstract class ConversionRecipeProvider implements DataProvider {
             registerEntityRecipe(Utils.id("gold_to_diamond_chest_minecart"),
                     new EntityConversionRecipe<>(ConversionRecipeProvider.GOLD_TO_DIAMOND_CONVERSION_KIT, ModEntityTypes.DIAMOND_CHEST_MINECART, isGoldTier)
             );
-
             registerEntityRecipe(Utils.id("gold_to_obsidian_chest_minecart"),
                     new EntityConversionRecipe<>(ConversionRecipeProvider.GOLD_TO_OBSIDIAN_CONVERSION_KIT, ModEntityTypes.OBSIDIAN_CHEST_MINECART, isGoldTier)
             );
-
             registerEntityRecipe(Utils.id("gold_to_netherite_chest_minecart"),
                     new EntityConversionRecipe<>(ConversionRecipeProvider.GOLD_TO_NETHERITE_CONVERSION_KIT, ModEntityTypes.NETHERITE_CHEST_MINECART, isGoldTier)
             );
@@ -516,7 +484,6 @@ public abstract class ConversionRecipeProvider implements DataProvider {
             registerEntityRecipe(Utils.id("diamond_to_obsidian_chest_minecart"),
                     new EntityConversionRecipe<>(ConversionRecipeProvider.DIAMOND_TO_OBSIDIAN_CONVERSION_KIT, ModEntityTypes.OBSIDIAN_CHEST_MINECART, isDiamondTier)
             );
-
             registerEntityRecipe(Utils.id("diamond_to_netherite_chest_minecart"),
                     new EntityConversionRecipe<>(ConversionRecipeProvider.DIAMOND_TO_NETHERITE_CONVERSION_KIT, ModEntityTypes.NETHERITE_CHEST_MINECART, isDiamondTier)
             );

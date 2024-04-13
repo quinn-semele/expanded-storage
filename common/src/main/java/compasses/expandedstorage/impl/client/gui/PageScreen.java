@@ -56,7 +56,7 @@ public final class PageScreen extends AbstractScreen {
 
     public static ScreenSize retrieveScreenSize(int slots, int scaledWidth, int scaledHeight) {
         if (CommonClient.platformHelper().configWrapper().fitVanillaConstraints()) {
-            return ScreenSize.of(9, 6);
+            return new ScreenSize(9, 6);
         }
 
         ArrayList<Pair<ScreenSize, ScreenSize>> options = new ArrayList<>();
@@ -74,14 +74,14 @@ public final class PageScreen extends AbstractScreen {
         for (int i = 1; i < options.size(); i++) {
             Pair<ScreenSize, ScreenSize> option = options.get(i);
 
-            int currentPages = picked.getSecond().getWidth();
-            int currentBlankSlots = picked.getSecond().getHeight();
-            int currentWidth = picked.getFirst().getWidth();
+            int currentPages = picked.getSecond().width();
+            int currentBlankSlots = picked.getSecond().height();
+            int currentWidth = picked.getFirst().width();
 
-            int newPages = option.getSecond().getWidth();
-            int newBlankSlots = option.getSecond().getHeight();
-            int newWidth = option.getFirst().getWidth();
-            int newHeight = option.getFirst().getHeight();
+            int newPages = option.getSecond().width();
+            int newBlankSlots = option.getSecond().height();
+            int newWidth = option.getFirst().width();
+            int newHeight = option.getFirst().height();
 
             if (newBlankSlots <= currentBlankSlots && newPages < currentPages && currentWidth == newWidth) {
                 picked = option;
@@ -97,7 +97,7 @@ public final class PageScreen extends AbstractScreen {
     private static void addEntry(ArrayList<Pair<ScreenSize, ScreenSize>> options, int slots, int width, int height) {
         int pages = Mth.ceil((double) slots / (width * height));
         int blanked = slots - pages * width * height;
-        options.add(new Pair<>(ScreenSize.of(width, height), ScreenSize.of(pages, blanked)));
+        options.add(new Pair<>(new ScreenSize(width, height), new ScreenSize(pages, blanked)));
     }
 
     @Override

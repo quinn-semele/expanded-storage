@@ -1,7 +1,7 @@
 package compasses.expandedstorage.impl.mixin.common;
 
+import com.llamalad7.mixinextras.sugar.Local;
 import compasses.expandedstorage.impl.inventory.OpenableInventoryProvider;
-import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.level.ServerPlayerGameMode;
 import net.minecraft.world.InteractionHand;
@@ -14,7 +14,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(ServerPlayerGameMode.class)
 public abstract class SpectatorBlockInventoryViewingFix {
@@ -24,12 +23,9 @@ public abstract class SpectatorBlockInventoryViewingFix {
                     value = "INVOKE",
                     target = "Lnet/minecraft/world/level/block/state/BlockState;getMenuProvider(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/MenuProvider;"
             ),
-            locals = LocalCapture.CAPTURE_FAILHARD,
             cancellable = true
     )
-    private void expandedstorage$beforeVanillaSpectatorInventoryViewing(
-            ServerPlayer player, Level level, ItemStack handStack, InteractionHand hand, BlockHitResult blockHit, CallbackInfoReturnable<InteractionResult> cir,
-            BlockPos pos, BlockState state) {
+    private void expandedstorage$beforeVanillaSpectatorInventoryViewing(ServerPlayer player, Level level, ItemStack handStack, InteractionHand hand, BlockHitResult blockHit, CallbackInfoReturnable<InteractionResult> cir, @Local(ordinal = 0) BlockState state) {
         if (state.getBlock() instanceof OpenableInventoryProvider<?>) {
             state.use(level, player, hand, blockHit);
             cir.setReturnValue(InteractionResult.SUCCESS);

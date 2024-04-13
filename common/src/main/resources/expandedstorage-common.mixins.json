@@ -7,13 +7,11 @@
     "common.BlockEntityIdFix",
     "common.CarryOnCompatFix",
     "common.DataFixerEntrypoint",
+    "common.DataFixerSchemaImpl",
     "common.SparrowBlockFix",
     "common.SparrowItemIdFix",
     "common.SpectatorBlockInventoryViewingFix",
     "common.SpectatorEntityInventoryViewingFix"
-  ],
-  "client": [
-    "client.ErrorlessTextureManager"
   ],
   "injectors": { "defaultRequire": 1 },
   "minVersion": "0.8",

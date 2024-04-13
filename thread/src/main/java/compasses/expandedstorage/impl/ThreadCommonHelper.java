@@ -55,15 +55,11 @@ public class ThreadCommonHelper implements CommonPlatformHelper {
         buffer.writeCollection(entityRecipes, (b, recipe) -> recipe.writeToBuffer(b));
         if (target == null) {
             for (ServerPlayer player : minecraftServer.getPlayerList().getPlayers()) {
-                sendPacket(player, ThreadMain.UPDATE_RECIPES_ID, buffer);
+                ServerPlayNetworking.send(player, ThreadMain.UPDATE_RECIPES_ID, buffer);
             }
         } else {
-            sendPacket(target, ThreadMain.UPDATE_RECIPES_ID, buffer);
+            ServerPlayNetworking.send(target, ThreadMain.UPDATE_RECIPES_ID, buffer);
         }
-    }
-
-    protected void sendPacket(ServerPlayer player, ResourceLocation packetId, FriendlyByteBuf buffer) {
-        ServerPlayNetworking.send(player, packetId, buffer); // canSend doesn't work :think:
     }
 
     @Override

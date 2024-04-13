@@ -101,10 +101,8 @@ public class ThreadMain implements ModInitializer {
         });
     }
 
-    @SuppressWarnings({"UnstableApiUsage"})
     public static Storage<ItemVariant> getItemAccess(Level level, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, @SuppressWarnings("unused") Direction context) {
-        //noinspection unchecked
-        return (Storage<ItemVariant>) CommonMain.getItemAccess(level, pos, state, blockEntity).map(ItemAccess::get).orElse(null);
+        return CommonMain.<Storage<ItemVariant>>getItemAccess(level, pos, state, blockEntity).map(ItemAccess::get).orElse(null);
     }
 
     public static Content getContentForClient() {
@@ -123,7 +121,6 @@ public class ThreadMain implements ModInitializer {
             Registry.register(BuiltInRegistries.BLOCK, name, value);
         });
 
-        //noinspection UnstableApiUsage
         ItemStorage.SIDED.registerForBlocks(ThreadMain::getItemAccess, content.getBlocks().stream().map(NamedValue::getValue).toArray(OpenableBlock[]::new));
 
         CommonMain.iterateNamedList(content.getItems(), (name, value) -> Registry.register(BuiltInRegistries.ITEM, name, value));

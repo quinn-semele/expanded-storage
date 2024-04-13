@@ -36,13 +36,13 @@ loom {
 }
 
 java {
-    sourceCompatibility = Versions.java
-    targetCompatibility = Versions.java
+    sourceCompatibility = Versions.JAVA
+    targetCompatibility = Versions.JAVA
 }
 
 tasks.withType<JavaCompile>().configureEach {
     options.encoding = StandardCharsets.UTF_8.name()
-    options.release = Versions.java.ordinal + 1
+    options.release = Versions.JAVA.ordinal + 1
 }
 
 tasks.withType<ProcessResources>().configureEach {
