@@ -1,1 +1,2 @@
-- Update Russian translations thanks to [@mpustovoi](https://github.com/quinn-semele/expanded-storage/pull/13).
+- Lowered Fabric API requirement
+- Removed some unused code.
