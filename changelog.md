@@ -1,1 +1,1 @@
-- Update Russian translations thanks to [@mpustovoi](https://github.com/quinn-semele/expanded-storage/pull/13).
+- Removed some unused code.
