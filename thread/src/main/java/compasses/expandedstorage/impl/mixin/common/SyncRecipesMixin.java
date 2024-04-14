@@ -6,6 +6,7 @@ import compasses.expandedstorage.impl.ThreadCommonHelper;
 import net.minecraft.core.LayeredRegistryAccess;
 import net.minecraft.network.Connection;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.RegistryLayer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.players.PlayerList;
 import net.minecraft.world.level.storage.PlayerDataStorage;
@@ -20,7 +21,7 @@ public abstract class SyncRecipesMixin {
             method = "<init>",
             at = @At("TAIL")
     )
-    private void expandedstorage$setServerInstance(MinecraftServer minecraftServer, LayeredRegistryAccess registryAccess, PlayerDataStorage storage, int maxPlayers, CallbackInfo ci) {
+    private void expandedstorage$setServerInstance(MinecraftServer minecraftServer, LayeredRegistryAccess<RegistryLayer> registryAccess, PlayerDataStorage storage, int maxPlayers, CallbackInfo ci) {
         ((ThreadCommonHelper) CommonMain.platformHelper()).setServerInstance(minecraftServer);
     }
 

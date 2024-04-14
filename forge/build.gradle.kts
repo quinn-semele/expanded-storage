@@ -69,11 +69,8 @@ val modDependencies = FreezableDependencyList().apply {
     }
 
     add("quark") {
-        val zetaVersion = "1.0-14.69"
-        val quarkVersion = "4.0-437.3290"
-
-        implementation("org.violetmoon.quark:Quark:$quarkVersion")
-        runtimeOnly("org.violetmoon.zeta:Zeta:$zetaVersion")
+        implementation("org.violetmoon.quark:Quark:${Versions.QUARK}")
+        runtimeOnly("org.violetmoon.zeta:Zeta:${Versions.ZETA}")
     }
 
     add("inventory-profiles-next") {

@@ -6,25 +6,28 @@ object Versions {
     const val EXPANDEDSTORAGE = "10.3.0-beta.3"
 
     // Generic
-    val java = JavaVersion.VERSION_17
+    val JAVA = JavaVersion.VERSION_17
     const val MINECRAFT = "1.20.1"
     const val PARCHMENT = "1.20.1:2023.09.03"
     const val JETBRAINS_ANNOTATIONS_VERSION = "24.1.0"
-    val SUPPORTED_GAME_VERSIONS: List<String> = listOf(MINECRAFT)
+    val CF_SUPPORTED_GAME_VERSIONS: List<String> = listOf(MINECRAFT)
+    val MR_SUPPORTED_GAME_VERSIONS: List<String> = listOf(MINECRAFT)
 
     // Fabric
     const val FABRIC_LOADER = "0.15.3"
-    const val FABRIC_API = "0.91.0+1.20.1"
+    const val FABRIC_API = "0.85.0+1.20.1" // https://modrinth.com/mod/fabric-api/
+    const val FABRIC_KOTLIN = "1.10.16+kotlin.1.9.21" // https://modrinth.com/mod/fabric-language-kotlin/
 
     // Forge
     const val FORGE = "47.1.47"
 
     // Quilt
     const val QUILT_LOADER = "0.20.2"
-    const val QUILT_FABRIC_API = "7.5.0+0.91.0-1.20.1"
+    const val QUILT_API = "7.0.6+0.85.0-1.20.1"
+    const val QUILT_KOTLIN = "2.1.3+kt.1.9.10+flk.1.10.10" // https://modrinth.com/mod/qkl/
 
     // Dependencies
-    const val EMI = "1.1.3+1.20.1" // https://modrinth.com/mod/emi/versions
+    const val EMI = "1.1.3+1.20.1" // https://modrinth.com/mod/emi/
 
     const val REI = "12.0.684" // https://modrinth.com/mod/rei/
 
@@ -39,9 +42,6 @@ object Versions {
     const val LIB_IPN_MINECRAFT = "1.20"
 
     const val KFF = "4.10.0" // https://modrinth.com/mod/kotlin-for-forge/
-
-    const val TOWELETTE = "5.0.1" // https://modrinth.com/mod/towelette/
-    const val STATEMENT = "4.2.9" // https://modrinth.com/mod/statement/
 
     const val INVENTORY_TABS = "1.1.8+1.20" // https://modrinth.com/mod/inventory-tabs/
 
@@ -59,4 +59,7 @@ object Versions {
 
     const val CARRY_ON_FABRIC = "Mkla4B3q" // https://modrinth.com/mod/carry-on/
     const val CARRY_ON_FORGE = "edGQD16r" // https://modrinth.com/mod/carry-on/
+
+    const val ZETA = "1.0-14.69" // https://modrinth.com/mod/zeta/
+    const val QUARK = "4.0-437.3290" // https://modrinth.com/mod/quark/
 }

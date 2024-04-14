@@ -21,7 +21,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
-@Mixin(HolderInteractCallback.class)
+@Mixin(value = HolderInteractCallback.class, remap = false)
 public class HijackBlockPickup {
 
     @Inject(

@@ -194,7 +194,9 @@ public class AbstractChestBlock extends OpenableBlock implements WorldlyContaine
     }
 
     // todo: look into making this return not null?
+    @Nullable
     @Override
+    @SuppressWarnings("NullableProblems")
     public WorldlyContainer getContainer(BlockState state, LevelAccessor level, BlockPos pos) {
         return AbstractChestBlock.createPropertyRetriever(this, state, level, pos, true).get(AbstractChestBlock.INVENTORY_GETTER).orElse(null);
     }

@@ -103,8 +103,7 @@ public class ThreadMain implements ModInitializer {
 
     @SuppressWarnings({"UnstableApiUsage"})
     public static Storage<ItemVariant> getItemAccess(Level level, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, @SuppressWarnings("unused") Direction context) {
-        //noinspection unchecked
-        return (Storage<ItemVariant>) CommonMain.getItemAccess(level, pos, state, blockEntity).map(ItemAccess::get).orElse(null);
+        return CommonMain.<Storage<ItemVariant>>getItemAccess(level, pos, state, blockEntity).map(ItemAccess::get).orElse(null);
     }
 
     public static Content getContentForClient() {

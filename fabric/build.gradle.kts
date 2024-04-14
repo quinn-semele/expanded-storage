@@ -16,9 +16,7 @@ val modDependencies = FreezableDependencyList().apply {
     from(project(":thread").extra["mod_dependencies"])
 
     add("inventory-profiles-next") {
-        val flkVersion = "1.10.16+kotlin.1.9.21" // https://modrinth.com/mod/fabric-language-kotlin/versions
-
-        implementation("net.fabricmc:fabric-language-kotlin:$flkVersion")
+        implementation("net.fabricmc:fabric-language-kotlin:${Versions.FABRIC_KOTLIN}")
     }
 
     freeze()

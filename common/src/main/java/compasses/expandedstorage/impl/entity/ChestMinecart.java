@@ -148,12 +148,14 @@ public class ChestMinecart extends AbstractMinecart implements ExposedInventory,
     @Override
     protected void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
+
         this.saveInventoryToTag(tag);
     }
 
     @Override
     protected void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
+
         this.loadInventoryFromTag(tag);
     }
 

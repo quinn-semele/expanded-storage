@@ -1,3 +1,5 @@
+import me.modmuss50.mpp.PublishModTask
+import me.modmuss50.mpp.PublishResult
 import me.modmuss50.mpp.ReleaseType
 import me.modmuss50.mpp.platforms.curseforge.CurseforgeOptions
 import me.modmuss50.mpp.platforms.modrinth.ModrinthOptions
@@ -19,6 +21,27 @@ version = Versions.EXPANDEDSTORAGE
 tasks.create(Constants.BUILD_MOD_TASK, BuildModTask::class.java)
 val releaseTask = tasks.register(Constants.RELEASE_MOD_TASK, ReleaseModTask::class.java) {
     dependsOn(":publishMods")
+
+    doLast {
+        val cfLinks = mapOf("Fabric" to "publishCurseForgeFabric", "Neo/Forge" to "publishCurseForgeForge", "Quilt" to "publishCurseForgeQuilt").mapValues {
+            val result = PublishResult.fromJson(tasks.getByName<PublishModTask>(it.value).result.get().asFile.readText(Charsets.UTF_8))
+
+            result.link
+        }
+        val mrLinks = mapOf("Fabric" to "publishModrinthFabric", "Neo/Forge" to "publishModrinthForge", "Quilt" to "publishModrinthQuilt").mapValues {
+            val result = PublishResult.fromJson(tasks.getByName<PublishModTask>(it.value).result.get().asFile.readText(Charsets.UTF_8))
+
+            result.link
+        }
+
+        println("""
+            **Expanded Storage ${Versions.EXPANDEDSTORAGE}** for **${Versions.MINECRAFT}**
+            ${rootProject.file("changelog.md").readLines(Charsets.UTF_8).joinToString("\n")}
+            
+            :curseforge: ${cfLinks.map { "[${it.key}](<${it.value}>)" }.joinToString(" | ")}
+            :modrinth: ${mrLinks.map { "[${it.key}](<${it.value}>)" }.joinToString(" | ")}
+        """.trimIndent())
+    }
 }
 
 gradle.taskGraph.whenReady {
@@ -48,15 +71,15 @@ val commonCurseForgeOptions = publishMods.curseforgeOptions {
     clientRequired = true
     serverRequired = true
 
-    minecraftVersions.addAll(Versions.SUPPORTED_GAME_VERSIONS)
-    javaVersions.add(JavaVersion.VERSION_17)
+    minecraftVersions.addAll(Versions.CF_SUPPORTED_GAME_VERSIONS)
+    javaVersions.add(Versions.JAVA)
 }
 
 val commonModrinthOptions = publishMods.modrinthOptions {
     accessToken = providers.environmentVariable("QUINN_MR_TOKEN")
     projectId = "jCCPlP3c"
 
-    minecraftVersions.addAll(Versions.SUPPORTED_GAME_VERSIONS)
+    minecraftVersions.addAll(Versions.MR_SUPPORTED_GAME_VERSIONS)
 }
 
 val fabricOptions = publishMods.publishOptions {

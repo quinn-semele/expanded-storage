@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
 @SuppressWarnings("unused")
-@Mixin(OpenableBlockEntity.class)
+@Mixin(value = OpenableBlockEntity.class, remap = false)
 public abstract class HTMLockableBlockEntityCompat extends BlockEntity implements LockableObject {
     protected HTMLockableBlockEntityCompat(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);

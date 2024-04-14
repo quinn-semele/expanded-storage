@@ -13,6 +13,7 @@ import compasses.expandedstorage.impl.client.gui.AbstractScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.entity.MinecartRenderer;
+import net.minecraft.client.renderer.item.ClampedItemPropertyFunction;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.world.entity.EntityType;
 import net.minecraftforge.client.ConfigScreenHandler;
@@ -39,8 +40,8 @@ public class ForgeClient {
 
         modBus.addListener((FMLClientSetupEvent event) -> {
             MenuScreens.register(CommonMain.platformHelper().getScreenHandlerType(), AbstractScreen::createScreen);
-            ItemProperties.registerGeneric(Utils.id("sparrow"), CommonClient::hasSparrowProperty);
-            ItemProperties.register(ModItems.STORAGE_MUTATOR, Utils.id("tool_mode"), CommonClient::currentMutatorToolMode);
+            ItemProperties.registerGeneric(Utils.id("sparrow"), (ClampedItemPropertyFunction) CommonClient::hasSparrowProperty);
+            ItemProperties.register(ModItems.STORAGE_MUTATOR, Utils.id("tool_mode"), (ClampedItemPropertyFunction) CommonClient::currentMutatorToolMode);
         });
 
         modBus.addListener((EntityRenderersEvent.RegisterRenderers event) -> {

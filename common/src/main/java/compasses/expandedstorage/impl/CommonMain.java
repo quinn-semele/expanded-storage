@@ -599,20 +599,20 @@ public final class CommonMain {
         list.forEach(it -> consumer.accept(it.getName(), it.getValue()));
     }
 
-    public static Optional<ItemAccess> getItemAccess(Level level, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity) {
+    public static <T> Optional<ItemAccess<T>> getItemAccess(Level level, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity) {
         if (blockEntity instanceof OldChestBlockEntity entity) {
-            DoubleItemAccess access = entity.getItemAccess();
+            DoubleItemAccess<T> access = (DoubleItemAccess<T>) entity.getItemAccess();
             EsChestType type = state.getValue(AbstractChestBlock.CURSED_CHEST_TYPE);
             Direction facing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
             if (access.hasCachedAccess() || type == EsChestType.SINGLE) {
                 return Optional.of(access);
             }
             if (level.getBlockEntity(pos.relative(AbstractChestBlock.getDirectionToAttached(type, facing))) instanceof OldChestBlockEntity otherEntity) {
-                DoubleItemAccess otherAccess = otherEntity.getItemAccess();
+                DoubleItemAccess<T> otherAccess = (DoubleItemAccess<T>) otherEntity.getItemAccess();
                 if (otherAccess.hasCachedAccess()) {
                     return Optional.of(otherAccess);
                 }
-                DoubleItemAccess first, second;
+                DoubleItemAccess<T> first, second;
                 if (AbstractChestBlock.getBlockType(type) == DoubleBlockCombiner.BlockType.FIRST) {
                     first = access;
                     second = otherAccess;
@@ -625,7 +625,7 @@ public final class CommonMain {
             }
 
         } else if (blockEntity instanceof OpenableBlockEntity entity) {
-            return Optional.of(entity.getItemAccess());
+            return Optional.of((ItemAccess<T>) entity.getItemAccess());
         }
         return Optional.empty();
     }

@@ -53,7 +53,9 @@ public abstract class OpenableBlockEntity extends BlockEntity implements Openabl
     @Override
     public void load(CompoundTag tag) {
         super.load(tag);
+
         lockable.readLock(tag);
+
         if (tag.contains("CustomName", Tag.TAG_STRING)) {
             customName = Component.Serializer.fromJson(tag.getString("CustomName"));
         }
@@ -62,7 +64,9 @@ public abstract class OpenableBlockEntity extends BlockEntity implements Openabl
     @Override
     public void saveAdditional(CompoundTag tag) {
         super.saveAdditional(tag);
+
         lockable.writeLock(tag);
+
         if (this.hasCustomName()) {
             tag.putString("CustomName", Component.Serializer.toJson(customName));
         }
@@ -107,9 +111,11 @@ public abstract class OpenableBlockEntity extends BlockEntity implements Openabl
     @Override
     public CompoundTag getUpdateTag() {
         CompoundTag updateTag = super.getUpdateTag();
+
         if (customName != null) {
             updateTag.putString("CustomName", Component.Serializer.toJson(customName));
         }
+
         return updateTag;
     }
 

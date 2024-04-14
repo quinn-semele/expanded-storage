@@ -3,12 +3,11 @@
   "depends": {
     "fabricloader": ">=0.14.21",
     "minecraft": "=1.20.1",
-    "fabric-api": ">=0.91.0"
+    "fabric-api": ">=0.85.0"
   },
   "entrypoints": {
     "main": [ "compasses.expandedstorage.impl.ThreadMain" ],
     "client": [ "compasses.expandedstorage.impl.ThreadClient" ],
-    "fabric-datagen": [ "compasses.expandedstorage.impl.datagen.Main" ],
     "emi": [ "compasses.expandedstorage.impl.client.compat.EmiCompat" ],
     "jei_mod_plugin": [ "compasses.expandedstorage.impl.client.compat.JeiCompat" ],
     "modmenu": [ "compasses.expandedstorage.impl.client.compat.ModMenuCompat" ],

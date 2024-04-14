@@ -5,7 +5,7 @@ plugins {
 repositories {
     maven {
         name = "Architectury Maven"
-        url = uri("https://maven.architectury.dev")
+        url = uri("https://maven.architectury.dev/")
     }
 
     maven {
@@ -15,7 +15,7 @@ repositories {
 
     maven {
         name = "FabricMC Maven"
-        url = uri("https://maven.fabricmc.net")
+        url = uri("https://maven.fabricmc.net/")
     }
 
     gradlePluginPortal()

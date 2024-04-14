@@ -2,6 +2,7 @@ package compasses.expandedstorage.impl.mixin.common;
 
 import com.mojang.datafixers.DataFixerBuilder;
 import compasses.expandedstorage.impl.fixer.DataFixerUtils;
+import compasses.expandedstorage.impl.misc.DataFixerBuilderAccess;
 import net.minecraft.util.datafix.DataFixers;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -20,7 +21,7 @@ public abstract class DataFixerEntrypoint {
             )
     )
     private static void expandedstorage$register1_17DataFixer(DataFixerBuilder builder, CallbackInfo ci) {
-        DataFixerUtils.register1_17DataFixer(builder, 2707, 1);
+        DataFixerUtils.register1_17DataFixer(builder, ((DataFixerBuilderAccess) builder).expandedstorage$getSchema(2707, 0));
     }
 
     @Inject(
@@ -33,6 +34,6 @@ public abstract class DataFixerEntrypoint {
             )
     )
     private static void expandedstorage$register1_18DataFixer(DataFixerBuilder builder, CallbackInfo ci) {
-        DataFixerUtils.register1_18DataFixer(builder, 2852, 1);
+        DataFixerUtils.register1_18DataFixer(builder, ((DataFixerBuilderAccess) builder).expandedstorage$getSchema(2852, 0));
     }
 }

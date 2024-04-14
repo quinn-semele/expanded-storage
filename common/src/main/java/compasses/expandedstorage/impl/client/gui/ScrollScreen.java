@@ -41,33 +41,33 @@ public final class ScrollScreen extends AbstractScreen {
 
     public static ScreenSize retrieveScreenSize(int slots, int scaledWidth, int scaledHeight) {
         if (CommonClient.platformHelper().configWrapper().fitVanillaConstraints()) {
-            return ScreenSize.of(9, 6);
+            return new ScreenSize(9, 6);
         }
 
         ArrayList<ScreenSize> options = new ArrayList<>();
-        options.add(ScreenSize.of(9, 6));
+        options.add(new ScreenSize(9, 6));
         if (slots > 90) {
-            options.add(ScreenSize.of(15, 6));
+            options.add(new ScreenSize(15, 6));
         }
         if (scaledHeight >= 276) {
             if (slots > 54) {
-                options.add(ScreenSize.of(9, 9));
+                options.add(new ScreenSize(9, 9));
             }
             if (scaledWidth >= 248 && slots > 81) {
-                options.add(ScreenSize.of(12, 9));
+                options.add(new ScreenSize(12, 9));
             }
             if (scaledWidth >= 302 && slots > 108) {
-                options.add(ScreenSize.of(15, 9));
+                options.add(new ScreenSize(15, 9));
             }
             if (scaledWidth >= 356 && slots > 135) {
-                options.add(ScreenSize.of(18, 9));
+                options.add(new ScreenSize(18, 9));
             }
         }
         if (scaledHeight >= 330 && scaledWidth >= 356 && slots > 162) {
-            options.add(ScreenSize.of(18, 12));
+            options.add(new ScreenSize(18, 12));
         }
         if (scaledHeight >= 384 && scaledWidth >= 356 && slots > 216) {
-            options.add(ScreenSize.of(18, 15));
+            options.add(new ScreenSize(18, 15));
         }
 
         return options.get(options.size() - 1);
