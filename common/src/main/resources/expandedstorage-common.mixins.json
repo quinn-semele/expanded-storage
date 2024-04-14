@@ -4,11 +4,9 @@
   "plugin": "compasses.expandedstorage.impl.MixinPlugin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
-    "common.AccessibleDataFixerBuilder",
     "common.BlockEntityIdFix",
     "common.CarryOnCompatFix",
     "common.DataFixerEntrypoint",
-    "common.DataFixerSchemaImpl",
     "common.SparrowBlockFix",
     "common.SparrowItemIdFix",
     "common.SpectatorBlockInventoryViewingFix",
