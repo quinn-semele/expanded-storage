@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "group": "expandedstorage:present",
   "key": {
     "B": {
@@ -26,6 +25,5 @@
   ],
   "result": {
     "item": "expandedstorage:present"
-  },
-  "show_notification": true
+  }
 }

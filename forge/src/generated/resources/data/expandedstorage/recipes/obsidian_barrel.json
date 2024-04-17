@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "key": {
     "B": {
       "item": "expandedstorage:diamond_barrel"
@@ -16,6 +15,5 @@
   ],
   "result": {
     "item": "expandedstorage:obsidian_barrel"
-  },
-  "show_notification": true
+  }
 }

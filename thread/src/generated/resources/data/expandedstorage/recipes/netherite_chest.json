@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:smithing_transform",
+  "type": "minecraft:smithing",
   "addition": {
     "tag": "c:netherite_ingots"
   },
@@ -8,8 +8,5 @@
   },
   "result": {
     "item": "expandedstorage:netherite_chest"
-  },
-  "template": {
-    "item": "minecraft:netherite_upgrade_smithing_template"
   }
 }

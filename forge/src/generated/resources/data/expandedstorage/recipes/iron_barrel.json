@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "key": {
     "B": {
       "item": "expandedstorage:copper_barrel"
@@ -19,6 +18,5 @@
   ],
   "result": {
     "item": "expandedstorage:iron_barrel"
-  },
-  "show_notification": true
+  }
 }

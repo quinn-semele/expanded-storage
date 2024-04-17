@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "key": {
     "C": {
       "item": "expandedstorage:netherite_chest"
@@ -15,6 +14,5 @@
   ],
   "result": {
     "item": "expandedstorage:netherite_chest_minecart"
-  },
-  "show_notification": true
+  }
 }

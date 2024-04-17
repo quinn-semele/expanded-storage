@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "key": {
     "C": {
       "tag": "forge:ingots/copper"
@@ -19,6 +18,5 @@
   ],
   "result": {
     "item": "expandedstorage:copper_to_iron_conversion_kit"
-  },
-  "show_notification": true
+  }
 }

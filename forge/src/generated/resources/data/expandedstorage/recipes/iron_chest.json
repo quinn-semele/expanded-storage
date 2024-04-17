@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "group": "expandedstorage:iron_chest",
   "key": {
     "B": {
@@ -17,6 +16,5 @@
   ],
   "result": {
     "item": "expandedstorage:iron_chest"
-  },
-  "show_notification": true
+  }
 }

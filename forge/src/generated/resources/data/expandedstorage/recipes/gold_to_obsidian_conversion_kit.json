@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "key": {
     "K": {
       "item": "expandedstorage:gold_to_diamond_conversion_kit"
@@ -16,6 +15,5 @@
   ],
   "result": {
     "item": "expandedstorage:gold_to_obsidian_conversion_kit"
-  },
-  "show_notification": true
+  }
 }

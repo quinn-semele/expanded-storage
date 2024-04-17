@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "key": {
     "D": {
       "tag": "forge:gems/diamond"
@@ -19,6 +18,5 @@
   ],
   "result": {
     "item": "expandedstorage:iron_to_diamond_conversion_kit"
-  },
-  "show_notification": true
+  }
 }

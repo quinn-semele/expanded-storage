@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "group": "expandedstorage:diamond_chest",
   "key": {
     "B": {
@@ -20,6 +19,5 @@
   ],
   "result": {
     "item": "expandedstorage:diamond_chest"
-  },
-  "show_notification": true
+  }
 }

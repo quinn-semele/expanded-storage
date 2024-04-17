@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:smithing_transform",
+  "type": "minecraft:smithing",
   "addition": {
     "tag": "forge:ingots/netherite"
   },
@@ -8,6 +8,5 @@
   },
   "result": {
     "item": "expandedstorage:obsidian_to_netherite_conversion_kit"
-  },
-  "template": []
+  }
 }
