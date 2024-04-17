@@ -61,5 +61,5 @@ object Versions {
     const val CARRY_ON_FORGE = "CE3MquDi" // https://modrinth.com/mod/carry-on/
 
     const val AUTO_REG_LIB = "1.8.2-55" // https://modrinth.com/mod/autoreglib/
-    const val QUARK = "3.4-418.3200" // https://modrinth.com/mod/quark/
+    const val QUARK = "3.4-408.3077" // https://modrinth.com/mod/quark/
 }

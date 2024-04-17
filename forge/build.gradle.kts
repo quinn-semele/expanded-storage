@@ -55,8 +55,8 @@ val modDependencies = FreezableDependencyList().apply {
     from(project(":common").extra["mod_dependencies"])
 
     add("emi") {
-//        compileOnly("dev.emi:emi-forge:${Versions.EMI}:api")
-        implementation("dev.emi:emi-forge:${Versions.EMI}")
+        compileOnly("dev.emi:emi-forge:${Versions.EMI}:api")
+        runtimeOnly("dev.emi:emi-forge:${Versions.EMI}")
     }
 
     add("jei") {

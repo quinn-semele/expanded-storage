@@ -4,9 +4,9 @@ import compasses.expandedstorage.impl.client.gui.PageScreen;
 import compasses.expandedstorage.impl.client.gui.ScrollScreen;
 import compasses.expandedstorage.impl.client.gui.SingleScreen;
 import org.spongepowered.asm.mixin.Mixin;
-//import vazkii.quark.api.IQuarkButtonAllowed;
+import vazkii.quark.api.IQuarkButtonAllowed;
 
 @Mixin(value = {PageScreen.class, SingleScreen.class, ScrollScreen.class}, remap = false)
-public class QuarkButtonAllowedMixin /*implements IQuarkButtonAllowed*/ {
+public class QuarkButtonAllowedMixin implements IQuarkButtonAllowed {
 
 }
