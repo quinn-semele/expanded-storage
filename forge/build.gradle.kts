@@ -66,9 +66,9 @@ val modDependencies = FreezableDependencyList().apply {
     }
 
     add("rei", cfDependencyName = "roughly-enough-items") {
-        compileOnly("me.shedaniel:RoughlyEnoughItems-api:${Versions.REI}")
-        compileOnly("me.shedaniel:RoughlyEnoughItems-api-neoforge:${Versions.REI}")
-        runtimeOnly("me.shedaniel:RoughlyEnoughItems-neoforge:${Versions.REI}")
+//        compileOnly("me.shedaniel:RoughlyEnoughItems-api:${Versions.REI}")
+//        compileOnly("me.shedaniel:RoughlyEnoughItems-api-neoforge:${Versions.REI}")
+        implementation("me.shedaniel:RoughlyEnoughItems-neoforge:${Versions.REI}")
     }
 
     freeze()

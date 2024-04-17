@@ -1,1 +1,2 @@
-- Removed some unused code.
+- Fix the vanilla mini barrel not having a conversion recipe.
+- Fix the neoforge specific mixin file not having the correct refmap name set.
