@@ -1,2 +1,2 @@
-- Lowered Fabric API requirement
-- Removed some unused code.
+- Fix the vanilla mini barrel not having a conversion recipe.
+- Fix the forge specific mixin file not having the correct refmap name set.

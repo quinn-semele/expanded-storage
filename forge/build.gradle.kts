@@ -80,9 +80,9 @@ val modDependencies = FreezableDependencyList().apply {
     }
 
     add("rei", cfDependencyName = "roughly-enough-items") {
-        compileOnly("me.shedaniel:RoughlyEnoughItems-api:${Versions.REI}")
-        compileOnly("me.shedaniel:RoughlyEnoughItems-api-forge:${Versions.REI}")
-        runtimeOnly("me.shedaniel:RoughlyEnoughItems-forge:${Versions.REI}")
+//        compileOnly("me.shedaniel:RoughlyEnoughItems-api:${Versions.REI}")
+//        compileOnly("me.shedaniel:RoughlyEnoughItems-api-forge:${Versions.REI}")
+        implementation("me.shedaniel:RoughlyEnoughItems-forge:${Versions.REI}")
     }
 
     freeze()
