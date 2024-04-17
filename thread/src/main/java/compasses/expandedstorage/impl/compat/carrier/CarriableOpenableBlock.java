@@ -101,6 +101,7 @@ class CarriableOpenableBlock implements Carriable<Block> {
         }
 
         level.blockUpdated(pos, state.getBlock());
+        component.setCarryingData(null);
 
         return InteractionResult.SUCCESS;
     }

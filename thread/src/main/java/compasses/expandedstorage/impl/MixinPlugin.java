@@ -19,7 +19,7 @@ public final class MixinPlugin implements IMixinConfigPlugin {
         return switch (className) {
             case "common.HTMChestCompat", "common.HTMLockableBlockEntityCompat" -> FabricLoader.getInstance().isModLoaded("htm");
             case "common.ToweletteCompat" -> FabricLoader.getInstance().isModLoaded("towelette");
-            case "common.CarrierRegistryMixin", "common.AllowCarryingESBlocks", "common.HijackBlockPickup" -> FabricLoader.getInstance().isModLoaded("carrier");
+            case "common.CarrierRegistryMixin" -> FabricLoader.getInstance().isModLoaded("carrier");
             case "common.CarryOnCompatFix" -> FabricLoader.getInstance().isModLoaded("carryon");
             default -> true;
         };
