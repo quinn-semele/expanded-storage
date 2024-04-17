@@ -430,6 +430,7 @@ public abstract class ConversionRecipeProvider implements DataProvider {
             sparrowReversibleBlockThemeSwap("obsidian_mini_chest", ModBlocks.OBSIDIAN_MINI_CHEST);
             sparrowReversibleBlockThemeSwap("netherite_mini_chest", ModBlocks.NETHERITE_MINI_CHEST);
 
+            sparrowReversibleBlockThemeSwap("mini_barrel", ModBlocks.MINI_BARREL);
             sparrowReversibleBlockThemeSwap("copper_mini_barrel", ModBlocks.COPPER_MINI_BARREL);
             sparrowReversibleBlockThemeSwap("exposed_copper_mini_barrel", ModBlocks.EXPOSED_COPPER_MINI_BARREL);
             sparrowReversibleBlockThemeSwap("weathered_copper_mini_barrel", ModBlocks.WEATHERED_COPPER_MINI_BARREL);

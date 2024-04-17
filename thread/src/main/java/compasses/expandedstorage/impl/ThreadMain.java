@@ -9,6 +9,7 @@ import compasses.expandedstorage.impl.block.strategies.ItemAccess;
 import compasses.expandedstorage.impl.compat.carrier.CarrierCompat;
 import compasses.expandedstorage.impl.compat.htm.HTMLockable;
 import compasses.expandedstorage.impl.item.ChestMinecartItem;
+import compasses.expandedstorage.impl.item.MiniStorageBlockItem;
 import compasses.expandedstorage.impl.misc.Utils;
 import compasses.expandedstorage.impl.recipe.ConversionRecipeReloadListener;
 import compasses.expandedstorage.impl.registration.Content;
@@ -61,14 +62,13 @@ public class ThreadMain implements ModInitializer {
 
         CreativeModeTab group = FabricItemGroupBuilder.build(Utils.id("tab"), () -> new ItemStack(Registry.ITEM.get(Utils.id("netherite_chest")))); // Fabric API is dumb.
 
-
         CommonMain.constructContent(new ThreadCommonHelper(), group, GenericItemAccess::new, fabricLoader.isModLoaded("htm") ? HTMLockable::new : BasicLockable::new, isClient, ThreadMain::registerContent,
                 /*Base*/ true,
                 /*Chest*/ BlockItem::new, ChestItemAccess::new,
                 /*Minecart Chest*/ ChestMinecartItem::new,
                 /*Old Chest*/
                 /*Barrel*/ TagKey.create(Registry.BLOCK_REGISTRY, new ResourceLocation("c", "wooden_barrels")),
-                /*Mini Storage*/ BlockItem::new);
+                /*Mini Storage*/ MiniStorageBlockItem::new);
 
         UseEntityCallback.EVENT.register((player, world, hand, entity, hit) -> CommonMain.interactWithEntity(world, player, hand, entity));
         ResourceManagerHelper.get(PackType.SERVER_DATA).registerReloadListener(new IdentifiableResourceReloadListener() {

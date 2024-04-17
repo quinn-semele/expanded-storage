@@ -14,7 +14,6 @@ accessible method net/minecraft/world/level/block/entity/RandomizableContainerBl
 
 accessible method net/minecraft/client/multiplayer/MultiPlayerGameMode startPrediction (Lnet/minecraft/client/multiplayer/ClientLevel;Lnet/minecraft/client/multiplayer/prediction/PredictiveAction;)V
 
-accessible method net/minecraft/data/loot/BlockLootSubProvider createNameableBlockEntityTable (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 extendable method net/minecraft/data/recipes/RecipeProvider getName ()Ljava/lang/String;
 extendable method net/minecraft/data/tags/TagsProvider getName ()Ljava/lang/String;
 extendable method net/minecraft/data/models/ModelProvider getName ()Ljava/lang/String;

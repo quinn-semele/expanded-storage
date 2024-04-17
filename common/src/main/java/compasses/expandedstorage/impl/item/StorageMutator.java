@@ -4,8 +4,10 @@ import compasses.expandedstorage.impl.CommonMain;
 import compasses.expandedstorage.impl.misc.Utils;
 import compasses.expandedstorage.impl.recipe.ConversionRecipeManager;
 import compasses.expandedstorage.impl.recipe.EntityConversionRecipe;
+import compasses.expandedstorage.impl.registration.ModItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
@@ -14,6 +16,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -112,5 +115,25 @@ public final class StorageMutator extends Item implements EntityInteractableItem
             }
         }
         return InteractionResult.FAIL;
+    }
+
+    @Override
+    public void fillItemCategory(CreativeModeTab category, NonNullList<ItemStack> items) {
+        if (allowedIn(category)) {
+            for (MutationMode mode : MutationMode.values()) {
+                ItemStack stack = new ItemStack(ModItems.STORAGE_MUTATOR);
+                CompoundTag tag = new CompoundTag();
+                tag.putByte("mode", mode.toByte());
+                stack.setTag(tag);
+                items.add(stack);
+            }
+
+            ItemStack sparrowMutator = new ItemStack(ModItems.STORAGE_MUTATOR);
+            CompoundTag tag = new CompoundTag();
+            tag.putByte("mode", MutationMode.SWAP_THEME.toByte());
+            sparrowMutator.setTag(tag);
+            sparrowMutator.setHoverName(Component.literal("Sparrow").withStyle(ChatFormatting.ITALIC));
+            items.add(sparrowMutator);
+        }
     }
 }

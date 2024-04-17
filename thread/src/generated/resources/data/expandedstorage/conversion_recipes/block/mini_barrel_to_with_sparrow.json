@@ -1,0 +1,19 @@
+{
+  "type": "expandedstorage:block_conversion",
+  "inputs": {
+    "id": "expandedstorage:mini_barrel",
+    "state": {
+      "sparrow": "false"
+    }
+  },
+  "result": {
+    "id": "expandedstorage:mini_barrel",
+    "state": {
+      "sparrow": "true"
+    }
+  },
+  "tool": {
+    "id": "expandedstorage:storage_mutator",
+    "name": "sparrow"
+  }
+}

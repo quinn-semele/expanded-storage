@@ -15,7 +15,7 @@ import compasses.expandedstorage.impl.block.misc.ChestItemAccess;
 import compasses.expandedstorage.impl.block.misc.GenericItemAccess;
 import compasses.expandedstorage.impl.item.ChestBlockItem;
 import compasses.expandedstorage.impl.item.ForgeChestMinecartItem;
-import compasses.expandedstorage.impl.item.MiniStorageBlockItem;
+import compasses.expandedstorage.impl.item.ForgeMiniStorageBlockItem;
 import compasses.expandedstorage.impl.misc.ForgeCommonHelper;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
@@ -67,7 +67,7 @@ public final class ForgeMain {
                 /*Minecart Chest*/ ForgeChestMinecartItem::new,
                 /*Old Chest*/
                 /*Barrel*/ TagKey.create(ForgeRegistries.Keys.BLOCKS, new ResourceLocation("forge", "barrels/wooden")),
-                /*Mini Storage*/ MiniStorageBlockItem::new);
+                /*Mini Storage*/ ForgeMiniStorageBlockItem::new);
         MinecraftForge.EVENT_BUS.addListener((AddReloadListenerEvent event) -> event.addListener(new ConversionRecipeReloadListener()));
         MinecraftForge.EVENT_BUS.addListener((OnDatapackSyncEvent event) -> CommonMain.platformHelper().sendConversionRecipesToClient(event.getPlayer(), ConversionRecipeManager.INSTANCE.getBlockRecipes(), ConversionRecipeManager.INSTANCE.getEntityRecipes()));
 
