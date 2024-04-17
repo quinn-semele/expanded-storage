@@ -4,12 +4,12 @@ import compasses.expandedstorage.impl.recipe.conditions.IsInTagCondition;
 import compasses.expandedstorage.impl.recipe.conditions.OrCondition;
 import compasses.expandedstorage.impl.recipe.conditions.RecipeCondition;
 import compasses.expandedstorage.impl.datagen.content.ForgeTags;
-import net.minecraft.data.PackOutput;
+import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.Tags;
 
 public class ForgeConversionRecipeProvider extends ConversionRecipeProvider {
-    public ForgeConversionRecipeProvider(PackOutput output) {
-        super(output);
+    public ForgeConversionRecipeProvider(DataGenerator generator) {
+        super(generator);
     }
 
     @Override

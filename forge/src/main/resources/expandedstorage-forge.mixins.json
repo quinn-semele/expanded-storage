@@ -7,7 +7,8 @@
     "common.OxidizableBlockMixin"
   ],
   "client": [
-    "client.QuarkButtonAllowedMixin"
+    "client.QuarkButtonAllowedMixin",
+    "client.QuarkRepositionButtonsMixin"
   ],
   "injectors": { "defaultRequire": 1 },
   "minVersion": "0.8",

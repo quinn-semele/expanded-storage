@@ -1,5 +1,5 @@
 modLoader = "javafml"
-loaderVersion = "[47,)"
+loaderVersion = "[43,)"
 issueTrackerURL = "https://github.com/quinn-semele/expanded-storage/issues"
 license = "See LICENSE file"
 
@@ -15,13 +15,13 @@ description = "A mod adding various storage types, including double iron chests.
 [[dependencies.expandedstorage]]
 modId = "forge"
 mandatory = true
-versionRange = "[47.1,)"
+versionRange = "[43.1,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.expandedstorage]]
 modId = "minecraft"
 mandatory = true
-versionRange = "1.20.1"
+versionRange = "1.19.2"
 ordering = "NONE"
 side = "BOTH"

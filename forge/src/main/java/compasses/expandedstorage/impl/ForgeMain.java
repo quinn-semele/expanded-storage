@@ -19,21 +19,18 @@ import compasses.expandedstorage.impl.item.MiniStorageBlockItem;
 import compasses.expandedstorage.impl.misc.ForgeCommonHelper;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.HoneycombItem;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AddReloadListenerEvent;
@@ -44,6 +41,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLLoader;
+import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegisterEvent;
 import org.jetbrains.annotations.NotNull;
@@ -54,7 +52,15 @@ import java.util.function.Supplier;
 @Mod("expandedstorage")
 public final class ForgeMain {
     public ForgeMain() {
-        CommonMain.constructContent(new ForgeCommonHelper(), GenericItemAccess::new, BasicLockable::new,
+        var group = new CreativeModeTab(Utils.MOD_ID + ".tab") {
+            @NotNull
+            @Override
+            public ItemStack makeIcon() {
+                return new ItemStack(ForgeRegistries.ITEMS.getValue(Utils.id("netherite_chest")), 1);
+            }
+        };
+
+        CommonMain.constructContent(new ForgeCommonHelper(), group, GenericItemAccess::new, BasicLockable::new,
                 FMLLoader.getDist().isClient(), this::registerContent,
                 /*Base*/ false,
                 /*Chest*/ ChestBlockItem::new, ChestItemAccess::new,
@@ -71,7 +77,7 @@ public final class ForgeMain {
                     @NotNull
                     @Override
                     public <T> LazyOptional<T> getCapability(@NotNull Capability<T> capability, @Nullable Direction side) {
-                        if (capability == ForgeCapabilities.ITEM_HANDLER) {
+                        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
                             return CommonMain.getItemAccess(entity.getLevel(), entity.getBlockPos(), entity.getBlockState(), entity).map(access -> {
                                 return LazyOptional.of(() -> (T) access.get());
                             }).orElse(LazyOptional.empty());
@@ -101,7 +107,7 @@ public final class ForgeMain {
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
         modBus.addListener((RegisterEvent event) -> {
             event.register(ForgeRegistries.Keys.STAT_TYPES, helper -> {
-                content.getStats().forEach(it -> Registry.register(BuiltInRegistries.CUSTOM_STAT, it, it));
+                content.getStats().forEach(it -> Registry.register(Registry.CUSTOM_STAT, it, it));
             });
 
             event.register(ForgeRegistries.Keys.BLOCKS, helper -> {
@@ -121,20 +127,6 @@ public final class ForgeMain {
 
             event.register(ForgeRegistries.Keys.ENTITY_TYPES, helper -> {
                 CommonMain.iterateNamedList(content.getEntityTypes(), helper::register);
-            });
-
-            event.register(Registries.CREATIVE_MODE_TAB, helper -> {
-                helper.register(Utils.id("tab"), CreativeModeTab
-                        .builder()
-                        .icon(() -> ForgeRegistries.ITEMS.getValue(Utils.id("netherite_chest")).getDefaultInstance())
-                        .displayItems((itemDisplayParameters, output) -> {
-                            CommonMain.generateDisplayItems(itemDisplayParameters, stack -> {
-                                output.accept(stack, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-                            });
-                        })
-                        .title(Component.translatable("itemGroup.expandedstorage.tab"))
-                        .build()
-                );
             });
         });
 

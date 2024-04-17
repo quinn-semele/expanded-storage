@@ -12,13 +12,16 @@ import compasses.expandedstorage.impl.misc.ForgeClientHelper;
 import compasses.expandedstorage.impl.client.gui.AbstractScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.model.geom.ModelLayers;
+import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.entity.MinecartRenderer;
 import net.minecraft.client.renderer.item.ClampedItemPropertyFunction;
 import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraftforge.client.ConfigScreenHandler;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.ScreenEvent;
+import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -36,6 +39,14 @@ public class ForgeClient {
             if (event.getScreen() instanceof PageScreen screen) {
                 screen.addPageButtons();
             }
+        });
+
+        modBus.addListener((TextureStitchEvent.Pre event) -> {
+            if (!event.getAtlas().location().equals(Sheets.CHEST_SHEET)) {
+                return;
+            }
+
+            CommonMain.getAllChestTextures().forEach(event::addSprite);
         });
 
         modBus.addListener((FMLClientSetupEvent event) -> {

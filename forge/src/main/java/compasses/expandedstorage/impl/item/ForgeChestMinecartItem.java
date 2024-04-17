@@ -6,9 +6,9 @@ import compasses.expandedstorage.impl.entity.ChestMinecart;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -32,7 +32,7 @@ public final class ForgeChestMinecartItem extends ChestMinecartItem {
                 Supplier<ChestMinecart> renderEntity = Suppliers.memoize(() -> entityType.create(minecraft.level));
                 return new BlockEntityWithoutLevelRenderer(minecraft.getBlockEntityRenderDispatcher(), minecraft.getEntityModels()) {
                     @Override
-                    public void renderByItem(ItemStack itemStack, ItemDisplayContext context, PoseStack stack, MultiBufferSource source, int light, int overlay) {
+                    public void renderByItem(ItemStack itemStack, ItemTransforms.TransformType transform, PoseStack stack, MultiBufferSource source, int light, int overlay) {
                         Minecraft.getInstance().getEntityRenderDispatcher().render(renderEntity.get(), 0, 0, 0, 0, 0, stack, source, light);
                     }
                 };

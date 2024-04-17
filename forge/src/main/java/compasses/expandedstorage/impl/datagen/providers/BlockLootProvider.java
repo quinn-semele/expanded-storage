@@ -1,23 +1,21 @@
 package compasses.expandedstorage.impl.datagen.providers;
 
 import compasses.expandedstorage.impl.misc.Utils;
-import net.minecraft.data.loot.BlockLootSubProvider;
-import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.data.loot.BlockLoot;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 
-public final class BlockLootProvider extends BlockLootSubProvider {
+public final class BlockLootProvider extends BlockLoot {
     public BlockLootProvider() {
-        super(Set.of(), FeatureFlags.REGISTRY.allFlags());
+        super();
     }
 
     @Override
-    protected void generate() {
-        BlockLootTableHelper.registerLootTables(this::add, this::createNameableBlockEntityTable);
+    protected void addTables() {
+        BlockLootTableHelper.registerLootTables(this::add, BlockLoot::createNameableBlockEntityTable);
     }
 
     @Override
