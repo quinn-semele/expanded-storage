@@ -2,7 +2,7 @@ package compasses.expandedstorage.impl.datagen.content;
 
 import compasses.expandedstorage.impl.entity.ChestMinecart;
 import compasses.expandedstorage.impl.misc.Utils;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -22,6 +22,6 @@ public final class ModEntityTypes {
 
     private static <T extends Entity> EntityType<T> entityType(ResourceLocation id) {
         //noinspection unchecked
-        return (EntityType<T>) BuiltInRegistries.ENTITY_TYPE.get(id);
+        return (EntityType<T>) Registry.ENTITY_TYPE.get(id);
     }
 }

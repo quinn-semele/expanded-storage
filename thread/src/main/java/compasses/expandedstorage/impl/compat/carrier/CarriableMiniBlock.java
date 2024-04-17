@@ -16,8 +16,8 @@ final class CarriableMiniBlock extends CarriableOpenableBlock {
     }
 
     @Override
-    protected BlockState getPlacementState(Level level, BlockPos pos, CarriablePlacementContext context, CarryingData data, Player player) {
-        return super.getPlacementState(level, pos, context, data, player)
+    protected BlockState getPlacementState(Level level, BlockPos pos, CarriablePlacementContext context, CarryingData data) {
+        return super.getPlacementState(level, pos, context, data)
                     .setValue(MiniStorageBlock.SPARROW, data.getBlockState().getValue(MiniStorageBlock.SPARROW));
     }
 }

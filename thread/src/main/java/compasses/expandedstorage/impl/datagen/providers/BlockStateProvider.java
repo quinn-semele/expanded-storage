@@ -1,6 +1,6 @@
 package compasses.expandedstorage.impl.datagen.providers;
 
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.data.models.BlockModelGenerators;
 import net.minecraft.data.models.ItemModelGenerators;
@@ -11,8 +11,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.function.Consumer;
 
 public class BlockStateProvider extends FabricModelProvider {
-    public BlockStateProvider(FabricDataOutput output) {
-        super(output);
+    public BlockStateProvider(FabricDataGenerator dataGenerator) {
+        super(dataGenerator);
     }
 
     @Override

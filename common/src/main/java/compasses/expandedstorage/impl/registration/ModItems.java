@@ -2,7 +2,7 @@ package compasses.expandedstorage.impl.registration;
 
 import compasses.expandedstorage.impl.item.ChestMinecartItem;
 import compasses.expandedstorage.impl.misc.Utils;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -107,6 +107,6 @@ public final class ModItems {
 
     private static <T extends Item> T item(ResourceLocation id) {
         //noinspection unchecked
-        return (T) BuiltInRegistries.ITEM.get(id);
+        return (T) Registry.ITEM.get(id);
     }
 }

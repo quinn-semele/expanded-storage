@@ -1,10 +1,11 @@
 package compasses.expandedstorage.impl.client.gui.widget;
 
+import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.PoseStack;
 import compasses.expandedstorage.impl.misc.Utils;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
@@ -12,10 +13,9 @@ public final class PageButton extends Button {
     private static final ResourceLocation TEXTURE = Utils.id("textures/gui/page_buttons.png");
     private final int textureOffset;
 
-    public PageButton(int x, int y, int textureOffset, Component message, OnPress onPress) {
-        super(x, y, 12, 12, message, onPress, DEFAULT_NARRATION);
+    public PageButton(int x, int y, int textureOffset, Component message, OnPress onPress, OnTooltip onTooltip) {
+        super(x, y, 12, 12, message, onPress, onTooltip);
         this.textureOffset = textureOffset;
-        this.setTooltip(Tooltip.create(message));
     }
 
     public void setActive(boolean active) {
@@ -25,21 +25,23 @@ public final class PageButton extends Button {
         }
     }
 
-    private int getTextureY() {
-        if (!this.active) {
-            return 0;
-        } else if (this.isHoveredOrFocused()) {
-            return 24;
-        }
-        return 12;
-    }
-
     @Override
-    public void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
+    public void renderButton(PoseStack stack, int mouseX, int mouseY, float delta) {
+        RenderSystem.setShaderTexture(0, PageButton.TEXTURE);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, alpha);
         RenderSystem.enableBlend();
-        RenderSystem.enableDepthTest();
-        graphics.blit(TEXTURE, this.getX(), this.getY(), this.getWidth(), this.getHeight(), textureOffset * 12, this.getTextureY(), this.getWidth(), this.getHeight(), 32, 48);
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+        RenderSystem.defaultBlendFunc();
+        RenderSystem.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+        GuiComponent.blit(stack, x, y, textureOffset * 12, this.getYImage(this.isHoveredOrFocused()) * 12, width, height, 32, 48);
+    }
+
+    public void renderButtonTooltip(PoseStack stack, int mouseX, int mouseY) {
+        if (active) {
+            if (isHovered) {
+                this.renderToolTip(stack, mouseX, mouseY);
+            } else if (this.isFocused()) {
+                this.renderToolTip(stack, x, y);
+            }
+        }
     }
 }

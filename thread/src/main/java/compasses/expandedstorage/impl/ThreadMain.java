@@ -17,9 +17,9 @@ import compasses.expandedstorage.impl.block.misc.ChestItemAccess;
 import compasses.expandedstorage.impl.block.misc.GenericItemAccess;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.player.UseEntityCallback;
-import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.registry.OxidizableBlocksRegistry;
 import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
@@ -30,9 +30,6 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.resources.PreparableReloadListener;
@@ -41,6 +38,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.util.profiling.ProfilerFiller;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -61,23 +59,15 @@ public class ThreadMain implements ModInitializer {
 
         boolean isClient = fabricLoader.getEnvironmentType() == EnvType.CLIENT;
 
-        Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, Utils.id("tab"), FabricItemGroup
-                .builder()
-                .icon(() -> BuiltInRegistries.ITEM.get(Utils.id("netherite_chest")).getDefaultInstance())
-                .displayItems((itemDisplayParameters, output) -> {
-                    CommonMain.generateDisplayItems(itemDisplayParameters, stack -> {
-                        output.accept(stack, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-                    });
-                })
-                .title(Component.translatable("itemGroup.expandedstorage.tab")).build()
-        );
+        CreativeModeTab group = FabricItemGroupBuilder.build(Utils.id("tab"), () -> new ItemStack(Registry.ITEM.get(Utils.id("netherite_chest")))); // Fabric API is dumb.
 
-        CommonMain.constructContent(new ThreadCommonHelper(), GenericItemAccess::new, fabricLoader.isModLoaded("htm") ? HTMLockable::new : BasicLockable::new, isClient, ThreadMain::registerContent,
+
+        CommonMain.constructContent(new ThreadCommonHelper(), group, GenericItemAccess::new, fabricLoader.isModLoaded("htm") ? HTMLockable::new : BasicLockable::new, isClient, ThreadMain::registerContent,
                 /*Base*/ true,
                 /*Chest*/ BlockItem::new, ChestItemAccess::new,
                 /*Minecart Chest*/ ChestMinecartItem::new,
                 /*Old Chest*/
-                /*Barrel*/ TagKey.create(Registries.BLOCK, new ResourceLocation("c", "wooden_barrels")),
+                /*Barrel*/ TagKey.create(Registry.BLOCK_REGISTRY, new ResourceLocation("c", "wooden_barrels")),
                 /*Mini Storage*/ BlockItem::new);
 
         UseEntityCallback.EVENT.register((player, world, hand, entity, hit) -> CommonMain.interactWithEntity(world, player, hand, entity));
@@ -115,20 +105,20 @@ public class ThreadMain implements ModInitializer {
 
     public static void registerContent(Content content) {
         for (ResourceLocation stat : content.getStats()) {
-            Registry.register(BuiltInRegistries.CUSTOM_STAT, stat, stat);
+            Registry.register(Registry.CUSTOM_STAT, stat, stat);
         }
 
         CommonMain.iterateNamedList(content.getBlocks(), (name, value) -> {
-            Registry.register(BuiltInRegistries.BLOCK, name, value);
+            Registry.register(Registry.BLOCK, name, value);
         });
 
         //noinspection UnstableApiUsage
         ItemStorage.SIDED.registerForBlocks(ThreadMain::getItemAccess, content.getBlocks().stream().map(NamedValue::getValue).toArray(OpenableBlock[]::new));
 
-        CommonMain.iterateNamedList(content.getItems(), (name, value) -> Registry.register(BuiltInRegistries.ITEM, name, value));
+        CommonMain.iterateNamedList(content.getItems(), (name, value) -> Registry.register(Registry.ITEM, name, value));
 
         CommonMain.iterateNamedList(content.getEntityTypes(), (name, value) -> {
-            Registry.register(BuiltInRegistries.ENTITY_TYPE, name, value);
+            Registry.register(Registry.ENTITY_TYPE, name, value);
         });
 
         ThreadMain.registerBlockEntity(content.getChestBlockEntityType());
@@ -159,6 +149,6 @@ public class ThreadMain implements ModInitializer {
     }
 
     private static <T extends BlockEntity> void registerBlockEntity(NamedValue<BlockEntityType<T>> blockEntityType) {
-        Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, blockEntityType.getName(), blockEntityType.getValue());
+        Registry.register(Registry.BLOCK_ENTITY_TYPE, blockEntityType.getName(), blockEntityType.getValue());
     }
 }

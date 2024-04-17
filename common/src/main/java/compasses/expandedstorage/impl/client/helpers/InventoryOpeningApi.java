@@ -20,11 +20,11 @@ public class InventoryOpeningApi {
     }
 
     public static void openBlockInventory(ServerPlayer player, BlockPos pos, OpenableInventoryProvider<BlockContext> inventory) {
-        InventoryOpeningApi.s_openInventory(player, inventory.getOpenableInventory(new BlockContext(player.serverLevel(), player, pos)), inventory::onInitialOpen, inventory.getForcedScreenType());
+        InventoryOpeningApi.s_openInventory(player, inventory.getOpenableInventory(new BlockContext(player.getLevel(), player, pos)), inventory::onInitialOpen, inventory.getForcedScreenType());
     }
 
     public static void openEntityInventory(ServerPlayer player, OpenableInventoryProvider<BaseContext> inventory) {
-        InventoryOpeningApi.s_openInventory(player, inventory.getOpenableInventory(new BaseContext(player.serverLevel(), player)), inventory::onInitialOpen, inventory.getForcedScreenType());
+        InventoryOpeningApi.s_openInventory(player, inventory.getOpenableInventory(new BaseContext(player.getLevel(), player)), inventory::onInitialOpen, inventory.getForcedScreenType());
     }
 
     private static void s_openInventory(ServerPlayer player, OpenableInventory inventory, Consumer<ServerPlayer> onInitialOpen, ResourceLocation forcedScreenType) {

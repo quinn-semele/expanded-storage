@@ -5,24 +5,21 @@ import compasses.expandedstorage.impl.datagen.content.ModTags;
 import compasses.expandedstorage.impl.registration.ModBlocks;
 import compasses.expandedstorage.impl.registration.ModItems;
 import compasses.expandedstorage.impl.datagen.content.ThreadTags;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.concurrent.CompletableFuture;
-
 public final class TagProvider {
     public static final class Block extends FabricTagProvider.BlockTagProvider {
-        public Block(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> providerFuture) {
-            super(output, providerFuture);
+        public Block(FabricDataGenerator dataGenerator) {
+            super(dataGenerator);
         }
 
         @Override
-        protected void addTags(HolderLookup.Provider provider) {
+        protected void generateTags() {
             TagHelper.registerBlockTags(this::getOrCreateTagBuilder);
             this.getOrCreateTagBuilder(ThreadTags.Blocks.WOODEN_CHESTS)
                 .add(Blocks.CHEST)
@@ -42,12 +39,12 @@ public final class TagProvider {
     }
 
     public static final class Item extends FabricTagProvider.ItemTagProvider {
-        public Item(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> providerFuture) {
-            super(output, providerFuture);
+        public Item(FabricDataGenerator dataGenerator) {
+            super(dataGenerator);
         }
 
         @Override
-        protected void addTags(HolderLookup.Provider provider) {
+        protected void generateTags() {
             TagHelper.registerItemTags(this::getOrCreateTagBuilder);
             this.getOrCreateTagBuilder(ThreadTags.Items.WOODEN_CHESTS)
                 .add(Items.CHEST)
@@ -106,12 +103,12 @@ public final class TagProvider {
     }
 
     public static final class EntityTypes extends FabricTagProvider.EntityTypeTagProvider {
-        public EntityTypes(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> providerFuture) {
-            super(output, providerFuture);
+        public EntityTypes(FabricDataGenerator dataGenerator) {
+            super(dataGenerator);
         }
 
         @Override
-        protected void addTags(HolderLookup.Provider provider) {
+        protected void generateTags() {
             this.getOrCreateTagBuilder(ThreadTags.Entities.WOODEN_CHEST_MINECARTS)
                 .add(EntityType.CHEST_MINECART);
 

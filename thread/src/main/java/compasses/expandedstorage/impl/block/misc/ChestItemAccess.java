@@ -2,31 +2,31 @@ package compasses.expandedstorage.impl.block.misc;
 
 import compasses.expandedstorage.impl.block.entity.extendable.OpenableBlockEntity;
 import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
-import net.fabricmc.fabric.api.transfer.v1.storage.SlottedStorage;
-import net.fabricmc.fabric.api.transfer.v1.storage.base.CombinedSlottedStorage;
+import net.fabricmc.fabric.api.transfer.v1.storage.Storage;
+import net.fabricmc.fabric.api.transfer.v1.storage.base.CombinedStorage;
 
 import java.util.List;
 
-public final class ChestItemAccess extends GenericItemAccess implements DoubleItemAccess<SlottedStorage<ItemVariant>> {
-    private SlottedStorage<ItemVariant> cache;
+public final class ChestItemAccess extends GenericItemAccess implements DoubleItemAccess<Storage<ItemVariant>> {
+    private Storage<ItemVariant> cache;
 
     public ChestItemAccess(OpenableBlockEntity entity) {
         super(entity);
     }
 
     @Override
-    public SlottedStorage<ItemVariant> get() {
+    public Storage<ItemVariant> get() {
         return this.hasCachedAccess() ? cache : this.getSingle();
     }
 
     @Override
-    public SlottedStorage<ItemVariant> getSingle() {
+    public Storage<ItemVariant> getSingle() {
         return super.get();
     }
 
     @Override
-    public void setOther(DoubleItemAccess<SlottedStorage<ItemVariant>> other) {
-        cache = other == null ? null : new CombinedSlottedStorage<>(List.of(this.getSingle(), other.getSingle()));
+    public void setOther(DoubleItemAccess<Storage<ItemVariant>> other) {
+        cache = other == null ? null : new CombinedStorage<>(List.of(this.getSingle(), other.getSingle()));
     }
 
     @Override

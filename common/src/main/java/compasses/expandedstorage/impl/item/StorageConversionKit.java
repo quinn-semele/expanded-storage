@@ -8,7 +8,7 @@ import compasses.expandedstorage.impl.recipe.EntityConversionRecipe;
 import compasses.expandedstorage.impl.registration.ModItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.registries.Registries;
+import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
@@ -29,7 +29,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public final class StorageConversionKit extends Item implements EntityInteractableItem {
-    private static final TagKey<EntityType<?>> ES_WOODEN_CHEST_MINECARTS = TagKey.create(Registries.ENTITY_TYPE, Utils.id("wooden_chest_minecarts"));
+    private static final TagKey<EntityType<?>> ES_WOODEN_CHEST_MINECARTS = TagKey.create(Registry.ENTITY_TYPE_REGISTRY, Utils.id("wooden_chest_minecarts"));
     public static final ToolUsageResult NOT_ENOUGH_UPGRADES = ToolUsageResult.fail();
     private final Component instructionsFirst;
     private final Component instructionsSecond;

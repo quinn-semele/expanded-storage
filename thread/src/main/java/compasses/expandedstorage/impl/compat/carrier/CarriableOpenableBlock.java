@@ -1,9 +1,8 @@
 package compasses.expandedstorage.impl.compat.carrier;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Axis;
+import com.mojang.math.Vector3f;
 import com.mojang.serialization.DataResult;
-import me.steven.carrier.Carrier;
 import me.steven.carrier.api.Carriable;
 import me.steven.carrier.api.CarriablePlacementContext;
 import me.steven.carrier.api.CarrierComponent;
@@ -51,23 +50,23 @@ class CarriableOpenableBlock implements Carriable<Block> {
     }
 
     @Override
-    public @NotNull InteractionResult tryPickup(@NotNull Player player, @NotNull Level level, @NotNull BlockPos blockPos, @Nullable Entity entity) {
+    public @NotNull InteractionResult tryPickup(@NotNull CarrierComponent component, @NotNull Level level, @NotNull BlockPos pos, @Nullable Entity entity) {
         if (level.isClientSide()) {
             return InteractionResult.PASS;
         }
 
-        BlockEntity blockEntity = level.getBlockEntity(blockPos);
-        BlockState state = level.getBlockState(blockPos);
+        BlockEntity blockEntity = level.getBlockEntity(pos);
+        BlockState state = level.getBlockState(pos);
 
-        createCarryingData(id, state, blockEntity, player);
+        component.setCarryingData(createCarryingData(id, state, blockEntity, component.getOwner()));
 
-        level.removeBlockEntity(blockPos);
-        level.removeBlock(blockPos, false);
+        level.removeBlockEntity(pos);
+        level.removeBlock(pos, false);
 
         return InteractionResult.SUCCESS;
     }
 
-    private void createCarryingData(ResourceLocation type, BlockState state, BlockEntity entity, Player player) {
+    private CarryingData createCarryingData(ResourceLocation type, BlockState state, BlockEntity entity, Player player) {
         CompoundTag tag = new CompoundTag();
         tag.putUUID("player", player.getUUID());
         DataResult<Tag> result = BlockState.CODEC.encodeStart(NbtOps.INSTANCE, state);
@@ -79,28 +78,18 @@ class CarriableOpenableBlock implements Carriable<Block> {
             tag.put("blockEntity", entityTag);
         }
 
-        CarrierComponent carrier = Carrier.HOLDER.get(player);
-        carrier.setCarryingData(new CarryingData(type, tag));
+        return new CarryingData(type, tag);
     }
 
-    @NotNull
     @Override
-    public InteractionResult tryPlace(@NotNull CarryingData carryingData, @NotNull Level level, @NotNull CarriablePlacementContext context) {
+    public @NotNull InteractionResult tryPlace(@NotNull CarrierComponent component, @NotNull Level level, @NotNull CarriablePlacementContext context) {
         if (level.isClientSide()) {
             return InteractionResult.PASS;
         }
 
         BlockPos pos = context.getBlockPos();
-        CompoundTag tag = carryingData.getTag();
-        BlockState state;
-
-        if (tag.hasUUID("player")) {
-            Player player = level.getServer().getPlayerList().getPlayer(carryingData.getTag().getUUID("player"));
-
-            state = this.getPlacementState(level, pos, context, carryingData, player);
-        } else {
-            state = this.getPlacementState(level, pos, context, carryingData, null);
-        }
+        CarryingData carryingData = component.getCarryingData();
+        BlockState state = this.getPlacementState(level, pos, context, carryingData);
 
         level.setBlockAndUpdate(pos, state);
         BlockEntity blockEntity = level.getBlockEntity(pos);
@@ -116,14 +105,14 @@ class CarriableOpenableBlock implements Carriable<Block> {
         return InteractionResult.SUCCESS;
     }
 
-    protected BlockState getPlacementState(Level level, BlockPos pos, CarriablePlacementContext context, CarryingData data, Player player) {
-        return parent.getStateForPlacement(new BlockPlaceContext(level, player, InteractionHand.MAIN_HAND, ItemStack.EMPTY, new BlockHitResult(new Vec3(pos.getX(), pos.getY(), pos.getZ()), context.getSide(), context.getBlockPos(), false)) {
+    protected BlockState getPlacementState(Level level, BlockPos pos, CarriablePlacementContext context, CarryingData data) {
+        return parent.getStateForPlacement(new BlockPlaceContext(level, context.getHolder().getOwner(), InteractionHand.MAIN_HAND, ItemStack.EMPTY, new BlockHitResult(new Vec3(pos.getX(), pos.getY(), pos.getZ()), context.getSide(), context.getBlockPos(), false)) {
             public Direction getHorizontalDirection() {
                 return context.getPlayerLook();
             }
 
             public boolean isSecondaryUseActive() {
-                return context.isSneaking();
+                return context.getHolder().getOwner().isSecondaryUseActive();
             }
         });
     }
@@ -133,7 +122,7 @@ class CarriableOpenableBlock implements Carriable<Block> {
         stack.pushPose();
         stack.scale(0.6F, 0.6F, 0.6F);
         float yaw = Mth.rotLerp(delta, player.yBodyRotO, player.yBodyRot);
-        stack.mulPose(Axis.YP.rotationDegrees(-180 - yaw));
+        stack.mulPose(Vector3f.YP.rotationDegrees(-180 - yaw));
         stack.translate(-0.5D, 0.8D, -1.3D);
         this.preRenderBlock(player, component, stack, consumer, delta, light);
 

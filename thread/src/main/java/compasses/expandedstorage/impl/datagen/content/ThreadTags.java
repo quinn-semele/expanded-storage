@@ -1,6 +1,6 @@
 package compasses.expandedstorage.impl.datagen.content;
 
-import net.minecraft.core.registries.Registries;
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
@@ -28,7 +28,7 @@ public final class ThreadTags {
         public static final TagKey<Item> BAMBOO = tag(commonId("bamboo"));
 
         private static TagKey<Item> tag(ResourceLocation id) {
-            return TagKey.create(Registries.ITEM, id);
+            return TagKey.create(Registry.ITEM_REGISTRY, id);
         }
     }
 
@@ -37,7 +37,7 @@ public final class ThreadTags {
         public static final TagKey<Block> WOODEN_BARRELS = tag(commonId("wooden_barrels"));
 
         private static TagKey<Block> tag(ResourceLocation id) {
-            return TagKey.create(Registries.BLOCK, id);
+            return TagKey.create(Registry.BLOCK_REGISTRY, id);
         }
     }
 
@@ -45,7 +45,7 @@ public final class ThreadTags {
         public static final TagKey<EntityType<?>> WOODEN_CHEST_MINECARTS = tag(commonId("wooden_chest_minecarts"));
 
         private static TagKey<EntityType<?>> tag(ResourceLocation id) {
-            return TagKey.create(Registries.ENTITY_TYPE, id);
+            return TagKey.create(Registry.ENTITY_TYPE_REGISTRY, id);
         }
     }
 }

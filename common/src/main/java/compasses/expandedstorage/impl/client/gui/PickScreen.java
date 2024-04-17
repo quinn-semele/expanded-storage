@@ -1,6 +1,7 @@
 package compasses.expandedstorage.impl.client.gui;
 
 import com.google.common.collect.ImmutableSortedSet;
+import com.mojang.blaze3d.vertex.PoseStack;
 import compasses.expandedstorage.impl.CommonClient;
 import compasses.expandedstorage.impl.client.gui.widget.PickButton;
 import compasses.expandedstorage.impl.client.gui.widget.ScreenPickButton;
@@ -8,16 +9,20 @@ import compasses.expandedstorage.impl.misc.Utils;
 import compasses.expandedstorage.impl.inventory.handler.AbstractHandler;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.components.Tooltip;
+import net.minecraft.client.gui.GuiComponent;
+import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public final class PickScreen extends Screen {
@@ -45,6 +50,7 @@ public final class PickScreen extends Screen {
             }
     );
     private final Set<ResourceLocation> options = ImmutableSortedSet.copyOf(PickScreen.BUTTON_SETTINGS.keySet());
+    private final List<ScreenPickButton> optionButtons = new ArrayList<>(options.size());
     private final Supplier<Screen> returnToScreen;
     private final AbstractHandler handler;
     private int topPadding;
@@ -101,21 +107,42 @@ public final class PickScreen extends Screen {
         int x = 0;
         int topPadding = (height - 96) / 2;
         this.topPadding = topPadding;
+        optionButtons.clear();
         for (ResourceLocation option : options) {
             PickButton settings = PickScreen.BUTTON_SETTINGS.get(option);
             boolean isWarn = settings.shouldShowWarning(width, height);
             boolean isCurrent = option.equals(preference);
-            MutableComponent tooltipMessage = Component.literal("").append(settings.getTitle());
-            if (isCurrent) {
-                tooltipMessage.append("\n");
-                tooltipMessage.append(CURRENT_OPTION_TEXT);
-            }
-            if (isWarn) {
-                tooltipMessage.append("\n");
-                settings.getWarningText().forEach(tooltipMessage::append);
-            }
-            this.addRenderableWidget(new ScreenPickButton(outerPadding + (innerPadding + 96) * x, topPadding, 96, 96,
-                    settings.getTexture(), settings.getTitle(), isWarn, isCurrent, __ -> this.updatePlayerPreference(option), Tooltip.create(tooltipMessage, tooltipMessage)));
+            Button.OnTooltip tooltip = new Button.OnTooltip() {
+
+                @Override
+                public void onTooltip(Button button, PoseStack stack, int x, int y) {
+                    List<Component> tooltip = new ArrayList<>(4);
+                    tooltip.add(button.getMessage());
+                    if (isCurrent) {
+                        tooltip.add(CURRENT_OPTION_TEXT);
+                    }
+                    if (isWarn) {
+                        tooltip.addAll(settings.getWarningText());
+                    }
+                    PickScreen.this.renderTooltip(stack, tooltip, Optional.empty(), x, y);
+                }
+
+                @Override
+                public void narrateTooltip(Consumer<Component> consumer) {
+                    if (isCurrent) {
+                        consumer.accept(CURRENT_OPTION_TEXT);
+                    }
+                    if (isWarn) {
+                        MutableComponent text = Component.literal("");
+                        for (Component component : settings.getWarningText()) {
+                            text.append(component);
+                        }
+                        consumer.accept(text);
+                    }
+                }
+            };
+            optionButtons.add(this.addRenderableWidget(new ScreenPickButton(outerPadding + (innerPadding + 96) * x, topPadding, 96, 96,
+                    settings.getTexture(), settings.getTitle(), isWarn, isCurrent, button -> this.updatePlayerPreference(option), tooltip)));
             x++;
         }
     }
@@ -126,9 +153,10 @@ public final class PickScreen extends Screen {
     }
 
     @Override
-    public void render(GuiGraphics graphics, int mouseX, int mouseY, float delta) {
-        this.renderBackground(graphics);
-        super.render(graphics, mouseX, mouseY, delta);
-        graphics.drawCenteredString(font, title, width / 2, Math.max(topPadding / 2, 0), 0xFFFFFFFF);
+    public void render(PoseStack stack, int mouseX, int mouseY, float delta) {
+        this.renderBackground(stack);
+        super.render(stack, mouseX, mouseY, delta);
+        optionButtons.forEach(button -> button.renderButtonTooltip(stack, mouseX, mouseY));
+        GuiComponent.drawCenteredString(stack, font, title, width / 2, Math.max(topPadding / 2, 0), 0xFFFFFFFF);
     }
 }

@@ -1,12 +1,13 @@
 package compasses.expandedstorage.impl.client.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.PoseStack;
 import compasses.expandedstorage.impl.CommonClient;
 import compasses.expandedstorage.impl.inventory.handler.ToggleableSlot;
 import compasses.expandedstorage.impl.misc.Utils;
 import compasses.expandedstorage.impl.client.function.ScreenSize;
 import compasses.expandedstorage.impl.inventory.handler.AbstractHandler;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
@@ -104,31 +105,32 @@ public final class ScrollScreen extends AbstractScreen {
             int xRight = leftPos + Utils.CONTAINER_PADDING_LDR + inventoryWidth * Utils.SLOT_SIZE;
             int yTop = topPos + Utils.CONTAINER_HEADER_HEIGHT + (inventoryHeight - 1) * Utils.SLOT_SIZE;
             int width = blankSlots * Utils.SLOT_SIZE;
-            blankArea = new TexturedRect(textureLocation, xRight - width, yTop, width, Utils.SLOT_SIZE, Utils.CONTAINER_PADDING_LDR, imageHeight, textureWidth, textureHeight);
+            blankArea = new TexturedRect(xRight - width, yTop, width, Utils.SLOT_SIZE, Utils.CONTAINER_PADDING_LDR, imageHeight, textureWidth, textureHeight);
             blankAreaVisible = topRow == (totalRows - inventoryHeight);
         }
     }
 
     @Override
-    protected void renderBg(GuiGraphics graphics, float delta, int mouseX, int mouseY) {
+    protected void renderBg(PoseStack stack, float delta, int mouseX, int mouseY) {
+        RenderSystem.setShaderTexture(0, textureLocation);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        graphics.blit(textureLocation, leftPos, topPos, 0, 0, imageWidth, imageHeight, textureWidth, textureHeight);
+        GuiComponent.blit(stack, leftPos, topPos, 0, 0, imageWidth, imageHeight, textureWidth, textureHeight);
 
         int containerSlotsHeight = inventoryHeight * 18;
         int scrollbarHeight = containerSlotsHeight + (inventoryWidth > 9 ? 34 : 24);
-        graphics.blit(textureLocation, leftPos + imageWidth - 4, topPos, imageWidth, 0, 22, scrollbarHeight, textureWidth, textureHeight);
+        GuiComponent.blit(stack, leftPos + imageWidth - 4, topPos, imageWidth, 0, 22, scrollbarHeight, textureWidth, textureHeight);
 
-        graphics.blit(textureLocation, leftPos + imageWidth - 2, topPos + Utils.CONTAINER_HEADER_HEIGHT + 1 + thumbY, imageWidth, scrollbarHeight, ScrollScreen.THUMB_WIDTH, ScrollScreen.THUMB_HEIGHT, textureWidth, textureHeight);
+        GuiComponent.blit(stack, leftPos + imageWidth - 2, topPos + Utils.CONTAINER_HEADER_HEIGHT + 1 + thumbY, imageWidth, scrollbarHeight, ScrollScreen.THUMB_WIDTH, ScrollScreen.THUMB_HEIGHT, textureWidth, textureHeight);
 
         if (blankArea != null && blankAreaVisible) {
-            blankArea.render(graphics);
+            blankArea.render(stack);
         }
     }
 
     @Override
-    protected void renderLabels(GuiGraphics graphics, int mouseX, int mouseY) {
-        graphics.drawString(font, title, 8, 6, 0x404040, false);
-        graphics.drawString(font, playerInventoryTitle, 8, imageHeight - 96 + 2, 0x404040, false);
+    protected void renderLabels(PoseStack stack, int mouseX, int mouseY) {
+        font.draw(stack, title, 8, 6, 0x404040);
+        font.draw(stack, playerInventoryTitle, 8, imageHeight - 96 + 2, 0x404040);
     }
 
     private boolean isMouseOverTrack(double mouseX, double mouseY) {

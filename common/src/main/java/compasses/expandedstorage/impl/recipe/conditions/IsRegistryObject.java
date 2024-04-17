@@ -4,7 +4,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import compasses.expandedstorage.impl.misc.Utils;
 import net.minecraft.core.Registry;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.Nullable;
@@ -49,7 +48,7 @@ public class IsRegistryObject implements RecipeCondition {
     public static IsRegistryObject readFromBuffer(FriendlyByteBuf buffer) {
         ResourceLocation registryId = buffer.readResourceLocation();
         ResourceLocation objectId = buffer.readResourceLocation();
-        Registry<?> registry = BuiltInRegistries.REGISTRY.get(registryId);
+        Registry<?> registry = Registry.REGISTRY.get(registryId);
         if (registry == null) {
             throw new NullPointerException("Unknown registry: " + registryId);
         }

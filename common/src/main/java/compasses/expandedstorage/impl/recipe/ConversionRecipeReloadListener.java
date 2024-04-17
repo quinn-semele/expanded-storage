@@ -9,7 +9,7 @@ import compasses.expandedstorage.impl.recipe.conditions.RecipeCondition;
 import compasses.expandedstorage.impl.recipe.misc.JsonHelper;
 import compasses.expandedstorage.impl.recipe.misc.PartialBlockState;
 import compasses.expandedstorage.impl.recipe.misc.RecipeTool;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
@@ -79,7 +79,7 @@ public class ConversionRecipeReloadListener extends SimpleJsonResourceReloadList
         if (resultId.toString().equals("minecraft:air")) {
             return;
         }
-        EntityType<?> output = BuiltInRegistries.ENTITY_TYPE.getOptional(resultId).orElseThrow();
+        EntityType<?> output = Registry.ENTITY_TYPE.getOptional(resultId).orElseThrow();
         JsonHelper.checkHasEntry(root, "inputs");
         entityRecipes.add(new EntityConversionRecipe<>(recipeTool, output, RecipeCondition.readEntityCondition(root.get("inputs"))));
     }

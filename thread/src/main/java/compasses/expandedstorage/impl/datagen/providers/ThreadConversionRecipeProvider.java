@@ -4,11 +4,11 @@ import compasses.expandedstorage.impl.recipe.conditions.IsInTagCondition;
 import compasses.expandedstorage.impl.recipe.conditions.OrCondition;
 import compasses.expandedstorage.impl.recipe.conditions.RecipeCondition;
 import compasses.expandedstorage.impl.datagen.content.ThreadTags;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 
 public class ThreadConversionRecipeProvider extends ConversionRecipeProvider {
-    public ThreadConversionRecipeProvider(FabricDataOutput output) {
-        super(output);
+    public ThreadConversionRecipeProvider(FabricDataGenerator dataGenerator) {
+        super(dataGenerator);
     }
 
     @Override

@@ -19,11 +19,13 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.BuiltinItemRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.multiplayer.ClientPacketListener;
+import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.entity.MinecartRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
@@ -45,6 +47,7 @@ public class ThreadClient implements ClientModInitializer {
 
         var content = ThreadMain.getContentForClient();
 
+        ThreadClient.registerChestEntityTextures();
         ThreadClient.registerChestBlockEntityRenderer();
         ThreadClient.registerItemRenderers(content.getChestItems());
         ThreadClient.registerMinecartEntityRenderers(content.getChestMinecartEntityTypes());
@@ -66,6 +69,12 @@ public class ThreadClient implements ClientModInitializer {
         List<BlockConversionRecipe<?>> blockRecipes = new ArrayList<>(buffer.readCollection(ArrayList::new, BlockConversionRecipe::readFromBuffer));
         List<EntityConversionRecipe<?>> entityRecipes = new ArrayList<>(buffer.readCollection(ArrayList::new, EntityConversionRecipe::readFromBuffer));
         client.execute(() -> ConversionRecipeManager.INSTANCE.replaceAllRecipes(blockRecipes, entityRecipes));
+    }
+
+    private static void registerChestEntityTextures() {
+        ClientSpriteRegistryCallback.event(Sheets.CHEST_SHEET).register((atlasTexture, registry) -> {
+            CommonMain.getAllChestTextures().forEach(registry::register);
+        });
     }
 
     public static void registerChestBlockEntityRenderer() {

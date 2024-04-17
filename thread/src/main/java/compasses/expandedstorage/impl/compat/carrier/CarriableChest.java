@@ -1,7 +1,7 @@
 package compasses.expandedstorage.impl.compat.carrier;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Axis;
+import com.mojang.math.Vector3f;
 import me.steven.carrier.api.CarrierComponent;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.resources.ResourceLocation;
@@ -16,7 +16,7 @@ final class CarriableChest extends CarriableOpenableBlock {
     @Override
     protected void preRenderBlock(Player player, CarrierComponent component, PoseStack stack, MultiBufferSource consumer, float delta, int light) {
         stack.translate(0.5D, 0.5D, 0.5D);
-        stack.mulPose(Axis.YN.rotationDegrees(180.0F));
+        stack.mulPose(Vector3f.YN.rotationDegrees(180.0F));
         stack.translate(-0.5D, -0.5D, -0.5D);
     }
 }

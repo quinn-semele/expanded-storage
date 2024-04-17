@@ -50,6 +50,7 @@ dependencies {
         modCompileOnly(it) {
             exclude(group = "net.fabricmc")
             exclude(group = "net.fabricmc.fabric-api")
+            exclude(group = "com.github.astei")
         }
     }
 
@@ -57,7 +58,7 @@ dependencies {
         modRuntimeOnly(it) {
             exclude(group = "net.fabricmc")
             exclude(group = "net.fabricmc.fabric-api")
+            exclude(group = "com.github.astei")
         }
     }
 }
-

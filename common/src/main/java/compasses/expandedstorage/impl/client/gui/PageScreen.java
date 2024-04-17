@@ -1,13 +1,15 @@
 package compasses.expandedstorage.impl.client.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.datafixers.util.Pair;
 import compasses.expandedstorage.impl.CommonClient;
 import compasses.expandedstorage.impl.client.gui.widget.PageButton;
 import compasses.expandedstorage.impl.misc.Utils;
 import compasses.expandedstorage.impl.client.function.ScreenSize;
 import compasses.expandedstorage.impl.inventory.handler.AbstractHandler;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiComponent;
+import net.minecraft.client.gui.components.AbstractButton;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -54,7 +56,7 @@ public final class PageScreen extends AbstractScreen {
     }
 
     private static boolean regionIntersects(AbstractWidget widget, int x, int y, int width, int height) {
-        return widget.getX() <= x + width && y <= widget.getY() + widget.getHeight() || x <= widget.getX() + widget.getWidth() && widget.getY() <= y + height;
+        return widget.x <= x + width && y <= widget.y + widget.getHeight() || x <= widget.x + widget.getWidth() && widget.y <= y + height;
     }
 
     public static ScreenSize retrieveScreenSize(int slots, int scaledWidth, int scaledHeight) {
@@ -104,11 +106,12 @@ public final class PageScreen extends AbstractScreen {
     }
 
     @Override
-    protected void renderBg(GuiGraphics graphics, float delta, int mouseX, int mouseY) {
+    protected void renderBg(PoseStack stack, float delta, int mouseX, int mouseY) {
+        RenderSystem.setShaderTexture(0, textureLocation);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        graphics.blit(textureLocation, leftPos, topPos, 0, 0, imageWidth, imageHeight, textureWidth, textureHeight);
+        GuiComponent.blit(stack, leftPos, topPos, 0, 0, imageWidth, imageHeight, textureWidth, textureHeight);
         if (page == pages) {
-            blankArea.forEach(image -> image.render(graphics));
+            blankArea.forEach(image -> image.render(stack));
         }
     }
 
@@ -169,7 +172,7 @@ public final class PageScreen extends AbstractScreen {
 
     private void setPageText() {
         currentPageText = Component.translatable("screen.expandedstorage.page_x_y", page, pages);
-        pageTextX = (leftPageButton.getX() + leftPageButton.getWidth() + rightPageButton.getX()) / 2.0f - font.width(currentPageText) / 2.0f + 0.5f;
+        pageTextX = (leftPageButton.x + leftPageButton.getWidth() + rightPageButton.x) / 2.0f - font.width(currentPageText) / 2.0f + 0.5f;
     }
 
     private void recalculateBlankArea() {
@@ -180,26 +183,32 @@ public final class PageScreen extends AbstractScreen {
             int yTop = topPos + Utils.CONTAINER_HEADER_HEIGHT + (inventoryHeight - 1) * Utils.SLOT_SIZE;
             int xLeft = leftPos + Utils.CONTAINER_PADDING_LDR;
             for (int i = 0; i < rows; i++) {
-                blankArea.add(new TexturedRect(textureLocation, xLeft, yTop, inventoryWidth * Utils.SLOT_SIZE, Utils.SLOT_SIZE,
+                blankArea.add(new TexturedRect(xLeft, yTop, inventoryWidth * Utils.SLOT_SIZE, Utils.SLOT_SIZE,
                         Utils.CONTAINER_PADDING_LDR, imageHeight, textureWidth, textureHeight));
                 yTop -= Utils.SLOT_SIZE;
             }
             if (remainder > 0) {
                 int xRight = leftPos + Utils.CONTAINER_PADDING_LDR + inventoryWidth * Utils.SLOT_SIZE;
                 int width = remainder * Utils.SLOT_SIZE;
-                blankArea.add(new TexturedRect(textureLocation, xRight - width, yTop, width, Utils.SLOT_SIZE,
+                blankArea.add(new TexturedRect(xRight - width, yTop, width, Utils.SLOT_SIZE,
                         Utils.CONTAINER_PADDING_LDR, imageHeight, textureWidth, textureHeight));
             }
         }
     }
 
     @Override
-    protected void renderLabels(GuiGraphics graphics, int mouseX, int mouseY) {
-        graphics.drawString(font, title, 8, 6, 0x404040, false);
-        graphics.drawString(font, playerInventoryTitle, 8, imageHeight - 96 + 2, 0x404040, false);
+    protected void renderTooltip(PoseStack stack, int mouseX, int mouseY) {
+        super.renderTooltip(stack, mouseX, mouseY);
+        leftPageButton.renderButtonTooltip(stack, mouseX, mouseY);
+        rightPageButton.renderButtonTooltip(stack, mouseX, mouseY);
+    }
+
+    @Override
+    protected void renderLabels(PoseStack stack, int mouseX, int mouseY) {
+        font.draw(stack, title, 8, 6, 0x404040);
+        font.draw(stack, playerInventoryTitle, 8, imageHeight - 96 + 2, 0x404040);
         if (currentPageText != null) {
-            // todo: remove cast if possible
-            graphics.drawString(font, currentPageText.getVisualOrderText(), (int) (pageTextX - leftPos), imageHeight - 94, 0x404040, false);
+            font.draw(stack, currentPageText.getVisualOrderText(), pageTextX - leftPos, imageHeight - 94, 0x404040);
         }
     }
 
@@ -226,10 +235,10 @@ public final class PageScreen extends AbstractScreen {
                 renderableChildren.add(widget);
             }
         }
-        renderableChildren.sort(Comparator.comparingInt(a -> -a.getX()));
+        renderableChildren.sort(Comparator.comparingInt(a -> -a.x));
         for (AbstractWidget widget : renderableChildren) {
             if (PageScreen.regionIntersects(widget, x, y, width, 12)) {
-                x = widget.getX() - width - 2;
+                x = widget.x - width - 2;
             }
         }
         // Honestly this is dumb.
@@ -237,13 +246,19 @@ public final class PageScreen extends AbstractScreen {
             x -= 14;
         }
         leftPageButton = new PageButton(x, y, 0,
-                Component.translatable("screen.expandedstorage.prev_page"), button -> this.setPage(page, page - 1));
+                Component.translatable("screen.expandedstorage.prev_page"), button -> this.setPage(page, page - 1),
+                this::renderButtonTooltip);
         leftPageButton.active = page != 1;
         this.addRenderableWidget(leftPageButton);
         rightPageButton = new PageButton(x + 42, y, 1,
-                Component.translatable("screen.expandedstorage.next_page"), button -> this.setPage(page, page + 1));
+                Component.translatable("screen.expandedstorage.next_page"), button -> this.setPage(page, page + 1),
+                this::renderButtonTooltip);
         rightPageButton.active = page != pages;
         this.addRenderableWidget(rightPageButton);
         this.setPageText();
+    }
+
+    private void renderButtonTooltip(AbstractButton button, PoseStack stack, int x, int y) {
+        this.renderTooltip(stack, button.getMessage(), x, y);
     }
 }

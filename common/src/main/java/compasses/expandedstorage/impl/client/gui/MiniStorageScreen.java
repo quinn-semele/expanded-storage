@@ -1,9 +1,10 @@
 package compasses.expandedstorage.impl.client.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.PoseStack;
 import compasses.expandedstorage.impl.client.function.ScreenSize;
 import compasses.expandedstorage.impl.inventory.handler.AbstractHandler;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.Slot;
@@ -27,8 +28,9 @@ public final class MiniStorageScreen extends AbstractScreen {
     }
 
     @Override
-    protected void renderBg(GuiGraphics graphics, float delta, int mouseX, int mouseY) {
+    protected void renderBg(PoseStack stack, float delta, int mouseX, int mouseY) {
+        RenderSystem.setShaderTexture(0, textureLocation);
         RenderSystem.setShaderColor(1, 1, 1, 1);
-        graphics.blit(textureLocation, leftPos, topPos, 0, 0, imageWidth, imageHeight, textureWidth, textureHeight);
+        GuiComponent.blit(stack, leftPos, topPos, 0, 0, imageWidth, imageHeight, textureWidth, textureHeight);
     }
 }

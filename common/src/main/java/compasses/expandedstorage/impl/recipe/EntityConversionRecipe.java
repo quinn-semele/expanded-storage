@@ -6,7 +6,7 @@ import compasses.expandedstorage.impl.entity.ChestMinecart;
 import compasses.expandedstorage.impl.recipe.conditions.RecipeCondition;
 import compasses.expandedstorage.impl.recipe.misc.RecipeTool;
 import net.minecraft.core.NonNullList;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.Registry;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Clearable;
@@ -45,28 +45,27 @@ public class EntityConversionRecipe<O extends Entity> extends ConversionRecipe<E
         }
 
         ServerLevel serverLevel = (ServerLevel) level;
-        //noinspection unchecked
-        ChestMinecart newCart = ((EntityType<ChestMinecart>) output).create(serverLevel, null, cart -> {
-            boolean isMinecraftCart = input instanceof AbstractMinecartContainer;
-            NonNullList<ItemStack> items = isMinecraftCart ? ((AbstractMinecartContainer) input).getItemStacks() : ((ChestMinecart) input).getItems();
-            int inserted = cart.replaceInventoryWith(items);
-            if (inserted < items.size()) {
-                Vec3 pos = input.position();
-                for (int i = inserted; i < items.size(); i++) {
-                    Containers.dropItemStack(level, pos.x(), pos.y(), pos.z(), items.get(i));
-                }
-            }
-            cart.setPos(input.position());
-            cart.setXRot(input.getXRot());
-            cart.setYRot(input.getYRot());
-            cart.setDeltaMovement(input.getDeltaMovement());
-            if (input.hasCustomName()) {
-                cart.setCustomName(input.getCustomName());
-            }
-        }, input.getOnPos(), MobSpawnType.COMMAND, true, false);
+        ChestMinecart newCart = (ChestMinecart) output.create(serverLevel, null, input.hasCustomName() ? input.getCustomName() : null, null, input.getOnPos(), MobSpawnType.COMMAND, true, false);
 
         if (newCart == null) {
             return InteractionResult.FAIL;
+        }
+
+        boolean isMinecraftCart = input instanceof AbstractMinecartContainer;
+        NonNullList<ItemStack> items = isMinecraftCart ? ((AbstractMinecartContainer) input).getItemStacks() : ((ChestMinecart) input).getItems();
+        int inserted = newCart.replaceInventoryWith(items);
+        if (inserted < items.size()) {
+            Vec3 pos = input.position();
+            for (int i = inserted; i < items.size(); i++) {
+                Containers.dropItemStack(level, pos.x(), pos.y(), pos.z(), items.get(i));
+            }
+        }
+        newCart.setPos(input.position());
+        newCart.setXRot(input.getXRot());
+        newCart.setYRot(input.getYRot());
+        newCart.setDeltaMovement(input.getDeltaMovement());
+        if (input.hasCustomName()) {
+            newCart.setCustomName(input.getCustomName());
         }
         serverLevel.addFreshEntityWithPassengers(newCart);
         ((Clearable) input).clearContent();
@@ -87,14 +86,14 @@ public class EntityConversionRecipe<O extends Entity> extends ConversionRecipe<E
 
     public void writeToBuffer(FriendlyByteBuf buffer) {
         recipeTool.writeToBuffer(buffer);
-        buffer.writeResourceLocation(BuiltInRegistries.ENTITY_TYPE.getKey(output));
+        buffer.writeResourceLocation(Registry.ENTITY_TYPE.getKey(output));
         buffer.writeResourceLocation(input.getNetworkId());
         input.writeToBuffer(buffer);
     }
 
     public static EntityConversionRecipe<?> readFromBuffer(FriendlyByteBuf buffer) {
         RecipeTool recipeTool = RecipeTool.fromNetworkBuffer(buffer);
-        EntityType<?> output = BuiltInRegistries.ENTITY_TYPE.get(buffer.readResourceLocation());
+        EntityType<?> output = Registry.ENTITY_TYPE.get(buffer.readResourceLocation());
         RecipeCondition input = RecipeCondition.readFromNetworkBuffer(buffer);
         return new EntityConversionRecipe<>(recipeTool, output, input);
     }

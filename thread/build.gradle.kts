@@ -21,7 +21,7 @@ val modDependencies = FreezableDependencyList().apply {
     }
 
     add("carrier") {
-        implementation("maven.modrinth:carrier:${Versions.CARRIER}")
+        implementation("curse.maven:carrier-409184:3873675")
         implementation("dev.onyxstudios.cardinal-components-api:cardinal-components-base:${Versions.CARDINAL_COMPONENTS}")
         implementation("dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${Versions.CARDINAL_COMPONENTS}")
         implementation("net.devtech:arrp:${Versions.ARRP}")
@@ -75,6 +75,7 @@ dependencies {
         modCompileOnly(it) {
             exclude(group = "net.fabricmc")
             exclude(group = "net.fabricmc.fabric-api")
+            exclude(group = "com.github.astei")
         }
     }
 
@@ -82,6 +83,7 @@ dependencies {
         modRuntimeOnly(it) {
             exclude(group = "net.fabricmc")
             exclude(group = "net.fabricmc.fabric-api")
+            exclude(group = "com.github.astei")
         }
     }
 }

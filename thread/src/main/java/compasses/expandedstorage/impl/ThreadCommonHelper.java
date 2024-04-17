@@ -11,8 +11,6 @@ import io.netty.buffer.Unpooled;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType;
 import net.minecraft.core.Registry;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -31,11 +29,11 @@ import java.util.List;
 
 public class ThreadCommonHelper implements CommonPlatformHelper {
     private final ExtendedScreenHandlerType<AbstractHandler> menuType;
-    private final TagKey<Block> woodenChestTag = TagKey.create(Registries.BLOCK, new ResourceLocation("c", "wooden_chests"));
+    private final TagKey<Block> woodenChestTag = TagKey.create(Registry.BLOCK.key(), new ResourceLocation("c", "wooden_chests"));
     private MinecraftServer minecraftServer;
 
     {
-        menuType = Registry.register(BuiltInRegistries.MENU, Utils.HANDLER_TYPE_ID, new ExtendedScreenHandlerType<>(AbstractHandler::createClientMenu));
+        menuType = Registry.register(Registry.MENU, Utils.HANDLER_TYPE_ID, new ExtendedScreenHandlerType<>(AbstractHandler::createClientMenu));
     }
 
     @Override

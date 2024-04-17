@@ -2,7 +2,7 @@ package compasses.expandedstorage.impl.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Axis;
+import com.mojang.math.Vector3f;
 import compasses.expandedstorage.api.EsChestType;
 import compasses.expandedstorage.impl.CommonMain;
 import compasses.expandedstorage.impl.block.AbstractChestBlock;
@@ -29,7 +29,7 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.core.Direction;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.block.state.BlockState;
@@ -43,7 +43,7 @@ public final class ChestBlockEntityRenderer implements BlockEntityRenderer<Chest
     public static final ModelLayerLocation BOTTOM_LAYER = new ModelLayerLocation(Utils.id("bottom_chest"), "main");
     public static final ModelLayerLocation FRONT_LAYER = new ModelLayerLocation(Utils.id("front_chest"), "main");
     public static final ModelLayerLocation BACK_LAYER = new ModelLayerLocation(Utils.id("back_chest"), "main");
-    private static final BlockState DEFAULT_STATE = BuiltInRegistries.BLOCK.get(Utils.id("wood_chest")).defaultBlockState();
+    private static final BlockState DEFAULT_STATE = Registry.BLOCK.get(Utils.id("wood_chest")).defaultBlockState();
 
     private static final Property<ChestBlockEntity, Float2FloatFunction> LID_OPENNESS_FUNCTION_GETTER = new Property<>() {
         @Override
@@ -203,9 +203,9 @@ public final class ChestBlockEntityRenderer implements BlockEntityRenderer<Chest
         stack.translate(0.5D, 0.5D, 0.5D);
         int yOffset = entity.isDinnerbone() ? 180 : 0;
 
-        stack.mulPose(Axis.YP.rotationDegrees(-state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot()));
+        stack.mulPose(Vector3f.YP.rotationDegrees(-state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot()));
         if (yOffset == 180) {
-            stack.mulPose(Axis.ZP.rotationDegrees(yOffset));
+            stack.mulPose(Vector3f.ZP.rotationDegrees(yOffset));
             if (chestType == EsChestType.LEFT) {
                 chestType = EsChestType.RIGHT;
             } else if (chestType == EsChestType.RIGHT) {

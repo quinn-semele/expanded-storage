@@ -8,7 +8,7 @@ import compasses.expandedstorage.impl.block.CopperMiniStorageBlock;
 import compasses.expandedstorage.impl.block.MiniStorageBlock;
 import compasses.expandedstorage.impl.block.OpenableBlock;
 import compasses.expandedstorage.impl.misc.Utils;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 
@@ -80,7 +80,7 @@ public final class ModBlocks {
 
     private static <T extends Block> T block(ResourceLocation id) {
         //noinspection unchecked
-        return (T) BuiltInRegistries.BLOCK.get(id);
+        return (T) Registry.BLOCK.get(id);
     }
 
     public static List<OpenableBlock> all() {

@@ -1,11 +1,11 @@
 package compasses.expandedstorage.impl.client.gui;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import compasses.expandedstorage.impl.CommonClient;
 import compasses.expandedstorage.impl.misc.Utils;
 import compasses.expandedstorage.impl.client.function.ScreenSize;
 import compasses.expandedstorage.impl.inventory.handler.AbstractHandler;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.network.chat.Component;
@@ -148,10 +148,10 @@ public abstract class AbstractScreen extends AbstractContainerScreen<AbstractHan
     }
 
     @Override
-    public void render(GuiGraphics graphics, int mouseX, int mouseY, float delta) {
-        this.renderBackground(graphics);
-        super.render(graphics, mouseX, mouseY, delta);
-        this.renderTooltip(graphics, mouseX, mouseY);
+    public void render(PoseStack stack, int mouseX, int mouseY, float delta) {
+        this.renderBackground(stack);
+        super.render(stack, mouseX, mouseY, delta);
+        this.renderTooltip(stack, mouseX, mouseY);
     }
 
     @Override

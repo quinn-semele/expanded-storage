@@ -5,7 +5,6 @@ import compasses.expandedstorage.impl.datagen.content.ModTags;
 import compasses.expandedstorage.impl.registration.ModBlocks;
 import compasses.expandedstorage.impl.registration.ModItems;
 import net.minecraft.core.Registry;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
@@ -24,15 +23,15 @@ public class TagHelper {
     }
 
     private static ResourceKey<Block> block(Block block) {
-        return resourceKeyOf(BuiltInRegistries.BLOCK, block);
+        return resourceKeyOf(Registry.BLOCK, block);
     }
 
     private static ResourceKey<Item> item(Item item) {
-        return resourceKeyOf(BuiltInRegistries.ITEM, item);
+        return resourceKeyOf(Registry.ITEM, item);
     }
 
     private static ResourceKey<EntityType<?>> entityType(EntityType<?> entityType) {
-        return resourceKeyOf(BuiltInRegistries.ENTITY_TYPE, entityType);
+        return resourceKeyOf(Registry.ENTITY_TYPE, entityType);
     }
 
     public static void registerBlockTags(Function<TagKey<Block>, TagsProvider.TagAppender<Block>> tagMaker) {

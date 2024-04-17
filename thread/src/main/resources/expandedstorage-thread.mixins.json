@@ -6,7 +6,6 @@
   "mixins": [
     "common.AllowCarryingESBlocks",
     "common.CarrierRegistryMixin",
-    "common.HijackBlockPickup",
     "common.HTMChestCompat",
     "common.HTMLockableBlockEntityCompat",
     "common.MiniStorageHeadEquipment",

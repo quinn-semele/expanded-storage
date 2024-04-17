@@ -1,10 +1,10 @@
 package compasses.expandedstorage.impl.client.gui.widget;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.PoseStack;
 import compasses.expandedstorage.impl.misc.Utils;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
@@ -14,12 +14,11 @@ public final class ScreenPickButton extends Button {
     private final boolean showWarningSymbol;
     private final boolean isCurrentPreference;
 
-    public ScreenPickButton(int x, int y, int width, int height, ResourceLocation texture, Component message, boolean showWarningSymbol, boolean isCurrentPreference, OnPress onPress, Tooltip tooltip) {
-        super(x, y, width, height, message, onPress, DEFAULT_NARRATION);
+    public ScreenPickButton(int x, int y, int width, int height, ResourceLocation texture, Component message, boolean showWarningSymbol, boolean isCurrentPreference, OnPress onPress, OnTooltip onTooltip) {
+        super(x, y, width, height, message, onPress, onTooltip);
         this.texture = texture;
         this.showWarningSymbol = showWarningSymbol;
         this.isCurrentPreference = isCurrentPreference;
-        this.setTooltip(tooltip);
     }
 
     private int getTextureY() {
@@ -27,14 +26,22 @@ public final class ScreenPickButton extends Button {
     }
 
     @Override
-    public void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, alpha);
-        RenderSystem.enableBlend();
-        RenderSystem.enableDepthTest();
-        graphics.blit(texture, this.getX(), this.getY(), this.getWidth(), this.getHeight(), 0, this.getTextureY(), this.getWidth(), this.getHeight(), this.getWidth(), this.getHeight() * 3);
+    public void renderButton(PoseStack stack, int mouseX, int mouseY, float delta) {
+        RenderSystem.setShaderTexture(0, texture);
+        RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, alpha);
+        GuiComponent.blit(stack, x, y, 0, height * (this.isHoveredOrFocused() ? 1 : isCurrentPreference ? 2 : 0), width, height, width, height * 3);
         if (showWarningSymbol) {
-            graphics.blit(WARNING_TEXTURE, this.getX() + width - 28, this.getY() + 9, 0, 0, 16, 32, 16, 32);
+            RenderSystem.setShaderTexture(0, WARNING_TEXTURE);
+            RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, alpha);
+            GuiComponent.blit(stack, x + width - 28, y + 9, 0, 0, 16, 32, 16, 32);
         }
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+    }
+
+    public void renderButtonTooltip(PoseStack stack, int mouseX, int mouseY) {
+        if (isHovered) {
+            this.renderToolTip(stack, mouseX, mouseY);
+        } else if (this.isFocused()) {
+            this.renderToolTip(stack, x, y);
+        }
     }
 }

@@ -4,7 +4,7 @@ import com.google.common.collect.Maps;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import compasses.expandedstorage.impl.misc.Utils;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.Registry;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
@@ -64,10 +64,10 @@ public class HasPropertyCondition implements RecipeCondition {
 
     public static HasPropertyCondition readFromBuffer(FriendlyByteBuf buffer) {
         ResourceLocation blockId = buffer.readResourceLocation();
-        if (!BuiltInRegistries.BLOCK.containsKey(blockId)) {
+        if (!Registry.BLOCK.containsKey(blockId)) {
             throw new IllegalStateException("Received an unknown block: " + blockId);
         }
-        Block block = BuiltInRegistries.BLOCK.get(blockId);
+        Block block = Registry.BLOCK.get(blockId);
         boolean optional = buffer.readBoolean();
         int numProperties = buffer.readInt();
 

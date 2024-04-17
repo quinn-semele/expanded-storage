@@ -1,10 +1,11 @@
 package compasses.expandedstorage.impl.client.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.PoseStack;
 import compasses.expandedstorage.impl.misc.Utils;
 import compasses.expandedstorage.impl.client.function.ScreenSize;
 import compasses.expandedstorage.impl.inventory.handler.AbstractHandler;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.Slot;
@@ -71,14 +72,14 @@ public final class SingleScreen extends AbstractScreen {
             int yTop = topPos + Utils.CONTAINER_HEADER_HEIGHT + (inventoryHeight - 1) * Utils.SLOT_SIZE;
             int xLeft = leftPos + Utils.CONTAINER_PADDING_LDR;
             for (int i = 0; i < rows; i++) {
-                blankArea.add(new TexturedRect(textureLocation, xLeft, yTop, inventoryWidth * Utils.SLOT_SIZE, Utils.SLOT_SIZE,
+                blankArea.add(new TexturedRect(xLeft, yTop, inventoryWidth * Utils.SLOT_SIZE, Utils.SLOT_SIZE,
                         Utils.CONTAINER_PADDING_LDR, imageHeight, textureWidth, textureHeight));
                 yTop -= Utils.SLOT_SIZE;
             }
             if (remainder > 0) {
                 int xRight = leftPos + Utils.CONTAINER_PADDING_LDR + inventoryWidth * Utils.SLOT_SIZE;
                 int width = remainder * Utils.SLOT_SIZE;
-                blankArea.add(new TexturedRect(textureLocation, xRight - width, yTop, width, Utils.SLOT_SIZE,
+                blankArea.add(new TexturedRect(xRight - width, yTop, width, Utils.SLOT_SIZE,
                         Utils.CONTAINER_PADDING_LDR, imageHeight, textureWidth, textureHeight));
             }
         }
@@ -96,16 +97,17 @@ public final class SingleScreen extends AbstractScreen {
     }
 
     @Override
-    protected void renderBg(GuiGraphics graphics, float delta, int mouseX, int mouseY) {
+    protected void renderBg(PoseStack stack, float delta, int mouseX, int mouseY) {
+        RenderSystem.setShaderTexture(0, textureLocation);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        graphics.blit(textureLocation, leftPos, topPos, 0, 0, imageWidth, imageHeight, textureWidth, textureHeight);
-        blankArea.forEach(image -> image.render(graphics));
+        GuiComponent.blit(stack, leftPos, topPos, 0, 0, imageWidth, imageHeight, textureWidth, textureHeight);
+        blankArea.forEach(image -> image.render(stack));
     }
 
     @Override
-    protected void renderLabels(GuiGraphics graphics, int mouseX, int mouseY) {
-        graphics.drawString(font, title, 8, 6, 0x404040, false);
-        graphics.drawString(font, playerInventoryTitle, 8, imageHeight - 96 + 2, 0x404040, false);
+    protected void renderLabels(PoseStack stack, int mouseX, int mouseY) {
+        font.draw(stack, title, 8, 6, 0x404040);
+        font.draw(stack, playerInventoryTitle, 8, imageHeight - 96 + 2, 0x404040);
     }
 
     private void initializeSlots(Inventory playerInventory) {

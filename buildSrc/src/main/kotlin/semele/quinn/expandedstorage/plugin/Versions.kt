@@ -3,63 +3,63 @@ package semele.quinn.expandedstorage.plugin
 import org.gradle.api.JavaVersion
 
 object Versions {
-    const val EXPANDEDSTORAGE = "10.3.0-beta.4"
+    const val EXPANDEDSTORAGE = "8.4.0-beta.1"
 
     // Generic
     val JAVA = JavaVersion.VERSION_17
-    const val MINECRAFT = "1.20.1"
-    const val PARCHMENT = "1.20.1:2023.09.03"
+    const val MINECRAFT = "1.19.2"
+    const val PARCHMENT = "1.19.2:2022.11.27"
     const val JETBRAINS_ANNOTATIONS_VERSION = "24.1.0"
     val CF_SUPPORTED_GAME_VERSIONS: List<String> = listOf(MINECRAFT)
     val MR_SUPPORTED_GAME_VERSIONS: List<String> = listOf(MINECRAFT)
 
     // Fabric
-    const val FABRIC_LOADER = "0.15.3"
-    const val FABRIC_API = "0.85.0+1.20.1" // https://modrinth.com/mod/fabric-api/
+    const val FABRIC_LOADER = "0.14.10"
+    const val FABRIC_API = "0.77.0+1.19.2" // https://modrinth.com/mod/fabric-api/
     const val FABRIC_KOTLIN = "1.10.16+kotlin.1.9.21" // https://modrinth.com/mod/fabric-language-kotlin/
 
     // Forge
-    const val FORGE = "47.1.47"
+    const val FORGE = "43.1.0"
 
     // Quilt
     const val QUILT_LOADER = "0.20.2"
-    const val QUILT_API = "7.0.6+0.85.0-1.20.1"
-    const val QUILT_KOTLIN = "2.1.3+kt.1.9.10+flk.1.10.10" // https://modrinth.com/mod/qkl/
+    const val QUILT_API = "4.0.0-beta.30+0.77.0-1.19.2"
+    const val QUILT_KOTLIN = "1.0.2+kt.1.8.0+flk.1.9.0" // https://modrinth.com/mod/qkl/
 
     // Dependencies
-    const val EMI = "1.1.3+1.20.1" // https://modrinth.com/mod/emi/
+    const val EMI = "1.1.3+1.19.2" // https://modrinth.com/mod/emi/
 
-    const val REI = "12.0.684" // https://modrinth.com/mod/rei/
+    const val REI = "9.2.710" // https://modrinth.com/mod/rei/
 
-    const val JEI = "15.3.0.4" // https://modrinth.com/mod/jei/
+    const val JEI = "11.4.0.286" // https://modrinth.com/mod/jei/
     const val JEI_MINECRAFT = MINECRAFT
 
     const val IPN = "1.10.9" // https://modrinth.com/mod/inventory-profiles-next/
-    const val IPN_MINECRAFT_FABRIC = "1.20"
+    const val IPN_MINECRAFT_FABRIC = MINECRAFT
     const val IPN_MINECRAFT_FORGE = MINECRAFT
 
     const val LIB_IPN = "4.0.1" // https://modrinth.com/mod/libipn/
-    const val LIB_IPN_MINECRAFT = "1.20"
+    const val LIB_IPN_MINECRAFT = MINECRAFT
 
-    const val KFF = "4.10.0" // https://modrinth.com/mod/kotlin-for-forge/
+    const val KFF = "3.12.0" // https://modrinth.com/mod/kotlin-for-forge/
 
-    const val INVENTORY_TABS = "1.1.8+1.20" // https://modrinth.com/mod/inventory-tabs/
+    const val INVENTORY_TABS = "1.1.8+1.19" // https://modrinth.com/mod/inventory-tabs/
 
-    const val MOD_MENU = "7.2.2" // https://modrinth.com/mod/modmenu/
+    const val MOD_MENU = "4.1.2" // https://modrinth.com/mod/modmenu/
 
-    const val HTM = "1.1.9" // https://modrinth.com/mod/htm/
+    const val HTM = "1.1.6" // https://modrinth.com/mod/htm/
 
-    const val AMECS = "1.3.10+mc.1.20.1" // https://maven.siphalor.de/de/siphalor/amecs-1.20/
-    const val AMECS_API = "1.3.9+mc1.20-pre1" // https://maven.siphalor.de/de/siphalor/amecsapi-1.20/
-    const val AMECS_MINECRAFT = "1.20"
+    const val AMECS = "1.3.10+mc.1.19-rc2" // https://maven.siphalor.de/de/siphalor/amecs-1.19/
+    const val AMECS_API = "1.5.3+mc22w17a" // https://maven.siphalor.de/de/siphalor/amecsapi-1.19/
+    const val AMECS_MINECRAFT = "1.19"
 
     const val CARRIER = "1.12.0" // https://modrinth.com/mod/carrier/
-    const val CARDINAL_COMPONENTS = "5.2.2" // https://modrinth.com/mod/cardinal-components-api/
-    const val ARRP = "0.8.1" // https://modrinth.com/mod/arrp/
+    const val CARDINAL_COMPONENTS = "5.0.2" // https://modrinth.com/mod/cardinal-components-api/
+    const val ARRP = "0.6.4" // https://modrinth.com/mod/arrp/
 
-    const val CARRY_ON_FABRIC = "Mkla4B3q" // https://modrinth.com/mod/carry-on/
-    const val CARRY_ON_FORGE = "edGQD16r" // https://modrinth.com/mod/carry-on/
+    const val CARRY_ON_FABRIC = "J7qT9hJD" // https://modrinth.com/mod/carry-on/
+    const val CARRY_ON_FORGE = "CE3MquDi" // https://modrinth.com/mod/carry-on/
 
-    const val ZETA = "1.0-14.69" // https://modrinth.com/mod/zeta/
-    const val QUARK = "4.0-437.3290" // https://modrinth.com/mod/quark/
+    const val AUTO_REG_LIB = "1.8.2-55" // https://modrinth.com/mod/autoreglib/
+    const val QUARK = "3.4-418.3200" // https://modrinth.com/mod/quark/
 }
