@@ -15,14 +15,14 @@ description = "A mod adding various storage types, including double iron chests.
 [[dependencies.expandedstorage]]
 modId = "neoforge"
 type = "required"
-versionRange = "[20.5.0-alpha,)"
+versionRange = "[20.5.0-beta,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.expandedstorage]]
 modId = "minecraft"
 type = "required"
-versionRange = "[1.20.5-pre,)"
+versionRange = "[1.20.5,)"
 ordering = "NONE"
 side = "BOTH"
 

@@ -51,9 +51,9 @@ public class ForgeCommonHelper implements CommonPlatformHelper {
     public void sendConversionRecipesToClient(@Nullable ServerPlayer target, List<BlockConversionRecipe<?>> blockRecipes, List<EntityConversionRecipe<?>> entityRecipes) {
         if (target == null) {
             // Should be valid to send updates here as remote present check has been done on join.
-            PacketDistributor.ALL.noArg().send(new UpdateRecipesPacketPayload(blockRecipes, entityRecipes));
+            PacketDistributor.sendToAllPlayers(new UpdateRecipesPacketPayload(blockRecipes, entityRecipes));
         } else {
-            PacketDistributor.PLAYER.with(target).send(new UpdateRecipesPacketPayload(blockRecipes, entityRecipes));
+            PacketDistributor.sendToPlayer(target, new UpdateRecipesPacketPayload(blockRecipes, entityRecipes));
         }
     }
 

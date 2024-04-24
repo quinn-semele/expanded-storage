@@ -7,19 +7,19 @@ object Versions {
 
     // Generic
     val JAVA = JavaVersion.VERSION_21
-    const val MINECRAFT = "1.20.5-pre1"
-    const val PARCHMENT = "1.20.4:2024.02.25"
+    const val MINECRAFT = "1.20.5"
+    const val PARCHMENT = "1.20.4:2024.04.14"
     const val JETBRAINS_ANNOTATIONS_VERSION = "24.1.0"
-    val CF_SUPPORTED_GAME_VERSIONS: List<String> = listOf("1.20.5-Snapshot")
+    val CF_SUPPORTED_GAME_VERSIONS: List<String> = listOf(MINECRAFT)
     val MR_SUPPORTED_GAME_VERSIONS: List<String> = listOf(MINECRAFT)
 
     // Fabric
     const val FABRIC_LOADER = "0.15.10"
-    const val FABRIC_API = "0.96.15+1.20.5"
+    const val FABRIC_API = "0.97.5+1.20.5"
     const val FABRIC_KOTLIN = "1.10.19+kotlin.1.9.23" // https://modrinth.com/mod/fabric-language-kotlin/
 
     // NeoForge
-    const val NEOFORGE = "20.5.0-alpha.1.20.5-pre1.20240412.132656"
+    const val NEOFORGE = "20.5.0-beta"
 
     // Quilt
     const val QUILT_LOADER = "0.23.1"

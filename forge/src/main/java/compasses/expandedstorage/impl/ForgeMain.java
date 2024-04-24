@@ -44,8 +44,8 @@ import net.neoforged.neoforge.event.AddReloadListenerEvent;
 import net.neoforged.neoforge.event.OnDatapackSyncEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.items.IItemHandlerModifiable;
-import net.neoforged.neoforge.network.event.RegisterPayloadHandlerEvent;
-import net.neoforged.neoforge.network.registration.IPayloadRegistrar;
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
+import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import net.neoforged.neoforge.registries.RegisterEvent;
 
 import java.util.function.Supplier;
@@ -82,13 +82,11 @@ public final class ForgeMain {
     }
 
     @SubscribeEvent
-    private void registerPayloads(RegisterPayloadHandlerEvent event) {
-        IPayloadRegistrar registrar = event.registrar(Utils.MOD_ID).versioned("2.0.0");
+    private void registerPayloads(RegisterPayloadHandlersEvent event) {
+        PayloadRegistrar registrar = event.registrar(Utils.MOD_ID).versioned("2.0.0");
 
-        registrar.play(UpdateRecipesPacketPayload.TYPE, UpdateRecipesPacketPayload.CODEC, handler -> {
-            handler.client((payload, context) -> {
-                context.workHandler().execute(() -> ConversionRecipeManager.INSTANCE.replaceAllRecipes(payload.blockRecipes(), payload.entityRecipes()));
-            });
+        registrar.playToClient(UpdateRecipesPacketPayload.TYPE, UpdateRecipesPacketPayload.CODEC, (payload, context) -> {
+            context.enqueueWork(() -> ConversionRecipeManager.INSTANCE.replaceAllRecipes(payload.blockRecipes(), payload.entityRecipes()));
         });
     }
 

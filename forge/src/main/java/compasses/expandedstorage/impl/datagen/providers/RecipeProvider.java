@@ -18,9 +18,9 @@ public final class RecipeProvider extends net.minecraft.data.recipes.RecipeProvi
     protected void buildRecipes(RecipeOutput output) {
         RecipeHelper recipeHelper = new RecipeHelper(
                 BuiltInRegistries.ITEM::getKey,
-                Tags.Items.INGOTS_COPPER, Tags.Items.NUGGETS_IRON, Tags.Items.INGOTS_IRON, Tags.Items.INGOTS_GOLD, Tags.Items.GEMS_DIAMOND, Tags.Items.OBSIDIAN, Tags.Items.INGOTS_NETHERITE,
+                Tags.Items.INGOTS_COPPER, Tags.Items.NUGGETS_IRON, Tags.Items.INGOTS_IRON, Tags.Items.INGOTS_GOLD, Tags.Items.GEMS_DIAMOND, Tags.Items.OBSIDIANS, Tags.Items.INGOTS_NETHERITE,
                 Tags.Items.CHESTS_WOODEN, Tags.Items.BARRELS_WOODEN,
-                Tags.Items.GLASS, Tags.Items.DYES_RED, Tags.Items.DYES_WHITE, ForgeTags.Items.BAMBOO
+                Tags.Items.GLASS_BLOCKS, Tags.Items.DYES_RED, Tags.Items.DYES_WHITE, ForgeTags.Items.BAMBOO
         );
         recipeHelper.registerRecipes(output);
     }
