@@ -2,15 +2,15 @@ package compasses.expandedstorage.impl.datagen.providers;
 
 import compasses.expandedstorage.impl.datagen.content.ModEntityTypes;
 import compasses.expandedstorage.impl.datagen.content.ModTags;
-import compasses.expandedstorage.impl.registration.ModBlocks;
 import compasses.expandedstorage.impl.registration.ModItems;
 import compasses.expandedstorage.impl.datagen.content.ThreadTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.Blocks;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
@@ -24,6 +24,8 @@ public final class TagProvider {
         @Override
         protected void addTags(HolderLookup.Provider provider) {
             TagHelper.registerBlockTags(this::getOrCreateTagBuilder);
+            this.getOrCreateTagBuilder(ModTags.Blocks.ES_WOODEN_CHESTS)
+                .addOptionalTag(ConventionalBlockTags.WOODEN_CHESTS);
         }
 
         @NotNull
@@ -41,8 +43,10 @@ public final class TagProvider {
         @Override
         protected void addTags(HolderLookup.Provider provider) {
             TagHelper.registerItemTags(this::getOrCreateTagBuilder);
+            this.getOrCreateTagBuilder(ConventionalItemTags.WOODEN_CHESTS)
+                    .add(ModItems.WOOD_CHEST);
             this.getOrCreateTagBuilder(ModTags.Items.ES_WOODEN_CHESTS)
-                .addOptionalTag(ThreadTags.Items.WOODEN_CHESTS);
+                .addOptionalTag(ConventionalItemTags.WOODEN_CHESTS);
             this.getOrCreateTagBuilder(ThreadTags.Items.IRON_NUGGETS)
                 .add(Items.IRON_NUGGET);
             this.getOrCreateTagBuilder(ThreadTags.Items.OBSIDIAN)

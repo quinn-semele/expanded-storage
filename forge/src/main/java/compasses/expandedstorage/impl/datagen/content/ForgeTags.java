@@ -8,7 +8,7 @@ import net.minecraft.world.item.Item;
 
 public final class ForgeTags {
     public static class Items {
-        public static final TagKey<Item> BAMBOO = tag(new ResourceLocation("forge", "bamboo"));
+        public static final TagKey<Item> BAMBOO = tag(new ResourceLocation("c", "bamboos"));
 
         private static TagKey<Item> tag(ResourceLocation id) {
             return TagKey.create(Registries.ITEM, id);
@@ -16,7 +16,7 @@ public final class ForgeTags {
     }
 
     public static class Entities {
-        public static final TagKey<EntityType<?>> WOODEN_CHEST_MINECARTS = tag(new ResourceLocation("forge", "chest_minecarts/wooden"));
+        public static final TagKey<EntityType<?>> WOODEN_CHEST_MINECARTS = tag(new ResourceLocation("c", "chest_minecarts/wooden"));
 
         private static TagKey<EntityType<?>> tag(ResourceLocation id) {
             return TagKey.create(Registries.ENTITY_TYPE, id);

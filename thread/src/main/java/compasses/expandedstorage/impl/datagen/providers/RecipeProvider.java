@@ -3,6 +3,7 @@ package compasses.expandedstorage.impl.datagen.providers;
 import compasses.expandedstorage.impl.datagen.content.ThreadTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.RecipeOutput;
@@ -20,9 +21,9 @@ public class RecipeProvider extends FabricRecipeProvider {
     public void buildRecipes(RecipeOutput output) {
         RecipeHelper recipeHelper = new RecipeHelper(
                 BuiltInRegistries.ITEM::getKey,
-                ThreadTags.Items.COPPER_INGOTS, ThreadTags.Items.IRON_NUGGETS, ThreadTags.Items.IRON_INGOTS, ThreadTags.Items.GOLD_INGOTS, ThreadTags.Items.DIAMONDS, ThreadTags.Items.OBSIDIAN, ThreadTags.Items.NETHERITE_INGOTS,
-                ThreadTags.Items.WOODEN_CHESTS, ThreadTags.Items.WOODEN_BARRELS,
-                ThreadTags.Items.GLASS_BLOCKS, ThreadTags.Items.RED_DYES, ThreadTags.Items.WHITE_DYES, ThreadTags.Items.BAMBOO,
+                ConventionalItemTags.COPPER_INGOTS, ThreadTags.Items.IRON_NUGGETS, ConventionalItemTags.IRON_INGOTS, ConventionalItemTags.GOLD_INGOTS, ConventionalItemTags.DIAMOND_GEMS, ThreadTags.Items.OBSIDIAN, ConventionalItemTags.NETHERITE_INGOTS,
+                ConventionalItemTags.WOODEN_CHESTS, ConventionalItemTags.WOODEN_BARRELS,
+                ConventionalItemTags.GLASS_BLOCKS, ConventionalItemTags.RED_DYES, ConventionalItemTags.WHITE_DYES, ThreadTags.Items.BAMBOO,
                 Ingredient.EMPTY
         );
 

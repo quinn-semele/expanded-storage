@@ -3,7 +3,6 @@ package compasses.expandedstorage.impl.datagen.providers;
 import compasses.expandedstorage.impl.datagen.content.ModEntityTypes;
 import compasses.expandedstorage.impl.datagen.content.ModTags;
 import compasses.expandedstorage.impl.misc.Utils;
-import compasses.expandedstorage.impl.registration.ModBlocks;
 import compasses.expandedstorage.impl.registration.ModItems;
 import compasses.expandedstorage.impl.datagen.content.ForgeTags;
 import net.minecraft.core.HolderLookup;
@@ -28,7 +27,6 @@ public final class TagProvider {
         @Override
         protected void addTags(HolderLookup.Provider provider) {
             TagHelper.registerBlockTags(this::tag);
-            this.tag(Tags.Blocks.CHESTS_WOODEN).add(ModBlocks.WOOD_CHEST);
             this.tag(ModTags.Blocks.ES_WOODEN_CHESTS)
                 .addTag(Tags.Blocks.CHESTS_WOODEN);
         }

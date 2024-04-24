@@ -207,6 +207,7 @@ public class TagHelper {
                 .add(block(ModBlocks.WAXED_WEATHERED_COPPER_BARREL))
                 .add(block(ModBlocks.WAXED_OXIDIZED_COPPER_BARREL));
         tagMaker.apply(ModTags.Blocks.ES_WOODEN_CHESTS)
+                .add(block(ModBlocks.WOOD_CHEST))
                 .add(block(ModBlocks.PUMPKIN_CHEST))
                 .add(block(ModBlocks.PRESENT))
                 .add(block(ModBlocks.BAMBOO_CHEST))
