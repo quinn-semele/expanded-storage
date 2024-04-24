@@ -1,2 +1,2 @@
-- Lowered Fabric API requirement
-- Removed some unused code.
+- Backport recent changes to 1.19.2
+- Note this version has majorly different internal structure, if anything has broken please report that to me.
