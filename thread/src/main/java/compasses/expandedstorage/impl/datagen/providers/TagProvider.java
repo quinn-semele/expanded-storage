@@ -42,7 +42,7 @@ public final class TagProvider {
         protected void addTags(HolderLookup.Provider provider) {
             TagHelper.registerItemTags(this::getOrCreateTagBuilder);
             this.getOrCreateTagBuilder(ModTags.Items.ES_WOODEN_CHESTS)
-                .addTag(ThreadTags.Items.WOODEN_CHESTS);
+                .addOptionalTag(ThreadTags.Items.WOODEN_CHESTS);
             this.getOrCreateTagBuilder(ThreadTags.Items.IRON_NUGGETS)
                 .add(Items.IRON_NUGGET);
             this.getOrCreateTagBuilder(ThreadTags.Items.OBSIDIAN)

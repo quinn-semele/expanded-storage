@@ -12,18 +12,18 @@ import net.minecraft.world.level.block.Block;
 
 public final class ModTags {
     public static class Blocks {
-        public static final TagKey<Block> ES_WOODEN_CHESTS = tag(Registries.BLOCK, Utils.id("wooden_chests"));
-        public static final TagKey<Block> COPPER_BARRELS = tag(Registries.BLOCK, Utils.id("copper_barrels"));
+        public static final TagKey<Block> ES_WOODEN_CHESTS = tag(Registries.BLOCK, Utils.id("chests/wooden"));
+        public static final TagKey<Block> COPPER_BARRELS = tag(Registries.BLOCK, Utils.id("barrels/copper"));
 //        public static final TagKey<Block> COPPER_CHESTS = tag(Registries.BLOCK, Utils.id("copper_chests"));
 //        public static final TagKey<Block> OLD_COPPER_CHESTS = tag(Registries.BLOCK, Utils.id("old_copper_chests"));
     }
 
     public static class Items {
-        public static final TagKey<Item> ES_WOODEN_CHESTS = tag(Registries.ITEM, Utils.id("wooden_chests"));
+        public static final TagKey<Item> ES_WOODEN_CHESTS = tag(Registries.ITEM, Utils.id("chests/wooden"));
     }
 
     public static class Entities {
-        public static final TagKey<EntityType<?>> ES_WOODEN_CHEST_MINECARTS = tag(Registries.ENTITY_TYPE, Utils.id("wooden_chest_minecarts"));
+        public static final TagKey<EntityType<?>> ES_WOODEN_CHEST_MINECARTS = tag(Registries.ENTITY_TYPE, Utils.id("chest_minecarts/wooden"));
         public static final TagKey<EntityType<?>> ES_CHEST_MINECARTS = tag(Registries.ENTITY_TYPE, Utils.id("chest_minecarts"));
     }
 
