@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.world.item.crafting.Ingredient;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
@@ -21,7 +22,8 @@ public class RecipeProvider extends FabricRecipeProvider {
                 BuiltInRegistries.ITEM::getKey,
                 ThreadTags.Items.COPPER_INGOTS, ThreadTags.Items.IRON_NUGGETS, ThreadTags.Items.IRON_INGOTS, ThreadTags.Items.GOLD_INGOTS, ThreadTags.Items.DIAMONDS, ThreadTags.Items.OBSIDIAN, ThreadTags.Items.NETHERITE_INGOTS,
                 ThreadTags.Items.WOODEN_CHESTS, ThreadTags.Items.WOODEN_BARRELS,
-                ThreadTags.Items.GLASS_BLOCKS, ThreadTags.Items.RED_DYES, ThreadTags.Items.WHITE_DYES, ThreadTags.Items.BAMBOO
+                ThreadTags.Items.GLASS_BLOCKS, ThreadTags.Items.RED_DYES, ThreadTags.Items.WHITE_DYES, ThreadTags.Items.BAMBOO,
+                Ingredient.EMPTY
         );
 
         recipeHelper.registerRecipes(output);
