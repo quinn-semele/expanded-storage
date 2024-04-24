@@ -2,7 +2,7 @@
   "type": "expandedstorage:block_conversion",
   "inputs": [
     {
-      "tag": "c:wooden_chests"
+      "tag": "c:chests/wooden"
     },
     {
       "condition": "expandedstorage:is_wooden_chest"

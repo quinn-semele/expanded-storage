@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "G": {
-      "tag": "c:gold_ingots"
+      "tag": "c:ingots/gold"
     },
     "K": {
       "item": "expandedstorage:copper_to_iron_conversion_kit"

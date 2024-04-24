@@ -3,10 +3,10 @@
   "category": "misc",
   "key": {
     "D": {
-      "tag": "forge:gems/diamond"
+      "tag": "c:gems/diamond"
     },
     "G": {
-      "tag": "forge:glass"
+      "tag": "c:glass_blocks"
     },
     "K": {
       "item": "expandedstorage:iron_to_gold_conversion_kit"

@@ -6,7 +6,7 @@
       "item": "expandedstorage:iron_barrel"
     },
     "G": {
-      "tag": "c:gold_ingots"
+      "tag": "c:ingots/gold"
     }
   },
   "pattern": [

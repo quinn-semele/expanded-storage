@@ -1,10 +1,10 @@
 {
   "type": "minecraft:smithing_transform",
   "addition": {
-    "tag": "c:netherite_ingots"
+    "tag": "c:ingots/netherite"
   },
   "base": {
-    "tag": "c:obsidian"
+    "tag": "c:obsidians"
   },
   "result": {
     "count": 1,

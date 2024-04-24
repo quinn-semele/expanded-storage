@@ -3,13 +3,13 @@
   "category": "misc",
   "key": {
     "C": {
-      "tag": "c:copper_ingots"
+      "tag": "c:ingots/copper"
     },
     "I": {
-      "tag": "c:iron_ingots"
+      "tag": "c:ingots/iron"
     },
     "N": {
-      "tag": "c:iron_nuggets"
+      "tag": "c:nuggets/iron"
     }
   },
   "pattern": [

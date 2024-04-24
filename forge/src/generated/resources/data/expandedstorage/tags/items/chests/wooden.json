@@ -4,6 +4,6 @@
     "expandedstorage:present",
     "expandedstorage:bamboo_chest",
     "expandedstorage:moss_chest",
-    "#forge:chests/wooden"
+    "#c:chests/wooden"
   ]
 }

@@ -4,7 +4,7 @@
   "group": "expandedstorage:pumpkin_chest",
   "key": {
     "B": {
-      "tag": "c:wooden_chests"
+      "tag": "c:chests/wooden"
     },
     "S": {
       "item": "minecraft:pumpkin_seeds"

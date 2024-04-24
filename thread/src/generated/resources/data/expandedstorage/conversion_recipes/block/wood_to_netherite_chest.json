@@ -1,7 +1,7 @@
 {
   "type": "expandedstorage:block_conversion",
   "inputs": {
-    "tag": "expandedstorage:wooden_chests"
+    "tag": "expandedstorage:chests/wooden"
   },
   "result": {
     "id": "expandedstorage:netherite_chest"

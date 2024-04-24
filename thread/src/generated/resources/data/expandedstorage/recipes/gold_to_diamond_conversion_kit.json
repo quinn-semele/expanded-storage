@@ -3,13 +3,13 @@
   "category": "misc",
   "key": {
     "D": {
-      "tag": "c:diamonds"
+      "tag": "c:gems/diamond"
     },
     "G": {
-      "tag": "c:glass"
+      "tag": "c:glass_blocks"
     },
     "I": {
-      "tag": "c:gold_ingots"
+      "tag": "c:ingots/gold"
     }
   },
   "pattern": [

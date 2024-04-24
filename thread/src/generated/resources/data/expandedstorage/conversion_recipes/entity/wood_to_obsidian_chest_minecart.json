@@ -1,7 +1,7 @@
 {
   "type": "expandedstorage:entity_conversion",
   "inputs": {
-    "tag": "expandedstorage:wooden_chest_minecarts"
+    "tag": "expandedstorage:chest_minecarts/wooden"
   },
   "result": "expandedstorage:obsidian_chest_minecart",
   "tool": {

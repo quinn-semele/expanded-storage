@@ -7,16 +7,16 @@
       "item": "minecraft:sweet_berries"
     },
     "C": {
-      "tag": "c:wooden_chests"
+      "tag": "c:chests/wooden"
     },
     "R": {
-      "tag": "c:red_dyes"
+      "tag": "c:dyes/red"
     },
     "S": {
       "item": "minecraft:spruce_sapling"
     },
     "W": {
-      "tag": "c:white_dyes"
+      "tag": "c:dyes/white"
     }
   },
   "pattern": [

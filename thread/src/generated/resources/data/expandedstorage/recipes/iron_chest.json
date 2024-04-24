@@ -4,10 +4,10 @@
   "group": "expandedstorage:iron_chest",
   "key": {
     "B": {
-      "tag": "expandedstorage:wooden_chests"
+      "tag": "expandedstorage:chests/wooden"
     },
     "I": {
-      "tag": "c:iron_ingots"
+      "tag": "c:ingots/iron"
     }
   },
   "pattern": [

@@ -7,10 +7,10 @@
       "item": "expandedstorage:gold_chest"
     },
     "D": {
-      "tag": "c:diamonds"
+      "tag": "c:gems/diamond"
     },
     "G": {
-      "tag": "c:glass"
+      "tag": "c:glass_blocks"
     }
   },
   "pattern": [

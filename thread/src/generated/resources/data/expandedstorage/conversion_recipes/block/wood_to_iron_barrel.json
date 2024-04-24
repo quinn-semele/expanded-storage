@@ -2,7 +2,7 @@
   "type": "expandedstorage:block_conversion",
   "inputs": [
     {
-      "tag": "c:wooden_barrels"
+      "tag": "c:barrels/wooden"
     },
     {
       "condition": "expandedstorage:is_wooden_barrel"

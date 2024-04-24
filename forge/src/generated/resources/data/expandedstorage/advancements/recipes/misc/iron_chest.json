@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "#expandedstorage:wooden_chests"
+            "items": "#expandedstorage:chests/wooden"
           }
         ]
       },

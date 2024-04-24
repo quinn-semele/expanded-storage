@@ -7,7 +7,7 @@
       "tag": "forge:bamboo"
     },
     "C": {
-      "tag": "forge:chests/wooden"
+      "tag": "c:chests/wooden"
     }
   },
   "pattern": [

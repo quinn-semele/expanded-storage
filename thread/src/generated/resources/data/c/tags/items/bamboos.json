@@ -1,0 +1,9 @@
+{
+  "values": [
+    "minecraft:bamboo",
+    {
+      "id": "#c:bamboo",
+      "required": false
+    }
+  ]
+}

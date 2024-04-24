@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "C": {
-      "tag": "expandedstorage:wooden_chests"
+      "tag": "expandedstorage:chests/wooden"
     },
     "S": {
       "item": "minecraft:stick"

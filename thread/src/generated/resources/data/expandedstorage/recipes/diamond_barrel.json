@@ -6,10 +6,10 @@
       "item": "expandedstorage:gold_barrel"
     },
     "D": {
-      "tag": "c:diamonds"
+      "tag": "c:gems/diamond"
     },
     "G": {
-      "tag": "c:glass"
+      "tag": "c:glass_blocks"
     }
   },
   "pattern": [

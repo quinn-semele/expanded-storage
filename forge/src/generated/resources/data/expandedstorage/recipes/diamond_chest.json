@@ -7,10 +7,10 @@
       "item": "expandedstorage:gold_chest"
     },
     "D": {
-      "tag": "forge:gems/diamond"
+      "tag": "c:gems/diamond"
     },
     "G": {
-      "tag": "forge:glass"
+      "tag": "c:glass_blocks"
     }
   },
   "pattern": [

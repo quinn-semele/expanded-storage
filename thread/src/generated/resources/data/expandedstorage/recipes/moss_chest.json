@@ -7,7 +7,7 @@
       "item": "minecraft:moss_block"
     },
     "C": {
-      "tag": "c:wooden_chests"
+      "tag": "c:chests/wooden"
     }
   },
   "pattern": [

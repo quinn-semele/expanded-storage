@@ -1,7 +1,7 @@
 {
   "type": "expandedstorage:block_conversion",
   "inputs": {
-    "tag": "expandedstorage:copper_barrels"
+    "tag": "expandedstorage:barrels/copper"
   },
   "result": {
     "id": "expandedstorage:obsidian_barrel"

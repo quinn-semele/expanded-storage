@@ -3,10 +3,10 @@
   "category": "misc",
   "key": {
     "D": {
-      "tag": "c:diamonds"
+      "tag": "c:gems/diamond"
     },
     "O": {
-      "tag": "c:obsidian"
+      "tag": "c:obsidians"
     }
   },
   "pattern": [

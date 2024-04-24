@@ -7,7 +7,7 @@
       "item": "expandedstorage:iron_chest"
     },
     "G": {
-      "tag": "c:gold_ingots"
+      "tag": "c:ingots/gold"
     }
   },
   "pattern": [

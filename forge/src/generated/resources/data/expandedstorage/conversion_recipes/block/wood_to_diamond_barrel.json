@@ -2,7 +2,7 @@
   "type": "expandedstorage:block_conversion",
   "inputs": [
     {
-      "tag": "forge:barrels/wooden"
+      "tag": "c:barrels/wooden"
     },
     {
       "condition": "expandedstorage:is_wooden_barrel"

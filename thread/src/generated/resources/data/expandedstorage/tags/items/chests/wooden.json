@@ -4,6 +4,9 @@
     "expandedstorage:present",
     "expandedstorage:bamboo_chest",
     "expandedstorage:moss_chest",
-    "#c:wooden_chests"
+    {
+      "id": "#c:chests/wooden",
+      "required": false
+    }
   ]
 }

@@ -3,10 +3,10 @@
   "category": "misc",
   "key": {
     "D": {
-      "tag": "c:diamonds"
+      "tag": "c:gems/diamond"
     },
     "G": {
-      "tag": "c:glass"
+      "tag": "c:glass_blocks"
     },
     "K": {
       "item": "expandedstorage:copper_to_gold_conversion_kit"

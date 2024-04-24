@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "B": {
-      "tag": "c:wooden_barrels"
+      "tag": "c:barrels/wooden"
     },
     "P": {
       "item": "minecraft:paper"
