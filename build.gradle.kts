@@ -27,12 +27,12 @@ val releaseTask = tasks.register(Constants.RELEASE_MOD_TASK, ReleaseModTask::cla
     dependsOn(":publishMods")
 
     doLast {
-        val cfLinks = mapOf("Fabric" to "publishCurseForgeFabric", "Neo/Forge" to "publishCurseForgeForge", "Quilt" to "publishCurseForgeQuilt").mapValues {
+        val cfLinks = mapOf("Fabric" to "publishCurseForgeFabric", "Forge" to "publishCurseForgeForge", "Quilt" to "publishCurseForgeQuilt").mapValues {
             val result = PublishResult.fromJson(tasks.getByName<PublishModTask>(it.value).result.get().asFile.readText(Charsets.UTF_8))
 
             result.link
         }
-        val mrLinks = mapOf("Fabric" to "publishModrinthFabric", "Neo/Forge" to "publishModrinthForge", "Quilt" to "publishModrinthQuilt").mapValues {
+        val mrLinks = mapOf("Fabric" to "publishModrinthFabric", "Forge" to "publishModrinthForge", "Quilt" to "publishModrinthQuilt").mapValues {
             val result = PublishResult.fromJson(tasks.getByName<PublishModTask>(it.value).result.get().asFile.readText(Charsets.UTF_8))
 
             result.link
@@ -95,8 +95,7 @@ val fabricOptions = publishMods.publishOptions {
 
 val forgeOptions = publishMods.publishOptions {
     modLoaders.add("forge")
-    modLoaders.add("neoforge")
-    displayName = "ES Neo/Forge ${Versions.EXPANDEDSTORAGE}"
+    displayName = "ES Forge ${Versions.EXPANDEDSTORAGE}"
     version = "${Versions.EXPANDEDSTORAGE}+forge"
     file = project(":forge").tasks.named<AbstractJsonTask>("minJar").map { it.archiveFile.get() }
 }
