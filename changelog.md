@@ -1,1 +1,2 @@
-- Port to 1.20.5, now featuring more data fixers!
+- Port to 1.20.5 release
+- Rework tags to work with the new unified tag standard.
