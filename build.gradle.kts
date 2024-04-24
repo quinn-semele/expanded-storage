@@ -18,8 +18,12 @@ plugins {
 
 version = Versions.EXPANDEDSTORAGE
 
-tasks.create(Constants.BUILD_MOD_TASK, BuildModTask::class.java)
+tasks.create(Constants.BUILD_MOD_TASK, BuildModTask::class.java) {
+    group = "quinn semele"
+}
 val releaseTask = tasks.register(Constants.RELEASE_MOD_TASK, ReleaseModTask::class.java) {
+    group = "quinn semele"
+
     dependsOn(":publishMods")
 
     doLast {
@@ -72,8 +76,7 @@ val commonCurseForgeOptions = publishMods.curseforgeOptions {
     serverRequired = true
 
     minecraftVersions.addAll(Versions.CF_SUPPORTED_GAME_VERSIONS)
-        // todo: re-enable when curseforge updates this.
-//    javaVersions.add(Versions.JAVA)
+    javaVersions.add(Versions.JAVA)
 }
 
 val commonModrinthOptions = publishMods.modrinthOptions {
