@@ -1,4 +1,4 @@
-// 1.20.5	2024-04-24T18:05:02.8175391	Expanded Storage/Expanded Storage - Block Tags
+// 1.20.5	2024-04-24T18:59:24.2718892	Expanded Storage/Expanded Storage - Block Tags
 a45febe26d806dfc76b777455a0a765836a35b8a data\minecraft\tags\blocks\needs_iron_tool.json
 311c475108d99cd330b77e1460e9c0b1fd8134ff data\expandedstorage\tags\blocks\barrels\copper.json
 be486ad73493e4aeace8638de78b298ec7630e06 data\minecraft\tags\blocks\mineable\axe.json
@@ -7,4 +7,4 @@ fd0bcd75aa8cb8ca2b340cd79a08d0d870e6f40e data\minecraft\tags\blocks\mineable\hoe
 70d55b827a6494908c03ab3c008c8b4237bc5ecf data\minecraft\tags\blocks\needs_diamond_tool.json
 0fb33f6095d3bc3a371bfd17b45fc862162b957a data\minecraft\tags\blocks\mineable\pickaxe.json
 a5fb06427dce73974674776920a7afdc887c70b7 data\minecraft\tags\blocks\guarded_by_piglins.json
-ce036e27256c14a6b74204d73294da2ffe0abdd7 data\expandedstorage\tags\blocks\chests\wooden.json
+c34fb93de5ac4ef1c5e98568a3f0b2b744a9a504 data\expandedstorage\tags\blocks\chests\wooden.json

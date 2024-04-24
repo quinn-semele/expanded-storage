@@ -4,7 +4,7 @@
   "group": "expandedstorage:bamboo_chest",
   "key": {
     "B": {
-      "tag": "forge:bamboo"
+      "tag": "c:bamboos"
     },
     "C": {
       "tag": "c:chests/wooden"

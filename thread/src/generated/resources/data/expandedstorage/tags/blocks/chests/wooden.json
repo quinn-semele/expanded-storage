@@ -1,8 +1,13 @@
 {
   "values": [
+    "expandedstorage:wood_chest",
     "expandedstorage:pumpkin_chest",
     "expandedstorage:present",
     "expandedstorage:bamboo_chest",
-    "expandedstorage:moss_chest"
+    "expandedstorage:moss_chest",
+    {
+      "id": "#c:chests/wooden",
+      "required": false
+    }
   ]
 }

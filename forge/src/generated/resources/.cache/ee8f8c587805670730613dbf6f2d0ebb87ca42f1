@@ -1,4 +1,4 @@
-// 1.20.5	2024-04-24T18:08:49.2653076	Expanded Storage - Recipes
+// 1.20.5	2024-04-24T19:00:19.5954179	Expanded Storage - Recipes
 f7290a998dcf43078d5e8893247e9a36fb1153b4 data/expandedstorage/advancements/recipes/misc/bamboo_chest.json
 d069135f83dfb449102077ed8a816669ee6818ce data/expandedstorage/advancements/recipes/misc/bamboo_chest_minecart.json
 630d0aa0f28e1a78494c681dcfb41b2a178780d1 data/expandedstorage/advancements/recipes/misc/candy_cane_mini_present.json
@@ -83,7 +83,7 @@ cb6897b53e434b0f09125457ee190cfd00247b9d data/expandedstorage/advancements/recip
 33ba41445d6ef86aa8efbe89fea199e6c8b27157 data/expandedstorage/advancements/recipes/misc/wood_to_netherite_conversion_kit.json
 64e5ea4ee5e07cce917dc5a2d82ad67c4ffd39b2 data/expandedstorage/advancements/recipes/misc/wood_to_obsidian_conversion_kit.json
 d2ce2ef0ed3f3c03f45a221fbda3cf6f385dd5b3 data/expandedstorage/advancements/recipes/misc/wood_to_old_wood_chest.json
-33c787175602521902ef751495359e27ea8afb98 data/expandedstorage/recipes/bamboo_chest.json
+4eb484fa375fbe4ac7c8909adfecc9c0f81ab48c data/expandedstorage/recipes/bamboo_chest.json
 a87c4b5ab325c332c9fa736ff92939a225a0dd06 data/expandedstorage/recipes/bamboo_chest_minecart.json
 f26bc5e94c6b0b885f103edb25114f699db33460 data/expandedstorage/recipes/candy_cane_mini_present.json
 902f23cd2f96c79b39edaa8e40cb12ebe168e98e data/expandedstorage/recipes/copper_barrel.json
