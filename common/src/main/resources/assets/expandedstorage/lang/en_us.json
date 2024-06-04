@@ -268,5 +268,10 @@
   "key.expandedstorage.open_config_screen":                               "[ES] Open Screen Select",
   "text.expandedstorage.short_prefix":                                    "[ES] ",
   "text.expandedstorage.prefix":                                          "[Expanded Storage] %s",
-  "text.expandedstorage.wrong_loader_warning":                            "Please install the %2$s release of this mod, this hasn't been tested for %1$s so there may be issues which support will not be provided for otherwise."
+  "text.expandedstorage.wrong_loader_warning":                            "Please install the %2$s release of this mod, this hasn't been tested for %1$s so there may be issues which support will not be provided for otherwise.",
+
+  "tag.item.c.obsidians":                                                 "Obsidian Blocks",
+  "tag.item.c.bamboos":                                                   "Bamboo Stalks",
+  "tag.item.expandedstorage.chests.wooden":                               "Wooden Chests",
+  "tag.item.c.nuggets.iron":                                              "Iron Nuggets"
 }
