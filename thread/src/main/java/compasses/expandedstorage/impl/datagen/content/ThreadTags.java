@@ -8,7 +8,7 @@ import net.minecraft.world.item.Item;
 
 public final class ThreadTags {
     private static ResourceLocation commonId(String path) {
-        return new ResourceLocation("c", path);
+        return ResourceLocation.fromNamespaceAndPath("c", path);
     }
 
     public static class Items {

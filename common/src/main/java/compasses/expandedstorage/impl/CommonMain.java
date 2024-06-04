@@ -230,7 +230,7 @@ public final class CommonMain {
             ObjectConsumer chestMaker = (id, stat, tier, settings) -> {
                 NamedValue<ChestBlock> block = new NamedValue<>(id, () -> new ChestBlock(tier.getBlockSettings().apply(settings), stat, tier.getSlotCount()));
                 NamedValue<BlockItem> item = new NamedValue<>(id, () -> chestItemMaker.apply(block.getValue(), tier.getItemSettings().apply(new Item.Properties())));
-                ResourceLocation cartId = new ResourceLocation(id.getNamespace(), id.getPath() + "_minecart");
+                ResourceLocation cartId = id.withPath(id.getPath() + "_minecart");
                 NamedValue<ChestMinecartItem> cartItem = new NamedValue<>(cartId, () -> chestMinecartItemMaker.apply(new Item.Properties(), cartId));
                 NamedValue<EntityType<ChestMinecart>> cartEntityType = new NamedValue<>(cartId, () -> new EntityType<>((type, level) -> {
                     return new ChestMinecart(type, level, cartItem.getValue(), block.getValue());
@@ -244,7 +244,7 @@ public final class CommonMain {
             ObjectConsumer mossChestMaker = (id, stat, tier, settings) -> {
                 NamedValue<ChestBlock> block = new NamedValue<>(id, () -> new MossChestBlock(tier.getBlockSettings().apply(settings), stat, tier.getSlotCount()));
                 NamedValue<BlockItem> item = new NamedValue<>(id, () -> chestItemMaker.apply(block.getValue(), tier.getItemSettings().apply(new Item.Properties())));
-                ResourceLocation cartId = new ResourceLocation(id.getNamespace(), id.getPath() + "_minecart");
+                ResourceLocation cartId = id.withPath(id.getPath() + "_minecart");
                 NamedValue<ChestMinecartItem> cartItem = new NamedValue<>(cartId, () -> chestMinecartItemMaker.apply(new Item.Properties(), cartId));
                 NamedValue<EntityType<ChestMinecart>> cartEntityType = new NamedValue<>(cartId, () -> new EntityType<>((type, level) -> {
                     return new ChestMinecart(type, level, cartItem.getValue(), block.getValue());

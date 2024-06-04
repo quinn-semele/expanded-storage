@@ -3,20 +3,20 @@ package semele.quinn.expandedstorage.plugin
 import org.gradle.api.JavaVersion
 
 object Versions {
-    const val EXPANDEDSTORAGE = "13.0.0-beta.2"
+    const val EXPANDEDSTORAGE = "14.0.0"
 
     // Generic
     val JAVA = JavaVersion.VERSION_21
-    const val MINECRAFT = "1.20.5"
+    const val MINECRAFT = "1.21-pre2"
     const val PARCHMENT = "1.20.4:2024.04.14"
     const val JETBRAINS_ANNOTATIONS_VERSION = "24.1.0"
-    val CF_SUPPORTED_GAME_VERSIONS: List<String> = listOf(MINECRAFT)
+    val CF_SUPPORTED_GAME_VERSIONS: List<String> = listOf("1.21-Snapshot")
     val MR_SUPPORTED_GAME_VERSIONS: List<String> = listOf(MINECRAFT)
 
     // Fabric
-    const val FABRIC_LOADER = "0.15.10"
-    const val FABRIC_API = "0.97.5+1.20.5"
-    const val FABRIC_KOTLIN = "1.10.19+kotlin.1.9.23" // https://modrinth.com/mod/fabric-language-kotlin/
+    const val FABRIC_LOADER = "0.15.11"
+    const val FABRIC_API = "0.99.4+1.21"
+    const val FABRIC_KOTLIN = "1.11.0+kotlin.2.0.0" // https://modrinth.com/mod/fabric-language-kotlin/
 
     // NeoForge
     const val NEOFORGE = "20.5.0-beta"

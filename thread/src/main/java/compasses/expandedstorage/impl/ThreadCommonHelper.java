@@ -31,7 +31,7 @@ import java.util.List;
 
 public class ThreadCommonHelper implements CommonPlatformHelper {
     private final ExtendedScreenHandlerType<AbstractHandler, InventoryOpeningData> menuType;
-    private final TagKey<Block> woodenChestTag = TagKey.create(Registries.BLOCK, new ResourceLocation("c", "wooden_chests"));
+    private final TagKey<Block> woodenChestTag = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "wooden_chests"));
     private MinecraftServer minecraftServer;
 
     {

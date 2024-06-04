@@ -44,16 +44,16 @@ public final class Utils {
                                                      .setLenient()
                                                      .create();
     public static final int KEY_BIND_KEY = GLFW.GLFW_KEY_G;
-    public static final ResourceLocation PAGINATED_SCREEN_TYPE = new ResourceLocation(Utils.MOD_ID, "paginated");
-    public static final ResourceLocation SINGLE_SCREEN_TYPE = new ResourceLocation(Utils.MOD_ID, "single");
-    public static final ResourceLocation SCROLLABLE_SCREEN_TYPE = new ResourceLocation(Utils.MOD_ID, "scrollable");
-    public static final ResourceLocation MINI_STORAGE_SCREEN_TYPE = new ResourceLocation(Utils.MOD_ID, "mini_storage");
+    public static final ResourceLocation PAGINATED_SCREEN_TYPE = Utils.id("paginated");
+    public static final ResourceLocation SINGLE_SCREEN_TYPE = Utils.id("single");
+    public static final ResourceLocation SCROLLABLE_SCREEN_TYPE = Utils.id("scrollable");
+    public static final ResourceLocation MINI_STORAGE_SCREEN_TYPE = Utils.id("mini_storage");
 
     private Utils() {
         throw new IllegalStateException("Should not instantiate this class.");
     }
 
     public static ResourceLocation id(String path) {
-        return new ResourceLocation(Utils.MOD_ID, path);
+        return ResourceLocation.fromNamespaceAndPath(Utils.MOD_ID, path);
     }
 }

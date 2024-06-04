@@ -69,11 +69,11 @@ public abstract class ConversionRecipeProvider implements DataProvider {
     public ConversionRecipeProvider(PackOutput output) {
         this.pathProvider = output.createPathProvider(PackOutput.Target.DATA_PACK, "conversion_recipes");
 
-        pathProvider.json(new ResourceLocation("expandedstorage", "block/wood_to_copper_chest"));
+        pathProvider.json(Utils.id("block/wood_to_copper_chest"));
     }
 
     protected void registerBlockRecipe(ResourceLocation id, BlockConversionRecipe<?> recipe) {
-        ResourceLocation realId = new ResourceLocation(id.getNamespace(), "block/" + id.getPath());
+        ResourceLocation realId = id.withPath("block/" + id.getPath());
         if (blockRecipes.containsKey(realId)) {
             throw new IllegalStateException("Tried registering duplicate block recipe with id: " + realId);
         }
@@ -81,7 +81,7 @@ public abstract class ConversionRecipeProvider implements DataProvider {
     }
 
     protected void registerEntityRecipe(ResourceLocation id, EntityConversionRecipe<?> recipe) {
-        ResourceLocation realId = new ResourceLocation(id.getNamespace(), "entity/" + id.getPath());
+        ResourceLocation realId = id.withPath("entity/" + id.getPath());
         if (entityRecipes.containsKey(realId)) {
             throw new IllegalStateException("Tried registering duplicate entity recipe with id: " + realId);
         }

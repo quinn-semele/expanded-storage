@@ -79,7 +79,7 @@ public class ThreadMain implements ModInitializer {
                 /*Chest*/ BlockItem::new, ChestItemAccess::new,
                 /*Minecart Chest*/ ChestMinecartItem::new,
                 /*Old Chest*/
-                /*Barrel*/ TagKey.create(Registries.BLOCK, new ResourceLocation("c", "wooden_barrels")),
+                /*Barrel*/ TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "wooden_barrels")),
                 /*Mini Storage*/ BlockItem::new);
 
         ESDataComponents.register();

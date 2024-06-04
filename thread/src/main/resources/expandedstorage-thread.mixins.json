@@ -9,7 +9,6 @@
     "common.HijackBlockPickup",
     "common.HTMChestCompat",
     "common.HTMLockableBlockEntityCompat",
-    "common.MiniStorageHeadEquipment",
     "common.SyncRecipesMixin"
   ],
   "client": [

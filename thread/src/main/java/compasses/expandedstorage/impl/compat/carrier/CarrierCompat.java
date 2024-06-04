@@ -20,6 +20,6 @@ public final class CarrierCompat {
     }
 
     public static void removeEntry(OpenableBlock block) {
-        ((AccessibleCarrierRegistry) CarriableRegistry.INSTANCE).expandedstorage$removeEntry(new ResourceLocation("carrier", block.getBlockId().getNamespace() + "_" + block.getBlockId().getPath()));
+        ((AccessibleCarrierRegistry) CarriableRegistry.INSTANCE).expandedstorage$removeEntry(ResourceLocation.fromNamespaceAndPath("carrier", block.getBlockId().getNamespace() + "_" + block.getBlockId().getPath()));
     }
 }
