@@ -14,7 +14,7 @@ object Versions {
     val MR_SUPPORTED_GAME_VERSIONS: List<String> = listOf(MINECRAFT)
 
     // Fabric
-    const val FABRIC_LOADER = "0.15.3"
+    const val FABRIC_LOADER = "0.15.7"
     const val FABRIC_API = "0.96.11+1.20.4"
     const val FABRIC_KOTLIN = "1.10.19+kotlin.1.9.23" // https://modrinth.com/mod/fabric-language-kotlin/
 
