@@ -1,7 +1,7 @@
-// 1.20.5	2024-04-24T18:59:24.2645888	Expanded Storage/Expanded Storage - Item Tags
-2451ad96a8a6e48fd8ff670e334631db2b4bbbe6 data\c\tags\items\chests\wooden.json
-b87e81b303e998a4b22b225b406534e1ec96e978 data\minecraft\tags\items\piglin_loved.json
-9394ca49e2dbd681b83903e4097bd37655a6a794 data\c\tags\items\bamboos.json
-a600f08f3b82ea64e2da4220752cea0537967e95 data\c\tags\items\nuggets\iron.json
-26d89c4e3cfa827f5d2a7ef1ef43ec4c8c63cd6e data\c\tags\items\obsidians.json
-b85f783359efdcef3da99d40106c0984d10e464d data\expandedstorage\tags\items\chests\wooden.json
+// 1.21 Pre-Release 2	2024-06-04T17:29:51.805088	Expanded Storage/Expanded Storage - Item Tags
+9394ca49e2dbd681b83903e4097bd37655a6a794 data\c\tags\item\bamboos.json
+b87e81b303e998a4b22b225b406534e1ec96e978 data\minecraft\tags\item\piglin_loved.json
+a600f08f3b82ea64e2da4220752cea0537967e95 data\c\tags\item\nuggets\iron.json
+b85f783359efdcef3da99d40106c0984d10e464d data\expandedstorage\tags\item\chests\wooden.json
+2451ad96a8a6e48fd8ff670e334631db2b4bbbe6 data\c\tags\item\chests\wooden.json
+26d89c4e3cfa827f5d2a7ef1ef43ec4c8c63cd6e data\c\tags\item\obsidians.json

@@ -1,4 +1,4 @@
-// 1.20.5	2024-04-24T18:59:24.2728899	Expanded Storage/Expanded Storage - Entity Type Tags
-24733c011507c55f9a445dfa033c4af7a99beb1a data\expandedstorage\tags\entity_types\chest_minecarts.json
-77e7a2b410b72a4e74f8bc1784e0fa2302cdd7bd data\expandedstorage\tags\entity_types\chest_minecarts\wooden.json
-9bf099777161ff5f1aae2c1f9806945330f2aae4 data\c\tags\entity_types\chest_minecarts\wooden.json
+// 1.21 Pre-Release 2	2024-06-04T17:29:51.8070893	Expanded Storage/Expanded Storage - Entity Type Tags
+9bf099777161ff5f1aae2c1f9806945330f2aae4 data\c\tags\entity_type\chest_minecarts\wooden.json
+77e7a2b410b72a4e74f8bc1784e0fa2302cdd7bd data\expandedstorage\tags\entity_type\chest_minecarts\wooden.json
+24733c011507c55f9a445dfa033c4af7a99beb1a data\expandedstorage\tags\entity_type\chest_minecarts.json
