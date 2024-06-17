@@ -5,10 +5,9 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.common.crafting.CompoundIngredient;
 
-import java.util.Collections;
 import java.util.concurrent.CompletableFuture;
 
 public final class RecipeProvider extends net.minecraft.data.recipes.RecipeProvider {
@@ -23,7 +22,7 @@ public final class RecipeProvider extends net.minecraft.data.recipes.RecipeProvi
                 Tags.Items.INGOTS_COPPER, Tags.Items.NUGGETS_IRON, Tags.Items.INGOTS_IRON, Tags.Items.INGOTS_GOLD, Tags.Items.GEMS_DIAMOND, Tags.Items.OBSIDIANS, Tags.Items.INGOTS_NETHERITE,
                 Tags.Items.CHESTS_WOODEN, Tags.Items.BARRELS_WOODEN,
                 Tags.Items.GLASS_BLOCKS, Tags.Items.DYES_RED, Tags.Items.DYES_WHITE, ForgeTags.Items.BAMBOO,
-                new CompoundIngredient(Collections.emptyList()).toVanilla()
+                Ingredient.EMPTY
         );
         recipeHelper.registerRecipes(output);
     }
