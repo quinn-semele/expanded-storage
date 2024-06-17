@@ -1,5 +1,5 @@
-// 1.20.5	2024-04-24T19:00:19.6110597	Expanded Storage - Item Tags
-578dd629e6c69bf5641983afdf5f54ca2d3b5882 data/c/tags/items/bamboos.json
-2451ad96a8a6e48fd8ff670e334631db2b4bbbe6 data/c/tags/items/chests/wooden.json
-1d97aa287c2625c284d27d65720d0031b95bec7a data/expandedstorage/tags/items/chests/wooden.json
-b87e81b303e998a4b22b225b406534e1ec96e978 data/minecraft/tags/items/piglin_loved.json
+// 1.21	2024-06-17T16:23:47.4939017	Expanded Storage - Item Tags
+578dd629e6c69bf5641983afdf5f54ca2d3b5882 data/c/tags/item/bamboos.json
+2451ad96a8a6e48fd8ff670e334631db2b4bbbe6 data/c/tags/item/chests/wooden.json
+1d97aa287c2625c284d27d65720d0031b95bec7a data/expandedstorage/tags/item/chests/wooden.json
+b87e81b303e998a4b22b225b406534e1ec96e978 data/minecraft/tags/item/piglin_loved.json
