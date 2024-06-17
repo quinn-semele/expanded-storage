@@ -27,12 +27,12 @@ val releaseTask = tasks.register(Constants.RELEASE_MOD_TASK, ReleaseModTask::cla
     dependsOn(":publishMods")
 
     doLast {
-        val cfLinks = mapOf("Fabric" to "publishCurseForgeFabric", /*"NeoForge" to "publishCurseForgeForge", "Quilt" to "publishCurseForgeQuilt"*/).mapValues {
+        val cfLinks = mapOf("Fabric" to "publishCurseForgeFabric", "NeoForge" to "publishCurseForgeForge", /*"Quilt" to "publishCurseForgeQuilt"*/).mapValues {
             val result = PublishResult.fromJson(tasks.getByName<PublishModTask>(it.value).result.get().asFile.readText(Charsets.UTF_8))
 
             result.link
         }
-        val mrLinks = mapOf("Fabric" to "publishModrinthFabric", /*"NeoForge" to "publishModrinthForge", "Quilt" to "publishModrinthQuilt"*/).mapValues {
+        val mrLinks = mapOf("Fabric" to "publishModrinthFabric", "NeoForge" to "publishModrinthForge", /*"Quilt" to "publishModrinthQuilt"*/).mapValues {
             val result = PublishResult.fromJson(tasks.getByName<PublishModTask>(it.value).result.get().asFile.readText(Charsets.UTF_8))
 
             result.link
@@ -93,13 +93,13 @@ val fabricOptions = publishMods.publishOptions {
     file = project(":fabric").tasks.named<AbstractJsonTask>("minJar").map { it.archiveFile.get() }
 }
 
-//val forgeOptions = publishMods.publishOptions {
-//    modLoaders.add("neoforge")
-//    displayName = "ES NeoForge ${Versions.EXPANDEDSTORAGE}"
-//    version = "${Versions.EXPANDEDSTORAGE}+neoforge"
-//    file = project(":forge").tasks.named<AbstractJsonTask>("minJar").map { it.archiveFile.get() }
-//}
-//
+val forgeOptions = publishMods.publishOptions {
+    modLoaders.add("neoforge")
+    displayName = "ES NeoForge ${Versions.EXPANDEDSTORAGE}"
+    version = "${Versions.EXPANDEDSTORAGE}+neoforge"
+    file = project(":forge").tasks.named<AbstractJsonTask>("minJar").map { it.archiveFile.get() }
+}
+
 //val quiltOptions = publishMods.publishOptions {
 //    modLoaders.add("quilt")
 //    displayName = "ES Quilt ${Versions.EXPANDEDSTORAGE}"
@@ -117,7 +117,7 @@ fun ModrinthOptions.threadDependencies() {
     threadDependencies.modrinthIds().forEach(::optional)
 }
 
-//val forgeDependencies = project(":forge").extra["mod_dependencies"] as FreezableDependencyList
+val forgeDependencies = project(":forge").extra["mod_dependencies"] as FreezableDependencyList
 
 publishMods {
     changelog = modChangelog.joinToString("\n")
@@ -138,12 +138,12 @@ publishMods {
 //        requires("qsl")
 //        threadDependencies()
 //    }
-//
-//    curseforge("CurseForgeForge") {
-//        from(commonCurseForgeOptions, forgeOptions)
-//
-//        forgeDependencies.curseForgeIds().forEach(::optional)
-//    }
+
+    curseforge("CurseForgeForge") {
+        from(commonCurseForgeOptions, forgeOptions)
+
+        forgeDependencies.curseForgeIds().forEach(::optional)
+    }
 
     modrinth("ModrinthFabric") {
         from(commonModrinthOptions, fabricOptions)
@@ -158,18 +158,18 @@ publishMods {
 //        requires("qsl")
 //        threadDependencies()
 //    }
-//
-//    modrinth("ModrinthForge") {
-//        from(commonModrinthOptions, forgeOptions)
-//
-//        forgeDependencies.modrinthIds().forEach(::optional)
-//    }
+
+    modrinth("ModrinthForge") {
+        from(commonModrinthOptions, forgeOptions)
+
+        forgeDependencies.modrinthIds().forEach(::optional)
+    }
 }
 
-//tasks.getByName("publishModrinthFabric").mustRunAfter("publishModrinthForge", "publishModrinthQuilt")
+tasks.getByName("publishModrinthFabric").mustRunAfter("publishModrinthForge") // , "publishModrinthQuilt"
 //tasks.getByName("publishModrinthForge").mustRunAfter("publishModrinthQuilt")
 
-//tasks.getByName("publishCurseForgeFabric").mustRunAfter("publishCurseForgeForge", "publishCurseForgeQuilt")
+tasks.getByName("publishCurseForgeFabric").mustRunAfter("publishCurseForgeForge") // , "publishCurseForgeQuilt"
 //tasks.getByName("publishCurseForgeForge").mustRunAfter("publishCurseForgeQuilt")
 
 private fun getGitCommit(): String {

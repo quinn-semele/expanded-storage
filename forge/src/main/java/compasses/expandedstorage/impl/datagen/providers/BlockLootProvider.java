@@ -1,6 +1,7 @@
 package compasses.expandedstorage.impl.datagen.providers;
 
 import compasses.expandedstorage.impl.misc.Utils;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
@@ -11,8 +12,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public final class BlockLootProvider extends BlockLootSubProvider {
-    public BlockLootProvider() {
-        super(Set.of(), FeatureFlags.REGISTRY.allFlags());
+    public BlockLootProvider(HolderLookup.Provider holderLookupProvider) {
+        super(Set.of(), FeatureFlags.REGISTRY.allFlags(), holderLookupProvider);
     }
 
     @Override

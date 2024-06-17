@@ -59,7 +59,7 @@ public final class ForgeMain {
                 /*Chest*/ ChestBlockItem::new, ChestItemAccess::new,
                 /*Minecart Chest*/ ForgeChestMinecartItem::new,
                 /*Old Chest*/
-                /*Barrel*/ TagKey.create(Registries.BLOCK, new ResourceLocation("forge", "barrels/wooden")),
+                /*Barrel*/ TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("forge", "barrels/wooden")),
                 /*Mini Storage*/ MiniStorageBlockItem::new);
         NeoForge.EVENT_BUS.addListener((AddReloadListenerEvent event) -> event.addListener(new ConversionRecipeReloadListener()));
         NeoForge.EVENT_BUS.addListener((OnDatapackSyncEvent event) -> CommonMain.platformHelper().sendConversionRecipesToClient(event.getPlayer(), ConversionRecipeManager.INSTANCE.getBlockRecipes(), ConversionRecipeManager.INSTANCE.getEntityRecipes()));
