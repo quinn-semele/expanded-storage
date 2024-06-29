@@ -6,8 +6,8 @@ import compasses.expandedstorage.impl.block.misc.CopperBlockHelper;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.common.ToolAction;
-import net.neoforged.neoforge.common.ToolActions;
+import net.neoforged.neoforge.common.ItemAbilities;
+import net.neoforged.neoforge.common.ItemAbility;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 
@@ -21,12 +21,12 @@ public class OxidizableBlockMixin extends Block {
 
     @Nullable
     @Override
-    public BlockState getToolModifiedState(BlockState state, UseOnContext context, ToolAction action, boolean simulate) {
-        boolean isRemovingOxidisation = action == ToolActions.AXE_SCRAPE;
-        boolean isRemovingWax = action == ToolActions.AXE_WAX_OFF;
+    public BlockState getToolModifiedState(BlockState state, UseOnContext context, ItemAbility action, boolean simulate) {
+        boolean isRemovingOxidisation = action == ItemAbilities.AXE_SCRAPE;
+        boolean isRemovingWax = action == ItemAbilities.AXE_WAX_OFF;
         if (isRemovingOxidisation || isRemovingWax) {
             Optional<BlockState> possibleValue;
-            if (action == ToolActions.AXE_SCRAPE) {
+            if (action == ItemAbilities.AXE_SCRAPE) {
                 possibleValue = CopperBlockHelper.getPreviousOxidisedState(state);
             } else {
                 possibleValue = CopperBlockHelper.getDewaxed(state);

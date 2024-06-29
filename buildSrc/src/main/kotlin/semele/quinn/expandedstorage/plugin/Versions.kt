@@ -19,7 +19,7 @@ object Versions {
     const val FABRIC_KOTLIN = "1.11.0+kotlin.2.0.0" // https://modrinth.com/mod/fabric-language-kotlin/
 
     // NeoForge
-    const val NEOFORGE = "21.0.14-beta"
+    const val NEOFORGE = "21.0.40-beta"
 
     // Quilt
     const val QUILT_LOADER = "0.23.1"

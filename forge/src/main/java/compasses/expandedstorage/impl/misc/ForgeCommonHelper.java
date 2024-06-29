@@ -16,7 +16,7 @@ import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.common.ToolActions;
+import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.network.IContainerFactory;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.Nullable;
@@ -59,7 +59,7 @@ public class ForgeCommonHelper implements CommonPlatformHelper {
 
     @Override
     public boolean canDestroyBamboo(ItemStack stack) {
-        return stack.canPerformAction(ToolActions.SWORD_DIG);
+        return stack.canPerformAction(ItemAbilities.SWORD_DIG);
     }
 
     @Override
