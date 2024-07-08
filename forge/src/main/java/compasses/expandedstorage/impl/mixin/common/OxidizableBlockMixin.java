@@ -26,7 +26,7 @@ public class OxidizableBlockMixin extends Block {
         boolean isRemovingWax = action == ItemAbilities.AXE_WAX_OFF;
         if (isRemovingOxidisation || isRemovingWax) {
             Optional<BlockState> possibleValue;
-            if (action == ItemAbilities.AXE_SCRAPE) {
+            if (isRemovingOxidisation) {
                 possibleValue = CopperBlockHelper.getPreviousOxidisedState(state);
             } else {
                 possibleValue = CopperBlockHelper.getDewaxed(state);

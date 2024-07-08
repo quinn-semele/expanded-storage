@@ -3,7 +3,7 @@ package semele.quinn.expandedstorage.plugin
 import org.gradle.api.JavaVersion
 
 object Versions {
-    const val EXPANDEDSTORAGE = "14.0.0"
+    const val EXPANDEDSTORAGE = "14.0.1"
 
     // Generic
     val JAVA = JavaVersion.VERSION_21
@@ -29,7 +29,7 @@ object Versions {
     // Dependencies
     const val EMI = "1.1.4+1.20.4" // https://modrinth.com/mod/emi/
 
-    const val REI = "14.0.688" // https://modrinth.com/mod/rei/
+    const val REI = "16.0.729" // https://modrinth.com/mod/rei/
 
     const val JEI = "17.3.0.49" // https://modrinth.com/mod/jei/
     const val JEI_MINECRAFT = "1.20.4"
