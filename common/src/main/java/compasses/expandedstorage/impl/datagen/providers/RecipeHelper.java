@@ -26,14 +26,12 @@ public class RecipeHelper {
     private final Function<Item, ResourceLocation> itemIdGetter;
     private final TagKey<Item> copperIngots, ironNuggets, ironIngots, goldIngots, diamonds, obsidianBlocks, netheriteIngots;
     private final TagKey<Item> glassBlocks, woodenChests, woodenBarrels, redDyes, whiteDyes, bamboo;
-    private final Ingredient emptyIngredientForSmithingRecipe;
 
     public RecipeHelper(
             Function<Item, ResourceLocation> itemIdGetter,
             TagKey<Item> copperIngots, TagKey<Item> ironNuggets, TagKey<Item> ironIngots, TagKey<Item> goldIngots, TagKey<Item> diamonds, TagKey<Item> obsidianBlocks, TagKey<Item> netheriteIngots,
             TagKey<Item> woodenChests, TagKey<Item> woodenBarrels,
-            TagKey<Item> glassBlocks, TagKey<Item> redDyes, TagKey<Item> whiteDyes, TagKey<Item> bamboo,
-            Ingredient emptyIngredientForSmithingRecipe
+            TagKey<Item> glassBlocks, TagKey<Item> redDyes, TagKey<Item> whiteDyes, TagKey<Item> bamboo
     ) {
         this.itemIdGetter = itemIdGetter;
         this.copperIngots = copperIngots;
@@ -49,7 +47,6 @@ public class RecipeHelper {
         this.redDyes = redDyes;
         this.whiteDyes = whiteDyes;
         this.bamboo = bamboo;
-        this.emptyIngredientForSmithingRecipe = emptyIngredientForSmithingRecipe;
     }
 
     @SuppressWarnings("SpellCheckingInspection")
@@ -203,7 +200,7 @@ public class RecipeHelper {
                 .save(output);
         smithingRecipe(ModItems.DIAMOND_TO_NETHERITE_CONVERSION_KIT, ModItems.DIAMOND_TO_OBSIDIAN_CONVERSION_KIT, netheriteIngots, RecipeCategory.MISC, Criterions.HAS_PREVIOUS_KIT, output);
 
-        SmithingTransformRecipeBuilder.smithing(this.emptyIngredientForSmithingRecipe, Ingredient.of(obsidianBlocks), Ingredient.of(netheriteIngots), RecipeCategory.MISC, ModItems.OBSIDIAN_TO_NETHERITE_CONVERSION_KIT)
+        SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), Ingredient.of(obsidianBlocks), Ingredient.of(netheriteIngots), RecipeCategory.MISC, ModItems.OBSIDIAN_TO_NETHERITE_CONVERSION_KIT)
                                       .unlocks(Criterions.HAS_ITEM, RecipeProvider.has(obsidianBlocks))
                                       .save(output, itemIdGetter.apply(ModItems.OBSIDIAN_TO_NETHERITE_CONVERSION_KIT));
     }

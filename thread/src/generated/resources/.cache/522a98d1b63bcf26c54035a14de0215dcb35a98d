@@ -1,4 +1,4 @@
-// 1.21 Pre-Release 2	2024-06-04T17:29:51.8080909	Expanded Storage/Expanded Storage - Recipes
+// 1.21	2024-07-09T08:33:01.017514	Expanded Storage/Expanded Storage - Recipes
 5a34b78de719c3a7f46738a605f3a0aa2476679e data\expandedstorage\recipe\copper_to_diamond_conversion_kit.json
 44a2228cfdfc6f1d0f814af8ad9f509644979df3 data\expandedstorage\recipe\copper_to_netherite_conversion_kit.json
 902f23cd2f96c79b39edaa8e40cb12ebe168e98e data\expandedstorage\recipe\copper_barrel.json
@@ -129,7 +129,7 @@ aefb5879a344962df7b12361928fe2935c80c723 data\expandedstorage\advancement\recipe
 21519200170617908195d091109e2cd49d97c3d3 data\expandedstorage\recipe\netherite_mini_chest.json
 e92ab4e45f415ab332d042940e380ad4fed3e268 data\expandedstorage\advancement\recipes\misc\iron_mini_barrel.json
 421b2decb10bcd1b1ee3c24b4aa6f59e1ce47504 data\expandedstorage\advancement\recipes\misc\wood_to_iron_conversion_kit.json
-bae4694f492cdb9b06bafd527ec2ac7f472a061c data\expandedstorage\recipe\obsidian_to_netherite_conversion_kit.json
+f138f2cf3d15723a03272a90367a625aff925c0c data\expandedstorage\recipe\obsidian_to_netherite_conversion_kit.json
 f26bc5e94c6b0b885f103edb25114f699db33460 data\expandedstorage\recipe\candy_cane_mini_present.json
 a87c4b5ab325c332c9fa736ff92939a225a0dd06 data\expandedstorage\recipe\bamboo_chest_minecart.json
 5e8dba757295c1af905387a5ace782a033c4292c data\expandedstorage\recipe\red_mini_present_cycle.json

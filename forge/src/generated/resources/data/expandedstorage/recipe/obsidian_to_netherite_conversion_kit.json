@@ -10,5 +10,7 @@
     "count": 1,
     "id": "expandedstorage:obsidian_to_netherite_conversion_kit"
   },
-  "template": []
+  "template": {
+    "item": "minecraft:netherite_upgrade_smithing_template"
+  }
 }

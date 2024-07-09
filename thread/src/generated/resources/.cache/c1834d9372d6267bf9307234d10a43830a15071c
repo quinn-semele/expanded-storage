@@ -1,9 +1,9 @@
-// 1.21 Pre-Release 2	2024-06-04T17:29:51.8070893	Expanded Storage/Expanded Storage - Block Tags
+// 1.21	2024-07-09T08:33:01.0154748	Expanded Storage/Expanded Storage - Block Tags
 a45febe26d806dfc76b777455a0a765836a35b8a data\minecraft\tags\block\needs_iron_tool.json
 311c475108d99cd330b77e1460e9c0b1fd8134ff data\expandedstorage\tags\block\barrels\copper.json
+be486ad73493e4aeace8638de78b298ec7630e06 data\minecraft\tags\block\mineable\axe.json
 0fb33f6095d3bc3a371bfd17b45fc862162b957a data\minecraft\tags\block\mineable\pickaxe.json
 fd0bcd75aa8cb8ca2b340cd79a08d0d870e6f40e data\minecraft\tags\block\mineable\hoe.json
-be486ad73493e4aeace8638de78b298ec7630e06 data\minecraft\tags\block\mineable\axe.json
 a5fb06427dce73974674776920a7afdc887c70b7 data\minecraft\tags\block\guarded_by_piglins.json
 70d55b827a6494908c03ab3c008c8b4237bc5ecf data\minecraft\tags\block\needs_diamond_tool.json
 23a420394830aaed094e5e48d3b363b6eb7abbba data\minecraft\tags\block\needs_stone_tool.json

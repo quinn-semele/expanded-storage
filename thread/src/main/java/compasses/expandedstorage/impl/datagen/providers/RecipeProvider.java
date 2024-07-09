@@ -23,8 +23,7 @@ public class RecipeProvider extends FabricRecipeProvider {
                 BuiltInRegistries.ITEM::getKey,
                 ConventionalItemTags.COPPER_INGOTS, ThreadTags.Items.IRON_NUGGETS, ConventionalItemTags.IRON_INGOTS, ConventionalItemTags.GOLD_INGOTS, ConventionalItemTags.DIAMOND_GEMS, ThreadTags.Items.OBSIDIAN, ConventionalItemTags.NETHERITE_INGOTS,
                 ConventionalItemTags.WOODEN_CHESTS, ConventionalItemTags.WOODEN_BARRELS,
-                ConventionalItemTags.GLASS_BLOCKS, ConventionalItemTags.RED_DYES, ConventionalItemTags.WHITE_DYES, ThreadTags.Items.BAMBOO,
-                Ingredient.EMPTY
+                ConventionalItemTags.GLASS_BLOCKS, ConventionalItemTags.RED_DYES, ConventionalItemTags.WHITE_DYES, ThreadTags.Items.BAMBOO
         );
 
         recipeHelper.registerRecipes(output);

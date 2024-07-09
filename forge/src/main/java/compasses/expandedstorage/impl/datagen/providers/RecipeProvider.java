@@ -21,8 +21,7 @@ public final class RecipeProvider extends net.minecraft.data.recipes.RecipeProvi
                 BuiltInRegistries.ITEM::getKey,
                 Tags.Items.INGOTS_COPPER, Tags.Items.NUGGETS_IRON, Tags.Items.INGOTS_IRON, Tags.Items.INGOTS_GOLD, Tags.Items.GEMS_DIAMOND, Tags.Items.OBSIDIANS, Tags.Items.INGOTS_NETHERITE,
                 Tags.Items.CHESTS_WOODEN, Tags.Items.BARRELS_WOODEN,
-                Tags.Items.GLASS_BLOCKS, Tags.Items.DYES_RED, Tags.Items.DYES_WHITE, ForgeTags.Items.BAMBOO,
-                Ingredient.EMPTY
+                Tags.Items.GLASS_BLOCKS, Tags.Items.DYES_RED, Tags.Items.DYES_WHITE, ForgeTags.Items.BAMBOO
         );
         recipeHelper.registerRecipes(output);
     }

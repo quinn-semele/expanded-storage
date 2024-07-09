@@ -1,9 +1,9 @@
-// 1.21 Pre-Release 2	2024-06-04T17:29:51.8060885	Expanded Storage/Expanded Storage - Loot Tables
+// 1.21	2024-07-09T08:33:01.0134748	Expanded Storage/Expanded Storage - Loot Tables
 5834c5bc1297b331e7e171fc0ee8068daec00610 data\expandedstorage\loot_table\blocks\obsidian_mini_barrel.json
 31ea4fcb0363ca538ce225975109bd26e621a52d data\expandedstorage\loot_table\blocks\waxed_weathered_copper_barrel.json
 41e967d9a33ffe30208e0f5b499d5add18d1668d data\expandedstorage\loot_table\blocks\copper_mini_barrel.json
-08755a0d49f16f22612546b0220390944fc01949 data\expandedstorage\loot_table\blocks\obsidian_mini_chest.json
 dfe9ee4f3180df06787ac3601e1129f6f89992bd data\expandedstorage\loot_table\blocks\exposed_copper_mini_barrel.json
+08755a0d49f16f22612546b0220390944fc01949 data\expandedstorage\loot_table\blocks\obsidian_mini_chest.json
 87299961d76cb715b29baaff99c168a3ca956cae data\expandedstorage\loot_table\blocks\exposed_copper_barrel.json
 c41e64dc346b28e064432cea38ae7fbfd8d252a6 data\expandedstorage\loot_table\blocks\iron_mini_barrel.json
 9156d9d769433f68863c7dd43121c915e70d6b5d data\expandedstorage\loot_table\blocks\lavender_mini_present.json

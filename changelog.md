@@ -1,1 +1,1 @@
-- Fix NeoForge release for builds past 21.0.40, thanks to [Andromeda](https://github.com/3x1t-5tyl3) for this fix!
+- Make obsidian to netherite conversion kits require a smithing template.
