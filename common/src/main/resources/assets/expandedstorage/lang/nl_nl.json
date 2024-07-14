@@ -254,5 +254,5 @@
   "screen.expandedstorage.current_option_notice":                       "Dit is je huidige voorkeur.",
   "chat.expandedstorage.cannot_display_screen":                         "Kan inventaris met type \"%s\" niet openen, probeer een andere alstublieft.",
 
-  "key.expandedstorage.open_config_screen":                             "[ES] Open Schermselectie"
+  "key.expandedstorage.config":                                         "[ES] Open Schermselectie"
 }

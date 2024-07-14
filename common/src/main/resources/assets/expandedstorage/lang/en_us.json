@@ -265,7 +265,7 @@
 
   "text.expandedstorage.disconnect.old_version":                          "Please update Expanded Storage.",
 
-  "key.expandedstorage.open_config_screen":                               "[ES] Open Screen Select",
+  "key.expandedstorage.config":                                           "[ES] Open Screen Select",
   "text.expandedstorage.short_prefix":                                    "[ES] ",
   "text.expandedstorage.prefix":                                          "[Expanded Storage] %s",
   "text.expandedstorage.wrong_loader_warning":                            "Please install the %2$s release of this mod, this hasn't been tested for %1$s so there may be issues which support will not be provided for otherwise.",

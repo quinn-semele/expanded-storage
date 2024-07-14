@@ -254,5 +254,5 @@
   "screen.expandedstorage.current_option_notice":                       "Esta é sua preferência atual.",
   "chat.expandedstorage.cannot_display_screen":                         "Não é possível abrir o inventário com o tipo \"%s\", por favor tente um diferente.",
 
-  "key.expandedstorage.open_config_screen":                             "[ES] Abrir tela de configuração"
+  "key.expandedstorage.config":                                         "[ES] Abrir tela de configuração"
 }

@@ -131,5 +131,5 @@
   "screen.expandedstorage.current_option_notice":                "Ceci est votre préférence actuelle.",
   "chat.expandedstorage.cannot_display_screen":                  "L'inventaire ne peut pas être ouvert avec le type \"%s\", veuillez en sélectionner un autre.",
 
-  "key.expandedstorage.open_config_screen":                      "[ES] Ouvrir la sélection d'écran"
+  "key.expandedstorage.config":                                  "[ES] Ouvrir la sélection d'écran"
 }
