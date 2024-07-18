@@ -1,117 +1,110 @@
-import semele.quinn.expandedstorage.plugin.Constants
-import semele.quinn.expandedstorage.plugin.Versions
-import semele.quinn.expandedstorage.plugin.dependency.FreezableDependencyList
-
 plugins {
-    id("expandedstorage-generic")
-    id("expandedstorage-common-dependent")
-    id("expandedstorage-release-project")
+    id("java-library")
+    id("idea")
+    id("net.neoforged.moddev") version "1.0.10"
 }
 
-loom {
-    accessWidenerPath = project(":common").loom.accessWidenerPath
+//tasks.named('wrapper', Wrapper).configure {
+//    distributionType = Wrapper.DistributionType.BIN
+//}
+
+version = properties["mod_version"] as String
+group = properties["mod_group"] as String
+val mod_id: String by properties
+
+base.archivesName.set(mod_id)
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+neoForge {
+    version = properties["neoforge_version"] as String
+
+    parchment {
+        mappingsVersion = properties["parchment_version"] as String
+        mappingsVersion = properties["minecraft_version"] as String
+    }
 
     runs {
-        create("datagen") {
+        create("client") {
+            client()
+        }
+
+        create("server") {
+            server()
+            programArgument("--nogui")
+        }
+
+        create("gameTestServer") {
+            type = "gameTestServer"
+            systemProperty("neoforge.enabledGameTestNamespaces", mod_id)
+        }
+
+        create("data") {
             data()
+            programArguments.addAll(listOf(
+                "--mod", mod_id,
+                "--all",
+                "--output", file("src/generated/resources/").absolutePath
+                "--existing", file("src/main/resources/").absolutePath
+            ))
+        }
 
-            programArg("--existing")
-            programArg(file("src/main/resources").absolutePath)
+        configureEach {
+            logLevel = org.slf4j.event.Level.INFO
+        }
+    }
 
-            programArg("--existing")
-            programArg(project(":common").file("src/main/resources").absolutePath)
-
-
-            programArg("--all")
-
-            programArg("--mod")
-            programArg(Constants.MOD_ID)
-
-            programArg("--output")
-            programArg(file("src/generated/resources").absolutePath)
+    mods {
+        create(mod_id) {
+            sourceSet(sourceSets.main.get())
         }
     }
 }
 
-sourceSets.main {
-    resources.srcDir(file("src/generated/resources"))
+sourceSets.main.configure {
+    resources.srcDir("src/generated/resources/")
 }
 
-tasks.getByName<Jar>("minJar") {
-    manifest.attributes(mapOf(
-            "Automatic-Module-Name" to "semele.quinn.expandedstorage"
-    ))
+configurations {
+    val localRuntime = create("localRuntime")
+    runtimeClasspath.configure { extendsFrom(localRuntime) }
 }
 
-val modDependencies = FreezableDependencyList().apply {
-    from(project(":common").extra["mod_dependencies"])
+tasks.withType<ProcessResources> {
+    val replacements = mutableMapOf(
+        "minecraft_version" to properties["minecraft_version"] as String,
+    )
 
-    add("emi") {
-        compileOnly("dev.emi:emi-neoforge:${Versions.EMI}:api")
-        runtimeOnly("dev.emi:emi-neoforge:${Versions.EMI}")
-    }
+    inputs.properties(replacements)
 
-    add("jei") {
-        compileOnly("mezz.jei:jei-${Versions.JEI_MINECRAFT}-neoforge-api:${Versions.JEI}")
-        runtimeOnly("mezz.jei:jei-${Versions.JEI_MINECRAFT}-neoforge:${Versions.JEI}")
-    }
-
-    add("carry-on") {
-        implementation("maven.modrinth:carry-on:${Versions.CARRY_ON_FORGE}")
-    }
-
-    add("quark") {
-        implementation("org.violetmoon.quark:Quark:${Versions.QUARK}")
-        runtimeOnly("org.violetmoon.zeta:Zeta:${Versions.ZETA}")
-    }
-
-    add("rei", cfDependencyName = "roughly-enough-items") {
-        compileOnly("me.shedaniel:RoughlyEnoughItems-api:${Versions.REI}")
-        compileOnly("me.shedaniel:RoughlyEnoughItems-api-neoforge:${Versions.REI}")
-        runtimeOnly("me.shedaniel:RoughlyEnoughItems-neoforge:${Versions.REI}")
-    }
-
-    freeze()
-}
-
-extra["mod_dependencies"] = modDependencies
-
-repositories {
-    maven { // Quark, JEI
-        name = "Jared"
-        url = uri("https://maven.blamejared.com/")
-    }
-
-    maven { // Roughly Enough Items
-        name = "Shedaniel"
-        url = uri("https://maven.shedaniel.me/")
-    }
-
-    exclusiveContent { // EMI
-        forRepository {
-            maven {
-                name = "TerraformersMC"
-                url = uri("https://maven.terraformersmc.com/")
-            }
-        }
-        filter {
-            includeGroup("dev.emi")
-        }
-    }
-
-    maven {
-        name = "NeoForge Maven"
-        url = uri("https://maven.neoforged.net/releases/")
+    filesMatching("META-INF/neoforge.mods.toml") {
+        expand(replacements)
     }
 }
 
-dependencies {
-    neoForge("net.neoforged:neoforge:${Versions.NEOFORGE}")
+//tasks.withType(ProcessResources).configureEach {
+//    var replaceProperties = [
+//        minecraft_version      : minecraft_version,
+//    minecraft_version_range: minecraft_version_range,
+//    neo_version            : neo_version,
+//    neo_version_range      : neo_version_range,
+//    loader_version_range   : loader_version_range,
+//    mod_id                 : mod_id,
+//    mod_name               : mod_name,
+//    mod_license            : mod_license,
+//    mod_version            : mod_version,
+//    mod_authors            : mod_authors,
+//    mod_description        : mod_description
+//    ]
 
-    modDependencies.compileDependencies(project).forEach(::modCompileOnly)
-    modDependencies.runtimeDependencies(project).forEach(::modRuntimeOnly)
+tasks.withType<JavaCompile> {
+    options.encoding = "UTF-8"
 }
 
-tasks.remapJar {
-    atAccessWideners.add("expandedstorage.accessWidener")
+// IDEA no longer automatically downloads sources/javadoc jars for dependencies, so we need to explicitly enable the behavior.
+idea {
+    module {
+        isDownloadSources = true
+        isDownloadJavadoc = true
+    }
 }

@@ -1,48 +1,42 @@
-import semele.quinn.expandedstorage.plugin.Versions
-import semele.quinn.expandedstorage.plugin.dependency.FreezableDependencyList
-
 plugins {
-    id("expandedstorage-generic")
+    id("fabric-loom") version "1.7-SNAPSHOT"
 }
 
 loom {
     accessWidenerPath = file("src/main/resources/expandedstorage.accessWidener")
 }
 
-val modDependencies = FreezableDependencyList().apply {
-    add("emi") {
-        if (it.name != "common") return@add // Idk am getting some funky class errors on forge.
-
-        compileOnly("dev.emi:emi-xplat-intermediary:${Versions.EMI}:api")
-    }
-
-    add("jei") {
-        compileOnly("mezz.jei:jei-${Versions.JEI_MINECRAFT}-common-api:${Versions.JEI}")
-    }
-
-    add("carry-on") {
-        if (it.name != "common") return@add
-
-        compileOnly("maven.modrinth:carry-on:${Versions.CARRY_ON_FABRIC}")
-    }
-
-    freeze()
-}
-
-extra["mod_dependencies"] = modDependencies
-
 repositories {
-    maven { // Quark, JEI
-        name = "Jared"
-        url = uri("https://maven.blamejared.com/")
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "Unofficial CurseForge Maven"
+                url = uri("https://cursemaven.com/")
+            }
+        }
+        filter {
+            includeGroup("curse.maven")
+        }
     }
 
-    maven { // Roughly Enough Items
-        name = "Shedaniel"
-        url = uri("https://maven.shedaniel.me/")
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "Modrinth Maven"
+                url = uri("https://api.modrinth.com/maven/")
+            }
+        }
+        filter {
+            includeGroup("maven.modrinth")
+        }
     }
 
-    exclusiveContent { // EMI
+    maven {
+        name = "ParchmentMC Maven"
+        url = uri("https://maven.parchmentmc.org/")
+    }
+
+    exclusiveContent { // Mod Menu, EMI
         forRepository {
             maven {
                 name = "TerraformersMC"
@@ -50,13 +44,31 @@ repositories {
             }
         }
         filter {
+            includeGroup("com.terraformersmc")
             includeGroup("dev.emi")
         }
+    }
+
+    maven { // Quark, JEI
+        name = "Jared"
+        url = uri("https://maven.blamejared.com/")
     }
 }
 
 dependencies {
-    modRuntimeOnly(modCompileOnly("net.fabricmc:fabric-loader:${Versions.FABRIC_LOADER}")!!)
+    minecraft("com.mojang:minecraft:${properties["minecraft_version"]}")
 
-    modDependencies.compileDependencies(project).forEach(::modCompileOnly)
+    @Suppress("UnstableApiUsage")
+    mappings(loom.layered {
+        officialMojangMappings()
+        parchment("org.parchmentmc.data:parchment-${properties["minecraft_version"]}:${properties["parchment_version"]}@zip")
+    })
+
+    compileOnly("org.jetbrains:annotations:${properties["jetbrains_annotation_version"]}")
+
+    modRuntimeOnly(modCompileOnly("net.fabricmc:fabric-loader:${properties["fabric_loader_version"]}")!!)
+
+    modCompileOnly("dev.emi:emi-xplat-intermediary:${properties["emi_version"]}:api")
+    modCompileOnly("mezz.jei:jei-${properties["jei_minecraft_version"]}-common-api:${properties["jei_version"]}")
+    modCompileOnly("maven.modrinth:carry-on:${properties["carry_on_fabric_version"]}")
 }
