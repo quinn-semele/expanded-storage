@@ -4,7 +4,7 @@ plugins {
     id("net.neoforged.moddev") version "1.0.13"
 }
 
-version = properties["mod_version"] as String
+version = "${properties["mod_version"]}+${properties["minecraft_version"]}-neoforge"
 group = properties["mod_group"] as String
 val mod_id: String by properties
 
