@@ -242,7 +242,7 @@ public final class PageScreen extends AbstractScreen {
             }
         }
         // Honestly this is dumb.
-        if (x == originalX && CommonClient.platformHelper().isModLoaded("inventoryprofiles")) {
+        if (x == originalX && (CommonClient.platformHelper().isModLoaded("inventoryprofiles") || CommonClient.platformHelper().isModLoaded("inventoryprofilesnext"))) {
             x -= 14;
         }
         leftPageButton = new PageButton(x, y, 0,
