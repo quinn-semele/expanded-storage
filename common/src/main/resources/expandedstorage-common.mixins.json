@@ -4,6 +4,7 @@
   "plugin": "compasses.expandedstorage.impl.MixinPlugin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
+    "common.BaseContainerBlockEntityMixin",
     "common.BlockEntityIdFix",
     "common.CarryOnCompatFix",
     "common.DataFixerEntrypoint",

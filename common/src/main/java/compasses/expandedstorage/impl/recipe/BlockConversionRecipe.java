@@ -8,6 +8,7 @@ import compasses.expandedstorage.impl.block.AbstractChestBlock;
 import compasses.expandedstorage.impl.block.entity.extendable.OpenableBlockEntity;
 import compasses.expandedstorage.impl.item.StorageConversionKit;
 import compasses.expandedstorage.impl.item.ToolUsageResult;
+import compasses.expandedstorage.impl.misc.ItemAccessor;
 import compasses.expandedstorage.impl.recipe.conditions.RecipeCondition;
 import compasses.expandedstorage.impl.recipe.misc.PartialBlockState;
 import compasses.expandedstorage.impl.recipe.misc.RecipeTool;
@@ -90,7 +91,7 @@ public class BlockConversionRecipe<O extends Block> extends ConversionRecipe<Blo
                         customName = entity.getName();
                     }
                 } else if (input.entity() instanceof RandomizableContainerBlockEntity entity) {
-                    originalItems = entity.getItems();
+                    originalItems = ((ItemAccessor) entity).expandedstorage$getItems();
                     customName = entity.getCustomName();
                 } else {
                     throw new IllegalStateException();

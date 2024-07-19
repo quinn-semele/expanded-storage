@@ -1,3 +1,8 @@
+tasks.named<Wrapper>("wrapper") {
+    distributionType = Wrapper.DistributionType.BIN
+}
+
+
 //import me.modmuss50.mpp.PublishModTask
 //import me.modmuss50.mpp.PublishResult
 //import me.modmuss50.mpp.ReleaseType

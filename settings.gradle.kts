@@ -18,3 +18,5 @@ include(
 //            "quilt",
         "forge"
 )
+
+project(":forge").name = "NeoForge"

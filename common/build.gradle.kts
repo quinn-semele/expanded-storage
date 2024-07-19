@@ -72,3 +72,19 @@ dependencies {
     modCompileOnly("mezz.jei:jei-${properties["jei_minecraft_version"]}-common-api:${properties["jei_version"]}")
     modCompileOnly("maven.modrinth:carry-on:${properties["carry_on_fabric_version"]}")
 }
+
+configurations {
+    create("commonJava") {
+        isCanBeResolved = false
+        isCanBeConsumed = true
+    }
+    create("commonResources") {
+        isCanBeResolved = false
+        isCanBeConsumed = true
+    }
+}
+
+artifacts {
+    add("commonJava", sourceSets.main.get().java.sourceDirectories.singleFile)
+    add("commonResources", sourceSets.main.get().resources.sourceDirectories.singleFile)
+}

@@ -5,7 +5,7 @@ license = "See LICENSE file"
 
 [[mods]]
 modId = "expandedstorage"
-version = "${version}"
+version = "${mod_version}"
 displayName = "Expanded Storage"
 authors = "Quinn Semele"
 logoFile = "icon.png"
