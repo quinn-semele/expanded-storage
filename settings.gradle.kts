@@ -16,7 +16,7 @@ include(
 //        "thread",
 //            "fabric",
 //            "quilt",
-        "forge"
+        "neoforge"
 )
 
-project(":forge").name = "NeoForge"
+project(":neoforge").name = "NeoForge"

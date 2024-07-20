@@ -30,4 +30,4 @@ side = "BOTH"
 config = "expandedstorage-common.mixins.json"
 
 [[mixins]]
-config = "expandedstorage-forge.mixins.json"
+config = "expandedstorage-neoforge.mixins.json"
