@@ -1,5 +1,6 @@
 package compasses.expandedstorage.impl.block.entity;
 
+import compasses.expandedstorage.impl.CommonMain;
 import compasses.expandedstorage.impl.block.OpenableBlock;
 import compasses.expandedstorage.impl.block.entity.extendable.InventoryBlockEntity;
 import compasses.expandedstorage.impl.block.entity.extendable.OpenableBlockEntity;
@@ -29,6 +30,7 @@ public class OldChestBlockEntity extends InventoryBlockEntity {
     public void invalidateDoubleBlockCache() {
         cachedDoubleInventory = null;
         this.getItemAccess().setOther(null);
+        CommonMain.platformHelper().invalidateCapabilityCache(level, getBlockPos());
     }
 
     public WorldlyContainer getCachedDoubleInventory() {

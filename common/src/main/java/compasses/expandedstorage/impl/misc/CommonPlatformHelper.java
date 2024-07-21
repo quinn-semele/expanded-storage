@@ -3,12 +3,14 @@ package compasses.expandedstorage.impl.misc;
 import compasses.expandedstorage.impl.recipe.BlockConversionRecipe;
 import compasses.expandedstorage.impl.recipe.EntityConversionRecipe;
 import compasses.expandedstorage.impl.inventory.handler.AbstractHandler;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
@@ -24,4 +26,6 @@ public interface CommonPlatformHelper {
     boolean canDestroyBamboo(ItemStack stack);
 
     boolean isWoodenChest(BlockState state);
+
+    void invalidateCapabilityCache(Level level, BlockPos pos);
 }

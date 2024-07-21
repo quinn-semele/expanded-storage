@@ -624,6 +624,8 @@ public final class CommonMain {
                     second = access;
                 }
                 first.setOther(second);
+                CommonMain.platformHelper().invalidateCapabilityCache(level, pos);
+                CommonMain.platformHelper().invalidateCapabilityCache(level, otherEntity.getBlockPos());
                 return Optional.of(first);
             }
 

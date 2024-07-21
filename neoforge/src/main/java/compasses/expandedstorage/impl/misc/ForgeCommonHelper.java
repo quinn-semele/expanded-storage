@@ -5,6 +5,7 @@ import compasses.expandedstorage.impl.recipe.BlockConversionRecipe;
 import compasses.expandedstorage.impl.recipe.EntityConversionRecipe;
 import compasses.expandedstorage.impl.inventory.handler.AbstractHandler;
 import compasses.expandedstorage.impl.registration.ModBlocks;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -14,6 +15,7 @@ import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.ItemAbilities;
@@ -65,5 +67,10 @@ public class ForgeCommonHelper implements CommonPlatformHelper {
     @Override
     public boolean isWoodenChest(BlockState state) {
         return state.is(ModBlocks.OLD_WOOD_CHEST) || state.is(Tags.Blocks.CHESTS_WOODEN);
+    }
+
+    @Override
+    public void invalidateCapabilityCache(Level level, BlockPos pos) {
+        level.invalidateCapabilities(pos);
     }
 }
