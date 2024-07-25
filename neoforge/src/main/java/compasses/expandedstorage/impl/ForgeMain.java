@@ -7,6 +7,7 @@ import compasses.expandedstorage.impl.block.OpenableBlock;
 import compasses.expandedstorage.impl.block.misc.BasicLockable;
 import compasses.expandedstorage.impl.block.misc.CopperBlockHelper;
 import compasses.expandedstorage.impl.block.strategies.ItemAccess;
+import compasses.expandedstorage.impl.entity.ChestMinecart;
 import compasses.expandedstorage.impl.misc.ESDataComponents;
 import compasses.expandedstorage.impl.misc.Utils;
 import compasses.expandedstorage.impl.networking.UpdateRecipesPacketPayload;
@@ -27,6 +28,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.HoneycombItem;
 import net.minecraft.world.level.block.Block;
@@ -44,6 +46,7 @@ import net.neoforged.neoforge.event.AddReloadListenerEvent;
 import net.neoforged.neoforge.event.OnDatapackSyncEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.items.IItemHandlerModifiable;
+import net.neoforged.neoforge.items.wrapper.InvWrapper;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import net.neoforged.neoforge.registries.RegisterEvent;
@@ -98,6 +101,12 @@ public final class ForgeMain {
                 },
                 content.getBlocks().stream().map(NamedValue::getValue).toArray(OpenableBlock[]::new)
             );
+
+            for (NamedValue<EntityType<ChestMinecart>> type : content.getChestMinecartEntityTypes()) {
+                event.registerEntity(Capabilities.ItemHandler.ENTITY, type.getValue(), (entity, context) -> {
+                    return new InvWrapper(entity);
+                });
+            }
         });
 
         modBus.addListener((RegisterEvent event) -> {
