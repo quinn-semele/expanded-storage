@@ -183,7 +183,7 @@ public final class CommonMain {
         final Properties pumpkinSettings = Properties.of().mapColor(MapColor.COLOR_ORANGE).instrument(NoteBlockInstrument.DIDGERIDOO).strength(1.0F).sound(SoundType.WOOD);
         final Properties bambooSettings = Properties.of().mapColor(MapColor.PLANT).strength(1).sound(SoundType.BAMBOO).ignitedByLava();
         final Properties mossSettings = Properties.of().mapColor(MapColor.COLOR_GREEN).strength(0.1F).sound(SoundType.MOSS);
-//        final Properties copperSettings = Properties.of(Material.METAL, MaterialColor.COLOR_ORANGE).strength(3.0F, 6.0F).sound(SoundType.COPPER);
+        final Properties copperSettings = Properties.of().mapColor(MapColor.COLOR_ORANGE).strength(3.0F, 6.0F).sound(SoundType.COPPER);
         final Properties ironSettings = Properties.of().mapColor(MapColor.METAL).instrument(NoteBlockInstrument.IRON_XYLOPHONE).strength(5, 6).sound(SoundType.METAL);
         final Properties goldSettings = Properties.of().mapColor(MapColor.GOLD).instrument(NoteBlockInstrument.BELL).strength(3, 6).sound(SoundType.METAL);
         final Properties diamondSettings = Properties.of().mapColor(MapColor.DIAMOND).strength(5, 6).sound(SoundType.METAL);
@@ -214,6 +214,7 @@ public final class CommonMain {
             final ResourceLocation presentStat = statMaker.apply("open_present");
             final ResourceLocation bambooStat = statMaker.apply("open_bamboo_chest");
             final ResourceLocation mossStat = statMaker.apply("open_moss_chest");
+            final ResourceLocation copperStat = statMaker.apply("open_copper_chest");
             final ResourceLocation ironStat = statMaker.apply("open_iron_chest");
             final ResourceLocation goldStat = statMaker.apply("open_gold_chest");
             final ResourceLocation diamondStat = statMaker.apply("open_diamond_chest");
@@ -260,6 +261,7 @@ public final class CommonMain {
             chestMaker.apply(Utils.id("present"), presentStat, woodTier, presentSettings);
             chestMaker.apply(Utils.id("bamboo_chest"), bambooStat, woodTier, bambooSettings);
             mossChestMaker.apply(Utils.id("moss_chest"), mossStat, woodTier, mossSettings);
+            chestMaker.apply(Utils.id("copper_chest"), copperStat, copperTier, copperSettings);
             chestMaker.apply(Utils.id("iron_chest"), ironStat, ironTier, ironSettings);
             chestMaker.apply(Utils.id("gold_chest"), goldStat, goldTier, goldSettings);
             chestMaker.apply(Utils.id("diamond_chest"), diamondStat, diamondTier, diamondSettings);
@@ -289,7 +291,7 @@ public final class CommonMain {
         /*Old Chest*/
         {
             final ResourceLocation woodStat = statMaker.apply("open_old_wood_chest");
-//            final ResourceLocation copperStat = statMaker.apply("open_old_copper_chest");
+            final ResourceLocation copperStat = statMaker.apply("open_old_copper_chest");
             final ResourceLocation ironStat = statMaker.apply("open_old_iron_chest");
             final ResourceLocation goldStat = statMaker.apply("open_old_gold_chest");
             final ResourceLocation diamondStat = statMaker.apply("open_old_diamond_chest");
@@ -303,6 +305,7 @@ public final class CommonMain {
             };
 
             chestMaker.apply(Utils.id("old_wood_chest"), woodStat, woodTier, woodSettings);
+            chestMaker.apply(Utils.id("old_copper_chest"), copperStat, copperTier, copperSettings);
             chestMaker.apply(Utils.id("old_iron_chest"), ironStat, ironTier, ironSettings);
             chestMaker.apply(Utils.id("old_gold_chest"), goldStat, goldTier, goldSettings);
             chestMaker.apply(Utils.id("old_diamond_chest"), diamondStat, diamondTier, diamondSettings);
@@ -480,6 +483,7 @@ public final class CommonMain {
             final ResourceLocation greenPresentStat = statMaker.apply("open_green_mini_present");
             final ResourceLocation lavenderPresentStat = statMaker.apply("open_lavender_mini_present");
             final ResourceLocation pinkAmethystPresentStat = statMaker.apply("open_pink_amethyst_mini_present");
+            final ResourceLocation copperChestStat = statMaker.apply("open_copper_mini_chest");
             final ResourceLocation ironChestStat = statMaker.apply("open_iron_mini_chest");
             final ResourceLocation goldChestStat = statMaker.apply("open_gold_mini_chest");
             final ResourceLocation diamondChestStat = statMaker.apply("open_diamond_mini_chest");
@@ -534,6 +538,7 @@ public final class CommonMain {
             miniStorageMakerRibbon.apply(Utils.id("green_mini_present"), greenPresentStat, woodTier, greenPresentSettings);
             miniStorageMakerRibbon.apply(Utils.id("lavender_mini_present"), lavenderPresentStat, woodTier, lavenderPresentSettings);
             miniStorageMakerRibbon.apply(Utils.id("pink_amethyst_mini_present"), pinkAmethystPresentStat, woodTier, pinkAmethystPresentSettings);
+            miniStorageMakerNoRibbon.apply(Utils.id("copper_mini_chest"), copperChestStat, copperTier, copperSettings);
             miniStorageMakerNoRibbon.apply(Utils.id("iron_mini_chest"), ironChestStat, ironTier, ironSettings);
             miniStorageMakerNoRibbon.apply(Utils.id("gold_mini_chest"), goldChestStat, goldTier, goldSettings);
             miniStorageMakerNoRibbon.apply(Utils.id("diamond_mini_chest"), diamondChestStat, diamondTier, diamondSettings);
