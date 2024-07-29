@@ -103,9 +103,8 @@ public final class ForgeMain {
             );
 
             for (NamedValue<EntityType<ChestMinecart>> type : content.getChestMinecartEntityTypes()) {
-                event.registerEntity(Capabilities.ItemHandler.ENTITY, type.getValue(), (entity, context) -> {
-                    return new InvWrapper(entity);
-                });
+                event.registerEntity(Capabilities.ItemHandler.ENTITY, type.getValue(), (entity, context) -> new InvWrapper(entity));
+                event.registerEntity(Capabilities.ItemHandler.ENTITY_AUTOMATION, type.getValue(), (entity, context) -> new InvWrapper(entity));
             }
         });
 
