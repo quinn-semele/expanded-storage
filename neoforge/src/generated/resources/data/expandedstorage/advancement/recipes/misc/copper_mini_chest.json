@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "expandedstorage:iron_mini_chest"
+        "recipe": "expandedstorage:copper_mini_chest"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "expandedstorage:iron_mini_chest"
+      "expandedstorage:copper_mini_chest"
     ]
   }
 }

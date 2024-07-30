@@ -1,15 +1,18 @@
 {
   "values": [
+    "expandedstorage:copper_chest",
     "expandedstorage:iron_chest",
     "expandedstorage:gold_chest",
     "expandedstorage:diamond_chest",
     "expandedstorage:obsidian_chest",
     "expandedstorage:netherite_chest",
+    "expandedstorage:old_copper_chest",
     "expandedstorage:old_iron_chest",
     "expandedstorage:old_gold_chest",
     "expandedstorage:old_diamond_chest",
     "expandedstorage:old_obsidian_chest",
     "expandedstorage:old_netherite_chest",
+    "expandedstorage:copper_mini_chest",
     "expandedstorage:iron_mini_chest",
     "expandedstorage:gold_mini_chest",
     "expandedstorage:diamond_mini_chest",

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "expandedstorage:old_copper_chest",
+  "ingredients": [
+    {
+      "item": "expandedstorage:copper_chest"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "expandedstorage:old_copper_chest"
+  }
+}

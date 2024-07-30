@@ -1,0 +1,12 @@
+{
+  "type": "expandedstorage:block_conversion",
+  "inputs": {
+    "tag": "expandedstorage:chests/wooden"
+  },
+  "result": {
+    "id": "expandedstorage:copper_chest"
+  },
+  "tool": {
+    "id": "expandedstorage:wood_to_copper_conversion_kit"
+  }
+}

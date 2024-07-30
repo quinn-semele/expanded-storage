@@ -1,8 +1,10 @@
-// 1.21	2024-06-17T16:23:47.4893758	Expanded Storage - Loot Tables
+// 1.21	2024-07-30T08:48:04.2757405	Expanded Storage - Loot Tables
 f24853859a95d59d44f3bc5abb9035f41be6c086 data/expandedstorage/loot_table/blocks/bamboo_chest.json
 cba8dfe2ee99b56333a822647079cfb8be6c586e data/expandedstorage/loot_table/blocks/candy_cane_mini_present.json
 67c80432dc12c1e9c28c9cc14ccef47363e03e9c data/expandedstorage/loot_table/blocks/copper_barrel.json
+020acd9cb3789af0b830180def7d261ace07de03 data/expandedstorage/loot_table/blocks/copper_chest.json
 101b2a30e6fb291a6c99b65bea6d9fb5acf027b6 data/expandedstorage/loot_table/blocks/copper_mini_barrel.json
+7cf06231cd95411a0ec5972545d18769961b9fff data/expandedstorage/loot_table/blocks/copper_mini_chest.json
 390082dacc5de2092bf8bf964d5ef16a66dcbb0b data/expandedstorage/loot_table/blocks/diamond_barrel.json
 3a99d944ac029202189d2969e00d98c04f9db7a0 data/expandedstorage/loot_table/blocks/diamond_chest.json
 319bbef8964560ba59bbb757b96359b4587b3da2 data/expandedstorage/loot_table/blocks/diamond_mini_barrel.json
@@ -29,6 +31,7 @@ c997e9d2b276798f47fe8cf94ed16abdd1bd7e38 data/expandedstorage/loot_table/blocks/
 8589d7b5fb21104b49f01da6fc9df51715470cb0 data/expandedstorage/loot_table/blocks/obsidian_chest.json
 fb88e70fff2b68e8c98b8fc9bb075015355bd13c data/expandedstorage/loot_table/blocks/obsidian_mini_barrel.json
 4021292cec50780317efd08d5df6abdbcb474101 data/expandedstorage/loot_table/blocks/obsidian_mini_chest.json
+be8f7d52ce2f7e9b084e25bc219de926f13b7bd7 data/expandedstorage/loot_table/blocks/old_copper_chest.json
 4a8a4bee88125fc4805c26b208b02a185916d7f0 data/expandedstorage/loot_table/blocks/old_diamond_chest.json
 36dcbcd21a85233292a1ed8d82b2942446f8b043 data/expandedstorage/loot_table/blocks/old_gold_chest.json
 9ba2cfcdd94a9b72c62567c47c2357c327b8c872 data/expandedstorage/loot_table/blocks/old_iron_chest.json

@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_item": {
+    "has_previous_block": {
       "conditions": {
         "items": [
           {
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "expandedstorage:iron_mini_chest"
+        "recipe": "expandedstorage:copper_chest"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_item"
+      "has_previous_block"
     ]
   ],
   "rewards": {
     "recipes": [
-      "expandedstorage:iron_mini_chest"
+      "expandedstorage:copper_chest"
     ]
   }
 }
