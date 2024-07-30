@@ -19,6 +19,7 @@ public class BlockLootTableHelper {
         consumer.accept(ModBlocks.PRESENT, lootTableBuilder);
         consumer.accept(ModBlocks.BAMBOO_CHEST, lootTableBuilder);
         consumer.accept(ModBlocks.MOSS_CHEST, lootTableBuilder);
+        consumer.accept(ModBlocks.COPPER_CHEST, lootTableBuilder);
         consumer.accept(ModBlocks.IRON_CHEST, lootTableBuilder);
         consumer.accept(ModBlocks.GOLD_CHEST, lootTableBuilder);
         consumer.accept(ModBlocks.DIAMOND_CHEST, lootTableBuilder);
@@ -26,6 +27,7 @@ public class BlockLootTableHelper {
         consumer.accept(ModBlocks.NETHERITE_CHEST, lootTableBuilder);
 
         consumer.accept(ModBlocks.OLD_WOOD_CHEST, lootTableBuilder);
+        consumer.accept(ModBlocks.OLD_COPPER_CHEST, lootTableBuilder);
         consumer.accept(ModBlocks.OLD_IRON_CHEST, lootTableBuilder);
         consumer.accept(ModBlocks.OLD_GOLD_CHEST, lootTableBuilder);
         consumer.accept(ModBlocks.OLD_DIAMOND_CHEST, lootTableBuilder);
@@ -55,6 +57,7 @@ public class BlockLootTableHelper {
         consumer.accept(ModBlocks.GREEN_MINI_PRESENT, BlockLootTableHelper::createMiniStorageDrop);
         consumer.accept(ModBlocks.LAVENDER_MINI_PRESENT, BlockLootTableHelper::createMiniStorageDrop);
         consumer.accept(ModBlocks.PINK_AMETHYST_MINI_PRESENT, BlockLootTableHelper::createMiniStorageDrop);
+        consumer.accept(ModBlocks.COPPER_MINI_CHEST, BlockLootTableHelper::createMiniStorageDrop);
         consumer.accept(ModBlocks.IRON_MINI_CHEST, BlockLootTableHelper::createMiniStorageDrop);
         consumer.accept(ModBlocks.GOLD_MINI_CHEST, BlockLootTableHelper::createMiniStorageDrop);
         consumer.accept(ModBlocks.DIAMOND_MINI_CHEST, BlockLootTableHelper::createMiniStorageDrop);

@@ -14,6 +14,7 @@ public final class ModEntityTypes {
     public static final EntityType<ChestMinecart> PRESENT_MINECART = entityType(Utils.id("present_minecart"));
     public static final EntityType<ChestMinecart> BAMBOO_CHEST_MINECART = entityType(Utils.id("bamboo_chest_minecart"));
     public static final EntityType<ChestMinecart> MOSS_CHEST_MINECART = entityType(Utils.id("moss_chest_minecart"));
+    public static final EntityType<ChestMinecart> COPPER_CHEST_MINECART = entityType(Utils.id("copper_chest_minecart"));
     public static final EntityType<ChestMinecart> IRON_CHEST_MINECART = entityType(Utils.id("iron_chest_minecart"));
     public static final EntityType<ChestMinecart> GOLD_CHEST_MINECART = entityType(Utils.id("gold_chest_minecart"));
     public static final EntityType<ChestMinecart> DIAMOND_CHEST_MINECART = entityType(Utils.id("diamond_chest_minecart"));

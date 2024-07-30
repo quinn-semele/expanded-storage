@@ -22,6 +22,7 @@ public final class ModBlocks {
     public static final ChestBlock PRESENT = block(Utils.id("present"));
     public static final ChestBlock BAMBOO_CHEST = block(Utils.id("bamboo_chest"));
     public static final ChestBlock MOSS_CHEST = block(Utils.id("moss_chest"));
+    public static final ChestBlock COPPER_CHEST = block(Utils.id("copper_chest"));
     public static final ChestBlock IRON_CHEST = block(Utils.id("iron_chest"));
     public static final ChestBlock GOLD_CHEST = block(Utils.id("gold_chest"));
     public static final ChestBlock DIAMOND_CHEST = block(Utils.id("diamond_chest"));
@@ -29,6 +30,7 @@ public final class ModBlocks {
     public static final ChestBlock NETHERITE_CHEST = block(Utils.id("netherite_chest"));
 
     public static final AbstractChestBlock OLD_WOOD_CHEST = block(Utils.id("old_wood_chest"));
+    public static final AbstractChestBlock OLD_COPPER_CHEST = block(Utils.id("old_copper_chest"));
     public static final AbstractChestBlock OLD_IRON_CHEST = block(Utils.id("old_iron_chest"));
     public static final AbstractChestBlock OLD_GOLD_CHEST = block(Utils.id("old_gold_chest"));
     public static final AbstractChestBlock OLD_DIAMOND_CHEST = block(Utils.id("old_diamond_chest"));
@@ -58,6 +60,7 @@ public final class ModBlocks {
     public static final MiniStorageBlock GREEN_MINI_PRESENT = block(Utils.id("green_mini_present"));
     public static final MiniStorageBlock LAVENDER_MINI_PRESENT = block(Utils.id("lavender_mini_present"));
     public static final MiniStorageBlock PINK_AMETHYST_MINI_PRESENT = block(Utils.id("pink_amethyst_mini_present"));
+    public static final MiniStorageBlock COPPER_MINI_CHEST = block(Utils.id("copper_mini_chest"));
     public static final MiniStorageBlock IRON_MINI_CHEST = block(Utils.id("iron_mini_chest"));
     public static final MiniStorageBlock GOLD_MINI_CHEST = block(Utils.id("gold_mini_chest"));
     public static final MiniStorageBlock DIAMOND_MINI_CHEST = block(Utils.id("diamond_mini_chest"));

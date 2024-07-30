@@ -43,7 +43,8 @@ neoForge {
             data()
             programArguments.addAll(listOf(
                 "--mod", mod_id,
-                "--all",
+//                "--all",
+                "--server", "--client",
                 "--output", file("src/generated/resources/").absolutePath,
                 "--existing", file("src/main/resources/").absolutePath
             ))
