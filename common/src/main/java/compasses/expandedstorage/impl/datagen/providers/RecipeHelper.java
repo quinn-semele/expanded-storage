@@ -529,7 +529,7 @@ public class RecipeHelper {
                 .pattern(" P ")
                 .define('I', Items.COPPER_INGOT)
                 .define('P', Items.PAPER)
-                .define('B', ModItems.WOOD_CHEST)
+                .define('B', ModTags.Items.ES_WOODEN_CHESTS)
                 .save(output);
         shapedRecipe(ModItems.IRON_MINI_CHEST, RecipeCategory.MISC, 8, Criterions.HAS_ITEM, ModTags.Items.ES_WOODEN_CHESTS)
                 .pattern(" I ")
@@ -537,7 +537,7 @@ public class RecipeHelper {
                 .pattern(" P ")
                 .define('I', Items.IRON_INGOT)
                 .define('P', Items.PAPER)
-                .define('B', ModItems.WOOD_CHEST)
+                .define('B', ModTags.Items.ES_WOODEN_CHESTS)
                 .save(output);
         shapedRecipe(ModItems.GOLD_MINI_CHEST, RecipeCategory.MISC, 8, Criterions.HAS_ITEM, ModTags.Items.ES_WOODEN_CHESTS)
                 .pattern(" I ")
@@ -545,7 +545,7 @@ public class RecipeHelper {
                 .pattern(" P ")
                 .define('I', Items.GOLD_INGOT)
                 .define('P', Items.PAPER)
-                .define('B', ModItems.WOOD_CHEST)
+                .define('B', ModTags.Items.ES_WOODEN_CHESTS)
                 .save(output);
         shapedRecipe(ModItems.DIAMOND_MINI_CHEST, RecipeCategory.MISC, 8, Criterions.HAS_ITEM, ModTags.Items.ES_WOODEN_CHESTS)
                 .pattern(" I ")
@@ -553,7 +553,7 @@ public class RecipeHelper {
                 .pattern(" P ")
                 .define('I', Items.DIAMOND)
                 .define('P', Items.PAPER)
-                .define('B', ModItems.WOOD_CHEST)
+                .define('B', ModTags.Items.ES_WOODEN_CHESTS)
                 .save(output);
         shapedRecipe(ModItems.OBSIDIAN_MINI_CHEST, RecipeCategory.MISC, 8, Criterions.HAS_ITEM, ModTags.Items.ES_WOODEN_CHESTS)
                 .pattern(" I ")
@@ -561,7 +561,7 @@ public class RecipeHelper {
                 .pattern(" P ")
                 .define('I', Items.OBSIDIAN)
                 .define('P', Items.PAPER)
-                .define('B', ModItems.WOOD_CHEST)
+                .define('B', ModTags.Items.ES_WOODEN_CHESTS)
                 .save(output);
         shapedRecipe(ModItems.NETHERITE_MINI_CHEST, RecipeCategory.MISC, 8, Criterions.HAS_ITEM, ModTags.Items.ES_WOODEN_CHESTS)
                 .pattern(" I ")
@@ -569,7 +569,7 @@ public class RecipeHelper {
                 .pattern(" P ")
                 .define('I', Items.NETHERITE_INGOT)
                 .define('P', Items.PAPER)
-                .define('B', ModItems.WOOD_CHEST)
+                .define('B', ModTags.Items.ES_WOODEN_CHESTS)
                 .save(output);
         shapedRecipe(ModItems.MINI_BARREL, RecipeCategory.MISC, 4, Criterions.HAS_ITEM, woodenBarrels)
                 .pattern(" P ")
