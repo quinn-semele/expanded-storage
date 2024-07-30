@@ -246,12 +246,21 @@ public class RecipeHelper {
                 .define('C', woodenChests)
                 .group(id(ModItems.BAMBOO_CHEST))
                 .save(output);
-        shapedRecipe(ModItems.IRON_CHEST, RecipeCategory.MISC, 1, Criterions.HAS_PREVIOUS_BLOCK, ModTags.Items.ES_WOODEN_CHESTS)
+        shapedRecipe(ModItems.COPPER_CHEST, RecipeCategory.MISC, 1, Criterions.HAS_PREVIOUS_BLOCK, ModTags.Items.ES_WOODEN_CHESTS)
                 .pattern("III")
                 .pattern("IBI")
                 .pattern("III")
-                .define('I', ironIngots)
+                .define('I', copperIngots)
                 .define('B', ModTags.Items.ES_WOODEN_CHESTS)
+                .group(id(ModItems.COPPER_CHEST))
+                .save(output);
+        shapedRecipe(ModItems.IRON_CHEST, RecipeCategory.MISC, 1, Criterions.HAS_PREVIOUS_BLOCK, ModItems.COPPER_CHEST)
+                .pattern("NNN")
+                .pattern("IBI")
+                .pattern("NNN")
+                .define('N', ironNuggets)
+                .define('I', ironIngots)
+                .define('B', ModItems.COPPER_CHEST)
                 .group(id(ModItems.IRON_CHEST))
                 .save(output);
         shapedRecipe(ModItems.GOLD_CHEST, RecipeCategory.MISC, 1, Criterions.HAS_PREVIOUS_BLOCK, ModItems.IRON_CHEST)
@@ -287,6 +296,7 @@ public class RecipeHelper {
         cartRecipe(ModItems.PUMPKIN_CHEST, ModItems.PUMPKIN_CHEST_MINECART, output);
         cartRecipe(ModItems.PRESENT, ModItems.PRESENT_MINECART, output);
         cartRecipe(ModItems.BAMBOO_CHEST, ModItems.BAMBOO_CHEST_MINECART, output);
+        cartRecipe(ModItems.COPPER_CHEST, ModItems.COPPER_CHEST_MINECART, output);
         cartRecipe(ModItems.IRON_CHEST, ModItems.IRON_CHEST_MINECART, output);
         cartRecipe(ModItems.GOLD_CHEST, ModItems.GOLD_CHEST_MINECART, output);
         cartRecipe(ModItems.DIAMOND_CHEST, ModItems.DIAMOND_CHEST_MINECART, output);
@@ -304,12 +314,21 @@ public class RecipeHelper {
     }
 
     private void offerOldChestRecipes(RecipeOutput output) {
-        shapedRecipe(ModItems.OLD_IRON_CHEST, RecipeCategory.MISC, 1, Criterions.HAS_PREVIOUS_BLOCK, ModItems.OLD_WOOD_CHEST)
+        shapedRecipe(ModItems.OLD_COPPER_CHEST, RecipeCategory.MISC, 1, Criterions.HAS_PREVIOUS_BLOCK, ModItems.OLD_WOOD_CHEST)
                 .pattern("III")
                 .pattern("IBI")
                 .pattern("III")
-                .define('I', ironIngots)
+                .define('I', copperIngots)
                 .define('B', ModItems.OLD_WOOD_CHEST)
+                .group(id(ModItems.OLD_COPPER_CHEST))
+                .save(output);
+        shapedRecipe(ModItems.OLD_IRON_CHEST, RecipeCategory.MISC, 1, Criterions.HAS_PREVIOUS_BLOCK, ModItems.OLD_COPPER_CHEST)
+                .pattern("NNN")
+                .pattern("IBI")
+                .pattern("NNN")
+                .define('N', ironNuggets)
+                .define('I', ironIngots)
+                .define('B', ModItems.OLD_COPPER_CHEST)
                 .group(id(ModItems.OLD_IRON_CHEST))
                 .save(output);
         shapedRecipe(ModItems.OLD_GOLD_CHEST, RecipeCategory.MISC, 1, Criterions.HAS_PREVIOUS_BLOCK, ModItems.OLD_IRON_CHEST)
@@ -346,6 +365,11 @@ public class RecipeHelper {
                               .group(id(ModItems.OLD_WOOD_CHEST))
                               .unlockedBy(Criterions.HAS_ITEM, RecipeProvider.has(ModItems.WOOD_CHEST))
                               .save(output, Utils.id("wood_to_old_wood_chest"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.OLD_COPPER_CHEST)
+                              .requires(ModItems.COPPER_CHEST)
+                              .group(id(ModItems.OLD_COPPER_CHEST))
+                              .unlockedBy(Criterions.HAS_ITEM, RecipeProvider.has(ModItems.COPPER_CHEST))
+                              .save(output, Utils.id("copper_to_old_copper_chest"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.OLD_IRON_CHEST)
                               .requires(ModItems.IRON_CHEST)
                               .group(id(ModItems.OLD_IRON_CHEST))
@@ -379,6 +403,11 @@ public class RecipeHelper {
                               .group(id(ModItems.WOOD_CHEST))
                               .unlockedBy(Criterions.HAS_ITEM, RecipeProvider.has(ModItems.OLD_WOOD_CHEST))
                               .save(output, Utils.id("old_wood_to_wood_chest"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.COPPER_CHEST)
+                              .requires(ModItems.OLD_COPPER_CHEST)
+                              .group(id(ModItems.COPPER_CHEST))
+                              .unlockedBy(Criterions.HAS_ITEM, RecipeProvider.has(ModItems.OLD_COPPER_CHEST))
+                              .save(output, Utils.id("old_copper_to_copper_chest"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.IRON_CHEST)
                               .requires(ModItems.OLD_IRON_CHEST)
                               .group(id(ModItems.IRON_CHEST))
@@ -494,7 +523,15 @@ public class RecipeHelper {
                               .group(id(ModItems.RED_MINI_PRESENT))
                               .unlockedBy(Criterions.HAS_PREVIOUS_BLOCK, RecipeProvider.has(ModItems.GREEN_MINI_PRESENT))
                               .save(output, Utils.MOD_ID + ":red_mini_present_cycle");
-        shapedRecipe(ModItems.IRON_MINI_CHEST, RecipeCategory.MISC, 8, Criterions.HAS_ITEM, ModItems.WOOD_CHEST)
+        shapedRecipe(ModItems.COPPER_MINI_CHEST, RecipeCategory.MISC, 8, Criterions.HAS_ITEM, ModTags.Items.ES_WOODEN_CHESTS)
+                .pattern(" I ")
+                .pattern("PBP")
+                .pattern(" P ")
+                .define('I', Items.COPPER_INGOT)
+                .define('P', Items.PAPER)
+                .define('B', ModItems.WOOD_CHEST)
+                .save(output);
+        shapedRecipe(ModItems.IRON_MINI_CHEST, RecipeCategory.MISC, 8, Criterions.HAS_ITEM, ModTags.Items.ES_WOODEN_CHESTS)
                 .pattern(" I ")
                 .pattern("PBP")
                 .pattern(" P ")
@@ -502,7 +539,7 @@ public class RecipeHelper {
                 .define('P', Items.PAPER)
                 .define('B', ModItems.WOOD_CHEST)
                 .save(output);
-        shapedRecipe(ModItems.GOLD_MINI_CHEST, RecipeCategory.MISC, 8, Criterions.HAS_ITEM, ModItems.WOOD_CHEST)
+        shapedRecipe(ModItems.GOLD_MINI_CHEST, RecipeCategory.MISC, 8, Criterions.HAS_ITEM, ModTags.Items.ES_WOODEN_CHESTS)
                 .pattern(" I ")
                 .pattern("PBP")
                 .pattern(" P ")
@@ -510,7 +547,7 @@ public class RecipeHelper {
                 .define('P', Items.PAPER)
                 .define('B', ModItems.WOOD_CHEST)
                 .save(output);
-        shapedRecipe(ModItems.DIAMOND_MINI_CHEST, RecipeCategory.MISC, 8, Criterions.HAS_ITEM, ModItems.WOOD_CHEST)
+        shapedRecipe(ModItems.DIAMOND_MINI_CHEST, RecipeCategory.MISC, 8, Criterions.HAS_ITEM, ModTags.Items.ES_WOODEN_CHESTS)
                 .pattern(" I ")
                 .pattern("PBP")
                 .pattern(" P ")
@@ -518,7 +555,7 @@ public class RecipeHelper {
                 .define('P', Items.PAPER)
                 .define('B', ModItems.WOOD_CHEST)
                 .save(output);
-        shapedRecipe(ModItems.OBSIDIAN_MINI_CHEST, RecipeCategory.MISC, 8, Criterions.HAS_ITEM, ModItems.WOOD_CHEST)
+        shapedRecipe(ModItems.OBSIDIAN_MINI_CHEST, RecipeCategory.MISC, 8, Criterions.HAS_ITEM, ModTags.Items.ES_WOODEN_CHESTS)
                 .pattern(" I ")
                 .pattern("PBP")
                 .pattern(" P ")
@@ -526,7 +563,7 @@ public class RecipeHelper {
                 .define('P', Items.PAPER)
                 .define('B', ModItems.WOOD_CHEST)
                 .save(output);
-        shapedRecipe(ModItems.NETHERITE_MINI_CHEST, RecipeCategory.MISC, 8, Criterions.HAS_ITEM, ModItems.WOOD_CHEST)
+        shapedRecipe(ModItems.NETHERITE_MINI_CHEST, RecipeCategory.MISC, 8, Criterions.HAS_ITEM, ModTags.Items.ES_WOODEN_CHESTS)
                 .pattern(" I ")
                 .pattern("PBP")
                 .pattern(" P ")

@@ -709,6 +709,7 @@ public final class CommonMain {
         wrap.accept(ModItems.PRESENT);
         wrap.accept(ModItems.BAMBOO_CHEST);
         wrap.accept(ModItems.MOSS_CHEST);
+        wrap.accept(ModItems.COPPER_CHEST);
         wrap.accept(ModItems.IRON_CHEST);
         wrap.accept(ModItems.GOLD_CHEST);
         wrap.accept(ModItems.DIAMOND_CHEST);
@@ -719,12 +720,14 @@ public final class CommonMain {
         wrap.accept(ModItems.PRESENT_MINECART);
         wrap.accept(ModItems.BAMBOO_CHEST_MINECART);
         wrap.accept(ModItems.MOSS_CHEST_MINECART);
+        wrap.accept(ModItems.COPPER_CHEST_MINECART);
         wrap.accept(ModItems.IRON_CHEST_MINECART);
         wrap.accept(ModItems.GOLD_CHEST_MINECART);
         wrap.accept(ModItems.DIAMOND_CHEST_MINECART);
         wrap.accept(ModItems.OBSIDIAN_CHEST_MINECART);
         wrap.accept(ModItems.NETHERITE_CHEST_MINECART);
         wrap.accept(ModItems.OLD_WOOD_CHEST);
+        wrap.accept(ModItems.OLD_COPPER_CHEST);
         wrap.accept(ModItems.OLD_IRON_CHEST);
         wrap.accept(ModItems.OLD_GOLD_CHEST);
         wrap.accept(ModItems.OLD_DIAMOND_CHEST);
@@ -752,6 +755,7 @@ public final class CommonMain {
         sparrowWrap.accept(ModItems.GREEN_MINI_PRESENT);
         sparrowWrap.accept(ModItems.LAVENDER_MINI_PRESENT);
         sparrowWrap.accept(ModItems.PINK_AMETHYST_MINI_PRESENT);
+        sparrowWrap.accept(ModItems.COPPER_MINI_CHEST);
         sparrowWrap.accept(ModItems.IRON_MINI_CHEST);
         sparrowWrap.accept(ModItems.GOLD_MINI_CHEST);
         sparrowWrap.accept(ModItems.DIAMOND_MINI_CHEST);
