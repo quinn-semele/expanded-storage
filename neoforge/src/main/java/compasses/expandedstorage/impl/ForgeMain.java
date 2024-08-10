@@ -8,6 +8,7 @@ import compasses.expandedstorage.impl.block.misc.BasicLockable;
 import compasses.expandedstorage.impl.block.misc.CopperBlockHelper;
 import compasses.expandedstorage.impl.block.strategies.ItemAccess;
 import compasses.expandedstorage.impl.entity.ChestMinecart;
+import compasses.expandedstorage.impl.item.ChestMinecartItem;
 import compasses.expandedstorage.impl.misc.ESDataComponents;
 import compasses.expandedstorage.impl.misc.Utils;
 import compasses.expandedstorage.impl.networking.UpdateRecipesPacketPayload;
@@ -17,8 +18,6 @@ import compasses.expandedstorage.impl.registration.Content;
 import compasses.expandedstorage.impl.registration.NamedValue;
 import compasses.expandedstorage.impl.block.misc.ChestItemAccess;
 import compasses.expandedstorage.impl.block.misc.GenericItemAccess;
-import compasses.expandedstorage.impl.item.ChestBlockItem;
-import compasses.expandedstorage.impl.item.ForgeChestMinecartItem;
 import compasses.expandedstorage.impl.item.MiniStorageBlockItem;
 import compasses.expandedstorage.impl.misc.ForgeCommonHelper;
 import net.minecraft.core.Registry;
@@ -29,14 +28,16 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.HoneycombItem;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.IExtensionPoint;
+import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.loading.FMLLoader;
 import net.neoforged.neoforge.capabilities.Capabilities;
@@ -54,13 +55,17 @@ import net.neoforged.neoforge.registries.RegisterEvent;
 import java.util.function.Supplier;
 
 @Mod("expandedstorage")
-public final class ForgeMain {
-    public ForgeMain(IEventBus modBus) {
+public final class ForgeMain implements IExtensionPoint {
+    private Content temporaryContent;
+
+    public ForgeMain(IEventBus modBus, ModContainer mod) {
+        mod.registerExtensionPoint(ForgeMain.class, this);
+
         CommonMain.constructContent(new ForgeCommonHelper(), GenericItemAccess::new, BasicLockable::new,
                 FMLLoader.getDist().isClient(), content -> registerContent(modBus, content),
                 /*Base*/ false,
-                /*Chest*/ ChestBlockItem::new, ChestItemAccess::new,
-                /*Minecart Chest*/ ForgeChestMinecartItem::new,
+                /*Chest*/ BlockItem::new, ChestItemAccess::new,
+                /*Minecart Chest*/ ChestMinecartItem::new,
                 /*Old Chest*/
                 /*Barrel*/ TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("forge", "barrels/wooden")),
                 /*Mini Storage*/ MiniStorageBlockItem::new);
@@ -94,6 +99,8 @@ public final class ForgeMain {
     }
 
     private void registerContent(IEventBus modBus, Content content) {
+        temporaryContent = content;
+
         modBus.addListener((RegisterCapabilitiesEvent event) -> {
             event.registerBlock(Capabilities.ItemHandler.BLOCK,
                 (level, pos, state, entity, side) -> {
@@ -151,6 +158,7 @@ public final class ForgeMain {
             }
         });
 
+        // todo: replace with datamaps
         // Hopefully if another mod replaces this supplier we'll capture theirs here.
         Supplier<BiMap<Block, Block>> originalWaxablesMap = HoneycombItem.WAXABLES;
         HoneycombItem.WAXABLES = Suppliers.memoize(() -> {
@@ -160,10 +168,13 @@ public final class ForgeMain {
                                  .putAll(CopperBlockHelper.dewaxing().inverse())
                                  .build();
         });
+    }
 
-        if (FMLLoader.getDist() == Dist.CLIENT) {
-            ForgeClient.initialize(modBus, content);
-        }
+    public Content getContentForClient() {
+        Content local = temporaryContent;
+        temporaryContent = null;
+
+        return local;
     }
 
     private static <T extends BlockEntity> void registerBlockEntity(RegisterEvent.RegisterHelper<BlockEntityType<?>> helper, NamedValue<BlockEntityType<T>> blockEntityType) {

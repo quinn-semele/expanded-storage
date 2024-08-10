@@ -109,10 +109,10 @@ public class ThreadMain implements ModInitializer {
     }
 
     public static Content getContentForClient() {
-        var content = temporaryContent;
+        Content local = temporaryContent;
         temporaryContent = null;
 
-        return content;
+        return local;
     }
 
     public static void registerContent(Content content) {
