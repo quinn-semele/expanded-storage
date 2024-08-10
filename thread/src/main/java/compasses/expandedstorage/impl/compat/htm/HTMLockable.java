@@ -2,6 +2,7 @@ package compasses.expandedstorage.impl.compat.htm;
 
 import com.github.fabricservertools.htm.HTMContainerLock;
 import compasses.expandedstorage.impl.block.misc.BasicLockable;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.server.level.ServerPlayer;
@@ -11,18 +12,18 @@ public final class HTMLockable extends BasicLockable {
     private HTMContainerLock lock = new HTMContainerLock();
 
     @Override
-    public void writeLock(CompoundTag tag) {
-        super.writeLock(tag);
+    public void writeLock(CompoundTag tag, HolderLookup.Provider lookupProvider) {
+        super.writeLock(tag, lookupProvider);
         CompoundTag subTag = new CompoundTag();
-        lock.toTag(subTag);
+        lock.toTag(subTag, lookupProvider);
         tag.put(HTMLockable.LOCK_TAG_KEY, subTag);
     }
 
     @Override
-    public void readLock(CompoundTag tag) {
-        super.readLock(tag);
+    public void readLock(CompoundTag tag, HolderLookup.Provider lookupProvider) {
+        super.readLock(tag, lookupProvider);
         if (tag.contains(HTMLockable.LOCK_TAG_KEY, Tag.TAG_COMPOUND))
-            lock.fromTag(tag.getCompound(HTMLockable.LOCK_TAG_KEY));
+            lock.fromTag(tag.getCompound(HTMLockable.LOCK_TAG_KEY), lookupProvider);
     }
 
     @Override

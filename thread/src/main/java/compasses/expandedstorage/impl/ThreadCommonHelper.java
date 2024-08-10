@@ -11,6 +11,7 @@ import compasses.expandedstorage.impl.inventory.handler.AbstractHandler;
 import compasses.expandedstorage.impl.registration.ModBlocks;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -23,6 +24,7 @@ import net.minecraft.world.Container;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
@@ -70,6 +72,11 @@ public class ThreadCommonHelper implements CommonPlatformHelper {
     @Override
     public boolean isWoodenChest(BlockState state) {
         return state.is(ModBlocks.OLD_WOOD_CHEST) || state.is(woodenChestTag);
+    }
+
+    @Override
+    public void invalidateCapabilityCache(Level level, BlockPos pos) {
+        
     }
 
     public void setServerInstance(MinecraftServer server) {

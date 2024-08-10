@@ -1,10 +1,5 @@
 pluginManagement {
     repositories {
-        maven {
-            name = "Fabric Maven"
-            url = uri("https://maven.fabricmc.net/")
-        }
-
         gradlePluginPortal()
     }
 }
@@ -15,12 +10,4 @@ plugins {
 
 rootProject.name = "expanded-storage"
 
-include(
-        "common",
-//        "thread",
-//            "fabric",
-//            "quilt",
-        "neoforge"
-)
-
-project(":neoforge").name = "NeoForge"
+include("common", "thread", "fabric", "neoforge")

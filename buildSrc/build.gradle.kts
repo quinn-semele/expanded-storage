@@ -1,28 +1,36 @@
-//plugins {
-//    `kotlin-dsl`
-//}
-//
-//repositories {
-//    maven {
-//        name = "Architectury Maven"
-//        url = uri("https://maven.architectury.dev/")
-//    }
-//
-//    maven {
-//        name = "MinecraftForge Maven"
-//        url = uri("https://maven.minecraftforge.net/")
-//    }
-//
-//    maven {
-//        name = "FabricMC Maven"
-//        url = uri("https://maven.fabricmc.net/")
-//    }
-//
-//    gradlePluginPortal()
-//    mavenCentral() // For Kotlin
-//}
-//
-//dependencies {
-//    implementation("dev.architectury:architectury-loom:1.6-SNAPSHOT")
-//    implementation("com.google.code.gson:gson:2.10.1")
-//}
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
+
+plugins {
+    `kotlin-dsl`
+}
+
+repositories {
+    gradlePluginPortal()
+    mavenCentral()
+
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "Fabric"
+                url = uri("https://maven.fabricmc.net")
+            }
+        }
+        filter {
+            includeGroup("net.fabricmc")
+            includeGroup("fabric-loom")
+        }
+    }
+}
+
+kotlin {
+    compilerOptions {
+        languageVersion = KotlinVersion.KOTLIN_2_0
+        apiVersion = KotlinVersion.KOTLIN_2_0
+    }
+}
+
+dependencies {
+    implementation(group = "net.neoforged", name = "moddev-gradle", version = "1.0.15") // https://projects.neoforged.net/neoforged/moddevgradle/
+    implementation(group = "fabric-loom", name = "fabric-loom.gradle.plugin", version = "1.7-SNAPSHOT") // https://fabricmc.net/develop/
+    implementation(group = "com.google.code.gson", name = "gson", version = "2.11.0")
+}

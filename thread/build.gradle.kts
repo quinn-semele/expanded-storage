@@ -1,92 +1,169 @@
-import semele.quinn.expandedstorage.plugin.Constants
-import semele.quinn.expandedstorage.plugin.Versions
-import semele.quinn.expandedstorage.plugin.dependency.FreezableDependencyList
+import dev.compasses.expandedstorage.ModVersions
 
 plugins {
-    id("expandedstorage-generic")
-    id("expandedstorage-common-dependent")
-    id("expandedstorage-thread-dependencies")
+    id("multiloader-thread")
 }
 
-loom {
-    accessWidenerPath = project(":common").loom.accessWidenerPath
-}
-
-val modDependencies = FreezableDependencyList().apply {
-    from(project(":common").extra["mod_dependencies"])
-
-    add("amecs") {
-        compileOnly("de.siphalor:amecsapi-${Versions.AMECS_MINECRAFT}:${Versions.AMECS_API}")
-        runtimeOnly("de.siphalor:amecs-${Versions.AMECS_MINECRAFT}:${Versions.AMECS}")
-    }
-
-    add("carrier") {
-        implementation("maven.modrinth:carrier:${Versions.CARRIER}")
-        implementation("dev.onyxstudios.cardinal-components-api:cardinal-components-base:${Versions.CARDINAL_COMPONENTS}")
-        implementation("dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${Versions.CARDINAL_COMPONENTS}")
-        implementation("net.devtech:arrp:${Versions.ARRP}")
-    }
-
-    add("carry-on") {
-        implementation("maven.modrinth:carry-on:${Versions.CARRY_ON_FABRIC}")
-    }
-
-    add("emi") {
-        compileOnly("dev.emi:emi-fabric:${Versions.EMI}:api")
-        runtimeOnly("dev.emi:emi-fabric:${Versions.EMI}")
-    }
-
-    add("htm") {
-        implementation("maven.modrinth:htm:${Versions.HTM}")
-    }
-
-    add("inventory-profiles-next") {
-        implementation("maven.modrinth:inventory-profiles-next:fabric-${Versions.IPN_MINECRAFT_FABRIC}-${Versions.IPN}")
-        implementation("maven.modrinth:libipn:fabric-${Versions.LIB_IPN_MINECRAFT}-${Versions.LIB_IPN}")
-    }
-
-    add("jei") {
-        compileOnly("mezz.jei:jei-${Versions.JEI_MINECRAFT}-fabric-api:${Versions.JEI}")
-        runtimeOnly("mezz.jei:jei-${Versions.JEI_MINECRAFT}-fabric:${Versions.JEI}")
-    }
-
-    add("modmenu", cfDependencyName = null) {
-        implementation("com.terraformersmc:modmenu:${Versions.MOD_MENU}")
-    }
-
-    add("rei", cfDependencyName = "roughly-enough-items") {
-        implementation("me.shedaniel:RoughlyEnoughItems-fabric:${Versions.REI}")
-    }
-
-    add("inventory-tabs", cfDependencyName = null) {
-        implementation("folk.sisby:inventory-tabs:${Versions.INVENTORY_TABS}")
-    }
-
-    freeze()
-}
-
-project.extra["mod_dependencies"] = modDependencies
-
-dependencies {
-    modImplementation("net.fabricmc:fabric-loader:${Versions.FABRIC_LOADER}")
-    modImplementation("net.fabricmc.fabric-api:fabric-api:${Versions.FABRIC_API}")
-
-    modDependencies.compileDependencies(project).forEach {
-        modCompileOnly(it) {
-            exclude(group = "net.fabricmc")
-            exclude(group = "net.fabricmc.fabric-api")
+repositories {
+    maven { // Cardinal Components
+        name = "Ladysnake maven"
+        url = uri("https://maven.ladysnake.org/releases")
+        content {
+            includeGroup("org.ladysnake.cardinal-components-api")
         }
     }
 
-    modDependencies.runtimeDependencies(project).forEach {
-        modRuntimeOnly(it) {
-            exclude(group = "net.fabricmc")
-            exclude(group = "net.fabricmc.fabric-api")
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "ARRP"
+                url = uri("https://ueaj.dev/maven")
+            }
+        }
+        filter {
+            includeGroup("net.devtech")
+        }
+    }
+
+    exclusiveContent { // Mod Menu, EMI
+        forRepository {
+            maven {
+                name = "TerraformersMC"
+                url = uri("https://maven.terraformersmc.com/")
+            }
+        }
+        filter {
+            includeGroup("com.terraformersmc")
+            includeGroup("dev.emi")
+        }
+    }
+
+    exclusiveContent {// Inventory Tabs
+        forRepository {
+            maven {
+                name = "Sleeping Town Maven"
+                url = uri("https://repo.sleeping.town/")
+            }
+        }
+        filter {
+            includeGroup("folk.sisby")
+        }
+    }
+
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "JitPack"
+                url = uri("https://jitpack.io/")
+            }
+        }
+        filter {
+            includeGroup("com.github.Virtuoel")
+        }
+    }
+
+    maven { // Quark, JEI
+        name = "Jared"
+        url = uri("https://maven.blamejared.com/")
+    }
+
+    maven { // Roughly Enough Items
+        name = "Shedaniel"
+        url = uri("https://maven.shedaniel.me/")
+    }
+
+    maven { // Amecs
+        name = "Siphalor's Maven"
+        url = uri("https://maven.siphalor.de/")
+    }
+}
+
+
+multiloader {
+    dependencies {
+        create("inventory-tabs") {
+            curseforgeName.unsetConvention()
+
+            artifacts { enabled ->
+                ifEnabled(enabled, "folk.sisby:inventory-tabs:${ModVersions.INVENTORY_TABS}")
+            }
+        }
+
+        create("rei") {
+            curseforgeName = "roughly-enough-items"
+
+            artifacts { enabled ->
+                ifEnabled(enabled, "me.shedaniel:RoughlyEnoughItems-fabric:${ModVersions.REI}")
+            }
+        }
+
+        create("modmenu") {
+            artifacts { enabled ->
+                ifEnabled(enabled, "com.terraformersmc:modmenu:${ModVersions.MOD_MENU}")
+            }
+        }
+
+        create("jei") {
+            artifacts { enabled ->
+                modCompileOnly("mezz.jei:jei-${ModVersions.JEI_GAME}-fabric-api:${ModVersions.JEI_MOD}")
+                if (enabled) {
+                    modRuntimeOnly("mezz.jei:jei-${ModVersions.JEI_GAME}-fabric:${ModVersions.JEI_MOD}")
+                }
+            }
+        }
+
+        create("inventory-profiles-next") {
+            artifacts { enabled ->
+                ifEnabled(enabled, "maven.modrinth:inventory-profiles-next:fabric-${ModVersions.IPN_GAME}-${ModVersions.IPN_MOD}")
+                ifEnabled(enabled, "maven.modrinth:libipn:fabric-${ModVersions.LIB_IPN_GAME_FABRIC}-${ModVersions.LIB_IPN_MOD}")
+            }
+        }
+
+        create("htm") {
+            artifacts {  enabled ->
+                ifEnabled(enabled, "maven.modrinth:htm:${ModVersions.HTM}")
+            }
+        }
+
+        create("emi") {
+            artifacts { enabled ->
+                modCompileOnly("dev.emi:emi-fabric:${ModVersions.EMI}:api")
+                if (enabled) {
+                    modRuntimeOnly("dev.emi:emi-fabric:${ModVersions.EMI}")
+                }
+            }
+        }
+
+        create("carry-on") {
+            artifacts { enabled ->
+                ifEnabled(enabled, "maven.modrinth:carry-on:${ModVersions.CARRY_ON_FABRIC}")
+            }
+        }
+
+        create("amecs") {
+            artifacts { enabled ->
+                modCompileOnly("de.siphalor:amecsapi-${ModVersions.AMECS_GAME}:${ModVersions.AMECS_API_MOD}")
+                if (enabled) {
+                    modRuntimeOnly("de.siphalor:amecs-${ModVersions.AMECS_GAME}:${ModVersions.AMECS_MOD}")
+                }
+            }
+        }
+
+        create("carrier") {
+            artifacts { enabled ->
+                ifEnabled(enabled, "maven.modrinth:carrier:${ModVersions.CARRIER}")
+                ifEnabled(enabled, "org.ladysnake.cardinal-components-api:cardinal-components-base:${ModVersions.CARDINAL_COMPONENTS}")
+                ifEnabled(enabled, "org.ladysnake.cardinal-components-api:cardinal-components-entity:${ModVersions.CARDINAL_COMPONENTS}")
+                ifEnabled(enabled, "net.devtech:arrp:${ModVersions.ARRP}")
+            }
         }
     }
 }
 
-fabricApi.configureDataGeneration {
-    outputDirectory = file("src/generated/resources")
-    modId = Constants.MOD_ID
+fun DependencyHandler.ifEnabled(enabled: Boolean, dependencyNotation: String) {
+    if (enabled) {
+        modImplementation(dependencyNotation)
+    } else {
+        modCompileOnly(dependencyNotation)
+    }
 }

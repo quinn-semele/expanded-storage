@@ -1,182 +1,175 @@
-tasks.named<Wrapper>("wrapper") {
+import dev.compasses.multiloader.Constants
+import dev.compasses.multiloader.extension.DependencyType
+import dev.compasses.multiloader.extension.MultiLoaderExtension
+import dev.compasses.multiloader.extension.UploadTarget
+import dev.compasses.multiloader.task.ProcessJsonTask
+import me.modmuss50.mpp.Platform
+import me.modmuss50.mpp.PublishModTask
+import me.modmuss50.mpp.PublishResult
+import me.modmuss50.mpp.ReleaseType
+import org.codehaus.groovy.runtime.ProcessGroovyMethods
+import java.net.http.HttpClient
+import java.net.http.HttpRequest
+import java.net.http.HttpRequest.BodyPublishers
+import java.net.http.HttpResponse
+
+plugins {
+    id("me.modmuss50.mod-publish-plugin") version "0.6.3"
+}
+
+// To update run the :wrapper task, update values here as required from the gradle site below.
+// https://gradle.org/release-checksums/
+tasks.wrapper {
+    gradleVersion = "8.9"
+    distributionSha256Sum = "d725d707bfabd4dfdc958c624003b3c80accc03f7037b5122c4b1d0ef15cecab"
     distributionType = Wrapper.DistributionType.BIN
 }
 
+gradle.taskGraph.whenReady {
+    if (hasTask(":publishMods") && !providers.environmentVariable("CI").isPresent) {
+        throw IllegalStateException("Cannot publish mods locally, please run the release workflow on GitHub.")
+    }
+}
 
-//import me.modmuss50.mpp.PublishModTask
-//import me.modmuss50.mpp.PublishResult
-//import me.modmuss50.mpp.ReleaseType
-//import me.modmuss50.mpp.platforms.curseforge.CurseforgeOptions
-//import me.modmuss50.mpp.platforms.modrinth.ModrinthOptions
-//import org.codehaus.groovy.runtime.ProcessGroovyMethods
-//import semele.quinn.expandedstorage.plugin.Constants
-//import semele.quinn.expandedstorage.plugin.Versions
-//import semele.quinn.expandedstorage.plugin.dependency.FreezableDependencyList
-//import semele.quinn.expandedstorage.plugin.task.AbstractJsonTask
-//import semele.quinn.expandedstorage.plugin.task.AbstractRestrictedTask
-//import semele.quinn.expandedstorage.plugin.task.BuildModTask
-//import semele.quinn.expandedstorage.plugin.task.ReleaseModTask
-//
-//plugins {
-//    id("me.modmuss50.mod-publish-plugin") version "0.5.1"
-//}
-//
-//version = Versions.EXPANDEDSTORAGE
-//
-//tasks.create(Constants.BUILD_MOD_TASK, BuildModTask::class.java) {
-//    group = "quinn semele"
-//}
-//val releaseTask = tasks.register(Constants.RELEASE_MOD_TASK, ReleaseModTask::class.java) {
-//    group = "quinn semele"
-//
-//    dependsOn(":publishMods")
-//
-//    doLast {
-//        val cfLinks = mapOf("Fabric" to "publishCurseForgeFabric", "NeoForge" to "publishCurseForgeForge", /*"Quilt" to "publishCurseForgeQuilt"*/).mapValues {
-//            val result = PublishResult.fromJson(tasks.getByName<PublishModTask>(it.value).result.get().asFile.readText(Charsets.UTF_8))
-//
-//            result.link
-//        }
-//        val mrLinks = mapOf("Fabric" to "publishModrinthFabric", "NeoForge" to "publishModrinthForge", /*"Quilt" to "publishModrinthQuilt"*/).mapValues {
-//            val result = PublishResult.fromJson(tasks.getByName<PublishModTask>(it.value).result.get().asFile.readText(Charsets.UTF_8))
-//
-//            result.link
-//        }
-//
-//        println("""
-//            **Expanded Storage ${Versions.EXPANDEDSTORAGE}** for **${Versions.MINECRAFT}**
-//            ${rootProject.file("changelog.md").readLines(Charsets.UTF_8).joinToString("\n")}
-//
-//            :curseforge: ${cfLinks.map { "[${it.key}](<${it.value}>)" }.joinToString(" | ")}
-//            :modrinth: ${mrLinks.map { "[${it.key}](<${it.value}>)" }.joinToString(" | ")}
-//        """.trimIndent())
-//    }
-//}
-//
-//gradle.taskGraph.whenReady {
-//    for (task in allTasks) {
-//        (task as? AbstractRestrictedTask)?.doChecks()
-//    }
-//}
-//
-//evaluationDependsOnChildren()
-//
-//val releaseType = if ("alpha" in Versions.EXPANDEDSTORAGE) {
-//    ReleaseType.ALPHA
-//} else if ("beta" in Versions.EXPANDEDSTORAGE) {
-//    ReleaseType.BETA
-//} else {
-//    ReleaseType.STABLE
-//}
-//
-//val modChangelog = rootProject.file("changelog.md").readLines(Charsets.UTF_8) +
-//        listOf("", "Commit: https://github.com/quinn-semele/expanded-storage/commit/${getGitCommit()}")
-//
-//val commonCurseForgeOptions = publishMods.curseforgeOptions {
-//    accessToken = providers.environmentVariable("QUINN_CF_TOKEN")
-//    projectId = "978068"
-//    projectSlug = "expanded-storage"
-//
-//    clientRequired = true
-//    serverRequired = true
-//
-//    minecraftVersions.addAll(Versions.CF_SUPPORTED_GAME_VERSIONS)
-//    javaVersions.add(Versions.JAVA)
-//}
-//
-//val commonModrinthOptions = publishMods.modrinthOptions {
-//    accessToken = providers.environmentVariable("QUINN_MR_TOKEN")
-//    projectId = "jCCPlP3c"
-//
-//    minecraftVersions.addAll(Versions.MR_SUPPORTED_GAME_VERSIONS)
-//}
-//
-//val fabricOptions = publishMods.publishOptions {
-//    modLoaders.add("fabric")
-//    displayName = "ES Fabric ${Versions.EXPANDEDSTORAGE}"
-//    version = "${Versions.EXPANDEDSTORAGE}+fabric"
-//    file = project(":fabric").tasks.named<AbstractJsonTask>("minJar").map { it.archiveFile.get() }
-//}
-//
-//val forgeOptions = publishMods.publishOptions {
-//    modLoaders.add("neoforge")
-//    displayName = "ES NeoForge ${Versions.EXPANDEDSTORAGE}"
-//    version = "${Versions.EXPANDEDSTORAGE}+neoforge"
-//    file = project(":forge").tasks.named<AbstractJsonTask>("minJar").map { it.archiveFile.get() }
-//}
-//
-////val quiltOptions = publishMods.publishOptions {
-////    modLoaders.add("quilt")
-////    displayName = "ES Quilt ${Versions.EXPANDEDSTORAGE}"
-////    version = "${Versions.EXPANDEDSTORAGE}+quilt"
-////    file = project(":quilt").tasks.named<AbstractJsonTask>("minJar").map { it.archiveFile.get() }
-////}
-//
-//val threadDependencies = project(":thread").extra["mod_dependencies"] as FreezableDependencyList
-//
-//fun CurseforgeOptions.threadDependencies() {
-//    threadDependencies.curseForgeIds().forEach(::optional)
-//}
-//
-//fun ModrinthOptions.threadDependencies() {
-//    threadDependencies.modrinthIds().forEach(::optional)
-//}
-//
-//val forgeDependencies = project(":forge").extra["mod_dependencies"] as FreezableDependencyList
-//
-//publishMods {
-//    changelog = modChangelog.joinToString("\n")
-//    type = releaseType
-//
-//    dryRun = providers.systemProperty("MOD_UPLOAD_DEBUG").orElse("false").map { it == "true" }
-//
-//    curseforge("CurseForgeFabric") {
-//        from(commonCurseForgeOptions, fabricOptions)
-//
-//        requires("fabric-api")
-//        threadDependencies()
-//    }
-//
-////    curseforge("CurseForgeQuilt") {
-////        from(commonCurseForgeOptions, quiltOptions)
-////
-////        requires("qsl")
-////        threadDependencies()
-////    }
-//
-//    curseforge("CurseForgeForge") {
-//        from(commonCurseForgeOptions, forgeOptions)
-//
-//        forgeDependencies.curseForgeIds().forEach(::optional)
-//    }
-//
-//    modrinth("ModrinthFabric") {
-//        from(commonModrinthOptions, fabricOptions)
-//
-//        requires("fabric-api")
-//        threadDependencies()
-//    }
-//
-////    modrinth("ModrinthQuilt") {
-////        from(commonModrinthOptions, quiltOptions)
-////
-////        requires("qsl")
-////        threadDependencies()
-////    }
-//
-//    modrinth("ModrinthForge") {
-//        from(commonModrinthOptions, forgeOptions)
-//
-//        forgeDependencies.modrinthIds().forEach(::optional)
-//    }
-//}
-//
-//tasks.getByName("publishModrinthFabric").mustRunAfter("publishModrinthForge") // , "publishModrinthQuilt"
-////tasks.getByName("publishModrinthForge").mustRunAfter("publishModrinthQuilt")
-//
-//tasks.getByName("publishCurseForgeFabric").mustRunAfter("publishCurseForgeForge") // , "publishCurseForgeQuilt"
-////tasks.getByName("publishCurseForgeForge").mustRunAfter("publishCurseForgeQuilt")
-//
-//private fun getGitCommit(): String {
-//    return ProcessGroovyMethods.getText(ProcessGroovyMethods.execute("git rev-parse HEAD"))
-//}
+// This feels like a hack but I can't really think of a way to do this properly.
+evaluationDependsOnChildren()
+
+val projectsToPublish = mapOf(
+    "NeoForge" to findProject(":neoforge"),
+    "Fabric" to findProject(":fabric"),
+    "Quilt" to findProject(":quilt")
+).filter { it.value != null }.mapValues { (_, loader) -> loader!! }
+
+val modChangelog = providers.provider {
+    val compareTag = ProcessGroovyMethods.getText(ProcessGroovyMethods.execute("git describe --tags --abbrev=0")).trim()
+    val commitHash = ProcessGroovyMethods.getText(ProcessGroovyMethods.execute("git rev-parse HEAD")).trim()
+
+    buildString {
+        appendLine(file("changelog.md").readText(Charsets.UTF_8).trimEnd())
+        appendLine()
+        if (compareTag.isNotBlank()) {
+            appendLine("A detailed changelog can be found [here](${Constants.COMPARE_URL}${compareTag}...${commitHash}).")
+        } else {
+            appendLine("A detailed changelog could not be made for this release, sorry.")
+        }
+    }
+}
+
+val curseforgeOptions = Constants.curseforgeProperties?.let { props ->
+    publishMods.curseforgeOptions {
+        accessToken = providers.environmentVariable(props.uploadToken)
+        projectId = props.projectId
+        projectSlug = props.projectSlug
+        minecraftVersions = listOf(Constants.MINECRAFT_VERSION)
+        clientRequired = props.clientSideRequired
+        serverRequired = props.serverSideRequired
+        javaVersions = props.supportedJavaVersions
+    }
+}
+
+val modrinthOptions = Constants.modrinthProperties?.let { props ->
+    publishMods.modrinthOptions {
+        accessToken = providers.environmentVariable(props.uploadToken)
+        projectId = props.projectId
+        minecraftVersions = listOf(Constants.MINECRAFT_VERSION)
+    }
+}
+
+publishMods {
+    changelog = modChangelog
+    type = if ("alpha" in Constants.MOD_VERSION) {
+        ReleaseType.ALPHA
+    } else if ("beta" in Constants.MOD_VERSION) {
+        ReleaseType.BETA
+    } else {
+        ReleaseType.STABLE
+    }
+
+    dryRun = providers.provider {
+        (Constants.curseforgeProperties != null && !curseforgeOptions!!.get().accessToken.isPresent) ||
+                (Constants.modrinthProperties != null && !modrinthOptions!!.get().accessToken.isPresent)
+    }
+}
+
+val publishTasks = projectsToPublish.map { (name, loader) ->
+    name to buildList {
+        Constants.curseforgeProperties?.run {
+            add(publishMods.curseforge("CurseForge$name") {
+                from(curseforgeOptions!!)
+                displayName = "$name ${loader.version}"
+                version = "${Constants.MOD_VERSION}+${name.lowercase()}"
+                modLoaders.add(name.lowercase())
+
+                file = loader.tasks.getByName("minJar", ProcessJsonTask::class).archiveFile
+
+                dependencies {
+                    val multiloaderExt = loader.extensions.getByName<MultiLoaderExtension>("multiloader")
+
+                    optional(*multiloaderExt.getDependencyIds(UploadTarget.CURSEFORGE, DependencyType.OPTIONAL).toTypedArray())
+                    requires(*multiloaderExt.getDependencyIds(UploadTarget.CURSEFORGE, DependencyType.REQUIRED).toTypedArray())
+                }
+            } as NamedDomainObjectProvider<Platform>)
+        }
+
+        Constants.modrinthProperties?.run {
+            add(publishMods.modrinth("Modrinth$name") {
+                from(modrinthOptions!!)
+                displayName = "$name ${loader.version}"
+                version = "${Constants.MOD_VERSION}+${name.lowercase()}"
+                modLoaders.add(name.lowercase())
+
+                file = loader.tasks.getByName("minJar", ProcessJsonTask::class).archiveFile
+
+                dependencies {
+                    val multiloaderExt = loader.extensions.getByName<MultiLoaderExtension>("multiloader")
+
+                    optional(*multiloaderExt.getDependencyIds(UploadTarget.MODRINTH, DependencyType.OPTIONAL).toTypedArray())
+                    requires(*multiloaderExt.getDependencyIds(UploadTarget.MODRINTH, DependencyType.REQUIRED).toTypedArray())
+                }
+            } as NamedDomainObjectProvider<Platform>)
+        }
+    }
+}.toMap()
+
+tasks.publishMods {
+    doLast {
+        val environmentVariable = providers.environmentVariable(Constants.PUBLISH_WEBHOOK_VARIABLE)
+
+        if (environmentVariable.isPresent) {
+            val uri = uri(environmentVariable.get())
+
+            val results = publishTasks.mapValues { (_, publishTasks) -> publishTasks.map { task ->
+                PublishResult.fromJson(tasks.getByName<PublishModTask>(task.get().taskName).result.get().asFile.readText(Charsets.UTF_8))
+            } }
+
+            val cfLinks = results.mapValues { it.value.firstOrNull { it.type == "curseforge" } }.filter { it.value != null }.mapValues { it.value!!.link }
+            val mrLinks = results.mapValues { it.value.firstOrNull { it.type == "modrinth" } }.filter { it.value != null }.mapValues { it.value!!.link }
+
+            val payload = buildString {
+                append("""{"content": """")
+
+                append("""
+                    |**${Constants.MOD_NAME} ${Constants.MOD_VERSION}** for **${Constants.MINECRAFT_VERSION}**
+                    |${modChangelog.get()}
+                    |:curseforge: ${cfLinks.map { "[${it.key}](<${it.value}>)" }.joinToString(" | ")}
+                    |:modrinth: ${mrLinks.map { "[${it.key}](<${it.value}>)" }.joinToString(" | ")}
+                """.trimMargin().trim().replace("\n", "\\n"))
+
+                append(""""}""")
+            }
+
+            val request = HttpRequest.newBuilder(uri).header("Content-Type", "application/json").POST(BodyPublishers.ofString(payload)).build()
+            val response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString())
+
+            if (response.statusCode() !in 200..299) {
+                project.logger.error("Failed to publish release notes to webhook:\n${response.body()}")
+            }
+        }
+    }
+}
+
+tasks.register("logVersion") {
+    doFirst {
+        println("mod-version=${Constants.MOD_VERSION}+${Constants.MINECRAFT_VERSION}")
+    }
+}

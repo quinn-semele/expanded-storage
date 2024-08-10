@@ -1,12 +1,9 @@
 package compasses.expandedstorage.impl;
 
-import compasses.expandedstorage.impl.block.ChestBlock;
-import compasses.expandedstorage.impl.block.MiniStorageBlock;
 import compasses.expandedstorage.impl.block.OpenableBlock;
 import compasses.expandedstorage.impl.block.misc.BasicLockable;
 import compasses.expandedstorage.impl.block.misc.CopperBlockHelper;
 import compasses.expandedstorage.impl.block.strategies.ItemAccess;
-import compasses.expandedstorage.impl.compat.carrier.CarrierCompat;
 import compasses.expandedstorage.impl.compat.htm.HTMLockable;
 import compasses.expandedstorage.impl.item.ChestMinecartItem;
 import compasses.expandedstorage.impl.misc.ESDataComponents;
@@ -143,19 +140,19 @@ public class ThreadMain implements ModInitializer {
         CopperBlockHelper.oxidisation().forEach(OxidizableBlocksRegistry::registerOxidizableBlockPair);
         CopperBlockHelper.dewaxing().inverse().forEach(OxidizableBlocksRegistry::registerWaxableBlockPair);
 
-        if (FabricLoader.getInstance().isModLoaded("carrier")) {
-            for (NamedValue<? extends OpenableBlock> block : content.getBlocks()) {
-                CarrierCompat.removeEntry(block.getValue());
-
-                if (block.getValue() instanceof ChestBlock chestBlock) {
-                    CarrierCompat.registerChestBlock(chestBlock);
-                } else if (block.getValue() instanceof MiniStorageBlock storageBlock) {
-                  CarrierCompat.registerMiniBlock(storageBlock);
-                } else {
-                    CarrierCompat.registerOpenableBlock(block.getValue());
-                }
-            }
-        }
+//        if (FabricLoader.getInstance().isModLoaded("carrier")) {
+//            for (NamedValue<? extends OpenableBlock> block : content.getBlocks()) {
+//                CarrierCompat.removeEntry(block.getValue());
+//
+//                if (block.getValue() instanceof ChestBlock chestBlock) {
+//                    CarrierCompat.registerChestBlock(chestBlock);
+//                } else if (block.getValue() instanceof MiniStorageBlock storageBlock) {
+//                  CarrierCompat.registerMiniBlock(storageBlock);
+//                } else {
+//                    CarrierCompat.registerOpenableBlock(block.getValue());
+//                }
+//            }
+//        }
 
         if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
             temporaryContent = content;

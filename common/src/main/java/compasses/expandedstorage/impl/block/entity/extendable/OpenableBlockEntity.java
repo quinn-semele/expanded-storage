@@ -55,7 +55,7 @@ public abstract class OpenableBlockEntity extends BlockEntity implements Openabl
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider provider) {
         super.loadAdditional(tag, provider);
 
-        lockable.readLock(tag);
+        lockable.readLock(tag, provider);
 
         if (tag.contains("CustomName", Tag.TAG_STRING)) {
             customName = Component.Serializer.fromJson(tag.getString("CustomName"), provider);
@@ -66,7 +66,7 @@ public abstract class OpenableBlockEntity extends BlockEntity implements Openabl
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider provider) {
         super.saveAdditional(tag, provider);
 
-        lockable.writeLock(tag);
+        lockable.writeLock(tag, provider);
 
         if (this.hasCustomName()) {
             tag.putString("CustomName", Component.Serializer.toJson(customName, provider));

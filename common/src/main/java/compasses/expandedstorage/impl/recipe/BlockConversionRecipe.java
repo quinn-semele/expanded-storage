@@ -113,7 +113,7 @@ public class BlockConversionRecipe<O extends Block> extends ConversionRecipe<Blo
                         }
 
                         entity.setCustomName(customName);
-                        entity.getLockable().readLock(tagForLock);
+                        entity.getLockable().readLock(tagForLock, level.registryAccess());
                     }
                     toolsUsed++;
                 } else {
