@@ -1,11 +1,7 @@
 package compasses.expandedstorage.impl;
 
-import com.google.common.base.Suppliers;
-import com.google.common.collect.BiMap;
-import com.google.common.collect.ImmutableBiMap;
 import compasses.expandedstorage.impl.block.OpenableBlock;
 import compasses.expandedstorage.impl.block.misc.BasicLockable;
-import compasses.expandedstorage.impl.block.misc.CopperBlockHelper;
 import compasses.expandedstorage.impl.block.strategies.ItemAccess;
 import compasses.expandedstorage.impl.entity.ChestMinecart;
 import compasses.expandedstorage.impl.item.ChestMinecartItem;
@@ -30,8 +26,6 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.HoneycombItem;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.IEventBus;
@@ -51,8 +45,6 @@ import net.neoforged.neoforge.items.wrapper.InvWrapper;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import net.neoforged.neoforge.registries.RegisterEvent;
-
-import java.util.function.Supplier;
 
 @Mod("expandedstorage")
 public final class ForgeMain implements IExtensionPoint {
@@ -156,17 +148,6 @@ public final class ForgeMain implements IExtensionPoint {
             if (event.getRegistry() == BuiltInRegistries.DATA_COMPONENT_TYPE) {
                 ESDataComponents.register();
             }
-        });
-
-        // todo: replace with datamaps
-        // Hopefully if another mod replaces this supplier we'll capture theirs here.
-        Supplier<BiMap<Block, Block>> originalWaxablesMap = HoneycombItem.WAXABLES;
-        HoneycombItem.WAXABLES = Suppliers.memoize(() -> {
-            return ImmutableBiMap.<Block, Block>builder()
-                                 // Hopefully the original / modded map is okay to query here.
-                                 .putAll(originalWaxablesMap.get())
-                                 .putAll(CopperBlockHelper.dewaxing().inverse())
-                                 .build();
         });
     }
 

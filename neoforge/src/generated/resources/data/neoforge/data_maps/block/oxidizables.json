@@ -1,0 +1,22 @@
+{
+  "values": {
+    "expandedstorage:copper_barrel": {
+      "next_oxidation_stage": "expandedstorage:exposed_copper_barrel"
+    },
+    "expandedstorage:copper_mini_barrel": {
+      "next_oxidation_stage": "expandedstorage:exposed_copper_mini_barrel"
+    },
+    "expandedstorage:exposed_copper_barrel": {
+      "next_oxidation_stage": "expandedstorage:weathered_copper_barrel"
+    },
+    "expandedstorage:exposed_copper_mini_barrel": {
+      "next_oxidation_stage": "expandedstorage:weathered_copper_mini_barrel"
+    },
+    "expandedstorage:weathered_copper_barrel": {
+      "next_oxidation_stage": "expandedstorage:oxidized_copper_barrel"
+    },
+    "expandedstorage:weathered_copper_mini_barrel": {
+      "next_oxidation_stage": "expandedstorage:oxidized_copper_mini_barrel"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "values": {
+    "expandedstorage:copper_barrel": {
+      "waxed": "expandedstorage:waxed_copper_barrel"
+    },
+    "expandedstorage:copper_mini_barrel": {
+      "waxed": "expandedstorage:waxed_copper_mini_barrel"
+    },
+    "expandedstorage:exposed_copper_barrel": {
+      "waxed": "expandedstorage:waxed_exposed_copper_barrel"
+    },
+    "expandedstorage:exposed_copper_mini_barrel": {
+      "waxed": "expandedstorage:waxed_exposed_copper_mini_barrel"
+    },
+    "expandedstorage:oxidized_copper_barrel": {
+      "waxed": "expandedstorage:waxed_oxidized_copper_barrel"
+    },
+    "expandedstorage:oxidized_copper_mini_barrel": {
+      "waxed": "expandedstorage:waxed_oxidized_copper_mini_barrel"
+    },
+    "expandedstorage:weathered_copper_barrel": {
+      "waxed": "expandedstorage:waxed_weathered_copper_barrel"
+    },
+    "expandedstorage:weathered_copper_mini_barrel": {
+      "waxed": "expandedstorage:waxed_weathered_copper_mini_barrel"
+    }
+  }
+}

@@ -1,5 +1,6 @@
 package compasses.expandedstorage.impl.datagen;
 
+import compasses.expandedstorage.impl.datagen.providers.CopperDataMapProvider;
 import compasses.expandedstorage.impl.datagen.providers.ForgeConversionRecipeProvider;
 import compasses.expandedstorage.impl.datagen.providers.ItemModelProvider;
 import compasses.expandedstorage.impl.datagen.providers.LootTableProvider;
@@ -32,5 +33,6 @@ public final class Main {
         generator.addProvider(event.includeServer(), new LootTableProvider(output, lookupProvider));
         generator.addProvider(event.includeClient(), new ItemModelProvider(output, fileHelper));
         generator.addProvider(event.includeServer(), new ForgeConversionRecipeProvider(output));
+        generator.addProvider(event.includeServer(), new CopperDataMapProvider(output, lookupProvider));
     }
 }

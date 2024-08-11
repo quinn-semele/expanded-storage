@@ -3,13 +3,9 @@
   "plugin": "compasses.expandedstorage.impl.MixinPlugin",
   "package": "compasses.expandedstorage.impl.mixin",
   "compatibilityLevel": "JAVA_16",
-  "mixins": [
-    "common.OxidizableBlockMixin"
-  ],
   "client": [
     "client.QuarkButtonAllowedMixin"
   ],
   "injectors": { "defaultRequire": 1 },
-  "minVersion": "0.8",
-  "refmap": "expandedstorage.refmap.json"
+  "minVersion": "0.8"
 }

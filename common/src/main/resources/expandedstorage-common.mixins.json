@@ -16,6 +16,5 @@
     "common.SpectatorEntityInventoryViewingFix"
   ],
   "injectors": { "defaultRequire": 1 },
-  "minVersion": "0.8",
-  "refmap": "expandedstorage.refmap.json"
+  "minVersion": "0.8"
 }

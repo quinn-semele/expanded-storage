@@ -23,7 +23,16 @@ neoForge {
         }
 
         create("client") { client() }
-        create("data") { data() }
+        create("data") {
+            data()
+
+            programArguments.addAll(
+                "--mod", Constants.MOD_ID,
+                "--output", file("src/generated/resources").absolutePath,
+                "--existing", findProject(":common")!!.file("src/main/resources").absolutePath,
+                "--all"
+            )
+        }
         create("server") { server() }
     }
 

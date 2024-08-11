@@ -12,6 +12,5 @@
     "client.LastAfterInitCallbackMixin",
     "client.InventoryProfilesNextSupport"
   ],
-  "injectors": { "defaultRequire": 1 },
-  "refmap": "expandedstorage.refmap.json"
+  "injectors": { "defaultRequire": 1 }
 }
