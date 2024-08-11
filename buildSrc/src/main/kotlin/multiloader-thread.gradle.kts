@@ -54,6 +54,11 @@ loom {
             configName = "Thread Server"
             isIdeConfigGenerated = true
         }
+
+        named("datagen") {
+            configName = "Thread Data"
+            isIdeConfigGenerated = true
+        }
     }
 }
 
