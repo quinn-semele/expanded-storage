@@ -1,24 +1,22 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "misc",
+  "group": "expandedstorage:copper_chest",
   "key": {
     "B": {
       "tag": "expandedstorage:chests/wooden"
     },
     "I": {
-      "item": "minecraft:iron_ingot"
-    },
-    "P": {
-      "item": "minecraft:paper"
+      "tag": "c:ingots/copper"
     }
   },
   "pattern": [
-    " I ",
-    "PBP",
-    " P "
+    "III",
+    "IBI",
+    "III"
   ],
   "result": {
-    "count": 8,
-    "id": "expandedstorage:iron_mini_chest"
+    "count": 1,
+    "id": "expandedstorage:copper_chest"
   }
 }

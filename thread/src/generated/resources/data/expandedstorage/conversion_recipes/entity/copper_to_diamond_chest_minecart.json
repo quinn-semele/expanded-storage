@@ -1,0 +1,10 @@
+{
+  "type": "expandedstorage:entity_conversion",
+  "inputs": {
+    "id": "expandedstorage:copper_chest_minecart"
+  },
+  "result": "expandedstorage:diamond_chest_minecart",
+  "tool": {
+    "id": "expandedstorage:wood_to_diamond_conversion_kit"
+  }
+}

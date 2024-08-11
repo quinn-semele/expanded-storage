@@ -6,7 +6,7 @@
       "tag": "expandedstorage:chests/wooden"
     },
     "I": {
-      "item": "minecraft:iron_ingot"
+      "item": "minecraft:copper_ingot"
     },
     "P": {
       "item": "minecraft:paper"
@@ -19,6 +19,6 @@
   ],
   "result": {
     "count": 8,
-    "id": "expandedstorage:iron_mini_chest"
+    "id": "expandedstorage:copper_mini_chest"
   }
 }

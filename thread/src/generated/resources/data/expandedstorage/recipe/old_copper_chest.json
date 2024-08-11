@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "expandedstorage:old_copper_chest",
+  "key": {
+    "B": {
+      "item": "expandedstorage:old_wood_chest"
+    },
+    "I": {
+      "tag": "c:ingots/copper"
+    }
+  },
+  "pattern": [
+    "III",
+    "IBI",
+    "III"
+  ],
+  "result": {
+    "count": 1,
+    "id": "expandedstorage:old_copper_chest"
+  }
+}

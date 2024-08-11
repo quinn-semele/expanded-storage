@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "B": {
-      "item": "expandedstorage:wood_chest"
+      "tag": "expandedstorage:chests/wooden"
     },
     "I": {
       "item": "minecraft:netherite_ingot"

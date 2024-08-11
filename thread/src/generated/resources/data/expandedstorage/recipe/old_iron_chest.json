@@ -4,16 +4,19 @@
   "group": "expandedstorage:old_iron_chest",
   "key": {
     "B": {
-      "item": "expandedstorage:old_wood_chest"
+      "item": "expandedstorage:old_copper_chest"
     },
     "I": {
       "tag": "c:ingots/iron"
+    },
+    "N": {
+      "tag": "c:nuggets/iron"
     }
   },
   "pattern": [
-    "III",
+    "NNN",
     "IBI",
-    "III"
+    "NNN"
   ],
   "result": {
     "count": 1,
