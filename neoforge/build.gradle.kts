@@ -1,3 +1,5 @@
+import dev.compasses.expandedstorage.ModVersions
+
 plugins {
     id("multiloader-neoforge")
 }
@@ -19,9 +21,9 @@ multiloader {
             ))
 
             artifacts { enabled ->
-                compileOnly("dev.emi:emi-neoforge:${properties["emi_version"]}:api")
+                compileOnly("dev.emi:emi-neoforge:${ModVersions.EMI}:api")
                 if (enabled) {
-                    localRuntime("dev.emi:emi-neoforge:${properties["emi_version"]}")
+                    localRuntime("dev.emi:emi-neoforge:${ModVersions.EMI}")
                 }
             }
         }
@@ -32,9 +34,9 @@ multiloader {
             ))
 
             artifacts { enabled ->
-                compileOnly("mezz.jei:jei-${properties["jei_minecraft_version"]}-neoforge-api:${properties["jei_version"]}")
+                compileOnly("mezz.jei:jei-${ModVersions.JEI_GAME}-neoforge-api:${ModVersions.JEI_MOD}")
                 if (enabled) {
-                    localRuntime("mezz.jei:jei-${properties["jei_minecraft_version"]}-neoforge:${properties["jei_version"]}")
+                    localRuntime("mezz.jei:jei-${ModVersions.JEI_GAME}-neoforge:${ModVersions.JEI_MOD}")
                 }
             }
         }
@@ -49,19 +51,19 @@ multiloader {
             ))
 
             artifacts { enabled ->
-                compileOnly("me.shedaniel.cloth:cloth-config-neoforge:${properties["cloth_config_version"]}")
-                compileOnly("me.shedaniel:RoughlyEnoughItems-api-neoforge:${properties["rei_version"]}")
+                compileOnly("me.shedaniel.cloth:cloth-config-neoforge:${ModVersions.CLOTH_CONFIG}")
+                compileOnly("me.shedaniel:RoughlyEnoughItems-api-neoforge:${ModVersions.REI}")
                 if (enabled) {
-                    localRuntime("me.shedaniel:RoughlyEnoughItems-neoforge:${properties["rei_version"]}")
+                    localRuntime("me.shedaniel:RoughlyEnoughItems-neoforge:${ModVersions.REI}")
                 }
             }
         }
 
         create("carry-on") {
             artifacts { enabled ->
-                compileOnly("maven.modrinth:carry-on:${properties["carry_on_forge_version"]}")
+                compileOnly("maven.modrinth:carry-on:${ModVersions.CARRY_ON_NEOFORGE}")
                 if (enabled) {
-                    localRuntime("maven.modrinth:carry-on:${properties["carry_on_forge_version"]}")
+                    localRuntime("maven.modrinth:carry-on:${ModVersions.CARRY_ON_NEOFORGE}")
                 }
             }
         }
@@ -73,10 +75,10 @@ multiloader {
             ))
 
             artifacts { enabled ->
-                compileOnly("org.violetmoon.quark:Quark:${properties["quark_version"]}")
+                compileOnly("org.violetmoon.quark:Quark:${ModVersions.QUARK}")
                 if (enabled) {
-                    localRuntime("org.violetmoon.quark:Quark:${properties["quark_version"]}")
-                    localRuntime("org.violetmoon.zeta:Zeta:${properties["zeta_version"]}")
+                    localRuntime("org.violetmoon.quark:Quark:${ModVersions.QUARK}")
+                    localRuntime("org.violetmoon.zeta:Zeta:${ModVersions.ZETA}")
                 }
             }
         }

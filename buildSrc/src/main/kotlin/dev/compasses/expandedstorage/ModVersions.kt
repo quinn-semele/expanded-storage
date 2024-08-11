@@ -9,8 +9,11 @@ object ModVersions {
     const val CARRY_ON_FABRIC = "2.2.1" // https://modrinth.com/mod/carry-on/
     const val CARRY_ON_NEOFORGE = "2LfOJ5LW" // https://modrinth.com/mod/carry-on/
 
+    const val CLOTH_CONFIG = "15.0.128" // https://modrinth.com/mod/cloth-config/
     const val REI = "16.0.744" // https://modrinth.com/mod/rei/
+
     const val INVENTORY_TABS = "1.3.3+1.21" // https://modrinth.com/mod/inventory-tabs/
+
     const val MOD_MENU = "11.0.1" // https://modrinth.com/mod/modmenu/
 
     const val IPN_MOD = "2.0.4" // https://modrinth.com/mod/inventory-profiles-next/
@@ -31,4 +34,7 @@ object ModVersions {
     const val CARDINAL_COMPONENTS = "6.1.1" // https://modrinth.com/mod/cardinal-components-api/
 
     const val ARRP = "0.8.1" // https://modrinth.com/mod/arrp/
+
+    const val QUARK = "4.0-460.+" // https://modrinth.com/mod/quark/
+    const val ZETA = "1.0-24.+" // https://modrinth.com/mod/zeta/
 }
