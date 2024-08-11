@@ -1,9 +1,12 @@
 package compasses.expandedstorage.impl.client.compat;
 
+import compasses.expandedstorage.impl.block.MiniStorageBlock;
 import compasses.expandedstorage.impl.client.gui.FakePickScreen;
 import compasses.expandedstorage.impl.client.gui.AbstractScreen;
+import compasses.expandedstorage.impl.misc.Utils;
 import me.shedaniel.math.Rectangle;
 import me.shedaniel.rei.api.client.plugins.REIClientPlugin;
+import me.shedaniel.rei.api.client.registry.entry.EntryRegistry;
 import me.shedaniel.rei.api.client.registry.screen.ExclusionZones;
 import me.shedaniel.rei.api.client.registry.screen.OverlayDecider;
 import me.shedaniel.rei.api.client.registry.screen.ScreenRegistry;
@@ -11,6 +14,8 @@ import me.shedaniel.rei.api.common.util.CollectionUtils;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.ItemStack;
 
 public final class ReiCompat implements REIClientPlugin {
     private static Rectangle asReiRectangle(Rect2i rect) {
@@ -34,6 +39,23 @@ public final class ReiCompat implements REIClientPlugin {
             public <R extends Screen> InteractionResult shouldScreenBeOverlaid(R screen) {
                 return InteractionResult.FAIL;
             }
+        });
+    }
+
+    @Override
+    public void registerEntries(EntryRegistry registry) {
+        registry.removeEntryIf(entry -> {
+            if (Utils.MOD_ID.equals(entry.getContainingNamespace())) {
+                if (entry.getValue() instanceof ItemStack stack) {
+                    if (stack.getItem() instanceof BlockItem item) {
+                        if (item.getBlock() instanceof MiniStorageBlock) {
+                            return MiniStorageBlock.hasSparrowProperty(stack);
+                        }
+                    }
+                }
+            }
+
+            return false;
         });
     }
 }
