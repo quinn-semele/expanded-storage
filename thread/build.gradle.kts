@@ -1,88 +1,18 @@
 import dev.compasses.expandedstorage.ModVersions
+import dev.compasses.multiloader.extension.DependencyType
 
 plugins {
     id("multiloader-thread")
 }
 
-repositories {
-    maven { // Cardinal Components
-        name = "Ladysnake maven"
-        url = uri("https://maven.ladysnake.org/releases")
-        content {
-            includeGroup("org.ladysnake.cardinal-components-api")
-        }
-    }
-
-    exclusiveContent {
-        forRepository {
-            maven {
-                name = "ARRP"
-                url = uri("https://ueaj.dev/maven")
-            }
-        }
-        filter {
-            includeGroup("net.devtech")
-        }
-    }
-
-    exclusiveContent { // Mod Menu, EMI
-        forRepository {
-            maven {
-                name = "TerraformersMC"
-                url = uri("https://maven.terraformersmc.com/")
-            }
-        }
-        filter {
-            includeGroup("com.terraformersmc")
-            includeGroup("dev.emi")
-        }
-    }
-
-    exclusiveContent {// Inventory Tabs
-        forRepository {
-            maven {
-                name = "Sleeping Town Maven"
-                url = uri("https://repo.sleeping.town/")
-            }
-        }
-        filter {
-            includeGroup("folk.sisby")
-        }
-    }
-
-    exclusiveContent {
-        forRepository {
-            maven {
-                name = "JitPack"
-                url = uri("https://jitpack.io/")
-            }
-        }
-        filter {
-            includeGroup("com.github.Virtuoel")
-        }
-    }
-
-    maven { // Quark, JEI
-        name = "Jared"
-        url = uri("https://maven.blamejared.com/")
-    }
-
-    maven { // Roughly Enough Items
-        name = "Shedaniel"
-        url = uri("https://maven.shedaniel.me/")
-    }
-
-    maven { // Amecs
-        name = "Siphalor's Maven"
-        url = uri("https://maven.siphalor.de/")
-    }
-}
-
-
 multiloader {
     dependencies {
         create("inventory-tabs") {
             curseforgeName.unsetConvention()
+
+            requiresRepo("Sleeping Town Maven", "https://repo.sleeping.town/", setOf(
+                "folk.sisby"
+            ))
 
             artifacts { enabled ->
                 ifEnabled(enabled, "folk.sisby:inventory-tabs:${ModVersions.INVENTORY_TABS}")
@@ -92,18 +22,32 @@ multiloader {
         create("rei") {
             curseforgeName = "roughly-enough-items"
 
+            requiresRepo("Shedaniel's Maven", "https://maven.shedaniel.me/", setOf(
+                "me.shedaniel",
+                "me.shedaniel.cloth",
+                "dev.architectury"
+            ))
+
             artifacts { enabled ->
                 ifEnabled(enabled, "me.shedaniel:RoughlyEnoughItems-fabric:${ModVersions.REI}")
             }
         }
 
         create("modmenu") {
+            requiresRepo("TerraformersMC Maven", "https://maven.terraformersmc.com/", setOf(
+                "com.terraformersmc"
+            ))
+
             artifacts { enabled ->
                 ifEnabled(enabled, "com.terraformersmc:modmenu:${ModVersions.MOD_MENU}")
             }
         }
 
         create("jei") {
+            requiresRepo("Jared's Maven", "https://maven.blamejared.com/", setOf(
+                "mezz.jei"
+            ))
+
             artifacts { enabled ->
                 modCompileOnly("mezz.jei:jei-${ModVersions.JEI_GAME}-fabric-api:${ModVersions.JEI_MOD}")
                 if (enabled) {
@@ -126,6 +70,10 @@ multiloader {
         }
 
         create("emi") {
+            requiresRepo("TerraformersMC's Maven", "https://maven.terraformersmc.com/", setOf(
+                "dev.emi"
+            ))
+
             artifacts { enabled ->
                 modCompileOnly("dev.emi:emi-fabric:${ModVersions.EMI}:api")
                 if (enabled) {
@@ -141,6 +89,10 @@ multiloader {
         }
 
         create("amecs") {
+            requiresRepo("Siphalor's Maven", "https://maven.siphalor.de/", setOf(
+                "de.siphalor"
+            ))
+
             artifacts { enabled ->
                 modCompileOnly("de.siphalor:amecsapi-${ModVersions.AMECS_GAME}:${ModVersions.AMECS_API_MOD}")
                 if (enabled) {
@@ -150,6 +102,16 @@ multiloader {
         }
 
         create("carrier") {
+            type = DependencyType.DISABLED
+
+            requiresRepo("Ladysnake's Maven", "https://maven.ladysnake.org/releases/", setOf(
+                "org.ladysnake.cardinal-components-api"
+            ))
+
+            requiresRepo("Ueaj's Maven", "https://ueaj.dev/maven/", setOf(
+                "net.devtech"
+            ))
+
             artifacts { enabled ->
                 ifEnabled(enabled, "maven.modrinth:carrier:${ModVersions.CARRIER}")
                 ifEnabled(enabled, "org.ladysnake.cardinal-components-api:cardinal-components-base:${ModVersions.CARDINAL_COMPONENTS}")
