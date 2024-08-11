@@ -4,28 +4,32 @@ plugins {
     id("multiloader-common")
 }
 
-repositories {
-    exclusiveContent { // Mod Menu, EMI
-        forRepository {
-            maven {
-                name = "TerraformersMC"
-                url = uri("https://maven.terraformersmc.com/")
+multiloader {
+    dependencies {
+        create("emi") {
+            requiresRepo("TerraformersMC's Maven", "https://maven.terraformersmc.com/", setOf(
+                "dev.emi"
+            ))
+
+            artifacts {
+                compileOnly("dev.emi:emi-xplat-mojmap:${ModVersions.EMI}:api")
             }
         }
-        filter {
-            includeGroup("com.terraformersmc")
-            includeGroup("dev.emi")
+
+        create("jei") {
+            requiresRepo("Jared's Maven", "https://maven.blamejared.com/", setOf(
+                "mezz.jei"
+            ))
+
+            artifacts {
+                compileOnly("mezz.jei:jei-${ModVersions.JEI_GAME}-common-api:${ModVersions.JEI_MOD}")
+            }
+        }
+
+        create("carry-on") {
+            artifacts {
+                compileOnly("maven.modrinth:carry-on:${ModVersions.CARRY_ON_NEOFORGE}")
+            }
         }
     }
-
-    maven { // Quark, JEI
-        name = "Jared"
-        url = uri("https://maven.blamejared.com/")
-    }
-}
-
-dependencies {
-    implementation("dev.emi:emi-xplat-mojmap:${ModVersions.EMI}:api")
-    implementation("mezz.jei:jei-${ModVersions.JEI_GAME}-common-api:${ModVersions.JEI_MOD}")
-    implementation("maven.modrinth:carry-on:${ModVersions.CARRY_ON_NEOFORGE}")
 }
