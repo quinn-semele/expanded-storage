@@ -103,10 +103,17 @@ val publishTasks = projectsToPublish.map { (name, loader) ->
                 file = loader.tasks.getByName("minJar", ProcessJsonTask::class).archiveFile
 
                 dependencies {
-                    val multiloaderExt = loader.extensions.getByName<MultiLoaderExtension>("multiloader")
+                    val extensions = buildList {
+                        add(loader.extensions.getByName<MultiLoaderExtension>("multiloader"))
+                        add(findProject(":common")!!.extensions.getByName<MultiLoaderExtension>("multiloader"))
 
-                    optional(*multiloaderExt.getDependencyIds(UploadTarget.CURSEFORGE, DependencyType.OPTIONAL).toTypedArray())
-                    requires(*multiloaderExt.getDependencyIds(UploadTarget.CURSEFORGE, DependencyType.REQUIRED).toTypedArray())
+                        if (loader.path == ":fabric" || loader.path == ":quilt") {
+                            add(findProject(":thread")!!.extensions.getByName<MultiLoaderExtension>("multiloader"))
+                        }
+                    }
+
+                    optional(*extensions.flatMap { it.getDependencyIds(UploadTarget.CURSEFORGE, DependencyType.OPTIONAL) }.toSet().toTypedArray())
+                    requires(*extensions.flatMap { it.getDependencyIds(UploadTarget.CURSEFORGE, DependencyType.REQUIRED) }.toSet().toTypedArray())
                 }
             } as NamedDomainObjectProvider<Platform>)
         }
@@ -121,10 +128,17 @@ val publishTasks = projectsToPublish.map { (name, loader) ->
                 file = loader.tasks.getByName("minJar", ProcessJsonTask::class).archiveFile
 
                 dependencies {
-                    val multiloaderExt = loader.extensions.getByName<MultiLoaderExtension>("multiloader")
+                    val extensions = buildList {
+                        add(loader.extensions.getByName<MultiLoaderExtension>("multiloader"))
+                        add(findProject(":common")!!.extensions.getByName<MultiLoaderExtension>("multiloader"))
 
-                    optional(*multiloaderExt.getDependencyIds(UploadTarget.MODRINTH, DependencyType.OPTIONAL).toTypedArray())
-                    requires(*multiloaderExt.getDependencyIds(UploadTarget.MODRINTH, DependencyType.REQUIRED).toTypedArray())
+                        if (loader.path == ":fabric" || loader.path == ":quilt") {
+                            add(findProject(":thread")!!.extensions.getByName<MultiLoaderExtension>("multiloader"))
+                        }
+                    }
+
+                    optional(*extensions.flatMap { it.getDependencyIds(UploadTarget.MODRINTH, DependencyType.OPTIONAL) }.toSet().toTypedArray())
+                    requires(*extensions.flatMap { it.getDependencyIds(UploadTarget.MODRINTH, DependencyType.REQUIRED) }.toSet().toTypedArray())
                 }
             } as NamedDomainObjectProvider<Platform>)
         }
