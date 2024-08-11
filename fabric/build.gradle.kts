@@ -5,16 +5,6 @@ plugins {
     id("multiloader-threadlike")
 }
 
-//val modDependencies = FreezableDependencyList().apply {
-//    from(project(":thread").extra["mod_dependencies"])
-//
-//    add("inventory-profiles-next") {
-//        implementation("net.fabricmc:fabric-language-kotlin:${Versions.FABRIC_KOTLIN}")
-//    }
-//
-//    freeze()
-//}
-
 multiloader {
     dependencies {
         create("fabric-api") {

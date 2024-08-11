@@ -10,4 +10,4 @@ plugins {
 
 rootProject.name = "expanded-storage"
 
-include("common", "thread", "fabric", "neoforge")
+include("common", "thread", "fabric", "quilt", "neoforge")
