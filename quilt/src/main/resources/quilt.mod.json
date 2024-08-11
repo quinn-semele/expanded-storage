@@ -1,19 +1,19 @@
 {
   "schema_version": 1,
   "quilt_loader": {
-    "group": "semele.quinn.expandedstorage",
-    "id": "expandedstorage",
+    "group": "${group}",
+    "id": "${mod_id}",
     "version": "${version}",
     "metadata": {
-      "name": "Expanded Storage",
-      "description": "A mod adding various storage types, including double iron chests.",
+      "name": "${mod_name}",
+      "description": "${description}",
       "contributors": {
-        "Quinn Semele": "Owner"
+        "${ql_authors}"
       },
       "contact": {
         "homepage": "https://modrinth.com/mod/expanded-storage",
         "issues": "https://github.com/quinn-semele/expanded-storage/issues",
-        "sources": "https://github.com/quinn-semele/expanded-storage/tree/expandedstorage/1.20.1"
+        "sources": "https://github.com/quinn-semele/expanded-storage/tree/expandedstorage/${minecraft_version}"
       },
       "icon": "icon.png"
     },
@@ -29,22 +29,21 @@
     "depends": [
       {
         "id": "quilt_loader",
-        "versions": ">=0.25.0"
+        "versions": ">=${quilt_loader_version}"
       },
       {
         "id": "quilted_fabric_api",
-        "versions": ">=10.0.0-alpha.1"
+        "versions": ">=${quilt_api_version}"
       },
       {
         "id": "minecraft",
-        "versions": {
-          "all": [">=1.20.5", "<1.21-alpha"]
-        }
+        "versions": "${fl_minecraft_constraint}"
       }
     ]
   },
+  "access_widener": "${mod_id}.accesswidener",
   "mixin": [
-    "expandedstorage-common.mixins.json",
-    "expandedstorage-thread.mixins.json"
+    "${mod_id}-common.mixins.json",
+    "${mod_id}-thread.mixins.json"
   ]
 }

@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "depends": {
-    "fabricloader": ">=0.15.10",
-    "minecraft": ">=1.21-beta <1.22-alpha",
-    "fabric-api": ">=0.97.5"
+    "fabricloader": ">=${fabric_loader_version}",
+    "minecraft": "${fl_minecraft_constraint}",
+    "fabric-api": ">=${fabric_api_version}"
   },
   "entrypoints": {
     "main": [ "compasses.expandedstorage.impl.ThreadMain" ],
@@ -14,19 +14,20 @@
     "rei_client": [ "compasses.expandedstorage.impl.client.compat.ReiCompat" ]
   },
   "environment": "*",
-  "authors": [ "Quinn Semele" ],
+  "authors": [ "${fl_authors}" ],
+  "accessWidener": "${mod_id}.accesswidener",
   "mixins": [
-    "expandedstorage-common.mixins.json",
-    "expandedstorage-thread.mixins.json"
+    "${mod_id}-common.mixins.json",
+    "${mod_id}-thread.mixins.json"
   ],
   "contact": {
     "homepage": "https://modrinth.com/mod/expanded-storage",
     "issues": "https://github.com/quinn-semele/expanded-storage/issues",
-    "sources": "https://github.com/quinn-semele/expanded-storage/tree/expandedstorage/1.20.1"
+    "sources": "https://github.com/quinn-semele/expanded-storage/tree/expandedstorage/${minecraft_version}"
   },
-  "description": "A mod adding various storage types, including double iron chests.",
+  "description": "${description}",
   "icon": "icon.png",
-  "id": "expandedstorage",
-  "name": "Expanded Storage",
+  "id": "${mod_id}",
+  "name": "${mod_name}",
   "version": "${version}"
 }
