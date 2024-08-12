@@ -3,8 +3,10 @@ import dev.compasses.multiloader.task.ProcessJsonTask
 
 plugins {
     id("multiloader-loader")
-    id("fabric-loom")
+    id("org.quiltmc.loom")
 }
+
+evaluationDependsOn(":thread")
 
 configurations {
     create("threadJava") { isCanBeResolved = true }
@@ -66,4 +68,16 @@ tasks.register("minJar", ProcessJsonTask::class) {
 
 tasks.build.configure {
     dependsOn("minJar")
+}
+
+configurations.whenObjectAdded whenConfigurationAdded@ {
+    if (name == "modRuntimeClasspathMainMapped") {
+        dependencies.whenObjectAdded {
+            if (name == "fabric-loader" && group != "net.fabricmc") {
+                this@whenConfigurationAdded.exclude(group = group, module = name)
+            } else if (name == "quilt-loader" && group != "org.quiltmc") {
+                this@whenConfigurationAdded.exclude(group = group, module = name)
+            }
+        }
+    }
 }

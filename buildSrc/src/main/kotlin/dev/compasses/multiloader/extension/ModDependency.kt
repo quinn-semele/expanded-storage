@@ -12,6 +12,19 @@ abstract class ModDependency : Named {
     abstract val modrinthName: Property<String>
     abstract val curseforgeName: Property<String>
     abstract val type: Property<DependencyType>
+    abstract val enabledAtRuntime: Property<Boolean>
+
+    fun required() {
+        type.set(DependencyType.REQUIRED)
+    }
+
+    fun disabled() {
+        type.set(DependencyType.DISABLED)
+    }
+
+    fun runtime() {
+        enabledAtRuntime.set(true)
+    }
 
     fun freezeProperties() {
         isFrozen = true
@@ -19,6 +32,7 @@ abstract class ModDependency : Named {
         modrinthName.convention(name).finalizeValue()
         curseforgeName.convention(name).finalizeValue()
         type.convention(DependencyType.OPTIONAL).finalizeValue()
+        enabledAtRuntime.convention(false).finalizeValue()
     }
 
     fun requiresRepo(name: String, url: String, groups: Set<String> = setOf()) {

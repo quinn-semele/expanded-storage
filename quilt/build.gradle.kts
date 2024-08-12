@@ -1,6 +1,5 @@
 import dev.compasses.expandedstorage.ModVersions
 import dev.compasses.multiloader.Constants
-import dev.compasses.multiloader.extension.DependencyType
 
 plugins {
     id("multiloader-threadlike")
@@ -9,7 +8,7 @@ plugins {
 multiloader {
     dependencies {
         create("qsl") {
-            type = DependencyType.REQUIRED
+            required()
 
             requiresRepo("QuiltMC Maven", "https://maven.quiltmc.org/repository/release/", setOf(
                 "org.quiltmc",
@@ -117,7 +116,7 @@ multiloader {
         }
 
         create("carrier") {
-            type = DependencyType.DISABLED
+            disabled()
 
             requiresRepo("Ladysnake's Maven", "https://maven.ladysnake.org/releases/", setOf(
                 "org.ladysnake.cardinal-components-api"

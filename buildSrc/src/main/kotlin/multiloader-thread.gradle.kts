@@ -5,8 +5,10 @@ import org.gradle.kotlin.dsl.invoke
 
 plugins {
     id("multiloader-loader")
-    id("fabric-loom")
+    id("org.quiltmc.loom")
 }
+
+evaluationDependsOn(":common")
 
 dependencies {
     minecraft("com.mojang:minecraft:${Constants.MINECRAFT_VERSION}")

@@ -57,28 +57,18 @@ abstract class MultiLoaderExtension(val project: Project) {
 
         val dependencyHandler = project.dependencies
         _dependencies.forEach {
-            it.getArtifacts().invoke(dependencyHandler, false)
+            it.getArtifacts().invoke(dependencyHandler, it.type.get() == DependencyType.REQUIRED || it.enabledAtRuntime.get())
         }
     }
 
-    fun runtimeMods(vararg mods: String) {
-        val dependencyHandler = project.dependencies
-
-        for (dependency in getDependenciesSafe()) {
-            if (dependency.type.get() == DependencyType.OPTIONAL && dependency.name in mods) {
-                dependency.getArtifacts().invoke(dependencyHandler, true)
-            }
-        }
-    }
-
-    private fun getDependenciesSafe() = if (::_dependencies.isInitialized) {
+    private fun getDependencies() = if (::_dependencies.isInitialized) {
         _dependencies
     } else {
         listOf()
     }
 
     fun getDependencyIds(target: UploadTarget, type: DependencyType): Set<String> {
-        return getDependenciesSafe().filter { it.type.get() == type }.mapNotNull {
+        return getDependencies().filter { it.type.get() == type }.mapNotNull {
             when (target) {
                 UploadTarget.CURSEFORGE -> it.curseforgeName.orNull
                 UploadTarget.MODRINTH -> it.modrinthName.orNull
