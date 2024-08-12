@@ -15,7 +15,6 @@
   },
   "environment": "*",
   "authors": [ "${fl_authors}" ],
-  "accessWidener": "${mod_id}.accesswidener",
   "mixins": [
     "${mod_id}-common.mixins.json",
     "${mod_id}-thread.mixins.json"

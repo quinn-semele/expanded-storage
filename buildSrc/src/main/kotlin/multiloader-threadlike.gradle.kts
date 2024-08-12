@@ -73,9 +73,9 @@ tasks.build.configure {
 configurations.whenObjectAdded whenConfigurationAdded@ {
     if (name == "modRuntimeClasspathMainMapped") {
         dependencies.whenObjectAdded {
-            if (name == "fabric-loader" && group != "net.fabricmc") {
+            if (name == "fabric-loader" && group == "net.fabricmc") {
                 this@whenConfigurationAdded.exclude(group = group, module = name)
-            } else if (name == "quilt-loader" && group != "org.quiltmc") {
+            } else if (name == "quilt-loader" && group == "org.quiltmc") {
                 this@whenConfigurationAdded.exclude(group = group, module = name)
             }
         }

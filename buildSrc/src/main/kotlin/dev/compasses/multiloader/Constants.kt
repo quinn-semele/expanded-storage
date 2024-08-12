@@ -54,7 +54,7 @@ object Constants {
 
     // https://quiltmc.org/en/usage/latest-versions/
     const val QUILT_API_VERSION = "11.0.0-alpha.3+0.100.7-1.21"
-    const val QUILT_LOADER_VERSION = "0.25.0"
+    const val QUILT_LOADER_VERSION = "0.26.3"
 
     const val NEOFORM_VERSION = "1.21-20240613.152323" // // https://projects.neoforged.net/neoforged/neoform/
     const val NEOFORGE_VERSION = "21.0.167" // https://projects.neoforged.net/neoforged/neoforge/
