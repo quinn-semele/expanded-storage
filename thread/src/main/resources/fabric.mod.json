@@ -8,6 +8,7 @@
   "entrypoints": {
     "main": [ "compasses.expandedstorage.impl.ThreadMain" ],
     "client": [ "compasses.expandedstorage.impl.ThreadClient" ],
+    "fabric-datagen": ["compasses.expandedstorage.impl.datagen.Main"],
     "emi": [ "compasses.expandedstorage.impl.client.compat.EmiCompat" ],
     "jei_mod_plugin": [ "compasses.expandedstorage.impl.client.compat.JeiCompat" ],
     "modmenu": [ "compasses.expandedstorage.impl.client.compat.ModMenuCompat" ],
