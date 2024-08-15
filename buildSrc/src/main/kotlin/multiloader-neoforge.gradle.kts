@@ -52,6 +52,8 @@ sourceSets.main {
 
 tasks.jar.configure {
     archiveClassifier = "fat"
+
+    exclude("*.accesswidener")
 }
 
 tasks.register("minJar", ProcessJsonTask::class) {

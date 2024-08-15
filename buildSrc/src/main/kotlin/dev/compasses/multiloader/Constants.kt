@@ -43,6 +43,7 @@ object Constants {
     const val MINECRAFT_VERSION = "1.21"
     const val FL_MINECRAFT_CONSTRAINT = ">=1.21- <1.22"
     const val NF_MINECRAFT_CONSTRAINT = "[1.21, 1.22)"
+    val SUPPORTED_MINECRAFT_VERSIONS = listOf(MINECRAFT_VERSION, "1.21.1")
 
     // https://parchmentmc.org/docs/getting-started#choose-a-version/
     const val PARCHMENT_MINECRAFT = "1.21"

@@ -60,7 +60,7 @@ val curseforgeOptions = Constants.curseforgeProperties?.let { props ->
         accessToken = providers.environmentVariable(props.uploadToken)
         projectId = props.projectId
         projectSlug = props.projectSlug
-        minecraftVersions = listOf(Constants.MINECRAFT_VERSION)
+        minecraftVersions = Constants.SUPPORTED_MINECRAFT_VERSIONS
         clientRequired = props.clientSideRequired
         serverRequired = props.serverSideRequired
         javaVersions = props.supportedJavaVersions
@@ -71,7 +71,7 @@ val modrinthOptions = Constants.modrinthProperties?.let { props ->
     publishMods.modrinthOptions {
         accessToken = providers.environmentVariable(props.uploadToken)
         projectId = props.projectId
-        minecraftVersions = listOf(Constants.MINECRAFT_VERSION)
+        minecraftVersions = Constants.SUPPORTED_MINECRAFT_VERSIONS
     }
 }
 
