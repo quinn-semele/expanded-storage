@@ -5,7 +5,7 @@ plugins {
 }
 
 multiloader {
-    dependencies {
+    mods {
         create("emi") {
             requiresRepo("TerraformersMC's Maven", "https://maven.terraformersmc.com/", setOf(
                 "dev.emi"

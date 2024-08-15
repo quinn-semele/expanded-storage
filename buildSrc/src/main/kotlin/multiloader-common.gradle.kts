@@ -25,6 +25,13 @@ configurations {
 }
 
 artifacts {
-    add("commonJava", sourceSets.main.map { it.java.sourceDirectories.singleFile })
-    add("commonResources", sourceSets.main.map { it.resources.sourceDirectories.singleFile })
+    val mainSourceSet = sourceSets.main.get()
+
+    for (sourceDirectory in mainSourceSet.java.sourceDirectories) {
+        add("commonJava", sourceDirectory)
+    }
+
+    for (sourceDirectory in mainSourceSet.resources.sourceDirectories) {
+        add("commonResources", sourceDirectory)
+    }
 }

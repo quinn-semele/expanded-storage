@@ -1,5 +1,8 @@
 import dev.compasses.multiloader.Constants
+import dev.compasses.multiloader.extension.DependencyType
 import dev.compasses.multiloader.extension.MultiLoaderExtension
+import dev.compasses.multiloader.extension.RepositoryExclusions
+import java.net.URI
 
 plugins {
     `java-library`
@@ -9,8 +12,6 @@ group = Constants.GROUP
 version = Constants.MOD_VERSION
 
 base.archivesName = "${Constants.MOD_ID}-${project.name}-${Constants.MINECRAFT_VERSION}"
-
-extensions.create("multiloader", MultiLoaderExtension::class, project)
 
 java {
     toolchain.languageVersion = Constants.JAVA_VERSION
@@ -122,4 +123,72 @@ tasks.processResources {
     }
 
     exclude(".cache/*")
+}
+
+val multiLoaderExtension = extensions.create("multiloader", MultiLoaderExtension::class)
+
+project.afterEvaluate {
+    for (mod in multiLoaderExtension.mods) {
+        mod.type.convention(DependencyType.OPTIONAL)
+        mod.curseforgeName.convention(mod.name)
+        mod.modrinthName.convention(mod.name)
+        mod.enabledAtRuntime.convention(false)
+        mod.generateSourceDirectory.convention(file("src/main/${name.replace("-", "_")}").exists())
+    }
+
+    val repositories: MutableMap<URI, RepositoryExclusions> = mutableMapOf()
+
+    for (mod in multiLoaderExtension.mods) {
+        for (repository in mod.getRepositories()) {
+            if (repository.key in repositories) {
+                repositories[repository.key]!!.groups.addAll(repository.value.groups)
+            } else {
+                repositories[repository.key] = repository.value
+            }
+        }
+    }
+
+    repositories {
+        for (repository in repositories) {
+            if (repository.value.groups.isEmpty()) {
+                maven {
+                    name = repository.value.name
+                    url = repository.key
+                }
+            } else {
+                exclusiveContent {
+                    forRepositories(maven {
+                        name = repository.value.name
+                        url = repository.key
+                    })
+
+                    filter {
+                        for (group in repository.value.groups) {
+                            if (group.endsWith(".*")) {
+                                includeGroupAndSubgroups(group.substringBeforeLast(".*"))
+                            } else {
+                                includeGroup(group)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    dependencies {
+        for (mod in multiLoaderExtension.mods) {
+            mod.getArtifacts().forEach {
+                it.invoke(this, mod.type.get() == DependencyType.REQUIRED || mod.enabledAtRuntime.get())
+            }
+        }
+    }
+
+    val sourceDirectoryNames = multiLoaderExtension.mods.filter { it.generateSourceDirectory.get() }.map { it.name.replace("-", "_") }
+
+    sourceSets.main.configure {
+        for (sourceDirectoryName in sourceDirectoryNames) {
+            java.srcDir("src/main/$sourceDirectoryName")
+        }
+    }
 }

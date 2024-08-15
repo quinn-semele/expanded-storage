@@ -6,7 +6,7 @@ plugins {
 }
 
 multiloader {
-    dependencies {
+    mods {
         create("fabric-api") {
             required()
 

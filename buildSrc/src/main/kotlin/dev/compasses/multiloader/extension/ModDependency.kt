@@ -3,16 +3,17 @@ package dev.compasses.multiloader.extension
 import org.gradle.api.Named
 import org.gradle.api.artifacts.dsl.DependencyHandler
 import org.gradle.api.provider.Property
+import java.net.URI
 
 abstract class ModDependency : Named {
-    private var isFrozen: Boolean = false
-    private val repositories = mutableListOf<Triple<String, String, Set<String>>>()
-    private lateinit var artifacts: DependencyHandler.(Boolean) -> Unit
-
-    abstract val modrinthName: Property<String>
-    abstract val curseforgeName: Property<String>
     abstract val type: Property<DependencyType>
+    abstract val curseforgeName: Property<String>
+    abstract val modrinthName: Property<String>
+    abstract val generateSourceDirectory: Property<Boolean>
     abstract val enabledAtRuntime: Property<Boolean>
+
+    private val repositories: MutableMap<URI, RepositoryExclusions> = mutableMapOf()
+    private val artifacts: MutableList<DependencyHandler.(Boolean) -> Unit> = mutableListOf()
 
     fun required() {
         type.set(DependencyType.REQUIRED)
@@ -26,23 +27,18 @@ abstract class ModDependency : Named {
         enabledAtRuntime.set(true)
     }
 
-    fun freezeProperties() {
-        isFrozen = true
-
-        modrinthName.convention(name).finalizeValue()
-        curseforgeName.convention(name).finalizeValue()
-        type.convention(DependencyType.OPTIONAL).finalizeValue()
-        enabledAtRuntime.convention(false).finalizeValue()
-    }
-
     fun requiresRepo(name: String, url: String, groups: Set<String> = setOf()) {
-        if (isFrozen) throw IllegalStateException("Cannot require more repositories when frozen.")
-        repositories.add(Triple(name, url, groups))
+        val uri = URI(url)
+
+        if (uri in repositories) {
+            repositories[uri]!!.groups.addAll(groups)
+        } else {
+            repositories[uri] = RepositoryExclusions(name, groups.toMutableSet())
+        }
     }
 
     fun artifacts(function: DependencyHandler.(enabledAtRuntime: Boolean) -> Unit) {
-        if (isFrozen) throw IllegalStateException("Cannot define artifacts when frozen.")
-        artifacts = function
+        artifacts.add(function)
     }
 
     fun getRepositories() = repositories
