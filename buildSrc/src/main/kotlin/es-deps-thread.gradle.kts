@@ -1,6 +1,5 @@
 import dev.compasses.expandedstorage.multiloader
 import dev.compasses.expandedstorage.ModVersions
-import dev.compasses.multiloader.extension.DependencyType
 import dev.compasses.multiloader.extension.MultiLoaderExtension
 import org.gradle.api.artifacts.dsl.DependencyHandler
 
@@ -107,7 +106,7 @@ multiloader {
         }
 
         create("carrier") {
-            type = DependencyType.DISABLED
+            disabled()
 
             requiresRepo("Ladysnake's Maven", "https://maven.ladysnake.org/releases/", setOf(
                 "org.ladysnake.cardinal-components-api"

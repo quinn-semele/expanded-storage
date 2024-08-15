@@ -133,7 +133,7 @@ project.afterEvaluate {
         mod.curseforgeName.convention(mod.name)
         mod.modrinthName.convention(mod.name)
         mod.enabledAtRuntime.convention(false)
-        mod.generateSourceDirectory.convention(file("src/main/${name.replace("-", "_")}").exists())
+        mod.generateSourceDirectory.convention(mod.type.get() != DependencyType.DISABLED && file("src/main/${mod.name.replace("-", "_")}").exists())
     }
 
     val repositories: MutableMap<URI, RepositoryExclusions> = mutableMapOf()
