@@ -2,6 +2,7 @@ import dev.compasses.expandedstorage.ModVersions
 
 plugins {
     id("multiloader-neoforge")
+    id("es-deps-common")
 }
 
 configurations {
@@ -15,7 +16,7 @@ fun DependencyHandler.localRuntime(notation: Any) {
 
 multiloader {
     mods {
-        create("emi") {
+        named("emi") {
             requiresRepo("TerraformersMC's Maven", "https://maven.terraformersmc.com/", setOf(
                 "dev.emi"
             ))
@@ -28,7 +29,7 @@ multiloader {
             }
         }
 
-        create("jei") {
+        named("jei") {
             requiresRepo("Jared's Maven", "https://maven.blamejared.com/", setOf(
                 "mezz.jei"
             ))
@@ -59,7 +60,7 @@ multiloader {
             }
         }
 
-        create("carry-on") {
+        named("carry-on") {
             artifacts { enabled ->
                 compileOnly("maven.modrinth:carry-on:${ModVersions.CARRY_ON_NEOFORGE}")
                 if (enabled) {
