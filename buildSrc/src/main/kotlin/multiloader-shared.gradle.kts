@@ -94,7 +94,7 @@ tasks.processResources {
         "mod_name" to Constants.MOD_NAME,
         "mod_id" to Constants.MOD_ID,
         "license" to Constants.LICENSE,
-        "description" to Constants.DESCRIPTION,
+        "description" to Constants.DESCRIPTION.trimIndent().trim().replace("\n", "\\n"),
 
         "fl_authors" to Constants.CONTRIBUTORS.keys.joinToString("\", \""),
         "nf_authors" to Constants.CONTRIBUTORS.keys.joinToString(","),

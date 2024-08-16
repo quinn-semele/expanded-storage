@@ -3,32 +3,36 @@ package dev.compasses.multiloader
 import org.gradle.jvm.toolchain.JavaLanguageVersion
 
 object Constants {
-    const val GROUP = "com.example.examplemod"
-    const val MOD_ID = "examplemod"
-    const val MOD_NAME = "Example Mod"
+    const val GROUP = "dev.compasses.expandedstorage"
+    const val MOD_ID = "expandedstorage"
+    const val MOD_NAME = "Expanded Storage"
     const val MOD_VERSION = "1.0.0"
-    const val LICENSE = "CC0-1.0"
-    const val DESCRIPTION = ""
+    const val LICENSE = "PolyForm-Shield-1.0.0"
+    const val DESCRIPTION = """
+        Adds more storage solutions including tall barrels and double iron chests.
+    """
+
+    const val HOMEPAGE = "https://www.curseforge.com/minecraft/mc-mods/expanded-storage"
+    const val ISSUE_TRACKER = "https://github.com/quinn-semele/expanded-storage/issues"
+    const val SOURCES_URL = "https://github.com/quinn-semele/expanded-storage/tree/expandedstorage/1.21"
 
     @Suppress("RedundantNullableReturnType")
     val curseforgeProperties: CurseForgeProperties? = object : CurseForgeProperties() {
-        override val projectId = "000000"
-        override val projectSlug = "examplemod"
-
+        override val projectId = "978068"
+        override val projectSlug = "expanded-storage"
     }
 
     @Suppress("RedundantNullableReturnType")
     val modrinthProperties: ModrinthProperties? = object : ModrinthProperties() {
-        override val projectId: String = "000000"
+        override val projectId: String = "jCCPlP3c"
     }
 
     const val PUBLISH_WEBHOOK_VARIABLE = "PUBLISH_WEBHOOK"
 
-    const val COMPARE_URL = "https://www.example.com/author/repo/compare/"
+    const val COMPARE_URL = "https://github.com/quinn-semele/expanded-storage/compare/"
 
     val CONTRIBUTORS = linkedMapOf(
-        "Quinn Semele" to "Project Owner",
-        "Ellie Semele" to "Project Owner"
+        "Quinn Semele" to "Project Owner"
     )
 
     val CREDITS = linkedMapOf<String, String>(
