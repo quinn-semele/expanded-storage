@@ -77,11 +77,11 @@ tasks.jar {
     manifest {
         attributes(mapOf(
             "Specification-Title" to Constants.MOD_NAME,
-            "Specification-Vendor" to Constants.AUTHORS.firstEntry().key,
+            "Specification-Vendor" to Constants.CONTRIBUTORS.firstEntry().key,
             "Specification-Version" to archiveVersion,
             "Implementation-Title" to project.name,
             "Implementation-Version" to archiveVersion,
-            "Implementation-Vendor" to Constants.AUTHORS.firstEntry().key,
+            "Implementation-Vendor" to Constants.CONTRIBUTORS.firstEntry().key,
             "Built-On-Minecraft" to Constants.MINECRAFT_VERSION
         ))
     }
@@ -96,9 +96,8 @@ tasks.processResources {
         "license" to Constants.LICENSE,
         "description" to Constants.DESCRIPTION,
 
-        "fl_authors" to Constants.AUTHORS.keys.joinToString("\", \""),
-        "ql_authors" to Constants.AUTHORS.map { """${it.key}": "${it.value}""" }.joinToString("\",\n\""),
-        "nf_authors" to Constants.AUTHORS.keys.joinToString(","),
+        "fl_authors" to Constants.CONTRIBUTORS.keys.joinToString("\", \""),
+        "nf_authors" to Constants.CONTRIBUTORS.keys.joinToString(","),
 
         "credits" to Constants.CREDITS.map { "${it.key} - ${it.value}" }.joinToString(",\n"),
 

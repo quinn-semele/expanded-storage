@@ -56,7 +56,7 @@ tasks.jar.configure {
     exclude("*.accesswidener")
 }
 
-tasks.register("minJar", ProcessJsonTask::class) {
+tasks.register("processJson", ProcessJsonTask::class) {
     group = "multiloader"
     dependsOn(tasks.jar)
     input.set(tasks.jar.get().outputs.files.singleFile)
@@ -64,5 +64,5 @@ tasks.register("minJar", ProcessJsonTask::class) {
 }
 
 tasks.build.configure {
-    dependsOn("minJar")
+    dependsOn("processJson")
 }

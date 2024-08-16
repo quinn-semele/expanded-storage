@@ -8,7 +8,7 @@
       "name": "${mod_name}",
       "description": "${description}",
       "contributors": {
-        "${ql_authors}"
+
       },
       "contact": {
         "homepage": "https://modrinth.com/mod/expanded-storage",

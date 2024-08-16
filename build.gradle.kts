@@ -100,20 +100,13 @@ val publishTasks = projectsToPublish.map { (name, loader) ->
                 version = "${Constants.MOD_VERSION}+${name.lowercase()}"
                 modLoaders.add(name.lowercase())
 
-                file = loader.tasks.getByName("minJar", ProcessJsonTask::class).archiveFile
+                file = loader.tasks.getByName("processJson", ProcessJsonTask::class).archiveFile
 
                 dependencies {
-                    val extensions = buildList {
-                        add(loader.extensions.getByName<MultiLoaderExtension>("multiloader"))
-                        add(findProject(":common")!!.extensions.getByName<MultiLoaderExtension>("multiloader"))
+                    val multiloaderExt = loader.extensions.getByName<MultiLoaderExtension>("multiloader")
 
-                        if (loader.path == ":fabric" || loader.path == ":quilt") {
-                            add(findProject(":thread")!!.extensions.getByName<MultiLoaderExtension>("multiloader"))
-                        }
-                    }
-
-                    optional(*extensions.flatMap { it.getDependencyIds(UploadTarget.CURSEFORGE, DependencyType.OPTIONAL) }.toSet().toTypedArray())
-                    requires(*extensions.flatMap { it.getDependencyIds(UploadTarget.CURSEFORGE, DependencyType.REQUIRED) }.toSet().toTypedArray())
+                    optional(*multiloaderExt.getDependencyIds(UploadTarget.CURSEFORGE, DependencyType.OPTIONAL).toTypedArray())
+                    requires(*multiloaderExt.getDependencyIds(UploadTarget.CURSEFORGE, DependencyType.REQUIRED).toTypedArray())
                 }
             } as NamedDomainObjectProvider<Platform>)
         }
@@ -125,20 +118,13 @@ val publishTasks = projectsToPublish.map { (name, loader) ->
                 version = "${Constants.MOD_VERSION}+${name.lowercase()}"
                 modLoaders.add(name.lowercase())
 
-                file = loader.tasks.getByName("minJar", ProcessJsonTask::class).archiveFile
+                file = loader.tasks.getByName("processJson", ProcessJsonTask::class).archiveFile
 
                 dependencies {
-                    val extensions = buildList {
-                        add(loader.extensions.getByName<MultiLoaderExtension>("multiloader"))
-                        add(findProject(":common")!!.extensions.getByName<MultiLoaderExtension>("multiloader"))
+                    val multiloaderExt = loader.extensions.getByName<MultiLoaderExtension>("multiloader")
 
-                        if (loader.path == ":fabric" || loader.path == ":quilt") {
-                            add(findProject(":thread")!!.extensions.getByName<MultiLoaderExtension>("multiloader"))
-                        }
-                    }
-
-                    optional(*extensions.flatMap { it.getDependencyIds(UploadTarget.MODRINTH, DependencyType.OPTIONAL) }.toSet().toTypedArray())
-                    requires(*extensions.flatMap { it.getDependencyIds(UploadTarget.MODRINTH, DependencyType.REQUIRED) }.toSet().toTypedArray())
+                    optional(*multiloaderExt.getDependencyIds(UploadTarget.MODRINTH, DependencyType.OPTIONAL).toTypedArray())
+                    requires(*multiloaderExt.getDependencyIds(UploadTarget.MODRINTH, DependencyType.REQUIRED).toTypedArray())
                 }
             } as NamedDomainObjectProvider<Platform>)
         }

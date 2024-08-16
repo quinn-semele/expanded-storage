@@ -26,7 +26,7 @@ object Constants {
 
     const val COMPARE_URL = "https://github.com/quinn-semele/expanded-storage/compare/"
 
-    val AUTHORS = linkedMapOf(
+    val CONTRIBUTORS = linkedMapOf(
         "Quinn Semele" to "Project Owner"
     )
 
