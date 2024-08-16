@@ -8,21 +8,19 @@
     "${fl_authors}"
   ],
   "contact": {
-    "homepage": "https://www.curseforge.com/minecraft/mc-mods/example-mod",
-    "issues": "https://github.com/Ghost/example-mod/issues",
-    "sources": "https://github.com/Ghost/example-mod"
+    "homepage": "${homepage}",
+    "issues": "${issue_tracker}",
+    "sources": "${sources_url}"
   },
   "license": "${license}",
   "icon": "${mod_id}.png",
   "environment": "*",
   "entrypoints": {
-    "main": [
-      "com.example.examplemod.ExampleMod"
-    ]
+    "main": ["${group}.ThreadMain"]
   },
   "mixins": [
-    "${mod_id}.mixins.json",
-    "${mod_id}.fabric.mixins.json"
+    "${mod_id}.common.mixins.json",
+    "${mod_id}.thread.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=${fabric_loader_version}",

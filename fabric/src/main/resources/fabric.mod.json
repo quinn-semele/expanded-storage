@@ -16,13 +16,11 @@
     "icon": "${mod_id}.png",
     "environment": "*",
     "entrypoints": {
-        "main": [
-            "com.example.examplemod.ExampleMod"
-        ]
+        "main": ["${group}.ThreadMain"]
     },
     "mixins": [
-        "${mod_id}.mixins.json",
-        "${mod_id}.fabric.mixins.json"
+        "${mod_id}.common.mixins.json",
+        "${mod_id}.thread.mixins.json"
     ],
     "depends": {
         "fabricloader": ">=${fabric_loader_version}",

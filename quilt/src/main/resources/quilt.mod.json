@@ -20,7 +20,7 @@
     },
     "intermediate_mappings": "net.fabricmc:intermediary",
     "entrypoints": {
-      "main": "com.example.examplemod.ExampleMod"
+      "main": "${group}.ThreadMain"
     },
     "depends": [
       {
@@ -42,7 +42,7 @@
     ]
   },
   "mixin": [
-    "${mod_id}.mixins.json",
-    "${mod_id}.fabric.mixins.json"
+    "${mod_id}.common.mixins.json",
+    "${mod_id}.thread.mixins.json"
   ]
 }

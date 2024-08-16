@@ -101,6 +101,10 @@ tasks.processResources {
 
         "credits" to Constants.CREDITS.map { "${it.key} - ${it.value}" }.joinToString(",\n"),
 
+        "homepage" to Constants.HOMEPAGE,
+        "issue_tracker" to Constants.ISSUE_TRACKER,
+        "sources_url" to Constants.SOURCES_URL,
+
         "java_version" to Constants.JAVA_VERSION.asInt(),
         "minecraft_version" to Constants.MINECRAFT_VERSION,
         "fl_minecraft_constraint" to Constants.FL_MINECRAFT_CONSTRAINT,

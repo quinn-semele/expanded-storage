@@ -12,7 +12,7 @@ credits = "${credits}"
 authors = "${nf_authors}"
 description = "${description}"
 [[mixins]]
-config = "${mod_id}.mixins.json"
+config = "${mod_id}.common.mixins.json"
 [[mixins]]
 config = "${mod_id}.neoforge.mixins.json"
 [[dependencies.${mod_id}]]
