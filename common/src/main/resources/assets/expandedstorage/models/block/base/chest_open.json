@@ -1,0 +1,19 @@
+{
+	"parent": "minecraft:block/block",
+	"ambientocclusion": false,
+	"texture_size": [64, 32],
+	"elements": [
+		{
+			"from": [1, 0, 1],
+			"to": [15, 10, 15],
+			"faces": {
+				"north": {"uv": [3.5, 9, 7, 14], "texture": "#atlas"},
+				"east": {"uv": [0, 9, 3.5, 14], "texture": "#atlas"},
+				"south": {"uv": [10.5, 9, 14, 14], "texture": "#atlas"},
+				"west": {"uv": [7, 9, 10.5, 14], "texture": "#atlas"},
+				"up": {"uv": [3.5, 7, 0, 0], "texture": "#atlas"},
+				"down": {"uv": [14, 7, 10.5, 0], "texture": "#atlas"}
+			}
+		}
+	]
+}
