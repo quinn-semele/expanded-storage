@@ -16,7 +16,8 @@
   "icon": "${mod_id}.png",
   "environment": "*",
   "entrypoints": {
-    "main": ["${group}.ThreadMain"]
+    "main": ["${group}.ThreadMain"],
+    "client": ["${group}.client.ThreadClient"]
   },
   "mixins": [
     "${mod_id}.common.mixins.json",

@@ -1,0 +1,5 @@
+accessWidener v2 named
+accessible class net/minecraft/client/model/geom/ModelPart$Polygon
+accessible field net/minecraft/client/model/geom/ModelPart$Cube polygons [Lnet/minecraft/client/model/geom/ModelPart$Polygon;
+mutable field net/minecraft/client/model/geom/ModelPart$Cube polygons [Lnet/minecraft/client/model/geom/ModelPart$Polygon;
+accessible class net/minecraft/client/model/geom/ModelPart$Vertex
