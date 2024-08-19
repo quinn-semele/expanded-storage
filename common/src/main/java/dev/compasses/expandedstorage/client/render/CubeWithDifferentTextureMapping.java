@@ -31,18 +31,18 @@ public class CubeWithDifferentTextureMapping extends ModelPart.Cube {
         if (visibleFaces.contains(Direction.DOWN)) {
             polygons[i++] = new ModelPart.Polygon(
                     new ModelPart.Vertex[]{
-                            originLeft,
-                            origin,
-                            originForward,
                             originAcross,
+                            originForward,
+                            origin,
+                            originLeft,
                     },
                     texCoordU + dimensionZ + dimensionX,
-                    texCoordV,
-                    texCoordU + dimensionZ + dimensionX + dimensionX,
                     texCoordV + dimensionZ,
+                    texCoordU + dimensionZ + dimensionX + dimensionX,
+                    texCoordV,
                     texWidth,
                     texHeight,
-                    true,
+                    false,
                     Direction.DOWN
             );
         }
@@ -69,34 +69,53 @@ public class CubeWithDifferentTextureMapping extends ModelPart.Cube {
         if (visibleFaces.contains(Direction.WEST)) {
             polygons[i++] = new ModelPart.Polygon(
                     new ModelPart.Vertex[]{
-                            antipodeAcross,
-                            antipodeRight,
+                            origin,
                             originForward,
-                            origin
+                            antipodeRight,
+                            antipodeAcross
                     },
                     texCoordU + dimensionZ,
-                    texCoordV + dimensionZ,
-                    texCoordU,
                     texCoordV + dimensionZ + dimensionY,
+                    texCoordU,
+                    texCoordV + dimensionZ,
                     texWidth,
                     texHeight,
-                    true,
+                    false,
                     Direction.WEST
+            );
+        }
+
+        if (visibleFaces.contains(Direction.NORTH)) {
+            polygons[i++] = new ModelPart.Polygon(
+                    new ModelPart.Vertex[]{
+                            originLeft,
+                            origin,
+                            antipodeAcross,
+                            antipodeBackward,
+                    },
+                    texCoordU + dimensionZ + dimensionX + dimensionZ + dimensionX,
+                    texCoordV + dimensionZ + dimensionY,
+                    texCoordU + dimensionZ + dimensionX + dimensionZ,
+                    texCoordV + dimensionZ,
+                    texWidth,
+                    texHeight,
+                    false,
+                    Direction.NORTH
             );
         }
 
         if (visibleFaces.contains(Direction.EAST)) {
             polygons[i++] = new ModelPart.Polygon(
                     new ModelPart.Vertex[]{
-                            antipodeBackward,
-                            antipode,
                             originAcross,
                             originLeft,
+                            antipodeBackward,
+                            antipode,
                     },
-                    texCoordU + dimensionZ + dimensionX,
-                    texCoordV + dimensionZ,
                     texCoordU + dimensionZ + dimensionX + dimensionZ,
                     texCoordV + dimensionZ + dimensionY,
+                    texCoordU + dimensionZ + dimensionX,
+                    texCoordV + dimensionZ,
                     texWidth,
                     texHeight,
                     false,
@@ -107,38 +126,19 @@ public class CubeWithDifferentTextureMapping extends ModelPart.Cube {
         if (visibleFaces.contains(Direction.SOUTH)) {
             polygons[i++] = new ModelPart.Polygon(
                     new ModelPart.Vertex[]{
-                            antipodeAcross,
-                            antipodeBackward,
-                            originLeft,
-                            origin,
+                            originForward,
+                            originAcross,
+                            antipode,
+                            antipodeRight,
                     },
-                    texCoordU + dimensionZ + dimensionX + dimensionZ,
-                    texCoordV + dimensionZ,
-                    texCoordU + dimensionZ + dimensionX + dimensionZ + dimensionX,
+                    texCoordU + dimensionZ + dimensionX,
                     texCoordV + dimensionZ + dimensionY,
+                    texCoordU + dimensionZ,
+                    texCoordV + dimensionZ,
                     texWidth,
                     texHeight,
                     false,
                     Direction.SOUTH
-            );
-        }
-
-        if (visibleFaces.contains(Direction.NORTH)) {
-            polygons[i++] = new ModelPart.Polygon(
-                    new ModelPart.Vertex[]{
-                            antipode,
-                            antipodeRight,
-                            originForward,
-                            originAcross,
-                    },
-                    texCoordU + dimensionZ,
-                    texCoordV + dimensionZ,
-                    texCoordU + dimensionZ + dimensionX,
-                    texCoordV + dimensionZ + dimensionY,
-                    texWidth,
-                    texHeight,
-                    false,
-                    Direction.NORTH
             );
         }
     }
