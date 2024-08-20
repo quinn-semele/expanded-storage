@@ -11,4 +11,8 @@ public class Utils {
 	public static ResourceLocation id(String name) {
 		return ResourceLocation.fromNamespaceAndPath(MOD_ID, name);
 	}
+
+	public static IllegalStateException codeError(int id) {
+		return new IllegalStateException("Quinn Semele messed up the code, reference " + id + ".");
+	}
 }
