@@ -2,14 +2,13 @@ package dev.compasses.expandedstorage.block;
 
 import dev.compasses.expandedstorage.Utils;
 import dev.compasses.expandedstorage.block.entity.ChestBlockEntity;
-import dev.compasses.expandedstorage.block.misc.CursedChestType;
+import dev.compasses.expandedstorage.block.misc.DoubleBlockType;
 import dev.compasses.expandedstorage.registration.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -19,11 +18,9 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-public class ChestBlock extends Block implements EntityBlock {
-    private static final EnumProperty<CursedChestType> CHEST_TYPE = EnumProperty.create("type", CursedChestType.class);
+public class ChestBlock extends InventoryBlock {
+    private static final EnumProperty<DoubleBlockType> CHEST_TYPE = EnumProperty.create("type", DoubleBlockType.class);
     private static final VoxelShape SINGLE_SHAPE = Block.box(1, 0, 1, 15, 14, 15);
     private static final VoxelShape BOTTOM_SHAPE = Block.box(1, 0, 1, 15, 16, 15);
     private static final VoxelShape NORTH_SOUTH_SHAPE = Block.box(1, 0, 0, 15, 14, 15);
@@ -35,7 +32,7 @@ public class ChestBlock extends Block implements EntityBlock {
         super(properties);
 
         this.registerDefaultState(defaultBlockState()
-                .setValue(CHEST_TYPE, CursedChestType.SINGLE)
+                .setValue(CHEST_TYPE, DoubleBlockType.SINGLE)
                 .setValue(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH)
                 .setValue(BlockStateProperties.OPEN, false)
         );
@@ -48,13 +45,12 @@ public class ChestBlock extends Block implements EntityBlock {
         builder.add(BlockStateProperties.OPEN);
     }
 
-    @NotNull
     @Override
     protected VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-        CursedChestType type = state.getValue(CHEST_TYPE);
-        if (type == CursedChestType.SINGLE || type == CursedChestType.TOP) {
+        DoubleBlockType type = state.getValue(CHEST_TYPE);
+        if (type == DoubleBlockType.SINGLE || type == DoubleBlockType.TOP) {
             return SINGLE_SHAPE;
-        } else if (type == CursedChestType.BOTTOM) {
+        } else if (type == DoubleBlockType.BOTTOM) {
             return BOTTOM_SHAPE;
         }
 
@@ -73,20 +69,11 @@ public class ChestBlock extends Block implements EntityBlock {
         };
     }
 
-    @NotNull
     @Override
-    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-        return state.getCollisionShape(level, pos);
+    protected BlockEntityType<?> getBlockEntityType() {
+        return ModBlockEntities.CHEST;
     }
 
-    @NotNull
-    @Override
-    @SuppressWarnings("DataFlowIssue")
-    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return ModBlockEntities.CHEST.create(pos, state);
-    }
-
-    @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
         return level.isClientSide() && blockEntityType == ModBlockEntities.CHEST ? ChestBlockEntity::progressLidAnimation : null;

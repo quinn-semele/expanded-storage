@@ -3,7 +3,7 @@ package dev.compasses.expandedstorage.block.misc;
 import net.minecraft.util.StringRepresentable;
 import org.jetbrains.annotations.NotNull;
 
-public enum CursedChestType implements StringRepresentable {
+public enum DoubleBlockType implements StringRepresentable {
     SINGLE("single"),
     LEFT("left"),
     RIGHT("right"),
@@ -14,7 +14,7 @@ public enum CursedChestType implements StringRepresentable {
 
     private final String name;
 
-    CursedChestType(String name) {
+    DoubleBlockType(String name) {
         this.name = name;
     }
 
@@ -24,7 +24,7 @@ public enum CursedChestType implements StringRepresentable {
         return this.name;
     }
 
-    public CursedChestType getOpposite() {
+    public DoubleBlockType getOpposite() {
         return switch (this) {
             case LEFT -> RIGHT;
             case RIGHT -> LEFT;
@@ -32,7 +32,7 @@ public enum CursedChestType implements StringRepresentable {
             case BACK -> FRONT;
             case TOP -> BOTTOM;
             case BOTTOM -> TOP;
-            case SINGLE -> throw new IllegalStateException("CursedChestType.SINGLE has no opposite.");
+            case SINGLE -> throw new IllegalStateException("DoubleBlockType.SINGLE has no opposite.");
         };
     }
 }
