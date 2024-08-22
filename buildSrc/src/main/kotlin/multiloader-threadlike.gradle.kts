@@ -59,6 +59,10 @@ tasks.remapJar.configure {
     archiveClassifier = "fat"
 }
 
+tasks.processResources {
+    exclude("META-INF/accesstransformer.cfg")
+}
+
 tasks.register("processJson", ProcessJsonTask::class) {
     group = "multiloader"
     dependsOn(tasks.remapJar)
@@ -74,7 +78,7 @@ tasks.register("processJson", ProcessJsonTask::class) {
     }
 }
 
-tasks.build.configure {
+tasks.build {
     dependsOn("processJson")
 }
 

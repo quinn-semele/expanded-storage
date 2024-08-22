@@ -50,9 +50,11 @@ sourceSets.main {
     resources.srcDirs("src/generated/resources")
 }
 
-tasks.jar.configure {
+tasks.jar {
     archiveClassifier = "fat"
+}
 
+tasks.processResources {
     exclude("*.accesswidener")
 }
 
@@ -63,6 +65,6 @@ tasks.register("processJson", ProcessJsonTask::class) {
     archiveClassifier = ""
 }
 
-tasks.build.configure {
+tasks.build {
     dependsOn("processJson")
 }

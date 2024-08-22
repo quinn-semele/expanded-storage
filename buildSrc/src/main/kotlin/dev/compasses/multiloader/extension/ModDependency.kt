@@ -2,6 +2,7 @@ package dev.compasses.multiloader.extension
 
 import org.gradle.api.Named
 import org.gradle.api.artifacts.dsl.DependencyHandler
+import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.provider.Property
 import java.net.URI
 
@@ -9,7 +10,7 @@ abstract class ModDependency : Named {
     abstract val type: Property<DependencyType>
     abstract val curseforgeName: Property<String>
     abstract val modrinthName: Property<String>
-    abstract val generateSourceDirectory: Property<Boolean>
+    abstract val sourceDirectory: DirectoryProperty
     abstract val enabledAtRuntime: Property<Boolean>
 
     private val repositories: MutableMap<URI, RepositoryExclusions> = mutableMapOf()
