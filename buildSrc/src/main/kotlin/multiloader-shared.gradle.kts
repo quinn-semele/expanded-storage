@@ -85,6 +85,7 @@ tasks.jar {
     }
 
     exclude("**/datagen/**")
+    exclude(".cache/**")
 }
 
 tasks.processResources {
@@ -124,8 +125,6 @@ tasks.processResources {
     filesMatching(listOf("fabric.mod.json", "quilt.mod.json", "META-INF/neoforge.mods.toml", "*.mixins.json", "*.mcmeta")) {
         expand(replacements)
     }
-
-    exclude(".cache/**")
 }
 
 val multiLoaderExtension = extensions.create("multiloader", MultiLoaderExtension::class)
