@@ -20,7 +20,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class ChestBlock extends InventoryBlock {
-    private static final EnumProperty<DoubleBlockType> CHEST_TYPE = EnumProperty.create("type", DoubleBlockType.class);
+    public static final EnumProperty<DoubleBlockType> CHEST_TYPE = EnumProperty.create("type", DoubleBlockType.class);
     private static final VoxelShape SINGLE_SHAPE = Block.box(1, 0, 1, 15, 14, 15);
     private static final VoxelShape BOTTOM_SHAPE = Block.box(1, 0, 1, 15, 16, 15);
     private static final VoxelShape NORTH_SOUTH_SHAPE = Block.box(1, 0, 0, 15, 14, 15);
