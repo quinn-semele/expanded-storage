@@ -16,7 +16,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class BarrelBlock extends InventoryBlock {
-    private static final EnumProperty<DoubleBlockType> BARREL_TYPE = EnumProperty.create("type", DoubleBlockType.class, DoubleBlockType.SINGLE, DoubleBlockType.TOP, DoubleBlockType.BOTTOM);
+    public static final EnumProperty<DoubleBlockType> BARREL_TYPE = EnumProperty.create("type", DoubleBlockType.class, DoubleBlockType.SINGLE, DoubleBlockType.TOP, DoubleBlockType.BOTTOM);
 
     public BarrelBlock(Properties properties) {
         super(properties);

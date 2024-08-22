@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import dev.compasses.expandedstorage.Utils;
+import dev.compasses.expandedstorage.block.ChestBlock;
 import dev.compasses.expandedstorage.block.entity.ChestBlockEntity;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -28,6 +29,8 @@ import java.util.Map;
 
 public class ChestBlockRenderer implements BlockEntityRenderer<ChestBlockEntity> {
     private static final ResourceLocation CHEST_TEXTURE = Utils.id("block/wooden_chest");
+    private static final ResourceLocation LEFT_CHEST_TEXTURE = Utils.id("block/wooden_chest_left");
+    private static final ResourceLocation RIGHT_CHEST_TEXTURE = Utils.id("block/wooden_chest_right");
     public static final ModelLayerLocation SINGLE_LID_LAYER = new ModelLayerLocation(Utils.id("chest"), "main");
 
     public static LayerDefinition createSingleLidLayer() {
@@ -37,16 +40,37 @@ public class ChestBlockRenderer implements BlockEntityRenderer<ChestBlockEntity>
     }
 
     private final ModelPart singleLid;
+    private final ModelPart leftLid;
+    private final ModelPart rightLid;
+
+    private static ModelPart initializeLid(ModelPart lid, float offsetX, float offsetY, float offsetZ) {
+        lid.setInitialPose(PartPose.offset(offsetX, offsetY, offsetZ));
+        lid.resetPose();
+
+        return lid;
+    }
 
     public ChestBlockRenderer(BlockEntityRendererProvider.Context context) {
-        var lockPart = new ModelPart(List.of(new CubeWithDifferentTextureMapping(56, 0, 64, 32, 7, -2, 14, 2, 4, 1, EnumSet.allOf(Direction.class))), Map.of());
-        var lidPart = new ModelPart(List.of(new CubeWithDifferentTextureMapping(0, 0, 64, 32, 1, 0, 0, 14, 5, 14, EnumSet.allOf(Direction.class))), Map.of(
-                "lock", lockPart
-        ));
-        lidPart.setInitialPose(PartPose.offset(0, 9, 1));
-        lidPart.resetPose();
+        {
+            var visibleFaces = EnumSet.allOf(Direction.class);
+            var lockPart = new ModelPart(List.of(new CubeWithDifferentTextureMapping(56, 0, 64, 32, 7, -2, 14, 2, 4, 1, visibleFaces)), Map.of());
+            var lidPart = new ModelPart(List.of(new CubeWithDifferentTextureMapping(0, 0, 64, 32, 1, 0, 0, 14, 5, 14, visibleFaces)), Map.of("lock", lockPart));
+            singleLid = initializeLid(lidPart, 0, 9, 1);
+        }
 
-        singleLid = lidPart;
+        {
+            var visibleFaces = EnumSet.allOf(Direction.class); visibleFaces.remove(Direction.EAST);
+            var lockPart = new ModelPart(List.of(new CubeWithDifferentTextureMapping(58, 14, 64, 32, 15, -2, 14, 1, 4, 1, visibleFaces)), Map.of());
+            var lidPart = new ModelPart(List.of(new CubeWithDifferentTextureMapping(0, 0, 64, 32, 1, 1, 0, 0, 15, 5, 14, visibleFaces)), Map.of("lock", lockPart));
+            leftLid = initializeLid(lidPart, 0, 9, 1);
+        }
+
+        {
+            var visibleFaces = EnumSet.allOf(Direction.class); visibleFaces.remove(Direction.WEST);
+            var lockPart = new ModelPart(List.of(new CubeWithDifferentTextureMapping(58, 14, 64, 32, 0, -2, 14, 1, 4, 1, visibleFaces)), Map.of());
+            var lidPart = new ModelPart(List.of(new CubeWithDifferentTextureMapping(0, 0, 64, 32, 1, 0, 0, 0, 15, 5, 14, visibleFaces)), Map.of("lock", lockPart));
+            rightLid = initializeLid(lidPart, 0, 9, 1);
+        }
     }
 
     private static float getLidAngle(final float openness) {
@@ -65,10 +89,24 @@ public class ChestBlockRenderer implements BlockEntityRenderer<ChestBlockEntity>
             poseStack.mulPose(Axis.YP.rotationDegrees(-state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot()));
             poseStack.translate(-0.5D, -0.5D, -0.5D);
 
-            VertexConsumer consumer = new Material(TextureAtlas.LOCATION_BLOCKS, CHEST_TEXTURE).buffer(bufferSource, RenderType::entityCutout);
+            ResourceLocation chestTexture = switch (state.getValue(ChestBlock.CHEST_TYPE)) {
+                case SINGLE -> CHEST_TEXTURE;
+                case LEFT -> LEFT_CHEST_TEXTURE;
+                case RIGHT -> RIGHT_CHEST_TEXTURE;
+                default -> CHEST_TEXTURE;
+            };
 
-            singleLid.xRot = getLidAngle(entity.getOpenness(partialTick));
-            singleLid.render(poseStack, consumer, packedLight, packedOverlay);
+            VertexConsumer consumer = new Material(TextureAtlas.LOCATION_BLOCKS, chestTexture).buffer(bufferSource, RenderType::entityCutout);
+
+            ModelPart lid = switch (state.getValue(ChestBlock.CHEST_TYPE)) {
+                case SINGLE -> singleLid;
+                case LEFT -> leftLid;
+                case RIGHT -> rightLid;
+                default -> singleLid;
+            };
+
+            lid.xRot = getLidAngle(entity.getOpenness(partialTick));
+            lid.render(poseStack, consumer, packedLight, packedOverlay);
 
             poseStack.popPose();
         }

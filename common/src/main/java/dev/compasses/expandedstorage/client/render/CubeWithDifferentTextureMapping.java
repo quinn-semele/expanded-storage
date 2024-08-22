@@ -6,7 +6,24 @@ import net.minecraft.core.Direction;
 import java.util.Set;
 
 public class CubeWithDifferentTextureMapping extends ModelPart.Cube {
-    public CubeWithDifferentTextureMapping(int texCoordU, int texCoordV, int texWidth, int texHeight, float originX, float originY, float originZ, float dimensionX, float dimensionY, float dimensionZ, Set<Direction> visibleFaces) {
+    public CubeWithDifferentTextureMapping(
+            int texCoordU, int texCoordV,
+            int texWidth, int texHeight,
+            float originX, float originY, float originZ,
+            float dimensionX, float dimensionY, float dimensionZ,
+            Set<Direction> visibleFaces
+    ) {
+        this(texCoordU, texCoordV, texWidth, texHeight, 0, originX, originY, originZ, dimensionX, dimensionY, dimensionZ, visibleFaces);
+    }
+
+    public CubeWithDifferentTextureMapping(
+            int texCoordU, int texCoordV,
+            int texWidth, int texHeight,
+            int verticalFaceUOffset,
+            float originX, float originY, float originZ,
+            float dimensionX, float dimensionY, float dimensionZ,
+            Set<Direction> visibleFaces
+    ) {
         super(texCoordU, texCoordV, originX, originY, originZ, dimensionX, dimensionY, dimensionZ, 0, 0, 0, false, texWidth, texHeight, visibleFaces);
 
         // Antipode means direct opposite, usually used in relation to spheres.
@@ -36,9 +53,9 @@ public class CubeWithDifferentTextureMapping extends ModelPart.Cube {
                             origin,
                             originLeft,
                     },
-                    texCoordU + dimensionZ + dimensionX,
+                    texCoordU + dimensionZ + dimensionX + verticalFaceUOffset,
                     texCoordV + dimensionZ,
-                    texCoordU + dimensionZ + dimensionX + dimensionX,
+                    texCoordU + dimensionZ + dimensionX + dimensionX + verticalFaceUOffset,
                     texCoordV,
                     texWidth,
                     texHeight,
@@ -55,9 +72,9 @@ public class CubeWithDifferentTextureMapping extends ModelPart.Cube {
                             antipodeRight,
                             antipode,
                     },
-                    texCoordU + dimensionZ,
+                    texCoordU + dimensionZ + verticalFaceUOffset,
                     texCoordV,
-                    texCoordU + dimensionZ + dimensionX,
+                    texCoordU + dimensionZ + dimensionX + verticalFaceUOffset,
                     texCoordV + dimensionZ,
                     texWidth,
                     texHeight,
