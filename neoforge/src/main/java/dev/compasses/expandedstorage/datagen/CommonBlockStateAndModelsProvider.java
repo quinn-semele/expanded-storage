@@ -27,7 +27,7 @@ public class CommonBlockStateAndModelsProvider extends BlockStateProvider {
                 modelPath += "_" + chestType.getSerializedName();
             }
 
-            if (state.getValue(BlockStateProperties.OPEN)) {
+            if (state.getValue(BlockStateProperties.OPEN) && chestType != DoubleBlockType.BOTTOM) {
                 modelPath += "_open";
             }
 
