@@ -11,7 +11,7 @@
         "east": {"uv": [0, 7, 3.5, 14], "texture": "#atlas"},
         "south": {"uv": [10.75, 7, 14.5, 14], "texture": "#atlas"},
         "up": {"uv": [7.5, 7, 3.75, 0], "texture": "#atlas"},
-        "down": {"uv": [15, 0, 11.25, 7], "texture": "#atlas"}
+        "down": {"uv": [15, 0, 11.25, 7], "texture": "#atlas", "cullface": "down"}
       }
     },
     {

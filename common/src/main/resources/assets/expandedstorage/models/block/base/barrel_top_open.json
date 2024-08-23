@@ -1,0 +1,6 @@
+{
+  "parent": "expandedstorage:block/base/barrel_top",
+  "textures": {
+    "top": "minecraft:block/barrel_top_open"
+  }
+}
