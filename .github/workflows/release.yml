@@ -31,6 +31,7 @@ jobs:
         env:
           CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
           MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
+          PUBLISH_WEBHOOK: ${{ secrets.PUBLISH_WEBHOOK }}
       - name: grab mod version
         id: grab_version
         run: ./gradlew -q :logVersion >> "$GITHUB_OUTPUT"

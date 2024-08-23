@@ -1,3 +1,1 @@
-- Hide sparrow blocks from recipe viewer mods.
-- Replace deprecated code, now requires NeoForge 21.0.167
-- Fabric and Quilt releases are back.
+- Recompile to fix NeoForge config screen factory.

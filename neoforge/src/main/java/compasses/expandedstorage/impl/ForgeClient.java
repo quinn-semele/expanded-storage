@@ -46,7 +46,7 @@ public class ForgeClient {
 
         CommonClient.initialize(new ForgeClientHelper(bus));
         ModLoadingContext.get().getActiveContainer().registerExtensionPoint(IConfigScreenFactory.class,
-                (client, screen) -> new PickScreen(screen)
+                (container, screen) -> new PickScreen(screen)
         );
 
         NeoForge.EVENT_BUS.addListener(EventPriority.LOW, (ScreenEvent.Init.Post event) -> {
