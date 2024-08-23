@@ -68,7 +68,8 @@ repositories {
 }
 
 dependencies {
-    compileOnly("org.jetbrains:annotations:${Constants.JETBRAIN_ANNOTATIONS_VERSION}")
+    compileOnly(group = "org.jetbrains", name = "annotations", version = Constants.JETBRAIN_ANNOTATIONS_VERSION)
+    compileOnly(group = "com.google.code.findbugs", name = "jsr305", version = Constants.FINDBUGS_VERSION)
 }
 
 tasks.jar {
