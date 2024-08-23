@@ -15,9 +15,5 @@ public class NeoForgeClient {
         modBus.addListener((EntityRenderersEvent.RegisterRenderers event) -> {
             event.registerBlockEntityRenderer(ModBlockEntities.CHEST, ChestBlockRenderer::new);
         });
-
-        modBus.addListener((EntityRenderersEvent.RegisterLayerDefinitions event) -> {
-            event.registerLayerDefinition(ChestBlockRenderer.SINGLE_LID_LAYER, ChestBlockRenderer::createSingleLidLayer);
-        });
     }
 }

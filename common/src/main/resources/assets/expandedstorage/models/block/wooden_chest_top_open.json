@@ -1,0 +1,7 @@
+{
+  "parent": "expandedstorage:block/base/chest_open",
+  "textures": {
+    "atlas": "expandedstorage:block/wooden_chest_top",
+    "particle": "expandedstorage:block/wooden_chest_particle"
+  }
+}
