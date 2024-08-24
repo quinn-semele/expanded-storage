@@ -106,11 +106,7 @@ val publishTasks = projectsToPublish.map { (name, loader) ->
                 modLoaders.add(name.lowercase())
 
                 file = loader.tasks.getByName("processJson", ProcessJsonTask::class).archiveFile
-                version = provider {
-                    val bytes = MessageDigest.getInstance("SHA-256").digest(file.get().asFile.readBytes())
-
-                    bytes.fold("") { str, it -> str + "%02x".format(it) }
-                }
+                version = "${Constants.MOD_VERSION}+${name.lowercase()}"
 
                 dependencies {
                     val multiloaderExt = loader.extensions.getByName<MultiLoaderExtension>("multiloader")
@@ -131,7 +127,7 @@ val publishTasks = projectsToPublish.map { (name, loader) ->
                 version = provider {
                     val bytes = MessageDigest.getInstance("SHA-256").digest(file.get().asFile.readBytes())
 
-                    bytes.fold("") { str, it -> str + "%02x".format(it) }
+                    bytes.fold("") { str, it -> str + "%02x".format(it) }.take(32)
                 }
 
                 dependencies {
