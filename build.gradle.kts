@@ -12,6 +12,7 @@ import java.net.http.HttpClient
 import java.net.http.HttpRequest
 import java.net.http.HttpRequest.BodyPublishers
 import java.net.http.HttpResponse
+import java.security.MessageDigest
 
 plugins {
     id("me.modmuss50.mod-publish-plugin") version "0.6.3"
@@ -34,11 +35,16 @@ gradle.taskGraph.whenReady {
 // This feels like a hack but I can't really think of a way to do this properly.
 evaluationDependsOnChildren()
 
+val requestedProjects = providers.environmentVariable("PUBLISH_PROJECTS").getOrElse("neoforge,fabric,quilt").split(",")
+
 val projectsToPublish = mapOf(
     "NeoForge" to findProject(":neoforge"),
     "Fabric" to findProject(":fabric"),
     "Quilt" to findProject(":quilt")
-).filter { it.value != null }.mapValues { (_, loader) -> loader!! }
+).filter { it.value != null }
+ .mapValues { (_, loader) -> loader!! }
+ .filter { it.value.name in requestedProjects }
+
 
 val modChangelog = providers.provider {
     val compareTag = ProcessGroovyMethods.getText(ProcessGroovyMethods.execute("git describe --tags --abbrev=0")).trim()
@@ -97,10 +103,14 @@ val publishTasks = projectsToPublish.map { (name, loader) ->
             add(publishMods.curseforge("CurseForge$name") {
                 from(curseforgeOptions!!)
                 displayName = "$name ${loader.version}"
-                version = "${Constants.MOD_VERSION}+${name.lowercase()}"
                 modLoaders.add(name.lowercase())
 
                 file = loader.tasks.getByName("processJson", ProcessJsonTask::class).archiveFile
+                version = provider {
+                    val bytes = MessageDigest.getInstance("SHA-256").digest(file.get().asFile.readBytes())
+
+                    bytes.fold("") { str, it -> str + "%02x".format(it) }
+                }
 
                 dependencies {
                     val multiloaderExt = loader.extensions.getByName<MultiLoaderExtension>("multiloader")
@@ -115,10 +125,14 @@ val publishTasks = projectsToPublish.map { (name, loader) ->
             add(publishMods.modrinth("Modrinth$name") {
                 from(modrinthOptions!!)
                 displayName = "$name ${loader.version}"
-                version = "${Constants.MOD_VERSION}+${name.lowercase()}"
                 modLoaders.add(name.lowercase())
 
                 file = loader.tasks.getByName("processJson", ProcessJsonTask::class).archiveFile
+                version = provider {
+                    val bytes = MessageDigest.getInstance("SHA-256").digest(file.get().asFile.readBytes())
+
+                    bytes.fold("") { str, it -> str + "%02x".format(it) }
+                }
 
                 dependencies {
                     val multiloaderExt = loader.extensions.getByName<MultiLoaderExtension>("multiloader")
