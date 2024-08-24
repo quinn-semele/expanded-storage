@@ -1,4 +1,4 @@
-name: release
+name: Release NeoForge
 on: workflow_dispatch
 jobs:
   release:
