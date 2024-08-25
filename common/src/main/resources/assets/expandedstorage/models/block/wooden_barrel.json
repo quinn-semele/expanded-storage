@@ -1,3 +1,6 @@
 {
-  "parent": "minecraft:block/barrel"
+  "parent": "minecraft:block/barrel",
+  "textures": {
+    "side": "expandedstorage:block/wooden_barrel_side"
+  }
 }
