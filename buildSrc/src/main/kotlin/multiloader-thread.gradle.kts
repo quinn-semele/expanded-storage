@@ -78,13 +78,13 @@ artifacts {
     }
 }
 
-configurations.whenObjectAdded whenConfigurationAdded@ {
+configurations.configureEach configureConfiguration@ {
     if (name == "modRuntimeClasspathMainMapped") {
-        dependencies.whenObjectAdded {
+        dependencies.configureEach {
             if (name == "fabric-loader" && group == "net.fabricmc") {
-                this@whenConfigurationAdded.exclude(group = group, module = name)
+                this@configureConfiguration.exclude(group = group, module = name)
             } else if (name == "quilt-loader" && group == "org.quiltmc") {
-                this@whenConfigurationAdded.exclude(group = group, module = name)
+                this@configureConfiguration.exclude(group = group, module = name)
             }
         }
     }
