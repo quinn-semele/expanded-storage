@@ -8,7 +8,7 @@ import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.KeyMapping;
 
 public class WrappedAmecsKeybind implements Keybinding {
-    private final KeyMapping binding = KeyBindingHelper.registerKeyBinding(new AmecsKeyBinding(Utils.id("open_config_screen"), InputConstants.Type.KEYSYM, Utils.KEY_BIND_KEY, KeyMapping.CATEGORY_INVENTORY, new KeyModifiers().setShift(true)));
+    private final KeyMapping binding = KeyBindingHelper.registerKeyBinding(new AmecsKeyBinding(Utils.id("config"), InputConstants.Type.KEYSYM, Utils.KEY_BIND_KEY, KeyMapping.CATEGORY_INVENTORY, new KeyModifiers().setShift(true)));
 
     @Override
     public boolean matches(int keyCode, int scanCode) {

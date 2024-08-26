@@ -84,10 +84,6 @@ public class ForgeClient {
             }
         });
 
-
-
-
-
         bus.addListener((RegisterClientExtensionsEvent event) -> {
             final Map<ChestBlock, ChestBlockEntity> blockRenderers = content
                     .getChestBlocks().stream()

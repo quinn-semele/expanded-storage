@@ -1,1 +1,1 @@
-- Recompile to fix NeoForge config screen factory.
+- Fix config key translation on Fabric/Quilt.
