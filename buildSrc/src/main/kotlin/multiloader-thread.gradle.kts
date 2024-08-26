@@ -66,15 +66,12 @@ configurations {
     create("threadResources") { isCanBeResolved = false; isCanBeConsumed = true }
 }
 
-artifacts {
-    val mainSourceSet = sourceSets.main.get()
-
-    for (sourceDirectory in mainSourceSet.java.sourceDirectories) {
-        add("threadJava", sourceDirectory)
-    }
-
-    for (sourceDirectory in mainSourceSet.resources.sourceDirectories) {
-        add("threadResources", sourceDirectory)
+afterEvaluate {
+    with(sourceSets.main.get()) {
+        artifacts {
+            java.sourceDirectories.forEach { add("threadJava", it) }
+            resources.sourceDirectories.forEach { add("threadResources", it) }
+        }
     }
 }
 

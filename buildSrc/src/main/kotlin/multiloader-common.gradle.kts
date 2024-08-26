@@ -24,14 +24,11 @@ configurations {
     create("commonResources") { isCanBeResolved = false; isCanBeConsumed = true }
 }
 
-artifacts {
-    val mainSourceSet = sourceSets.main.get()
-
-    for (sourceDirectory in mainSourceSet.java.sourceDirectories) {
-        add("commonJava", sourceDirectory)
-    }
-
-    for (sourceDirectory in mainSourceSet.resources.sourceDirectories) {
-        add("commonResources", sourceDirectory)
+afterEvaluate {
+    with(sourceSets.main.get()) {
+        artifacts {
+            java.sourceDirectories.forEach { add("commonJava", it) }
+            resources.sourceDirectories.forEach { add("commonResources", it) }
+        }
     }
 }

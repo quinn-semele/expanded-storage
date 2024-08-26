@@ -1,5 +1,6 @@
 import dev.compasses.multiloader.Constants
 import dev.compasses.multiloader.extension.DependencyType
+import dev.compasses.multiloader.extension.ModDependency
 import dev.compasses.multiloader.extension.MultiLoaderExtension
 import dev.compasses.multiloader.extension.RepositoryExclusions
 import java.net.URI
@@ -13,9 +14,7 @@ version = Constants.MOD_VERSION
 
 base.archivesName = "${Constants.MOD_ID}-${project.name}-${Constants.MINECRAFT_VERSION}"
 
-java {
-    toolchain.languageVersion = Constants.JAVA_VERSION
-}
+java.toolchain.languageVersion = Constants.JAVA_VERSION
 
 repositories {
     mavenCentral()
@@ -70,7 +69,8 @@ repositories {
 }
 
 dependencies {
-    compileOnly("org.jetbrains:annotations:${Constants.JETBRAIN_ANNOTATIONS_VERSION}")
+    compileOnly(group = "org.jetbrains", name = "annotations", version = Constants.JETBRAIN_ANNOTATIONS_VERSION)
+    compileOnly(group = "com.google.code.findbugs", name = "jsr305", version = Constants.FINDBUGS_VERSION)
 }
 
 tasks.jar {
@@ -85,6 +85,9 @@ tasks.jar {
             "Built-On-Minecraft" to Constants.MINECRAFT_VERSION
         ))
     }
+
+    exclude("**/datagen/**")
+    exclude(".cache/**")
 }
 
 tasks.processResources {
@@ -94,12 +97,16 @@ tasks.processResources {
         "mod_name" to Constants.MOD_NAME,
         "mod_id" to Constants.MOD_ID,
         "license" to Constants.LICENSE,
-        "description" to Constants.DESCRIPTION,
+        "description" to Constants.DESCRIPTION.trimIndent().trim().replace("\n", "\\n"),
 
         "fl_authors" to Constants.CONTRIBUTORS.keys.joinToString("\", \""),
         "nf_authors" to Constants.CONTRIBUTORS.keys.joinToString(","),
 
         "credits" to Constants.CREDITS.map { "${it.key} - ${it.value}" }.joinToString(",\n"),
+
+        "homepage" to Constants.HOMEPAGE,
+        "issue_tracker" to Constants.ISSUE_TRACKER,
+        "sources_url" to Constants.SOURCES_URL,
 
         "java_version" to Constants.JAVA_VERSION.asInt(),
         "minecraft_version" to Constants.MINECRAFT_VERSION,
@@ -115,26 +122,19 @@ tasks.processResources {
         "neoforge_version" to Constants.NEOFORGE_VERSION,
         "fml_version_constraint" to Constants.FML_CONSTRAINT,
     )
+    replacements.putAll(Constants.EXTRA_MOD_INFO_REPLACEMENTS)
 
     inputs.properties(replacements)
     filesMatching(listOf("fabric.mod.json", "quilt.mod.json", "META-INF/neoforge.mods.toml", "*.mixins.json", "*.mcmeta")) {
         expand(replacements)
     }
-
-    exclude(".cache/*")
 }
 
-val multiLoaderExtension = extensions.create("multiloader", MultiLoaderExtension::class)
+val multiLoaderExtension = extensions.create("multiloader", MultiLoaderExtension::class, project.objects.domainObjectContainer(ModDependency::class) { name ->
+    ModDependency(name, project.objects)
+})
 
 project.afterEvaluate {
-    for (mod in multiLoaderExtension.mods) {
-        mod.type.convention(DependencyType.OPTIONAL)
-        mod.curseforgeName.convention(mod.name)
-        mod.modrinthName.convention(mod.name)
-        mod.enabledAtRuntime.convention(false)
-        mod.generateSourceDirectory.convention(mod.type.get() != DependencyType.DISABLED && file("src/main/${mod.name.replace("-", "_")}").exists())
-    }
-
     val repositories: MutableMap<URI, RepositoryExclusions> = mutableMapOf()
 
     for (mod in multiLoaderExtension.mods) {
@@ -183,11 +183,11 @@ project.afterEvaluate {
         }
     }
 
-    val sourceDirectoryNames = multiLoaderExtension.mods.filter { it.generateSourceDirectory.get() }.map { it.name.replace("-", "_") }
-
     sourceSets.main.configure {
-        for (sourceDirectoryName in sourceDirectoryNames) {
-            java.srcDir("src/main/$sourceDirectoryName")
-        }
+        val directories = multiLoaderExtension.mods.filter { it.type.get() != DependencyType.DISABLED }
+            .map { it.sourceDirectory }
+            .filter { project.file(it).exists() }
+
+        java.srcDirs(directories)
     }
 }

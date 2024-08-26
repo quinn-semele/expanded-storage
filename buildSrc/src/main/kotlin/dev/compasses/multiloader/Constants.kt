@@ -10,6 +10,10 @@ object Constants {
     const val LICENSE = "Multiple"
     const val DESCRIPTION = "A mod adding various storage types, including double iron chests."
 
+    const val HOMEPAGE = "https://www.curseforge.com/minecraft/mc-mods/expanded-storage"
+    const val ISSUE_TRACKER = "https://github.com/quinn-semele/expanded-storage/issues"
+    const val SOURCES_URL = "https://github.com/quinn-semele/expanded-storage"
+
     @Suppress("RedundantNullableReturnType")
     val curseforgeProperties: CurseForgeProperties? = object : CurseForgeProperties() {
         override val projectId = "978068"
@@ -34,8 +38,13 @@ object Constants {
 
     )
 
+    val EXTRA_MOD_INFO_REPLACEMENTS = mapOf<String, String>(
+
+    )
+
     val JAVA_VERSION = JavaLanguageVersion.of(21)
     const val JETBRAIN_ANNOTATIONS_VERSION = "24.1.0"
+    const val FINDBUGS_VERSION = "3.0.2"
 
     const val MIXIN_VERSION = "0.8.5"
     const val MIXIN_EXTRAS_VERSION = "0.3.5"

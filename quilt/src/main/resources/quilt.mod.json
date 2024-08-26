@@ -11,9 +11,9 @@
 
       },
       "contact": {
-        "homepage": "https://modrinth.com/mod/expanded-storage",
-        "issues": "https://github.com/quinn-semele/expanded-storage/issues",
-        "sources": "https://github.com/quinn-semele/expanded-storage/tree/expandedstorage/${minecraft_version}"
+        "homepage": "${homepage}",
+        "issues": "${issue_tracker}",
+        "sources": "${sources_url}"
       },
       "icon": "icon.png"
     },

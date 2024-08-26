@@ -35,7 +35,7 @@ gradle.taskGraph.whenReady {
 // This feels like a hack but I can't really think of a way to do this properly.
 evaluationDependsOnChildren()
 
-val requestedProjects = providers.environmentVariable("PUBLISH_PROJECTS").getOrElse("neoforge,fabric,quilt").split(",")
+val requestedProjects = providers.environmentVariable("MULTILOADER_PUBLISH_PROJECTS").getOrElse("neoforge,fabric,quilt").split(",")
 
 val projectsToPublish = mapOf(
     "NeoForge" to findProject(":neoforge"),
@@ -44,7 +44,6 @@ val projectsToPublish = mapOf(
 ).filter { it.value != null }
  .mapValues { (_, loader) -> loader!! }
  .filter { it.value.name in requestedProjects }
-
 
 val modChangelog = providers.provider {
     val compareTag = ProcessGroovyMethods.getText(ProcessGroovyMethods.execute("git describe --tags --abbrev=0")).trim()
@@ -91,10 +90,7 @@ publishMods {
         ReleaseType.STABLE
     }
 
-    dryRun = providers.provider {
-        (Constants.curseforgeProperties != null && !curseforgeOptions!!.get().accessToken.isPresent) ||
-                (Constants.modrinthProperties != null && !modrinthOptions!!.get().accessToken.isPresent)
-    }
+    dryRun = providers.environmentVariable("MULTILOADER_DRY_RUN").map { true }.orElse(false)
 }
 
 val publishTasks = projectsToPublish.map { (name, loader) ->
@@ -103,10 +99,10 @@ val publishTasks = projectsToPublish.map { (name, loader) ->
             add(publishMods.curseforge("CurseForge$name") {
                 from(curseforgeOptions!!)
                 displayName = "$name ${loader.version}"
+                version = "${Constants.MOD_VERSION}+${name.lowercase()}"
                 modLoaders.add(name.lowercase())
 
                 file = loader.tasks.getByName("processJson", ProcessJsonTask::class).archiveFile
-                version = "${Constants.MOD_VERSION}+${name.lowercase()}"
 
                 dependencies {
                     val multiloaderExt = loader.extensions.getByName<MultiLoaderExtension>("multiloader")

@@ -1,15 +1,15 @@
 modLoader = "javafml"
 loaderVersion = "${fml_version_constraint}"
-issueTrackerURL = "https://github.com/quinn-semele/expanded-storage/issues"
 license = "${license}"
+issueTrackerURL = "${issue_tracker}"
 
 [[mods]]
 modId = "${mod_id}"
 version = "${version}"
 displayName = "${mod_name}"
 authors = "${nf_authors}"
+displayURL = "${homepage}"
 logoFile = "icon.png"
-displayURL = "https://modrinth.com/mod/expanded-storage"
 description = "${description}"
 
 [[dependencies.${mod_id}]]

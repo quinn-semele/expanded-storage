@@ -15,6 +15,9 @@ jobs:
     steps:
       - name: checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          fetch-tags: true
       - name: validate gradle wrapper
         uses: gradle/actions/wrapper-validation@v3
       - name: setup jdk ${{ matrix.java }}
@@ -32,7 +35,8 @@ jobs:
           CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
           MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
           PUBLISH_WEBHOOK: ${{ secrets.PUBLISH_WEBHOOK }}
-          PUBLISH_PROJECTS: "neoforge"
+          MULTILOADER_DRY_RUN: ${{ secrets.MULTILOADER_DRY_RUN }}
+          MULTILOADER_PUBLISH_PROJECTS: "neoforge"
       - name: grab mod version
         id: grab_version
         run: ./gradlew -q :logVersion >> "$GITHUB_OUTPUT"
