@@ -14,10 +14,11 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+
+import static net.minecraft.world.level.block.state.properties.BlockStateProperties.*;
 
 public class ChestBlock extends InventoryBlock {
     public static final EnumProperty<DoubleBlockType> CHEST_TYPE = EnumProperty.create("type", DoubleBlockType.class);
@@ -31,18 +32,20 @@ public class ChestBlock extends InventoryBlock {
     public ChestBlock(Properties properties) {
         super(properties);
 
-        this.registerDefaultState(defaultBlockState()
+        this.registerDefaultState(this.defaultBlockState()
                 .setValue(CHEST_TYPE, DoubleBlockType.SINGLE)
-                .setValue(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH)
-                .setValue(BlockStateProperties.OPEN, false)
+                .setValue(HORIZONTAL_FACING, Direction.NORTH)
+                .setValue(OPEN, false)
+                .setValue(WATERLOGGED, false)
         );
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(CHEST_TYPE);
-        builder.add(BlockStateProperties.HORIZONTAL_FACING);
-        builder.add(BlockStateProperties.OPEN);
+        builder.add(HORIZONTAL_FACING);
+        builder.add(OPEN);
+        builder.add(WATERLOGGED);
     }
 
     @Override
@@ -60,7 +63,7 @@ public class ChestBlock extends InventoryBlock {
             default -> throw Utils.codeError(1);
         };
 
-        int index = (state.getValue(BlockStateProperties.HORIZONTAL_FACING).get2DDataValue() + offset) % 4;
+        int index = (state.getValue(HORIZONTAL_FACING).get2DDataValue() + offset) % 4;
 
         return switch (index) {
             case 0 -> NORTH_SOUTH_SHAPE; case 1 -> SOUTH_NORTH_SHAPE;
