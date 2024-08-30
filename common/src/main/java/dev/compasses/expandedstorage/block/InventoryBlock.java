@@ -6,10 +6,12 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.Nullable;
 
 public abstract class InventoryBlock extends BaseEntityBlock {
     protected InventoryBlock(Properties properties) {
@@ -40,5 +42,13 @@ public abstract class InventoryBlock extends BaseEntityBlock {
     @SuppressWarnings("deprecation")
     protected RenderShape getRenderShape(BlockState state) {
         return RenderShape.MODEL;
+    }
+
+    @Nullable
+    protected <A extends BlockEntity, E extends BlockEntity> BlockEntityTicker<A> createEntityTicker(
+            BlockEntityType<A> actualType, BlockEntityType<E> expectedType, BlockEntityTicker<E> ticker
+    ) {
+        //noinspection unchecked
+        return actualType == expectedType ? (BlockEntityTicker<A>) ticker : null;
     }
 }

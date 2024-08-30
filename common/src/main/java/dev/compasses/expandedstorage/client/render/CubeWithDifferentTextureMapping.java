@@ -141,7 +141,7 @@ public class CubeWithDifferentTextureMapping extends ModelPart.Cube {
         }
 
         if (visibleFaces.contains(Direction.SOUTH)) {
-            polygons[i++] = new ModelPart.Polygon(
+            polygons[i] = new ModelPart.Polygon(
                     new ModelPart.Vertex[]{
                             originForward,
                             originAcross,

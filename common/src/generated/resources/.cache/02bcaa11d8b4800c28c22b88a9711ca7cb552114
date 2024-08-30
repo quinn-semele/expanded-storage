@@ -1,5 +1,7 @@
-// 1.21	2024-08-23T20:15:28.4134852	Block States: expandedstorage
+// 1.21	2024-08-27T21:26:59.371106	Block States: expandedstorage
+9c4c3ea490a28412460a139b58fc1593ed54a0f8 assets/expandedstorage/blockstates/shulker_box.json
 346f2182723af2ac726a217bf4c264da86bcb951 assets/expandedstorage/blockstates/wooden_barrel.json
 0d69733ee4dc95b5d521c3db58ac5ec9130dea67 assets/expandedstorage/blockstates/wooden_chest.json
+d08d49ca07b35da00f2456f66566ae99741f622e assets/expandedstorage/models/item/shulker_box.json
 17ad81c71f25136c0b16eaa87f15e3f0ba785c1c assets/expandedstorage/models/item/wooden_barrel.json
 7062ec6909cf2470b2e96ec0f6e7e96014060fff assets/expandedstorage/models/item/wooden_chest.json

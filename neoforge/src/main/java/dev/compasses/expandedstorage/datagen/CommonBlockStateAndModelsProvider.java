@@ -19,7 +19,7 @@ public class CommonBlockStateAndModelsProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        getVariantBuilder(ModBlocks.WOODEN_CHEST).forAllStates(state -> {
+        getVariantBuilder(ModBlocks.WOODEN_CHEST).forAllStatesExcept(state -> {
             String modelPath = "wooden_chest";
 
             DoubleBlockType chestType = state.getValue(ChestBlock.CHEST_TYPE);
@@ -34,7 +34,7 @@ public class CommonBlockStateAndModelsProvider extends BlockStateProvider {
             int yRotation = 90 * ((state.getValue(BlockStateProperties.HORIZONTAL_FACING).get2DDataValue() + 2) % 4);
 
             return new ConfiguredModel[]{new ConfiguredModel(models().getExistingFile(Utils.id(modelPath)), 0, yRotation, false)};
-        });
+        }, BlockStateProperties.WATERLOGGED);
 
         simpleBlockItem(ModBlocks.WOODEN_CHEST, models().getExistingFile(Utils.id("wooden_chest")));
 
@@ -69,5 +69,33 @@ public class CommonBlockStateAndModelsProvider extends BlockStateProvider {
         });
 
         simpleBlockItem(ModBlocks.WOODEN_BARREL, models().getExistingFile(Utils.id("wooden_barrel")));
+
+        getVariantBuilder(ModBlocks.SHULKER_BOX).forAllStates(state -> {
+            String modelPath = "shulker_box";
+
+
+            if (state.getValue(BlockStateProperties.OPEN)) {
+                modelPath += "_open";
+            }
+
+            Direction facing = state.getValue(BlockStateProperties.FACING);
+
+            int xRotation = switch(facing) {
+                case UP -> 0;
+                case DOWN -> 180;
+                default -> 90;
+            };
+
+            int yRotation = switch (facing) {
+                case EAST -> 90;
+                case SOUTH -> 180;
+                case WEST -> 270;
+                default -> 0;
+            };
+
+            return new ConfiguredModel[]{new ConfiguredModel(models().getExistingFile(Utils.id(modelPath)), xRotation, yRotation, false)};
+        });
+
+        simpleBlockItem(ModBlocks.SHULKER_BOX, models().getExistingFile(Utils.id("shulker_box")));
     }
 }

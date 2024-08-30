@@ -2,6 +2,7 @@ package dev.compasses.expandedstorage.client;
 
 import dev.compasses.expandedstorage.Utils;
 import dev.compasses.expandedstorage.client.render.ChestBlockRenderer;
+import dev.compasses.expandedstorage.client.render.ShulkerBoxRenderer;
 import dev.compasses.expandedstorage.registration.ModBlockEntities;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
@@ -14,6 +15,7 @@ public class NeoForgeClient {
     public NeoForgeClient(IEventBus modBus, ModContainer mod) {
         modBus.addListener((EntityRenderersEvent.RegisterRenderers event) -> {
             event.registerBlockEntityRenderer(ModBlockEntities.CHEST, ChestBlockRenderer::new);
+            event.registerBlockEntityRenderer(ModBlockEntities.SHULKER_BOX, ShulkerBoxRenderer::new);
         });
     }
 }

@@ -6,6 +6,8 @@ import dev.compasses.expandedstorage.block.misc.DoubleBlockType;
 import dev.compasses.expandedstorage.registration.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -15,6 +17,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
@@ -38,6 +41,16 @@ public class ChestBlock extends InventoryBlock {
                 .setValue(OPEN, false)
                 .setValue(WATERLOGGED, false)
         );
+    }
+
+    @Override
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+        if (level.getBlockEntity(pos) instanceof ChestBlockEntity entity) {
+            entity.toggleOpen(player);
+            return InteractionResult.SUCCESS;
+        }
+
+        return InteractionResult.PASS;
     }
 
     @Override
@@ -78,7 +91,7 @@ public class ChestBlock extends InventoryBlock {
     }
 
     @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
-        return level.isClientSide() && blockEntityType == ModBlockEntities.CHEST ? ChestBlockEntity::progressLidAnimation : null;
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
+        return createEntityTicker(type, ModBlockEntities.CHEST, ChestBlockEntity::progressLidAnimation);
     }
 }
