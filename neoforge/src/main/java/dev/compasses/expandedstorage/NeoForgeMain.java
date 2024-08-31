@@ -4,6 +4,7 @@ import dev.compasses.expandedstorage.registration.ModBlockEntities;
 import dev.compasses.expandedstorage.registration.ModBlocks;
 import dev.compasses.expandedstorage.registration.ModItems;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.world.item.CreativeModeTab;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
@@ -19,6 +20,8 @@ public class NeoForgeMain {
                 ModItems.registerContent();
             } else if (event.getRegistryKey() == Registries.BLOCK_ENTITY_TYPE) {
                 ModBlockEntities.registerContent();
+            } else if (event.getRegistryKey() == Registries.CREATIVE_MODE_TAB) {
+                ModItems.registerCreativeTab(CreativeModeTab.builder());
             }
         });
     }
