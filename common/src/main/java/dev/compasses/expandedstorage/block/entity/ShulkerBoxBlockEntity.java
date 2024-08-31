@@ -16,7 +16,7 @@ public class ShulkerBoxBlockEntity extends BlockEntity {
 
     public ShulkerBoxBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.SHULKER_BOX, pos, state);
-        this.color = ((ShulkerBoxBlock) state.getBlock()).getColor();
+        this.color = ((ShulkerBoxBlock) state.getBlock()).color();
     }
 
     public static void progressLidAnimation(Level level, BlockPos pos, BlockState state, ShulkerBoxBlockEntity entity) {

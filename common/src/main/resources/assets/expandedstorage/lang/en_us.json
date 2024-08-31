@@ -1,4 +1,23 @@
 {
   "block.expandedstorage.wooden_barrel": "Wooden Barrel",
-  "block.expandedstorage.wooden_chest": "Wooden Chest"
+
+  "block.expandedstorage.wooden_chest": "Wooden Chest",
+
+  "block.expandedstorage.shulker_box":            "Shulker Box",
+  "block.expandedstorage.white_shulker_box":      "White Shulker Box",
+  "block.expandedstorage.orange_shulker_box":     "Orange Shulker Box",
+  "block.expandedstorage.magenta_shulker_box":    "Magenta Shulker Box",
+  "block.expandedstorage.light_blue_shulker_box": "Light Blue Shulker Box",
+  "block.expandedstorage.yellow_shulker_box":     "Yellow Shulker Box",
+  "block.expandedstorage.lime_shulker_box":       "Lime Shulker Box",
+  "block.expandedstorage.pink_shulker_box":       "Pink Shulker Box",
+  "block.expandedstorage.gray_shulker_box":       "Gray Shulker Box",
+  "block.expandedstorage.light_gray_shulker_box": "Light Gray Shulker Box",
+  "block.expandedstorage.cyan_shulker_box":       "Cyan Shulker Box",
+  "block.expandedstorage.purple_shulker_box":     "Purple Shulker Box",
+  "block.expandedstorage.blue_shulker_box":       "Blue Shulker Box",
+  "block.expandedstorage.brown_shulker_box":      "Brown Shulker Box",
+  "block.expandedstorage.green_shulker_box":      "Green Shulker Box",
+  "block.expandedstorage.red_shulker_box":        "Red Shulker Box",
+  "block.expandedstorage.black_shulker_box":      "Black Shulker Box"
 }

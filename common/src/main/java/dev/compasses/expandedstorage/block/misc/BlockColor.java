@@ -28,12 +28,12 @@ public enum BlockColor implements StringRepresentable {
         this.name = name;
     }
 
-    public String getSuffix() {
+    public String prefix() {
         if (this == NONE) {
             return "";
         }
 
-        return "_" + getSerializedName();
+        return getSerializedName() + "_";
     }
 
     @NotNull

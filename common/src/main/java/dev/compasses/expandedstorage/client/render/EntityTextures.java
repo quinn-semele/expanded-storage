@@ -26,7 +26,7 @@ public class EntityTextures {
 
     public static final Map<BlockColor, Material> shulkerBoxMaterials = Arrays
             .stream(BlockColor.values())
-            .map(color -> Map.entry(color, material("block/shulker_box" + color.getSuffix())))
+            .map(color -> Map.entry(color, material("block/" + color.prefix() + "shulker_box")))
             .collect(Collectors.toUnmodifiableMap(Map.Entry::getKey, Map.Entry::getValue));
 
     private static Material material(String texture) {

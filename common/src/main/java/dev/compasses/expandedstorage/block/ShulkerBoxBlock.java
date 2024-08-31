@@ -44,7 +44,7 @@ public class ShulkerBoxBlock extends InventoryBlock {
         return InteractionResult.PASS;
     }
 
-    public BlockColor getColor() {
+    public BlockColor color() {
         return color;
     }
 

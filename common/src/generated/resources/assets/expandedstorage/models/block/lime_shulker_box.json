@@ -1,0 +1,7 @@
+{
+  "parent": "expandedstorage:block/base/shulker_box",
+  "textures": {
+    "atlas": "expandedstorage:block/lime_shulker_box",
+    "particle": "expandedstorage:block/lime_shulker_box_particle"
+  }
+}
