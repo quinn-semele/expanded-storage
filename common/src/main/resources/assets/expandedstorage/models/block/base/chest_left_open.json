@@ -1,7 +1,6 @@
 {
 	"parent": "minecraft:block/block",
 	"ambientocclusion": false,
-	"texture_size": [64, 32],
 	"elements": [
 		{
 			"from": [0, 0, 1],

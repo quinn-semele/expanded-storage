@@ -16,12 +16,12 @@ public class EntityTextures {
     private static final ResourceLocation BLOCK_ATLAS = TextureAtlas.LOCATION_BLOCKS;
     
     public static final Map<DoubleBlockType, Material> chestMaterials = Map.of(
-            DoubleBlockType.SINGLE, material("block/wooden_chest"),
-            DoubleBlockType.LEFT, material("block/wooden_chest_left"),
-            DoubleBlockType.RIGHT, material("block/wooden_chest_right"),
-            DoubleBlockType.FRONT, material("block/wooden_chest_front"),
-            DoubleBlockType.BACK, material("block/wooden_chest_back"),
-            DoubleBlockType.TOP, material("block/wooden_chest_top")
+            DoubleBlockType.SINGLE, material("block/chest"),
+            DoubleBlockType.LEFT, material("block/chest_left"),
+            DoubleBlockType.RIGHT, material("block/chest_right"),
+            DoubleBlockType.FRONT, material("block/chest_front"),
+            DoubleBlockType.BACK, material("block/chest_back"),
+            DoubleBlockType.TOP, material("block/chest_top")
     );
 
     public static final Map<BlockColor, Material> shulkerBoxMaterials = Arrays

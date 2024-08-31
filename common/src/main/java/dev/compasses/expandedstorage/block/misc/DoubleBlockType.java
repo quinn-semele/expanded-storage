@@ -24,7 +24,15 @@ public enum DoubleBlockType implements StringRepresentable {
         return this.name;
     }
 
-    public DoubleBlockType getOpposite() {
+    public String suffix() {
+        if (this == SINGLE) {
+            return "";
+        }
+
+        return "_" + name;
+    }
+
+    public DoubleBlockType opposite() {
         return switch (this) {
             case LEFT -> RIGHT;
             case RIGHT -> LEFT;
