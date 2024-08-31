@@ -1,4 +1,4 @@
-# Mod Scaffold
+# Codename Stowage
 
 ## Quick Links for Development
 - [Update Gradle](./build.gradle.kts)
