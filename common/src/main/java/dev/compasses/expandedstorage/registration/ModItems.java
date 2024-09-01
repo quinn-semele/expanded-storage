@@ -9,6 +9,9 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Consumer;
 
 public class ModItems {
     public static final Item WOODEN_CHEST = register("wooden_chest", new BlockItem(ModBlocks.WOODEN_CHEST, new Item.Properties()));
@@ -37,6 +40,38 @@ public class ModItems {
             .map(block -> register(block.color().prefix() + "shulker_box", new BlockItem(block, new Item.Properties())))
             .toArray(Item[]::new);
 
+    public static final Item[] UPGRADES = registerUpgrades(
+            List.of(
+                    Map.entry("standard", properties -> {}),
+                    Map.entry("copper", properties -> {}),
+                    Map.entry("iron", properties -> {}),
+                    Map.entry("golden", properties -> {}),
+                    Map.entry("diamond", properties -> {}),
+                    Map.entry("obsidian", properties -> {}),
+                    Map.entry("netherite", Item.Properties::fireResistant)
+            )
+    );
+
+    private static Item[] registerUpgrades(List<Map.Entry<String, Consumer<Item.Properties>>> tiers) {
+        Item[] upgrades = new Item[(tiers.size() * (tiers.size() - 1)) / 2];
+        int insertionIndex= 0 ;
+
+        for (int from = 0; from < tiers.size() - 1; from++) {
+            var fromTier = tiers.get(from);
+            for (int to = from + 1; to < tiers.size(); to++) {
+                var toTier = tiers.get(to);
+
+                Item.Properties properties = new Item.Properties();
+                fromTier.getValue().accept(properties);
+                toTier.getValue().accept(properties);
+
+                upgrades[insertionIndex++] = register(fromTier.getKey() + "_to_" + toTier.getKey() + "_upgrade", new Item(properties));
+            }
+        }
+
+        return upgrades;
+    }
+
     private static <T extends Item> T register(String name, T item) {
         return Registry.register(BuiltInRegistries.ITEM, Utils.id(name), item);
     }
@@ -46,6 +81,8 @@ public class ModItems {
     }
 
     private static void addContentToCreativeTab(CreativeModeTab.ItemDisplayParameters itemDisplayParameters, CreativeModeTab.Output output) {
+        Arrays.stream(UPGRADES).forEach(output::accept);
+
         Arrays.stream(ModBlocks.CHESTS).forEach(output::accept);
 
         Arrays.stream(ModBlocks.BARRELS).forEach(output::accept);

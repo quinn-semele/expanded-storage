@@ -6,6 +6,7 @@ import dev.compasses.expandedstorage.block.ChestBlock;
 import dev.compasses.expandedstorage.block.ShulkerBoxBlock;
 import dev.compasses.expandedstorage.block.misc.DoubleBlockType;
 import dev.compasses.expandedstorage.registration.ModBlocks;
+import dev.compasses.expandedstorage.registration.ModItems;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -25,6 +26,8 @@ public class CommonBlockStateAndModelsProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
+        Arrays.stream(ModItems.UPGRADES).forEach(itemModels()::basicItem);
+
         generateChestAssets(ModBlocks.WOODEN_CHEST, Utils.id("block/wooden_chest_particle"));
         generateChestAssets(ModBlocks.COPPER_CHEST, blockTexture(Blocks.COPPER_BLOCK));
         generateChestAssets(ModBlocks.EXPOSED_COPPER_CHEST, blockTexture(Blocks.EXPOSED_COPPER));
@@ -36,16 +39,7 @@ public class CommonBlockStateAndModelsProvider extends BlockStateProvider {
         generateChestAssets(ModBlocks.OBSIDIAN_CHEST, blockTexture(Blocks.OBSIDIAN));
         generateChestAssets(ModBlocks.NETHERITE_CHEST, blockTexture(Blocks.NETHERITE_BLOCK));
 
-        generateBarrelAssets(ModBlocks.WOODEN_BARREL);
-        generateBarrelAssets(ModBlocks.COPPER_BARREL);
-        generateBarrelAssets(ModBlocks.EXPOSED_COPPER_BARREL);
-        generateBarrelAssets(ModBlocks.WEATHERED_COPPER_BARREL);
-        generateBarrelAssets(ModBlocks.OXIDIZED_COPPER_BARREL);
-        generateBarrelAssets(ModBlocks.IRON_BARREL);
-        generateBarrelAssets(ModBlocks.GOLDEN_BARREL);
-        generateBarrelAssets(ModBlocks.DIAMOND_BARREL);
-        generateBarrelAssets(ModBlocks.OBSIDIAN_BARREL);
-        generateBarrelAssets(ModBlocks.NETHERITE_BARREL);
+        Arrays.stream(ModBlocks.BARRELS).forEach(this::generateBarrelAssets);
 
         Arrays.stream(ModBlocks.SHULKER_BOXES).forEach(this::generateShulkerBoxAssets);
     }
