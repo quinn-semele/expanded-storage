@@ -1,6 +1,0 @@
-{
-  "parent": "expandedstorage:block/base/barrel_top_open",
-  "textures": {
-    "side": "expandedstorage:block/barrel_side_top"
-  }
-}

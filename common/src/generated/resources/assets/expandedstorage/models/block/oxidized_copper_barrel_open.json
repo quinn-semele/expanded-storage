@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/barrel_open",
+  "textures": {
+    "side": "expandedstorage:block/oxidized_copper_barrel_side"
+  }
+}

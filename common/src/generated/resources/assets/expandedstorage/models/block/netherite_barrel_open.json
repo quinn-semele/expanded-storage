@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/barrel_open",
+  "textures": {
+    "side": "expandedstorage:block/netherite_barrel_side"
+  }
+}

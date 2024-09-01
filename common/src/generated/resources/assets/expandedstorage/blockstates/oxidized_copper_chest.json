@@ -1,0 +1,214 @@
+{
+  "variants": {
+    "facing=east,open=false,type=back": {
+      "model": "expandedstorage:block/oxidized_copper_chest_back",
+      "y": 90
+    },
+    "facing=east,open=false,type=bottom": {
+      "model": "expandedstorage:block/oxidized_copper_chest_bottom",
+      "y": 90
+    },
+    "facing=east,open=false,type=front": {
+      "model": "expandedstorage:block/oxidized_copper_chest_front",
+      "y": 90
+    },
+    "facing=east,open=false,type=left": {
+      "model": "expandedstorage:block/oxidized_copper_chest_left",
+      "y": 90
+    },
+    "facing=east,open=false,type=right": {
+      "model": "expandedstorage:block/oxidized_copper_chest_right",
+      "y": 90
+    },
+    "facing=east,open=false,type=single": {
+      "model": "expandedstorage:block/oxidized_copper_chest",
+      "y": 90
+    },
+    "facing=east,open=false,type=top": {
+      "model": "expandedstorage:block/oxidized_copper_chest_top",
+      "y": 90
+    },
+    "facing=east,open=true,type=back": {
+      "model": "expandedstorage:block/oxidized_copper_chest_back_open",
+      "y": 90
+    },
+    "facing=east,open=true,type=bottom": {
+      "model": "expandedstorage:block/oxidized_copper_chest_bottom",
+      "y": 90
+    },
+    "facing=east,open=true,type=front": {
+      "model": "expandedstorage:block/oxidized_copper_chest_front_open",
+      "y": 90
+    },
+    "facing=east,open=true,type=left": {
+      "model": "expandedstorage:block/oxidized_copper_chest_left_open",
+      "y": 90
+    },
+    "facing=east,open=true,type=right": {
+      "model": "expandedstorage:block/oxidized_copper_chest_right_open",
+      "y": 90
+    },
+    "facing=east,open=true,type=single": {
+      "model": "expandedstorage:block/oxidized_copper_chest_open",
+      "y": 90
+    },
+    "facing=east,open=true,type=top": {
+      "model": "expandedstorage:block/oxidized_copper_chest_top_open",
+      "y": 90
+    },
+    "facing=north,open=false,type=back": {
+      "model": "expandedstorage:block/oxidized_copper_chest_back"
+    },
+    "facing=north,open=false,type=bottom": {
+      "model": "expandedstorage:block/oxidized_copper_chest_bottom"
+    },
+    "facing=north,open=false,type=front": {
+      "model": "expandedstorage:block/oxidized_copper_chest_front"
+    },
+    "facing=north,open=false,type=left": {
+      "model": "expandedstorage:block/oxidized_copper_chest_left"
+    },
+    "facing=north,open=false,type=right": {
+      "model": "expandedstorage:block/oxidized_copper_chest_right"
+    },
+    "facing=north,open=false,type=single": {
+      "model": "expandedstorage:block/oxidized_copper_chest"
+    },
+    "facing=north,open=false,type=top": {
+      "model": "expandedstorage:block/oxidized_copper_chest_top"
+    },
+    "facing=north,open=true,type=back": {
+      "model": "expandedstorage:block/oxidized_copper_chest_back_open"
+    },
+    "facing=north,open=true,type=bottom": {
+      "model": "expandedstorage:block/oxidized_copper_chest_bottom"
+    },
+    "facing=north,open=true,type=front": {
+      "model": "expandedstorage:block/oxidized_copper_chest_front_open"
+    },
+    "facing=north,open=true,type=left": {
+      "model": "expandedstorage:block/oxidized_copper_chest_left_open"
+    },
+    "facing=north,open=true,type=right": {
+      "model": "expandedstorage:block/oxidized_copper_chest_right_open"
+    },
+    "facing=north,open=true,type=single": {
+      "model": "expandedstorage:block/oxidized_copper_chest_open"
+    },
+    "facing=north,open=true,type=top": {
+      "model": "expandedstorage:block/oxidized_copper_chest_top_open"
+    },
+    "facing=south,open=false,type=back": {
+      "model": "expandedstorage:block/oxidized_copper_chest_back",
+      "y": 180
+    },
+    "facing=south,open=false,type=bottom": {
+      "model": "expandedstorage:block/oxidized_copper_chest_bottom",
+      "y": 180
+    },
+    "facing=south,open=false,type=front": {
+      "model": "expandedstorage:block/oxidized_copper_chest_front",
+      "y": 180
+    },
+    "facing=south,open=false,type=left": {
+      "model": "expandedstorage:block/oxidized_copper_chest_left",
+      "y": 180
+    },
+    "facing=south,open=false,type=right": {
+      "model": "expandedstorage:block/oxidized_copper_chest_right",
+      "y": 180
+    },
+    "facing=south,open=false,type=single": {
+      "model": "expandedstorage:block/oxidized_copper_chest",
+      "y": 180
+    },
+    "facing=south,open=false,type=top": {
+      "model": "expandedstorage:block/oxidized_copper_chest_top",
+      "y": 180
+    },
+    "facing=south,open=true,type=back": {
+      "model": "expandedstorage:block/oxidized_copper_chest_back_open",
+      "y": 180
+    },
+    "facing=south,open=true,type=bottom": {
+      "model": "expandedstorage:block/oxidized_copper_chest_bottom",
+      "y": 180
+    },
+    "facing=south,open=true,type=front": {
+      "model": "expandedstorage:block/oxidized_copper_chest_front_open",
+      "y": 180
+    },
+    "facing=south,open=true,type=left": {
+      "model": "expandedstorage:block/oxidized_copper_chest_left_open",
+      "y": 180
+    },
+    "facing=south,open=true,type=right": {
+      "model": "expandedstorage:block/oxidized_copper_chest_right_open",
+      "y": 180
+    },
+    "facing=south,open=true,type=single": {
+      "model": "expandedstorage:block/oxidized_copper_chest_open",
+      "y": 180
+    },
+    "facing=south,open=true,type=top": {
+      "model": "expandedstorage:block/oxidized_copper_chest_top_open",
+      "y": 180
+    },
+    "facing=west,open=false,type=back": {
+      "model": "expandedstorage:block/oxidized_copper_chest_back",
+      "y": 270
+    },
+    "facing=west,open=false,type=bottom": {
+      "model": "expandedstorage:block/oxidized_copper_chest_bottom",
+      "y": 270
+    },
+    "facing=west,open=false,type=front": {
+      "model": "expandedstorage:block/oxidized_copper_chest_front",
+      "y": 270
+    },
+    "facing=west,open=false,type=left": {
+      "model": "expandedstorage:block/oxidized_copper_chest_left",
+      "y": 270
+    },
+    "facing=west,open=false,type=right": {
+      "model": "expandedstorage:block/oxidized_copper_chest_right",
+      "y": 270
+    },
+    "facing=west,open=false,type=single": {
+      "model": "expandedstorage:block/oxidized_copper_chest",
+      "y": 270
+    },
+    "facing=west,open=false,type=top": {
+      "model": "expandedstorage:block/oxidized_copper_chest_top",
+      "y": 270
+    },
+    "facing=west,open=true,type=back": {
+      "model": "expandedstorage:block/oxidized_copper_chest_back_open",
+      "y": 270
+    },
+    "facing=west,open=true,type=bottom": {
+      "model": "expandedstorage:block/oxidized_copper_chest_bottom",
+      "y": 270
+    },
+    "facing=west,open=true,type=front": {
+      "model": "expandedstorage:block/oxidized_copper_chest_front_open",
+      "y": 270
+    },
+    "facing=west,open=true,type=left": {
+      "model": "expandedstorage:block/oxidized_copper_chest_left_open",
+      "y": 270
+    },
+    "facing=west,open=true,type=right": {
+      "model": "expandedstorage:block/oxidized_copper_chest_right_open",
+      "y": 270
+    },
+    "facing=west,open=true,type=single": {
+      "model": "expandedstorage:block/oxidized_copper_chest_open",
+      "y": 270
+    },
+    "facing=west,open=true,type=top": {
+      "model": "expandedstorage:block/oxidized_copper_chest_top_open",
+      "y": 270
+    }
+  }
+}

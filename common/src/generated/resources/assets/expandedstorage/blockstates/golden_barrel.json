@@ -1,0 +1,160 @@
+{
+  "variants": {
+    "facing=down,open=false,type=bottom": {
+      "model": "expandedstorage:block/golden_barrel_bottom",
+      "x": 180
+    },
+    "facing=down,open=false,type=single": {
+      "model": "expandedstorage:block/golden_barrel",
+      "x": 180
+    },
+    "facing=down,open=false,type=top": {
+      "model": "expandedstorage:block/golden_barrel_top",
+      "x": 180
+    },
+    "facing=down,open=true,type=bottom": {
+      "model": "expandedstorage:block/golden_barrel_bottom",
+      "x": 180
+    },
+    "facing=down,open=true,type=single": {
+      "model": "expandedstorage:block/golden_barrel_open",
+      "x": 180
+    },
+    "facing=down,open=true,type=top": {
+      "model": "expandedstorage:block/golden_barrel_top_open",
+      "x": 180
+    },
+    "facing=east,open=false,type=bottom": {
+      "model": "expandedstorage:block/golden_barrel_bottom",
+      "x": 90,
+      "y": 90
+    },
+    "facing=east,open=false,type=single": {
+      "model": "expandedstorage:block/golden_barrel",
+      "x": 90,
+      "y": 90
+    },
+    "facing=east,open=false,type=top": {
+      "model": "expandedstorage:block/golden_barrel_top",
+      "x": 90,
+      "y": 90
+    },
+    "facing=east,open=true,type=bottom": {
+      "model": "expandedstorage:block/golden_barrel_bottom",
+      "x": 90,
+      "y": 90
+    },
+    "facing=east,open=true,type=single": {
+      "model": "expandedstorage:block/golden_barrel_open",
+      "x": 90,
+      "y": 90
+    },
+    "facing=east,open=true,type=top": {
+      "model": "expandedstorage:block/golden_barrel_top_open",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north,open=false,type=bottom": {
+      "model": "expandedstorage:block/golden_barrel_bottom",
+      "x": 90
+    },
+    "facing=north,open=false,type=single": {
+      "model": "expandedstorage:block/golden_barrel",
+      "x": 90
+    },
+    "facing=north,open=false,type=top": {
+      "model": "expandedstorage:block/golden_barrel_top",
+      "x": 90
+    },
+    "facing=north,open=true,type=bottom": {
+      "model": "expandedstorage:block/golden_barrel_bottom",
+      "x": 90
+    },
+    "facing=north,open=true,type=single": {
+      "model": "expandedstorage:block/golden_barrel_open",
+      "x": 90
+    },
+    "facing=north,open=true,type=top": {
+      "model": "expandedstorage:block/golden_barrel_top_open",
+      "x": 90
+    },
+    "facing=south,open=false,type=bottom": {
+      "model": "expandedstorage:block/golden_barrel_bottom",
+      "x": 90,
+      "y": 180
+    },
+    "facing=south,open=false,type=single": {
+      "model": "expandedstorage:block/golden_barrel",
+      "x": 90,
+      "y": 180
+    },
+    "facing=south,open=false,type=top": {
+      "model": "expandedstorage:block/golden_barrel_top",
+      "x": 90,
+      "y": 180
+    },
+    "facing=south,open=true,type=bottom": {
+      "model": "expandedstorage:block/golden_barrel_bottom",
+      "x": 90,
+      "y": 180
+    },
+    "facing=south,open=true,type=single": {
+      "model": "expandedstorage:block/golden_barrel_open",
+      "x": 90,
+      "y": 180
+    },
+    "facing=south,open=true,type=top": {
+      "model": "expandedstorage:block/golden_barrel_top_open",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up,open=false,type=bottom": {
+      "model": "expandedstorage:block/golden_barrel_bottom"
+    },
+    "facing=up,open=false,type=single": {
+      "model": "expandedstorage:block/golden_barrel"
+    },
+    "facing=up,open=false,type=top": {
+      "model": "expandedstorage:block/golden_barrel_top"
+    },
+    "facing=up,open=true,type=bottom": {
+      "model": "expandedstorage:block/golden_barrel_bottom"
+    },
+    "facing=up,open=true,type=single": {
+      "model": "expandedstorage:block/golden_barrel_open"
+    },
+    "facing=up,open=true,type=top": {
+      "model": "expandedstorage:block/golden_barrel_top_open"
+    },
+    "facing=west,open=false,type=bottom": {
+      "model": "expandedstorage:block/golden_barrel_bottom",
+      "x": 90,
+      "y": 270
+    },
+    "facing=west,open=false,type=single": {
+      "model": "expandedstorage:block/golden_barrel",
+      "x": 90,
+      "y": 270
+    },
+    "facing=west,open=false,type=top": {
+      "model": "expandedstorage:block/golden_barrel_top",
+      "x": 90,
+      "y": 270
+    },
+    "facing=west,open=true,type=bottom": {
+      "model": "expandedstorage:block/golden_barrel_bottom",
+      "x": 90,
+      "y": 270
+    },
+    "facing=west,open=true,type=single": {
+      "model": "expandedstorage:block/golden_barrel_open",
+      "x": 90,
+      "y": 270
+    },
+    "facing=west,open=true,type=top": {
+      "model": "expandedstorage:block/golden_barrel_top_open",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

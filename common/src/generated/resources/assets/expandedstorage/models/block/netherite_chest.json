@@ -1,0 +1,7 @@
+{
+  "parent": "expandedstorage:block/base/chest",
+  "textures": {
+    "atlas": "expandedstorage:block/netherite_chest",
+    "particle": "minecraft:block/netherite_block"
+  }
+}

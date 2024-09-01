@@ -1,0 +1,7 @@
+{
+  "parent": "expandedstorage:block/base/chest_right",
+  "textures": {
+    "atlas": "expandedstorage:block/obsidian_chest_right",
+    "particle": "minecraft:block/obsidian"
+  }
+}

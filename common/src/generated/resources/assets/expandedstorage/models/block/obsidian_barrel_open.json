@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/barrel_open",
+  "textures": {
+    "side": "expandedstorage:block/obsidian_barrel_side"
+  }
+}

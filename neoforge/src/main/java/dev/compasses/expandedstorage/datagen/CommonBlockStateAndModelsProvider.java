@@ -8,6 +8,8 @@ import dev.compasses.expandedstorage.block.misc.DoubleBlockType;
 import dev.compasses.expandedstorage.registration.ModBlocks;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.neoforge.client.model.generators.BlockModelBuilder;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
@@ -23,35 +25,56 @@ public class CommonBlockStateAndModelsProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        generateChestAssets(ModBlocks.WOODEN_CHEST, "");
+        generateChestAssets(ModBlocks.WOODEN_CHEST, Utils.id("block/wooden_chest_particle"));
+        generateChestAssets(ModBlocks.COPPER_CHEST, blockTexture(Blocks.COPPER_BLOCK));
+        generateChestAssets(ModBlocks.EXPOSED_COPPER_CHEST, blockTexture(Blocks.EXPOSED_COPPER));
+        generateChestAssets(ModBlocks.WEATHERED_COPPER_CHEST, blockTexture(Blocks.WEATHERED_COPPER));
+        generateChestAssets(ModBlocks.OXIDIZED_COPPER_CHEST, blockTexture(Blocks.OXIDIZED_COPPER));
+        generateChestAssets(ModBlocks.IRON_CHEST, blockTexture(Blocks.IRON_BLOCK));
+        generateChestAssets(ModBlocks.GOLDEN_CHEST, blockTexture(Blocks.GOLD_BLOCK));
+        generateChestAssets(ModBlocks.DIAMOND_CHEST, blockTexture(Blocks.DIAMOND_BLOCK));
+        generateChestAssets(ModBlocks.OBSIDIAN_CHEST, blockTexture(Blocks.OBSIDIAN));
+        generateChestAssets(ModBlocks.NETHERITE_CHEST, blockTexture(Blocks.NETHERITE_BLOCK));
 
-        generateBarrelAssets(ModBlocks.WOODEN_BARREL, "");
+        generateBarrelAssets(ModBlocks.WOODEN_BARREL);
+        generateBarrelAssets(ModBlocks.COPPER_BARREL);
+        generateBarrelAssets(ModBlocks.EXPOSED_COPPER_BARREL);
+        generateBarrelAssets(ModBlocks.WEATHERED_COPPER_BARREL);
+        generateBarrelAssets(ModBlocks.OXIDIZED_COPPER_BARREL);
+        generateBarrelAssets(ModBlocks.IRON_BARREL);
+        generateBarrelAssets(ModBlocks.GOLDEN_BARREL);
+        generateBarrelAssets(ModBlocks.DIAMOND_BARREL);
+        generateBarrelAssets(ModBlocks.OBSIDIAN_BARREL);
+        generateBarrelAssets(ModBlocks.NETHERITE_BARREL);
 
         Arrays.stream(ModBlocks.SHULKER_BOXES).forEach(this::generateShulkerBoxAssets);
     }
 
-    private BlockModelBuilder chestModel(String prefix, boolean open, DoubleBlockType blockType) {
+    private BlockModelBuilder chestModel(String prefix, ResourceLocation particle, boolean open, DoubleBlockType blockType) {
         String openSuffix = open ? "_open" : "";
         String parentSuffix = (blockType == DoubleBlockType.TOP ? DoubleBlockType.SINGLE : blockType).suffix();
+
         return models().withExistingParent(prefix + "chest" + blockType.suffix() + openSuffix, Utils.id("block/base/chest" + parentSuffix + openSuffix))
                 .texture("atlas", Utils.id("block/" + prefix + "chest" + blockType.suffix()))
-                .texture("particle", Utils.id("block/" + prefix + "chest_particle"));
+                .texture("particle", particle);
     }
 
-    private void generateChestAssets(ChestBlock block, String prefix) {
-        var closedChest = chestModel(prefix, false, DoubleBlockType.SINGLE);
-        var openChest = chestModel(prefix, true, DoubleBlockType.SINGLE);
-        var closedLeftChest = chestModel(prefix, false, DoubleBlockType.LEFT);
-        var openLeftChest = chestModel(prefix, true, DoubleBlockType.LEFT);
-        var closedRightChest = chestModel(prefix, false, DoubleBlockType.RIGHT);
-        var openRightChest = chestModel(prefix, true, DoubleBlockType.RIGHT);
-        var closedFrontChest = chestModel(prefix, false, DoubleBlockType.FRONT);
-        var openFrontChest = chestModel(prefix, true, DoubleBlockType.FRONT);
-        var closedBackChest = chestModel(prefix, false, DoubleBlockType.BACK);
-        var openBackChest = chestModel(prefix, true, DoubleBlockType.BACK);
-        var closedTopChest = chestModel(prefix, false, DoubleBlockType.TOP);
-        var openTopChest = chestModel(prefix, true, DoubleBlockType.TOP);
-        var bottomChest = chestModel(prefix, false, DoubleBlockType.BOTTOM);
+    private void generateChestAssets(ChestBlock block, ResourceLocation particle) {
+        String prefix = block.builtInRegistryHolder().key().location().getPath().replace("chest", "");
+
+        var closedChest = chestModel(prefix, particle, false, DoubleBlockType.SINGLE);
+        var openChest = chestModel(prefix, particle, true, DoubleBlockType.SINGLE);
+        var closedLeftChest = chestModel(prefix, particle, false, DoubleBlockType.LEFT);
+        var openLeftChest = chestModel(prefix, particle, true, DoubleBlockType.LEFT);
+        var closedRightChest = chestModel(prefix, particle, false, DoubleBlockType.RIGHT);
+        var openRightChest = chestModel(prefix, particle, true, DoubleBlockType.RIGHT);
+        var closedFrontChest = chestModel(prefix, particle, false, DoubleBlockType.FRONT);
+        var openFrontChest = chestModel(prefix, particle, true, DoubleBlockType.FRONT);
+        var closedBackChest = chestModel(prefix, particle, false, DoubleBlockType.BACK);
+        var openBackChest = chestModel(prefix, particle, true, DoubleBlockType.BACK);
+        var closedTopChest = chestModel(prefix, particle, false, DoubleBlockType.TOP);
+        var openTopChest = chestModel(prefix, particle, true, DoubleBlockType.TOP);
+        var bottomChest = chestModel(prefix, particle, false, DoubleBlockType.BOTTOM);
 
         getVariantBuilder(block).forAllStatesExcept(state -> {
             DoubleBlockType chestType = state.getValue(ChestBlock.CHEST_TYPE);
@@ -86,7 +109,9 @@ public class CommonBlockStateAndModelsProvider extends BlockStateProvider {
         simpleBlockItem(block, models().getExistingFile(closedChest.getLocation()));
     }
 
-    private void generateBarrelAssets(BarrelBlock block, String prefix) {
+    private void generateBarrelAssets(BarrelBlock block) {
+        String prefix = block.builtInRegistryHolder().key().location().getPath().replace("barrel", "");
+
         var closedModel = models().withExistingParent(prefix + "barrel", "block/barrel")
                         .texture("side", Utils.id("block/" + prefix + "barrel_side"));
 

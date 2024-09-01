@@ -79,6 +79,11 @@ public class ChestBlockRenderer implements BlockEntityRenderer<ChestBlockEntity>
     @Override
     public void render(ChestBlockEntity entity, float partialTick, PoseStack poses, MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
         BlockState state = entity.getBlockState();
+
+        if (!(state.getBlock() instanceof ChestBlock chestBlock)) {
+            return;
+        }
+
         DoubleBlockType chestType = state.getValue(ChestBlock.CHEST_TYPE);
 
         if (!state.getValue(BlockStateProperties.OPEN) || chestType == DoubleBlockType.BOTTOM) {
@@ -90,7 +95,7 @@ public class ChestBlockRenderer implements BlockEntityRenderer<ChestBlockEntity>
         poses.mulPose(Axis.YP.rotationDegrees(-state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot()));
         poses.translate(-0.5F, -0.5F, -0.5F);
 
-        VertexConsumer consumer = EntityTextures.chestMaterials.get(chestType).buffer(bufferSource, RenderType::entityCutout);
+        VertexConsumer consumer = EntityTextures.chestMaterials.get(chestBlock).get(chestType).buffer(bufferSource, RenderType::entityCutout);
 
         ModelPart lid = switch (chestType) {
             case SINGLE, TOP -> singleLid;
