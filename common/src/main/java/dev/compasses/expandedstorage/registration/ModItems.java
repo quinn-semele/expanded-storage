@@ -55,7 +55,7 @@ public class ModItems {
 
     public static void registerCreativeTab(CreativeModeTab.Builder builder) {
         Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, Utils.id("tab"), builder
-                .icon(() -> ModItems.SHULKER_BOXES[0].getDefaultInstance())
+                .icon(ModItems.OXIDIZED_COPPER_CHEST::getDefaultInstance)
                 .title(Component.translatable("itemGroup.expandedstorage.tab"))
                 .displayItems(ModItems::addContentToCreativeTab)
                 .build());
