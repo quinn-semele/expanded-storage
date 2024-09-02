@@ -1,7 +1,0 @@
-{
-  "parent": "expandedstorage:block/base/chest_back",
-  "textures": {
-    "atlas": "expandedstorage:block/wooden_chest_back",
-    "particle": "expandedstorage:block/wooden_chest_particle"
-  }
-}

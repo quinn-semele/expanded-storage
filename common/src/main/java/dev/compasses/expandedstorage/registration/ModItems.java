@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.function.Consumer;
 
 public class ModItems {
-    public static final Item WOODEN_CHEST = register("wooden_chest", new BlockItem(ModBlocks.WOODEN_CHEST, new Item.Properties()));
+    public static final Item COMMON_CHEST = register("chest", new BlockItem(ModBlocks.COMMON_CHEST, new Item.Properties()));
     public static final Item COPPER_CHEST = register("copper_chest", new BlockItem(ModBlocks.COPPER_CHEST, new Item.Properties()));
     public static final Item EXPOSED_COPPER_CHEST = register("exposed_copper_chest", new BlockItem(ModBlocks.EXPOSED_COPPER_CHEST, new Item.Properties()));
     public static final Item WEATHERED_COPPER_CHEST = register("weathered_copper_chest", new BlockItem(ModBlocks.WEATHERED_COPPER_CHEST, new Item.Properties()));
@@ -25,7 +25,7 @@ public class ModItems {
     public static final Item OBSIDIAN_CHEST = register("obsidian_chest", new BlockItem(ModBlocks.OBSIDIAN_CHEST, new Item.Properties()));
     public static final Item NETHERITE_CHEST = register("netherite_chest", new BlockItem(ModBlocks.NETHERITE_CHEST, new Item.Properties().fireResistant()));
 
-    public static final Item WOODEN_BARREL = register("wooden_barrel", new BlockItem(ModBlocks.WOODEN_BARREL, new Item.Properties()));
+    public static final Item COMMON_BARREL = register("barrel", new BlockItem(ModBlocks.COMMON_BARREL, new Item.Properties()));
     public static final Item COPPER_BARREL = register("copper_barrel", new BlockItem(ModBlocks.COPPER_BARREL, new Item.Properties()));
     public static final Item EXPOSED_COPPER_BARREL = register("exposed_copper_barrel", new BlockItem(ModBlocks.EXPOSED_COPPER_BARREL, new Item.Properties()));
     public static final Item WEATHERED_COPPER_BARREL = register("weathered_copper_barrel", new BlockItem(ModBlocks.WEATHERED_COPPER_BARREL, new Item.Properties()));
@@ -42,7 +42,7 @@ public class ModItems {
 
     public static final Item[] UPGRADES = registerUpgrades(
             List.of(
-                    Map.entry("standard", properties -> {}),
+                    Map.entry("common", properties -> {}),
                     Map.entry("copper", properties -> {}),
                     Map.entry("iron", properties -> {}),
                     Map.entry("golden", properties -> {}),

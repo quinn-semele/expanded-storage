@@ -1,12 +1,12 @@
 {
   "itemGroup.expandedstorage.tab": "Expanded Storage",
 
-  "item.expandedstorage.standard_to_copper_upgrade": "Standard to Copper Upgrade",
-  "item.expandedstorage.standard_to_iron_upgrade": "Standard to Iron Upgrade",
-  "item.expandedstorage.standard_to_golden_upgrade": "Standard to Golden Upgrade",
-  "item.expandedstorage.standard_to_diamond_upgrade": "Standard to Diamond Upgrade",
-  "item.expandedstorage.standard_to_obsidian_upgrade": "Standard to Obsidian Upgrade",
-  "item.expandedstorage.standard_to_netherite_upgrade": "Standard to Netherite Upgrade",
+  "item.expandedstorage.common_to_copper_upgrade": "Common to Copper Upgrade",
+  "item.expandedstorage.common_to_iron_upgrade": "Common to Iron Upgrade",
+  "item.expandedstorage.common_to_golden_upgrade": "Common to Golden Upgrade",
+  "item.expandedstorage.common_to_diamond_upgrade": "Common to Diamond Upgrade",
+  "item.expandedstorage.common_to_obsidian_upgrade": "Common to Obsidian Upgrade",
+  "item.expandedstorage.common_to_netherite_upgrade": "Common to Netherite Upgrade",
 
   "item.expandedstorage.copper_to_iron_upgrade": "Copper to Iron Upgrade",
   "item.expandedstorage.copper_to_golden_upgrade": "Copper to Golden Upgrade",
@@ -28,7 +28,7 @@
 
   "item.expandedstorage.obsidian_to_netherite_upgrade": "Obsidian to Netherite Upgrade",
 
-  "block.expandedstorage.wooden_barrel": "Wooden Barrel",
+  "block.expandedstorage.barrel": "Barrel",
   "block.expandedstorage.copper_barrel": "Copper Barrel",
   "block.expandedstorage.exposed_copper_barrel": "Exposed Copper Barrel",
   "block.expandedstorage.weathered_copper_barrel": "Weathered Copper Barrel",
@@ -39,7 +39,7 @@
   "block.expandedstorage.obsidian_barrel": "Obsidian Barrel",
   "block.expandedstorage.netherite_barrel": "Netherite Barrel",
 
-  "block.expandedstorage.wooden_chest": "Wooden Chest",
+  "block.expandedstorage.chest": "Chest",
   "block.expandedstorage.copper_chest": "Copper Chest",
   "block.expandedstorage.exposed_copper_chest": "Exposed Copper Chest",
   "block.expandedstorage.weathered_copper_chest": "Weathered Copper Chest",

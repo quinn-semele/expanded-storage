@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "expandedstorage:item/standard_to_iron_upgrade"
+    "layer0": "expandedstorage:item/common_to_copper_upgrade"
   }
 }

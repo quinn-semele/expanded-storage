@@ -14,7 +14,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import java.util.Arrays;
 
 public class ModBlocks {
-    public static final ChestBlock WOODEN_CHEST = register("wooden_chest", new ChestBlock(Properties.ofFullCopy(Blocks.OAK_PLANKS)));
+    public static final ChestBlock COMMON_CHEST = register("chest", new ChestBlock(Properties.ofFullCopy(Blocks.OAK_PLANKS)));
     public static final ChestBlock COPPER_CHEST = register("copper_chest", new ChestBlock(Properties.ofFullCopy(Blocks.COPPER_BLOCK)));
     public static final ChestBlock EXPOSED_COPPER_CHEST = register("exposed_copper_chest", new ChestBlock(Properties.ofFullCopy(Blocks.EXPOSED_COPPER)));
     public static final ChestBlock WEATHERED_COPPER_CHEST = register("weathered_copper_chest", new ChestBlock(Properties.ofFullCopy(Blocks.WEATHERED_COPPER)));
@@ -26,7 +26,7 @@ public class ModBlocks {
     public static final ChestBlock NETHERITE_CHEST = register("netherite_chest", new ChestBlock(Properties.ofFullCopy(Blocks.NETHERITE_BLOCK)));
 
     public static final ChestBlock[] CHESTS = {
-            WOODEN_CHEST,
+            COMMON_CHEST,
             COPPER_CHEST,
             EXPOSED_COPPER_CHEST,
             WEATHERED_COPPER_CHEST,
@@ -38,7 +38,7 @@ public class ModBlocks {
             NETHERITE_CHEST
     };
 
-    public static final BarrelBlock WOODEN_BARREL = register("wooden_barrel", new BarrelBlock(Properties.ofFullCopy(Blocks.OAK_PLANKS)));
+    public static final BarrelBlock COMMON_BARREL = register("barrel", new BarrelBlock(Properties.ofFullCopy(Blocks.OAK_PLANKS)));
     public static final BarrelBlock COPPER_BARREL = register("copper_barrel", new BarrelBlock(Properties.ofFullCopy(Blocks.OAK_PLANKS)));
     public static final BarrelBlock EXPOSED_COPPER_BARREL = register("exposed_copper_barrel", new BarrelBlock(Properties.ofFullCopy(Blocks.OAK_PLANKS)));
     public static final BarrelBlock WEATHERED_COPPER_BARREL = register("weathered_copper_barrel", new BarrelBlock(Properties.ofFullCopy(Blocks.OAK_PLANKS)));
@@ -50,7 +50,7 @@ public class ModBlocks {
     public static final BarrelBlock NETHERITE_BARREL = register("netherite_barrel", new BarrelBlock(Properties.ofFullCopy(Blocks.OAK_PLANKS)));
 
     public static final BarrelBlock[] BARRELS = {
-            WOODEN_BARREL,
+            COMMON_BARREL,
             COPPER_BARREL,
             EXPOSED_COPPER_BARREL,
             WEATHERED_COPPER_BARREL,

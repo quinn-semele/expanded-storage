@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "expandedstorage:item/standard_to_golden_upgrade"
-  }
-}
