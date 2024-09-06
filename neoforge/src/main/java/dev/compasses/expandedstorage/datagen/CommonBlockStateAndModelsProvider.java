@@ -28,7 +28,7 @@ public class CommonBlockStateAndModelsProvider extends BlockStateProvider {
     protected void registerStatesAndModels() {
         Arrays.stream(ModItems.UPGRADES).forEach(itemModels()::basicItem);
 
-        generateChestAssets(ModBlocks.COMMON_CHEST, Utils.id("block/chest_particle"));
+        generateChestAssets(ModBlocks.COMMON_CHEST, blockTexture(Blocks.OAK_PLANKS));
         generateChestAssets(ModBlocks.COPPER_CHEST, blockTexture(Blocks.COPPER_BLOCK));
         generateChestAssets(ModBlocks.EXPOSED_COPPER_CHEST, blockTexture(Blocks.EXPOSED_COPPER));
         generateChestAssets(ModBlocks.WEATHERED_COPPER_CHEST, blockTexture(Blocks.WEATHERED_COPPER));
