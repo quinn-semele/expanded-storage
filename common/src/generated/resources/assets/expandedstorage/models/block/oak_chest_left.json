@@ -1,7 +1,7 @@
 {
   "parent": "expandedstorage:block/base/chest_left",
   "textures": {
-    "atlas": "expandedstorage:block/chest_left",
+    "atlas": "expandedstorage:block/oak_chest_left",
     "particle": "minecraft:block/oak_planks"
   }
 }
