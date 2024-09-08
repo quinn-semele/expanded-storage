@@ -17,6 +17,7 @@ public class ModBlocks {
     public static final ChestBlock OAK_CHEST = register("oak_chest", new ChestBlock(Properties.ofFullCopy(Blocks.OAK_PLANKS)));
     public static final ChestBlock SPRUCE_CHEST = register("spruce_chest", new ChestBlock(Properties.ofFullCopy(Blocks.SPRUCE_PLANKS)));
     public static final ChestBlock BIRCH_CHEST = register("birch_chest", new ChestBlock(Properties.ofFullCopy(Blocks.BIRCH_PLANKS)));
+    public static final ChestBlock DARK_OAK_CHEST = register("dark_oak_chest", new ChestBlock(Properties.ofFullCopy(Blocks.DARK_OAK_PLANKS)));
     public static final ChestBlock COPPER_CHEST = register("copper_chest", new ChestBlock(Properties.ofFullCopy(Blocks.COPPER_BLOCK)));
     public static final ChestBlock EXPOSED_COPPER_CHEST = register("exposed_copper_chest", new ChestBlock(Properties.ofFullCopy(Blocks.EXPOSED_COPPER)));
     public static final ChestBlock WEATHERED_COPPER_CHEST = register("weathered_copper_chest", new ChestBlock(Properties.ofFullCopy(Blocks.WEATHERED_COPPER)));
@@ -31,6 +32,7 @@ public class ModBlocks {
             OAK_CHEST,
             SPRUCE_CHEST,
             BIRCH_CHEST,
+            DARK_OAK_CHEST,
             COPPER_CHEST,
             EXPOSED_COPPER_CHEST,
             WEATHERED_COPPER_CHEST,

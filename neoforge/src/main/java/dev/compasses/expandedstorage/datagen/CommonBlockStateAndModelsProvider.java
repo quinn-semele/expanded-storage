@@ -31,6 +31,7 @@ public class CommonBlockStateAndModelsProvider extends BlockStateProvider {
         generateChestAssets(ModBlocks.OAK_CHEST, blockTexture(Blocks.OAK_PLANKS));
         generateChestAssets(ModBlocks.SPRUCE_CHEST, blockTexture(Blocks.SPRUCE_PLANKS));
         generateChestAssets(ModBlocks.BIRCH_CHEST, blockTexture(Blocks.BIRCH_PLANKS));
+        generateChestAssets(ModBlocks.DARK_OAK_CHEST, blockTexture(Blocks.DARK_OAK_PLANKS));
         generateChestAssets(ModBlocks.COPPER_CHEST, blockTexture(Blocks.COPPER_BLOCK));
         generateChestAssets(ModBlocks.EXPOSED_COPPER_CHEST, blockTexture(Blocks.EXPOSED_COPPER));
         generateChestAssets(ModBlocks.WEATHERED_COPPER_CHEST, blockTexture(Blocks.WEATHERED_COPPER));

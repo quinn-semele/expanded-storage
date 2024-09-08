@@ -17,6 +17,7 @@ public class ModItems {
     public static final Item OAK_CHEST = register("oak_chest", new BlockItem(ModBlocks.OAK_CHEST, new Item.Properties()));
     public static final Item SPRUCE_CHEST = register("spruce_chest", new BlockItem(ModBlocks.SPRUCE_CHEST, new Item.Properties()));
     public static final Item BIRCH_CHEST = register("birch_chest", new BlockItem(ModBlocks.BIRCH_CHEST, new Item.Properties()));
+    public static final Item DARK_OAK_CHEST = register("dark_oak_chest", new BlockItem(ModBlocks.DARK_OAK_CHEST, new Item.Properties()));
     public static final Item COPPER_CHEST = register("copper_chest", new BlockItem(ModBlocks.COPPER_CHEST, new Item.Properties()));
     public static final Item EXPOSED_COPPER_CHEST = register("exposed_copper_chest", new BlockItem(ModBlocks.EXPOSED_COPPER_CHEST, new Item.Properties()));
     public static final Item WEATHERED_COPPER_CHEST = register("weathered_copper_chest", new BlockItem(ModBlocks.WEATHERED_COPPER_CHEST, new Item.Properties()));
