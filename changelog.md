@@ -1,1 +1,4 @@
-- Fix config key translation on Fabric/Quilt.
+- Now requires 1.21.1
+- Adjust the hardness of obsidian and netherite chest to take 5 seconds to mine with the correct tool.
+- Fix all the locks sliding up... How did I not notice this???
+- Add direct crafting recipes from wood to iron tier.
