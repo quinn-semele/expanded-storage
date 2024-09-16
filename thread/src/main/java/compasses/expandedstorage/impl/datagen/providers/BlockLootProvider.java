@@ -15,9 +15,4 @@ public final class BlockLootProvider extends FabricBlockLootTableProvider {
     public void generate() {
         BlockLootTableHelper.registerLootTables(this::add, this::createNameableBlockEntityTable);
     }
-
-    @Override
-    public String getName() {
-        return "Expanded Storage - Loot Tables";
-    }
 }

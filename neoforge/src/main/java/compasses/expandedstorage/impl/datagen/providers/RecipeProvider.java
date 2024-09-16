@@ -24,9 +24,4 @@ public final class RecipeProvider extends net.minecraft.data.recipes.RecipeProvi
         );
         recipeHelper.registerRecipes(output);
     }
-
-    @Override
-    public String getName() {
-        return "Expanded Storage - Recipes";
-    }
 }

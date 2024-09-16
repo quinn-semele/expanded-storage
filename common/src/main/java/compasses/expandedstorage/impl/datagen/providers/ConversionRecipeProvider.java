@@ -574,6 +574,6 @@ public abstract class ConversionRecipeProvider implements DataProvider {
     @NotNull
     @Override
     public String getName() {
-        return "Expanded Storage - Conversion Recipes";
+        return "Conversion Recipes";
     }
 }

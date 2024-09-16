@@ -27,12 +27,6 @@ public final class TagProvider {
             this.getOrCreateTagBuilder(ModTags.Blocks.ES_WOODEN_CHESTS)
                 .addOptionalTag(ConventionalBlockTags.WOODEN_CHESTS);
         }
-
-        @NotNull
-        @Override
-        public String getName() {
-            return "Expanded Storage - Block Tags";
-        }
     }
 
     public static final class Item extends FabricTagProvider.ItemTagProvider {
@@ -52,12 +46,6 @@ public final class TagProvider {
             this.getOrCreateTagBuilder(ThreadTags.Items.BAMBOO)
                 .add(Items.BAMBOO)
                 .addOptionalTag(ThreadTags.Items.BAMBOO_OLD);
-        }
-
-        @NotNull
-        @Override
-        public String getName() {
-            return "Expanded Storage - Item Tags";
         }
     }
 
@@ -80,12 +68,6 @@ public final class TagProvider {
                 .add(ModEntityTypes.MOSS_CHEST_MINECART);
 
             TagHelper.registerEntityTypeTags(this::getOrCreateTagBuilder);
-        }
-
-        @NotNull
-        @Override
-        public String getName() {
-            return "Expanded Storage - Entity Type Tags";
         }
     }
 }

@@ -24,10 +24,4 @@ public class BlockStateProvider extends FabricModelProvider {
         Consumer<Item> generateFlatItemModel = item -> generator.generateFlatItem(item, ModelTemplates.FLAT_ITEM);
         ModelHelper.registerItemModels(generateFlatItemModel);
     }
-
-    @NotNull
-    @Override
-    public String getName() {
-        return "Expanded Storage - BlockStates / Models";
-    }
 }

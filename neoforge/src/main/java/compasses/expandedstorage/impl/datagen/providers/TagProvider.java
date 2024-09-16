@@ -30,11 +30,6 @@ public final class TagProvider {
             this.tag(ModTags.Blocks.ES_WOODEN_CHESTS)
                 .addTag(Tags.Blocks.CHESTS_WOODEN);
         }
-
-        @Override
-        public String getName() {
-            return "Expanded Storage - Block Tags";
-        }
     }
 
     public static final class Item extends ItemTagsProvider {
@@ -50,11 +45,6 @@ public final class TagProvider {
                 .addTag(Tags.Items.CHESTS_WOODEN);
             this.tag(ForgeTags.Items.BAMBOO)
                 .add(Items.BAMBOO);
-        }
-
-        @Override
-        public String getName() {
-            return "Expanded Storage - Item Tags";
         }
     }
 
@@ -77,11 +67,6 @@ public final class TagProvider {
                 .add(ModEntityTypes.MOSS_CHEST_MINECART);
 
             TagHelper.registerEntityTypeTags(this::tag);
-        }
-
-        @Override
-        public String getName() {
-            return "Expanded Storage - Entity Type Tags";
         }
     }
 }

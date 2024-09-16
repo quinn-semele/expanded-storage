@@ -28,10 +28,4 @@ public class RecipeProvider extends FabricRecipeProvider {
 
         recipeHelper.registerRecipes(output);
     }
-
-    @NotNull
-    @Override
-    public String getName() {
-        return "Expanded Storage - Recipes";
-    }
 }
