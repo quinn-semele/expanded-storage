@@ -98,6 +98,13 @@ public class RecipeHelper {
                 .define('I', ironIngots)
                 .define('K', ModItems.WOOD_TO_COPPER_CONVERSION_KIT)
                 .save(output);
+        shapedRecipe(ModItems.WOOD_TO_IRON_CONVERSION_KIT, RecipeCategory.MISC, 1, Criterions.HAS_ITEM, ItemTags.PLANKS)
+                .pattern("III")
+                .pattern("IPI")
+                .pattern("III")
+                .define('I', ironIngots)
+                .define('P', ItemTags.PLANKS)
+                .save(output, Utils.id("expensive_wood_to_iron_conversion_kit"));
         shapedRecipe(ModItems.WOOD_TO_GOLD_CONVERSION_KIT, RecipeCategory.MISC, 1, Criterions.HAS_PREVIOUS_KIT, ModItems.WOOD_TO_IRON_CONVERSION_KIT)
                 .pattern("GGG")
                 .pattern("GKG")
@@ -263,6 +270,14 @@ public class RecipeHelper {
                 .define('B', ModItems.COPPER_CHEST)
                 .group(id(ModItems.IRON_CHEST))
                 .save(output);
+        shapedRecipe(ModItems.IRON_CHEST, RecipeCategory.MISC, 1, Criterions.HAS_PREVIOUS_BLOCK, ModTags.Items.ES_WOODEN_CHESTS)
+                .pattern("III")
+                .pattern("ICI")
+                .pattern("III")
+                .define('I', ironIngots)
+                .define('C', ModTags.Items.ES_WOODEN_CHESTS)
+                .group(id(ModItems.IRON_CHEST))
+                .save(output, Utils.id("expensive_iron_chest"));
         shapedRecipe(ModItems.GOLD_CHEST, RecipeCategory.MISC, 1, Criterions.HAS_PREVIOUS_BLOCK, ModItems.IRON_CHEST)
                 .pattern("GGG")
                 .pattern("GBG")
@@ -331,6 +346,14 @@ public class RecipeHelper {
                 .define('B', ModItems.OLD_COPPER_CHEST)
                 .group(id(ModItems.OLD_IRON_CHEST))
                 .save(output);
+        shapedRecipe(ModItems.OLD_IRON_CHEST, RecipeCategory.MISC, 1, Criterions.HAS_PREVIOUS_BLOCK, ModItems.OLD_WOOD_CHEST)
+                .pattern("III")
+                .pattern("ICI")
+                .pattern("III")
+                .define('I', ironIngots)
+                .define('C', ModItems.OLD_WOOD_CHEST)
+                .group(id(ModItems.OLD_IRON_CHEST))
+                .save(output, Utils.id("expensive_old_iron_chest"));
         shapedRecipe(ModItems.OLD_GOLD_CHEST, RecipeCategory.MISC, 1, Criterions.HAS_PREVIOUS_BLOCK, ModItems.OLD_IRON_CHEST)
                 .pattern("GGG")
                 .pattern("GBG")
@@ -451,6 +474,13 @@ public class RecipeHelper {
                 .define('I', ironIngots)
                 .define('B', ModItems.COPPER_BARREL)
                 .save(output);
+        shapedRecipe(ModItems.IRON_BARREL, RecipeCategory.MISC, 1, Criterions.HAS_PREVIOUS_BLOCK, woodenBarrels)
+                .pattern("III")
+                .pattern("IBI")
+                .pattern("III")
+                .define('I', ironIngots)
+                .define('B', woodenBarrels)
+                .save(output, Utils.id("expensive_iron_barrel"));
         shapedRecipe(ModItems.GOLD_BARREL, RecipeCategory.MISC, 1, Criterions.HAS_PREVIOUS_BLOCK, ModItems.IRON_BARREL)
                 .pattern("GGG")
                 .pattern("GBG")
