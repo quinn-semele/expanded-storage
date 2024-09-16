@@ -24,12 +24,12 @@ import java.util.function.Function;
 
 public class RecipeHelper {
     private final Function<Item, ResourceLocation> itemIdGetter;
-    private final TagKey<Item> copperIngots, ironNuggets, ironIngots, goldIngots, diamonds, obsidianBlocks, netheriteIngots;
+    private final TagKey<Item> copperIngots, ironNuggets, ironIngots, goldIngots, diamonds, netheriteIngots;
     private final TagKey<Item> glassBlocks, woodenChests, woodenBarrels, redDyes, whiteDyes, bamboo;
 
     public RecipeHelper(
             Function<Item, ResourceLocation> itemIdGetter,
-            TagKey<Item> copperIngots, TagKey<Item> ironNuggets, TagKey<Item> ironIngots, TagKey<Item> goldIngots, TagKey<Item> diamonds, TagKey<Item> obsidianBlocks, TagKey<Item> netheriteIngots,
+            TagKey<Item> copperIngots, TagKey<Item> ironNuggets, TagKey<Item> ironIngots, TagKey<Item> goldIngots, TagKey<Item> diamonds, TagKey<Item> netheriteIngots,
             TagKey<Item> woodenChests, TagKey<Item> woodenBarrels,
             TagKey<Item> glassBlocks, TagKey<Item> redDyes, TagKey<Item> whiteDyes, TagKey<Item> bamboo
     ) {
@@ -39,7 +39,6 @@ public class RecipeHelper {
         this.ironIngots = ironIngots;
         this.goldIngots = goldIngots;
         this.diamonds = diamonds;
-        this.obsidianBlocks = obsidianBlocks;
         this.netheriteIngots = netheriteIngots;
         this.woodenChests = woodenChests;
         this.woodenBarrels = woodenBarrels;
@@ -124,7 +123,7 @@ public class RecipeHelper {
                 .pattern("OOO")
                 .pattern("OKO")
                 .pattern("OOO")
-                .define('O', obsidianBlocks)
+                .define('O', Blocks.OBSIDIAN)
                 .define('K', ModItems.WOOD_TO_DIAMOND_CONVERSION_KIT)
                 .save(output);
         smithingRecipe(ModItems.WOOD_TO_NETHERITE_CONVERSION_KIT, ModItems.WOOD_TO_OBSIDIAN_CONVERSION_KIT, netheriteIngots, RecipeCategory.MISC, Criterions.HAS_PREVIOUS_KIT, output);
@@ -155,7 +154,7 @@ public class RecipeHelper {
                 .pattern("OOO")
                 .pattern("OKO")
                 .pattern("OOO")
-                .define('O', obsidianBlocks)
+                .define('O', Blocks.OBSIDIAN)
                 .define('K', ModItems.COPPER_TO_DIAMOND_CONVERSION_KIT)
                 .save(output);
         smithingRecipe(ModItems.COPPER_TO_NETHERITE_CONVERSION_KIT, ModItems.COPPER_TO_OBSIDIAN_CONVERSION_KIT, netheriteIngots, RecipeCategory.MISC, Criterions.HAS_PREVIOUS_KIT, output);
@@ -178,7 +177,7 @@ public class RecipeHelper {
                 .pattern("OOO")
                 .pattern("OKO")
                 .pattern("OOO")
-                .define('O', obsidianBlocks)
+                .define('O', Blocks.OBSIDIAN)
                 .define('K', ModItems.IRON_TO_DIAMOND_CONVERSION_KIT)
                 .save(output);
         smithingRecipe(ModItems.IRON_TO_NETHERITE_CONVERSION_KIT, ModItems.IRON_TO_OBSIDIAN_CONVERSION_KIT, netheriteIngots, RecipeCategory.MISC, Criterions.HAS_PREVIOUS_KIT, output);
@@ -194,7 +193,7 @@ public class RecipeHelper {
                 .pattern("OOO")
                 .pattern("OKO")
                 .pattern("OOO")
-                .define('O', obsidianBlocks)
+                .define('O', Blocks.OBSIDIAN)
                 .define('K', ModItems.GOLD_TO_DIAMOND_CONVERSION_KIT)
                 .save(output);
         smithingRecipe(ModItems.GOLD_TO_NETHERITE_CONVERSION_KIT, ModItems.GOLD_TO_OBSIDIAN_CONVERSION_KIT, netheriteIngots, RecipeCategory.MISC, Criterions.HAS_PREVIOUS_KIT, output);
@@ -202,13 +201,13 @@ public class RecipeHelper {
                 .pattern("OOO")
                 .pattern("ODO")
                 .pattern("OOO")
-                .define('O', obsidianBlocks)
+                .define('O', Blocks.OBSIDIAN)
                 .define('D', diamonds)
                 .save(output);
         smithingRecipe(ModItems.DIAMOND_TO_NETHERITE_CONVERSION_KIT, ModItems.DIAMOND_TO_OBSIDIAN_CONVERSION_KIT, netheriteIngots, RecipeCategory.MISC, Criterions.HAS_PREVIOUS_KIT, output);
 
-        SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), Ingredient.of(obsidianBlocks), Ingredient.of(netheriteIngots), RecipeCategory.MISC, ModItems.OBSIDIAN_TO_NETHERITE_CONVERSION_KIT)
-                                      .unlocks(Criterions.HAS_ITEM, RecipeProvider.has(obsidianBlocks))
+        SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), Ingredient.of(Blocks.OBSIDIAN), Ingredient.of(netheriteIngots), RecipeCategory.MISC, ModItems.OBSIDIAN_TO_NETHERITE_CONVERSION_KIT)
+                                      .unlocks(Criterions.HAS_ITEM, RecipeProvider.has(Blocks.OBSIDIAN))
                                       .save(output, itemIdGetter.apply(ModItems.OBSIDIAN_TO_NETHERITE_CONVERSION_KIT));
     }
 
@@ -299,7 +298,7 @@ public class RecipeHelper {
                 .pattern("OOO")
                 .pattern("OBO")
                 .pattern("OOO")
-                .define('O', obsidianBlocks)
+                .define('O', Blocks.OBSIDIAN)
                 .define('B', ModItems.DIAMOND_CHEST)
                 .group(id(ModItems.OBSIDIAN_CHEST))
                 .save(output);
@@ -375,7 +374,7 @@ public class RecipeHelper {
                 .pattern("OOO")
                 .pattern("OBO")
                 .pattern("OOO")
-                .define('O', obsidianBlocks)
+                .define('O', Blocks.OBSIDIAN)
                 .define('B', ModItems.OLD_DIAMOND_CHEST)
                 .group(id(ModItems.OLD_OBSIDIAN_CHEST))
                 .save(output);
@@ -500,7 +499,7 @@ public class RecipeHelper {
                 .pattern("OOO")
                 .pattern("OBO")
                 .pattern("OOO")
-                .define('O', obsidianBlocks)
+                .define('O', Blocks.OBSIDIAN)
                 .define('B', ModItems.DIAMOND_BARREL)
                 .save(output);
         smithingRecipe(ModItems.NETHERITE_BARREL, ModItems.OBSIDIAN_BARREL, netheriteIngots, RecipeCategory.MISC, Criterions.HAS_PREVIOUS_BLOCK, output);

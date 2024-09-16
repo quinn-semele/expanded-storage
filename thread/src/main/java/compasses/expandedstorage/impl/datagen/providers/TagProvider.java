@@ -49,8 +49,6 @@ public final class TagProvider {
                 .addOptionalTag(ConventionalItemTags.WOODEN_CHESTS);
             this.getOrCreateTagBuilder(ThreadTags.Items.IRON_NUGGETS)
                 .add(Items.IRON_NUGGET);
-            this.getOrCreateTagBuilder(ThreadTags.Items.OBSIDIAN)
-                .add(Items.OBSIDIAN);
             this.getOrCreateTagBuilder(ThreadTags.Items.BAMBOO)
                 .add(Items.BAMBOO)
                 .addOptionalTag(ThreadTags.Items.BAMBOO_OLD);

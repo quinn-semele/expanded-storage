@@ -13,7 +13,6 @@ public final class ThreadTags {
 
     public static class Items {
         public static final TagKey<Item> IRON_NUGGETS = tag(commonId("nuggets/iron"));
-        public static final TagKey<Item> OBSIDIAN = tag(commonId("obsidians"));
         public static final TagKey<Item> BAMBOO = tag(commonId("bamboos"));
         public static final TagKey<Item> BAMBOO_OLD = tag(commonId("bamboo"));
 
