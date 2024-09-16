@@ -121,7 +121,7 @@ public final class ChestBlockEntityRenderer implements BlockEntityRenderer<Chest
         PartDefinition partDefinition = meshDefinition.getRoot();
         partDefinition.addOrReplaceChild("bottom", CubeListBuilder.create().texOffs(0, 19).addBox(1, 0, 1, 14, 10, 14), PartPose.ZERO);
         partDefinition.addOrReplaceChild("lid", CubeListBuilder.create().texOffs(0, 0).addBox(1, 0, 0, 14, 5, 14), PartPose.offset(0, 9, 1));
-        partDefinition.addOrReplaceChild("lock", CubeListBuilder.create().texOffs(0, 0).addBox(7, -1, 15, 2, 4, 1), PartPose.offset(0, 8, 0));
+        partDefinition.addOrReplaceChild("lock", CubeListBuilder.create().texOffs(0, 0).addBox(7, -2, 14, 2, 4, 1), PartPose.offset(0, 9, 1));
         return LayerDefinition.create(meshDefinition, 64, 48);
     }
 
@@ -130,7 +130,7 @@ public final class ChestBlockEntityRenderer implements BlockEntityRenderer<Chest
         PartDefinition partDefinition = meshDefinition.getRoot();
         partDefinition.addOrReplaceChild("bottom", CubeListBuilder.create().texOffs(0, 19).addBox(1, 0, 1, 15, 10, 14), PartPose.ZERO);
         partDefinition.addOrReplaceChild("lid", CubeListBuilder.create().texOffs(0, 0).addBox(1, 0, 0, 15, 5, 14), PartPose.offset(0, 9, 1));
-        partDefinition.addOrReplaceChild("lock", CubeListBuilder.create().texOffs(0, 0).addBox(15, -1, 15, 1, 4, 1), PartPose.offset(0, 8, 0));
+        partDefinition.addOrReplaceChild("lock", CubeListBuilder.create().texOffs(0, 0).addBox(15, -2, 14, 1, 4, 1), PartPose.offset(0, 9, 1));
         return LayerDefinition.create(meshDefinition, 64, 48);
     }
 
@@ -139,7 +139,7 @@ public final class ChestBlockEntityRenderer implements BlockEntityRenderer<Chest
         PartDefinition partDefinition = meshDefinition.getRoot();
         partDefinition.addOrReplaceChild("bottom", CubeListBuilder.create().texOffs(0, 19).addBox(0, 0, 1, 15, 10, 14), PartPose.ZERO);
         partDefinition.addOrReplaceChild("lid", CubeListBuilder.create().texOffs(0, 0).addBox(0, 0, 0, 15, 5, 14), PartPose.offset(0, 9, 1));
-        partDefinition.addOrReplaceChild("lock", CubeListBuilder.create().texOffs(0, 0).addBox(0, -1, 15, 1, 4, 1), PartPose.offset(0, 8, 0));
+        partDefinition.addOrReplaceChild("lock", CubeListBuilder.create().texOffs(0, 0).addBox(0, -2, 14, 1, 4, 1), PartPose.offset(0, 9, 1));
         return LayerDefinition.create(meshDefinition, 64, 48);
     }
 
@@ -148,7 +148,7 @@ public final class ChestBlockEntityRenderer implements BlockEntityRenderer<Chest
         PartDefinition partDefinition = meshDefinition.getRoot();
         partDefinition.addOrReplaceChild("bottom", CubeListBuilder.create().texOffs(0, 19).addBox(1, 0, 1, 14, 10, 14), PartPose.ZERO);
         partDefinition.addOrReplaceChild("lid", CubeListBuilder.create().texOffs(0, 0).addBox(1, 0, 0, 14, 5, 14), PartPose.offset(0, 9, 1));
-        partDefinition.addOrReplaceChild("lock", CubeListBuilder.create().texOffs(0, 0).addBox(7, -1, 15, 2, 4, 1), PartPose.offset(0, 8, 0));
+        partDefinition.addOrReplaceChild("lock", CubeListBuilder.create().texOffs(0, 0).addBox(7, -2, 14, 2, 4, 1), PartPose.offset(0, 9, 1));
         return LayerDefinition.create(meshDefinition, 64, 48);
     }
 
@@ -164,7 +164,7 @@ public final class ChestBlockEntityRenderer implements BlockEntityRenderer<Chest
         PartDefinition partDefinition = meshDefinition.getRoot();
         partDefinition.addOrReplaceChild("bottom", CubeListBuilder.create().texOffs(0, 20).addBox(1, 0, 0, 14, 10, 15), PartPose.ZERO);
         partDefinition.addOrReplaceChild("lid", CubeListBuilder.create().texOffs(0, 0).addBox(1, 0, 15, 14, 5, 15), PartPose.offset(0, 9, -15));
-        partDefinition.addOrReplaceChild("lock", CubeListBuilder.create().texOffs(0, 0).addBox(7, -1, 31, 2, 4, 1), PartPose.offset(0, 8, -16));
+        partDefinition.addOrReplaceChild("lock", CubeListBuilder.create().texOffs(0, 0).addBox(7, -2, 30, 2, 4, 1), PartPose.offset(0, 9, -15));
         return LayerDefinition.create(meshDefinition, 64, 48);
     }
 
