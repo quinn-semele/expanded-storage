@@ -1,4 +1,4 @@
-// 1.21	2024-08-11T09:03:11.8267636	Expanded Storage/Expanded Storage - Loot Tables
+// 1.21.1	2024-09-16T13:19:33.0382487	Expanded Storage/Block Loot Tables
 79a75239dcb01e9ddcc8290417f994fb337f21d8 data\expandedstorage\loot_table\blocks\waxed_weathered_copper_mini_barrel.json
 e9fa21a3a916e77a4cfe443d05a79dad56ee4c0e data\expandedstorage\loot_table\blocks\diamond_mini_barrel.json
 41e967d9a33ffe30208e0f5b499d5add18d1668d data\expandedstorage\loot_table\blocks\copper_mini_barrel.json
@@ -29,8 +29,8 @@ dfe9ee4f3180df06787ac3601e1129f6f89992bd data\expandedstorage\loot_table\blocks\
 fb3819b6237a88252fa89c066dd757cfbd95c02b data\expandedstorage\loot_table\blocks\moss_chest.json
 03097ddc5995611138ab009618134da221a2696e data\expandedstorage\loot_table\blocks\copper_mini_chest.json
 66abc45bf08660c2ef72ff76590a19e83a7a1498 data\expandedstorage\loot_table\blocks\white_mini_present.json
-4542162a5c0825d03e024ce2cd0256a240bf872e data\expandedstorage\loot_table\blocks\waxed_oxidized_copper_mini_barrel.json
 62b0b7b17f15d21386d0260f2d9972ff270601f6 data\expandedstorage\loot_table\blocks\old_copper_chest.json
+4542162a5c0825d03e024ce2cd0256a240bf872e data\expandedstorage\loot_table\blocks\waxed_oxidized_copper_mini_barrel.json
 c897e08965200ca35ccb87e5c6dc35cd5edc4faf data\expandedstorage\loot_table\blocks\mini_barrel.json
 7e7436888cde6bbd6a010e7b4beb2ac776608abe data\expandedstorage\loot_table\blocks\gold_chest.json
 08755a0d49f16f22612546b0220390944fc01949 data\expandedstorage\loot_table\blocks\obsidian_mini_chest.json
