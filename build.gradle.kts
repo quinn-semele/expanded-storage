@@ -32,7 +32,7 @@ gradle.taskGraph.whenReady {
     }
 }
 
-// This feels like a hack but I can't really think of a way to do this properly.
+// This feels like a hack, but I can't really think of a way to do this properly.
 evaluationDependsOnChildren()
 
 val requestedProjects = providers.environmentVariable("MULTILOADER_PUBLISH_PROJECTS").getOrElse("neoforge,fabric,quilt").split(",")
@@ -51,11 +51,10 @@ val modChangelog = providers.provider {
 
     buildString {
         appendLine(file("changelog.md").readText(Charsets.UTF_8).trimEnd())
-        appendLine()
+
         if (compareTag.isNotBlank()) {
+            appendLine()
             appendLine("A detailed changelog can be found [here](${Constants.COMPARE_URL}${compareTag}...${commitHash}).")
-        } else {
-            appendLine("A detailed changelog could not be made for this release, sorry.")
         }
     }
 }
@@ -90,7 +89,7 @@ publishMods {
         ReleaseType.STABLE
     }
 
-    dryRun = providers.environmentVariable("MULTILOADER_DRY_RUN").map { true }.orElse(false)
+    dryRun = providers.environmentVariable("MULTILOADER_DRY_RUN").map { it == "true" }.orElse(false)
 }
 
 val publishTasks = projectsToPublish.map { (name, loader) ->
