@@ -187,8 +187,8 @@ public final class CommonMain {
         final Properties ironSettings = Properties.of().mapColor(MapColor.METAL).instrument(NoteBlockInstrument.IRON_XYLOPHONE).strength(5, 6).sound(SoundType.METAL);
         final Properties goldSettings = Properties.of().mapColor(MapColor.GOLD).instrument(NoteBlockInstrument.BELL).strength(3, 6).sound(SoundType.METAL);
         final Properties diamondSettings = Properties.of().mapColor(MapColor.DIAMOND).strength(5, 6).sound(SoundType.METAL);
-        final Properties obsidianSettings = Properties.of().mapColor(MapColor.COLOR_BLACK).instrument(NoteBlockInstrument.BASEDRUM).strength(50, 1200);
-        final Properties netheriteSettings = Properties.of().mapColor(MapColor.COLOR_BLACK).strength(50, 1200).sound(SoundType.NETHERITE_BLOCK);
+        final Properties obsidianSettings = Properties.of().mapColor(MapColor.COLOR_BLACK).instrument(NoteBlockInstrument.BASEDRUM).strength(22.5F, 1200);
+        final Properties netheriteSettings = Properties.of().mapColor(MapColor.COLOR_BLACK).strength(22.5F, 1200).sound(SoundType.NETHERITE_BLOCK);
         List<ResourceLocation> stats = new ArrayList<>();
         Function<String, ResourceLocation> statMaker = (id) -> {
             ResourceLocation statId = Utils.id(id);
@@ -425,8 +425,8 @@ public final class CommonMain {
             final Properties ironBarrelSettings = Block.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).strength(5, 6).sound(SoundType.WOOD).ignitedByLava();
             final Properties goldBarrelSettings = Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).strength(3, 6).sound(SoundType.WOOD).ignitedByLava();
             final Properties diamondBarrelSettings = Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).strength(5, 6).sound(SoundType.WOOD).ignitedByLava();
-            final Properties obsidianBarrelSettings = Block.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).strength(50, 1200).sound(SoundType.WOOD).ignitedByLava();
-            final Properties netheriteBarrelSettings = Block.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).strength(50, 1200).sound(SoundType.WOOD);
+            final Properties obsidianBarrelSettings = Block.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).strength(22.5F, 1200).sound(SoundType.WOOD).ignitedByLava();
+            final Properties netheriteBarrelSettings = Block.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).strength(22.5F, 1200).sound(SoundType.WOOD);
 
             ObjectConsumer barrelMaker = (id, stat, tier, settings) -> {
                 NamedValue<BarrelBlock> block = new NamedValue<>(id, () -> new BarrelBlock(tier.getBlockSettings().apply(settings), stat, tier.getSlotCount()));
@@ -509,8 +509,8 @@ public final class CommonMain {
             final Block.Properties ironBarrelSettings = Properties.of().mapColor(MapColor.WOOD).strength(5, 6).sound(SoundType.WOOD);
             final Block.Properties goldBarrelSettings = Properties.of().mapColor(MapColor.WOOD).strength(3, 6).sound(SoundType.WOOD);
             final Block.Properties diamondBarrelSettings = Properties.of().mapColor(MapColor.WOOD).strength(5, 6).sound(SoundType.WOOD);
-            final Block.Properties obsidianBarrelSettings = Properties.of().mapColor(MapColor.WOOD).strength(50, 1200).sound(SoundType.WOOD);
-            final Block.Properties netheriteBarrelSettings = Properties.of().mapColor(MapColor.WOOD).strength(50, 1200).sound(SoundType.WOOD);
+            final Block.Properties obsidianBarrelSettings = Properties.of().mapColor(MapColor.WOOD).strength(22.5F, 1200).sound(SoundType.WOOD);
+            final Block.Properties netheriteBarrelSettings = Properties.of().mapColor(MapColor.WOOD).strength(22.5F, 1200).sound(SoundType.WOOD);
 
             Function<Boolean, ObjectConsumer> miniStorageMaker = (hasRibbon) -> (id, stat, tier, settings) -> {
                 NamedValue<MiniStorageBlock> block = new NamedValue<>(id, () -> new MiniStorageBlock(tier.getBlockSettings().apply(settings), stat, hasRibbon));
