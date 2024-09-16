@@ -1,4 +1,4 @@
-// 1.21	2024-07-30T09:05:34.6348132	Expanded Storage - Block Tags
+// 1.21.1	2024-09-16T13:15:42.4032639	Expanded Storage/Block Tags
 311c475108d99cd330b77e1460e9c0b1fd8134ff data/expandedstorage/tags/block/barrels/copper.json
 c8e6eb50053f4f5b32821d9e05d26ba233c4b248 data/expandedstorage/tags/block/chests/wooden.json
 2111183b5cef5eb089d18335ce63981a3f12f6cc data/minecraft/tags/block/guarded_by_piglins.json

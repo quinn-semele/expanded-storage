@@ -6,7 +6,7 @@
       "tag": "c:gems/diamond"
     },
     "O": {
-      "tag": "c:obsidians"
+      "item": "minecraft:obsidian"
     }
   },
   "pattern": [
