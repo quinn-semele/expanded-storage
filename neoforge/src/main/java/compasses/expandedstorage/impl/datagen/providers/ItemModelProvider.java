@@ -58,4 +58,9 @@ public final class ItemModelProvider extends net.neoforged.neoforge.client.model
 //    private void barrel(BlockItem item) {
 //        this.getBuilder(ForgeRegistries.ITEMS.getKey(item).getPath()).parent(this.getExistingFile(Utils.id("block/" + ForgeRegistries.BLOCKS.getKey(item.getBlock()).getPath())));
 //    }
+
+    @Override
+    public String getName() {
+        return "Expanded Storage/Item Models";
+    }
 }

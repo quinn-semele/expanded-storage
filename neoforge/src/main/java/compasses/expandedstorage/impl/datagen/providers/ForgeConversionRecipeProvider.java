@@ -6,6 +6,7 @@ import compasses.expandedstorage.impl.recipe.conditions.RecipeCondition;
 import compasses.expandedstorage.impl.datagen.content.ForgeTags;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.Tags;
+import org.jetbrains.annotations.NotNull;
 
 public class ForgeConversionRecipeProvider extends ConversionRecipeProvider {
     public ForgeConversionRecipeProvider(PackOutput output) {
@@ -25,5 +26,11 @@ public class ForgeConversionRecipeProvider extends ConversionRecipeProvider {
         super.registerEntityRecipes(
                 new IsInTagCondition(ForgeTags.Entities.WOODEN_CHEST_MINECARTS)
         );
+    }
+
+    @NotNull
+    @Override
+    public String getName() {
+        return "Expanded Storage/" + super.getName();
     }
 }

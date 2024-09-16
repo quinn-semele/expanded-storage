@@ -37,4 +37,9 @@ public class CopperDataMapProvider extends DataMapProvider {
                 .add(ModBlocks.WEATHERED_COPPER_MINI_BARREL.getBlockId(), new Oxidizable(ModBlocks.OXIDIZED_COPPER_MINI_BARREL), false)
                 .build();
     }
+
+    @Override
+    public String getName() {
+        return "Expanded Storage/" + super.getName();
+    }
 }

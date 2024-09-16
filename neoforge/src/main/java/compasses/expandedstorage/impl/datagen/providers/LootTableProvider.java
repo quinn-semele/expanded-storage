@@ -12,4 +12,9 @@ public final class LootTableProvider extends net.minecraft.data.loot.LootTablePr
     public LootTableProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
         super(output, Set.of(), List.of(new SubProviderEntry(BlockLootProvider::new, LootContextParamSets.BLOCK)), provider);
     }
+
+    @Override
+    public String getName() {
+        return "Expanded Storage/" + super.getName();
+    }
 }
