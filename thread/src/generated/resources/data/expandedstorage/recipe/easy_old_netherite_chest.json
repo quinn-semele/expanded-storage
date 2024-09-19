@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "tag": "c:ingots/netherite"
+  },
+  "base": {
+    "item": "expandedstorage:old_diamond_chest"
+  },
+  "result": {
+    "count": 1,
+    "id": "expandedstorage:old_netherite_chest"
+  },
+  "template": {
+    "item": "minecraft:netherite_upgrade_smithing_template"
+  }
+}
