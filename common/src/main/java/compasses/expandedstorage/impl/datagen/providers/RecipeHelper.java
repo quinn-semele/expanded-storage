@@ -23,7 +23,7 @@ import net.minecraft.world.level.block.Blocks;
 import java.util.function.Function;
 
 public class RecipeHelper {
-    private final Function<Item, ResourceLocation> itemIdGetter;
+    private final Function<Item, ResourceLocation> itemIdGetter, easyItemIdGetter;
     private final TagKey<Item> copperIngots, ironNuggets, ironIngots, goldIngots, diamonds, netheriteIngots;
     private final TagKey<Item> glassBlocks, woodenChests, woodenBarrels, redDyes, whiteDyes, bamboo;
 
@@ -34,6 +34,7 @@ public class RecipeHelper {
             TagKey<Item> glassBlocks, TagKey<Item> redDyes, TagKey<Item> whiteDyes, TagKey<Item> bamboo
     ) {
         this.itemIdGetter = itemIdGetter;
+        this.easyItemIdGetter = itemIdGetter.andThen(id -> id.withPrefix("easy_"));
         this.copperIngots = copperIngots;
         this.ironNuggets = ironNuggets;
         this.ironIngots = ironIngots;
@@ -132,6 +133,7 @@ public class RecipeHelper {
                 .define('O', Blocks.OBSIDIAN)
                 .define('K', ModItems.WOOD_TO_DIAMOND_CONVERSION_KIT)
                 .save(output);
+        smithingRecipe(ModItems.WOOD_TO_NETHERITE_CONVERSION_KIT, ModItems.WOOD_TO_DIAMOND_CONVERSION_KIT, netheriteIngots, RecipeCategory.MISC, Criterions.HAS_PREVIOUS_KIT, output, easyItemIdGetter);
         smithingRecipe(ModItems.WOOD_TO_NETHERITE_CONVERSION_KIT, ModItems.WOOD_TO_OBSIDIAN_CONVERSION_KIT, netheriteIngots, RecipeCategory.MISC, Criterions.HAS_PREVIOUS_KIT, output, itemIdGetter);
         shapedRecipe(ModItems.COPPER_TO_IRON_CONVERSION_KIT, RecipeCategory.MISC, 1, Criterions.HAS_ITEM, copperIngots)
                 .pattern("NNN")
@@ -163,6 +165,7 @@ public class RecipeHelper {
                 .define('O', Blocks.OBSIDIAN)
                 .define('K', ModItems.COPPER_TO_DIAMOND_CONVERSION_KIT)
                 .save(output);
+        smithingRecipe(ModItems.COPPER_TO_NETHERITE_CONVERSION_KIT, ModItems.COPPER_TO_DIAMOND_CONVERSION_KIT, netheriteIngots, RecipeCategory.MISC, Criterions.HAS_PREVIOUS_KIT, output, easyItemIdGetter);
         smithingRecipe(ModItems.COPPER_TO_NETHERITE_CONVERSION_KIT, ModItems.COPPER_TO_OBSIDIAN_CONVERSION_KIT, netheriteIngots, RecipeCategory.MISC, Criterions.HAS_PREVIOUS_KIT, output, itemIdGetter);
         shapedRecipe(ModItems.IRON_TO_GOLD_CONVERSION_KIT, RecipeCategory.MISC, 1, Criterions.HAS_ITEM, ironIngots)
                 .pattern("GGG")
@@ -186,6 +189,7 @@ public class RecipeHelper {
                 .define('O', Blocks.OBSIDIAN)
                 .define('K', ModItems.IRON_TO_DIAMOND_CONVERSION_KIT)
                 .save(output);
+        smithingRecipe(ModItems.IRON_TO_NETHERITE_CONVERSION_KIT, ModItems.IRON_TO_DIAMOND_CONVERSION_KIT, netheriteIngots, RecipeCategory.MISC, Criterions.HAS_PREVIOUS_KIT, output, easyItemIdGetter);
         smithingRecipe(ModItems.IRON_TO_NETHERITE_CONVERSION_KIT, ModItems.IRON_TO_OBSIDIAN_CONVERSION_KIT, netheriteIngots, RecipeCategory.MISC, Criterions.HAS_PREVIOUS_KIT, output, itemIdGetter);
         shapedRecipe(ModItems.GOLD_TO_DIAMOND_CONVERSION_KIT, RecipeCategory.MISC, 1, Criterions.HAS_ITEM, goldIngots)
                 .pattern("GGG")
@@ -202,6 +206,7 @@ public class RecipeHelper {
                 .define('O', Blocks.OBSIDIAN)
                 .define('K', ModItems.GOLD_TO_DIAMOND_CONVERSION_KIT)
                 .save(output);
+        smithingRecipe(ModItems.GOLD_TO_NETHERITE_CONVERSION_KIT, ModItems.GOLD_TO_DIAMOND_CONVERSION_KIT, netheriteIngots, RecipeCategory.MISC, Criterions.HAS_PREVIOUS_KIT, output, easyItemIdGetter);
         smithingRecipe(ModItems.GOLD_TO_NETHERITE_CONVERSION_KIT, ModItems.GOLD_TO_OBSIDIAN_CONVERSION_KIT, netheriteIngots, RecipeCategory.MISC, Criterions.HAS_PREVIOUS_KIT, output, itemIdGetter);
         shapedRecipe(ModItems.DIAMOND_TO_OBSIDIAN_CONVERSION_KIT, RecipeCategory.MISC, 1, Criterions.HAS_ITEM, diamonds)
                 .pattern("OOO")
@@ -210,7 +215,7 @@ public class RecipeHelper {
                 .define('O', Blocks.OBSIDIAN)
                 .define('D', diamonds)
                 .save(output);
-        smithingRecipe(ModItems.DIAMOND_TO_NETHERITE_CONVERSION_KIT, diamonds, netheriteIngots, RecipeCategory.MISC, Criterions.HAS_ITEM, output, item -> Utils.id("easy_diamond_to_netherite_conversion_kit"));
+        smithingRecipe(ModItems.DIAMOND_TO_NETHERITE_CONVERSION_KIT, diamonds, netheriteIngots, RecipeCategory.MISC, Criterions.HAS_ITEM, output, easyItemIdGetter);
         smithingRecipe(ModItems.DIAMOND_TO_NETHERITE_CONVERSION_KIT, ModItems.DIAMOND_TO_OBSIDIAN_CONVERSION_KIT, netheriteIngots, RecipeCategory.MISC, Criterions.HAS_PREVIOUS_KIT, output, itemIdGetter);
 
         smithingRecipe(ModItems.OBSIDIAN_TO_NETHERITE_CONVERSION_KIT, Items.OBSIDIAN, netheriteIngots, RecipeCategory.MISC, Criterions.HAS_ITEM, output, itemIdGetter);
@@ -307,7 +312,7 @@ public class RecipeHelper {
                 .define('B', ModItems.DIAMOND_CHEST)
                 .group(id(ModItems.OBSIDIAN_CHEST))
                 .save(output);
-        smithingRecipe(ModItems.NETHERITE_CHEST, ModItems.DIAMOND_CHEST, netheriteIngots, RecipeCategory.MISC, Criterions.HAS_PREVIOUS_BLOCK, output, item -> Utils.id("easy_netherite_chest"));
+        smithingRecipe(ModItems.NETHERITE_CHEST, ModItems.DIAMOND_CHEST, netheriteIngots, RecipeCategory.MISC, Criterions.HAS_PREVIOUS_BLOCK, output, easyItemIdGetter);
         smithingRecipe(ModItems.NETHERITE_CHEST, ModItems.OBSIDIAN_CHEST, netheriteIngots, RecipeCategory.MISC, Criterions.HAS_PREVIOUS_BLOCK, output, itemIdGetter);
     }
 
@@ -384,7 +389,7 @@ public class RecipeHelper {
                 .define('B', ModItems.OLD_DIAMOND_CHEST)
                 .group(id(ModItems.OLD_OBSIDIAN_CHEST))
                 .save(output);
-        smithingRecipe(ModItems.OLD_NETHERITE_CHEST, ModItems.OLD_DIAMOND_CHEST, netheriteIngots, RecipeCategory.MISC, Criterions.HAS_PREVIOUS_BLOCK, output, item -> Utils.id("easy_old_netherite_chest"));
+        smithingRecipe(ModItems.OLD_NETHERITE_CHEST, ModItems.OLD_DIAMOND_CHEST, netheriteIngots, RecipeCategory.MISC, Criterions.HAS_PREVIOUS_BLOCK, output, easyItemIdGetter);
         smithingRecipe(ModItems.OLD_NETHERITE_CHEST, ModItems.OLD_OBSIDIAN_CHEST, netheriteIngots, RecipeCategory.MISC, Criterions.HAS_PREVIOUS_BLOCK, output, itemIdGetter);
     }
 
@@ -509,7 +514,7 @@ public class RecipeHelper {
                 .define('O', Blocks.OBSIDIAN)
                 .define('B', ModItems.DIAMOND_BARREL)
                 .save(output);
-        smithingRecipe(ModItems.NETHERITE_BARREL, ModItems.DIAMOND_BARREL, netheriteIngots, RecipeCategory.MISC, Criterions.HAS_PREVIOUS_BLOCK, output, item -> Utils.id("easy_netherite_barrel"));
+        smithingRecipe(ModItems.NETHERITE_BARREL, ModItems.DIAMOND_BARREL, netheriteIngots, RecipeCategory.MISC, Criterions.HAS_PREVIOUS_BLOCK, output, easyItemIdGetter);
         smithingRecipe(ModItems.NETHERITE_BARREL, ModItems.OBSIDIAN_BARREL, netheriteIngots, RecipeCategory.MISC, Criterions.HAS_PREVIOUS_BLOCK, output, itemIdGetter);
     }
 
