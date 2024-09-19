@@ -1,0 +1,9 @@
+{
+  "values": [
+    "minecraft:honeycomb",
+    {
+      "id": "#c:prevent_oxidization",
+      "required": false
+    }
+  ]
+}

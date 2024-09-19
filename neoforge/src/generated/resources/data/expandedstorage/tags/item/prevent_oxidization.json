@@ -1,0 +1,13 @@
+{
+  "values": [
+    "minecraft:honeycomb",
+    {
+      "id": "modern_industrialization:wax",
+      "required": false
+    },
+    {
+      "id": "#c:prevent_oxidization",
+      "required": false
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "expandedstorage:copper_mini_barrel"
+    },
+    {
+      "tag": "expandedstorage:prevent_oxidization"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "expandedstorage:waxed_copper_mini_barrel"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_previous_block": {
+      "conditions": {
+        "items": [
+          {
+            "items": "expandedstorage:weathered_copper_mini_barrel"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "expandedstorage:waxing_weathered_copper_mini_barrel"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_previous_block"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "expandedstorage:waxing_weathered_copper_mini_barrel"
+    ]
+  }
+}
