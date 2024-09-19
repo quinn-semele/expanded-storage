@@ -20,6 +20,7 @@ public final class ModTags {
 
     public static class Items {
         public static final TagKey<Item> ES_WOODEN_CHESTS = tag(Registries.ITEM, Utils.id("chests/wooden"));
+        public static final TagKey<Item> PREVENT_OXIDIZATION = tag(Registries.ITEM, Utils.id("prevent_oxidization"));
     }
 
     public static class Entities {

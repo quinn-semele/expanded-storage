@@ -9,6 +9,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Items;
 import org.jetbrains.annotations.NotNull;
@@ -52,6 +53,9 @@ public final class TagProvider {
             this.getOrCreateTagBuilder(ThreadTags.Items.BAMBOO)
                 .add(Items.BAMBOO)
                 .addOptionalTag(ThreadTags.Items.BAMBOO_OLD);
+            this.getOrCreateTagBuilder(ModTags.Items.PREVENT_OXIDIZATION)
+                .add(Items.HONEYCOMB)
+                .addOptionalTag(ResourceLocation.fromNamespaceAndPath("c", "prevent_oxidization"));
         }
 
         @NotNull

@@ -9,6 +9,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.EntityTypeTagsProvider;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
@@ -50,6 +51,10 @@ public final class TagProvider {
                 .addTag(Tags.Items.CHESTS_WOODEN);
             this.tag(ForgeTags.Items.BAMBOO)
                 .add(Items.BAMBOO);
+            this.tag(ModTags.Items.PREVENT_OXIDIZATION)
+                .add(Items.HONEYCOMB)
+                .addOptional(ResourceLocation.fromNamespaceAndPath("modern_industrialization", "wax"))
+                .addOptionalTag(ResourceLocation.fromNamespaceAndPath("c", "prevent_oxidization"));
         }
 
         @Override

@@ -72,6 +72,8 @@ public class RecipeHelper {
 
     private void waxingRecipe(ItemLike input, ItemLike waxed, RecipeOutput output) {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, waxed, 1)
+                              .requires(input)
+                              .requires(ModTags.Items.PREVENT_OXIDIZATION)
                               .unlockedBy(Criterions.HAS_PREVIOUS_BLOCK, RecipeProvider.has(input))
                               .save(output, Utils.id("waxing_" + itemIdGetter.apply(input.asItem()).getPath()));
     }
