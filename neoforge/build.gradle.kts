@@ -83,5 +83,15 @@ multiloader {
                 }
             }
         }
+
+        create("modern-industrialization") {
+
+        }
+
+        create("extended-industrialization") {
+
+        }
+
+        create("mekanism")
     }
 }
