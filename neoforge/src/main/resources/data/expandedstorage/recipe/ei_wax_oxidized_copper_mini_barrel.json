@@ -1,0 +1,29 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "extended_industrialization"
+    }
+  ],
+  "type": "modern_industrialization:mixer",
+  "duration": 100,
+  "eu": 2,
+  "fluid_inputs": [
+    {
+      "amount": 1,
+      "fluid": "extended_industrialization:honey"
+    }
+  ],
+  "item_inputs": [
+    {
+      "amount": 1,
+      "item": "expandedstorage:oxidized_copper_mini_barrel"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "expandedstorage:waxed_oxidized_copper_mini_barrel"
+    }
+  ]
+}

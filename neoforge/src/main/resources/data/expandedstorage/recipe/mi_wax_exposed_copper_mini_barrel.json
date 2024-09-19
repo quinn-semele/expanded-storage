@@ -1,0 +1,27 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "modern_industrialization"
+    }
+  ],
+  "type": "modern_industrialization:chemical_reactor",
+  "duration": 100,
+  "eu": 8,
+  "item_inputs": [
+    {
+      "amount": 1,
+      "item": "expandedstorage:exposed_copper_mini_barrel"
+    },
+    {
+      "amount": 1,
+      "item": "modern_industrialization:wax"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 1,
+      "item": "expandedstorage:waxed_exposed_copper_mini_barrel"
+    }
+  ]
+}

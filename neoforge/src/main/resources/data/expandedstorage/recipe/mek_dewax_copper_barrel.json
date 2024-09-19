@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "mekanism"
+    }
+  ],
+  "type": "mekanism:crushing",
+  "input": {
+    "count": 1,
+    "item": "expandedstorage:waxed_copper_barrel"
+  },
+  "output": {
+    "count": 1,
+    "id": "expandedstorage:copper_barrel"
+  }
+}
