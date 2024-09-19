@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "tag": "c:ingots/netherite"
+  },
+  "base": {
+    "item": "expandedstorage:gold_to_diamond_conversion_kit"
+  },
+  "result": {
+    "count": 1,
+    "id": "expandedstorage:gold_to_netherite_conversion_kit"
+  },
+  "template": {
+    "item": "minecraft:netherite_upgrade_smithing_template"
+  }
+}
