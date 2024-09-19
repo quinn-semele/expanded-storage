@@ -6,7 +6,7 @@ object Constants {
     const val GROUP = "dev.compasses.expandedstorage"
     const val MOD_ID = "expandedstorage"
     const val MOD_NAME = "Expanded Storage"
-    const val MOD_VERSION = "14.1.4"
+    const val MOD_VERSION = "14.1.5"
     const val LICENSE = "Multiple"
     const val DESCRIPTION = "A mod adding various storage types, including double iron chests."
 

@@ -1,4 +1,3 @@
-- Now requires 1.21.1
-- Adjust the hardness of obsidian and netherite chest to take 5 seconds to mine with the correct tool.
-- Fix all the locks sliding up... How did I not notice this???
-- Add direct crafting recipes from wood to iron tier.
+- Add the option to upgrade directly from Diamond -> Netherite
+- Add crafting recipes to wax blocks.
+- Add waxing and oxidization recipes for MI/EI and Mekanism.
