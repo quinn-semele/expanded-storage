@@ -70,6 +70,12 @@ public class RecipeHelper {
         return ShapedRecipeBuilder.shaped(category, result, count).unlockedBy(criterion, RecipeProvider.has(item));
     }
 
+    private void waxingRecipe(ItemLike input, ItemLike waxed, RecipeOutput output) {
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, waxed, 1)
+                              .unlockedBy(Criterions.HAS_PREVIOUS_BLOCK, RecipeProvider.has(input))
+                              .save(output, Utils.id("waxing_" + itemIdGetter.apply(input.asItem()).getPath()));
+    }
+
     public void registerRecipes(RecipeOutput output) {
         shapedRecipe(ModItems.STORAGE_MUTATOR, RecipeCategory.MISC, 1, "has_chest", ModTags.Items.ES_WOODEN_CHESTS)
                 .pattern("  C")
@@ -477,6 +483,10 @@ public class RecipeHelper {
                 .define('I', copperIngots)
                 .define('B', woodenBarrels)
                 .save(output);
+        waxingRecipe(ModItems.COPPER_BARREL, ModItems.WAXED_COPPER_BARREL, output);
+        waxingRecipe(ModItems.EXPOSED_COPPER_BARREL, ModItems.WAXED_EXPOSED_COPPER_BARREL, output);
+        waxingRecipe(ModItems.WEATHERED_COPPER_BARREL, ModItems.WAXED_WEATHERED_COPPER_BARREL, output);
+        waxingRecipe(ModItems.OXIDIZED_COPPER_BARREL, ModItems.WAXED_OXIDIZED_COPPER_BARREL, output);
         shapedRecipe(ModItems.IRON_BARREL, RecipeCategory.MISC, 1, Criterions.HAS_PREVIOUS_BLOCK, ModItems.COPPER_BARREL)
                 .pattern("NNN")
                 .pattern("IBI")
@@ -628,6 +638,10 @@ public class RecipeHelper {
                 .define('P', Items.PAPER)
                 .define('B', woodenBarrels)
                 .save(output);
+        waxingRecipe(ModItems.COPPER_MINI_BARREL, ModItems.WAXED_COPPER_MINI_BARREL, output);
+        waxingRecipe(ModItems.EXPOSED_COPPER_MINI_BARREL, ModItems.WAXED_EXPOSED_COPPER_MINI_BARREL, output);
+        waxingRecipe(ModItems.WEATHERED_COPPER_MINI_BARREL, ModItems.WAXED_WEATHERED_COPPER_MINI_BARREL, output);
+        waxingRecipe(ModItems.OXIDIZED_COPPER_MINI_BARREL, ModItems.WAXED_OXIDIZED_COPPER_MINI_BARREL, output);
         shapedRecipe(ModItems.IRON_MINI_BARREL, RecipeCategory.MISC, 8, Criterions.HAS_ITEM, woodenBarrels)
                 .pattern(" I ")
                 .pattern("PBP")
