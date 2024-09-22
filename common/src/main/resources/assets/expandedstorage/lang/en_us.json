@@ -254,11 +254,6 @@
   "item.expandedstorage.diamond_lock":                                    "Diamond Lock",
   "tooltip.expandedstorage.diamond_lock":                                 "Use on an inventory to lock it so it can only be opened by you.",
 
-  "tag.expandedstorage.wooden_chests":                                    "Wooden Chests and Expanded Storage's Tier Equivalents",
-  "tag.c.wooden_barrels":                                                 "Wooden Barrels",
-  "tag.c.bamboo":                                                         "Bamboo",
-  "tag.expandedstorage.prevent_oxidization":                              "Items that Prevents Oxidization",
-
   "screen.expandedstorage.change_screen_button":                          "Change Screen Type",
   "screen.expandedstorage.screen_picker_title":                           "Select Screen Type",
   "screen.expandedstorage.page_screen":                                   "Paginated Screen",
@@ -282,5 +277,6 @@
   "tag.item.c.obsidians":                                                 "Obsidian Blocks",
   "tag.item.c.bamboos":                                                   "Bamboo Stalks",
   "tag.item.expandedstorage.chests.wooden":                               "Wooden Chests",
-  "tag.item.c.nuggets.iron":                                              "Iron Nuggets"
+  "tag.item.c.nuggets.iron":                                              "Iron Nuggets",
+  "tag.item.expandedstorage.prevent_oxidization":                         "Items that Prevents Oxidization"
 }
