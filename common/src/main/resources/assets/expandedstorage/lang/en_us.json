@@ -257,6 +257,7 @@
   "tag.expandedstorage.wooden_chests":                                    "Wooden Chests and Expanded Storage's Tier Equivalents",
   "tag.c.wooden_barrels":                                                 "Wooden Barrels",
   "tag.c.bamboo":                                                         "Bamboo",
+  "tag.expandedstorage.prevent_oxidization":                              "Items that Prevents Oxidization",
 
   "screen.expandedstorage.change_screen_button":                          "Change Screen Type",
   "screen.expandedstorage.screen_picker_title":                           "Select Screen Type",
