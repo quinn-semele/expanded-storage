@@ -1,7 +1,9 @@
 package compasses.expandedstorage.impl.block;
 
+import com.google.common.collect.BiMap;
 import compasses.expandedstorage.impl.CommonMain;
 import compasses.expandedstorage.impl.block.entity.extendable.OpenableBlockEntity;
+import compasses.expandedstorage.impl.block.misc.CopperBlockHelper;
 import compasses.expandedstorage.impl.registration.ModBlocks;
 import compasses.expandedstorage.impl.inventory.OpenableInventoryProvider;
 import compasses.expandedstorage.impl.inventory.context.BlockContext;
@@ -38,8 +40,13 @@ public abstract class OpenableBlock extends Block implements OpenableInventoryPr
     }
 
     public Component getInventoryTitle() {
-        Component result = this.getName();
-        return Component.literal(result.getString().replace("Waxed ", ""));
+        BiMap<Block, Block> dewaxingMap = CopperBlockHelper.dewaxing();
+
+        if (dewaxingMap.containsKey(this)) {
+            return dewaxingMap.get(this).getName();
+        }
+
+        return this.getName();
     }
 
     public final ResourceLocation getBlockId() {
