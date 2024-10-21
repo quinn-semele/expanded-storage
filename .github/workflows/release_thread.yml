@@ -1,4 +1,4 @@
-name: Release NeoForge
+name: Release Thread
 on:
     workflow_dispatch:
         inputs:
