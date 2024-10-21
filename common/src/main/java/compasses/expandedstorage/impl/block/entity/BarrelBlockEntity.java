@@ -70,13 +70,13 @@ public final class BarrelBlockEntity extends ExposedInventoryBlockEntity {
 
     @Override
     public void startOpen(Player player) {
-        if (player.isSpectator()) return;
+        if (player.isSpectator() || isRemoved()) return;
         manager.incrementOpeners(player, this.getLevel(), this.getBlockPos(), this.getBlockState());
     }
 
     @Override
     public void stopOpen(Player player) {
-        if (player.isSpectator()) return;
+        if (player.isSpectator() || isRemoved()) return;
         manager.decrementOpeners(player, this.getLevel(), this.getBlockPos(), this.getBlockState());
     }
 

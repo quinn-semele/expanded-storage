@@ -11,13 +11,13 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.Container;
 import net.minecraft.world.Nameable;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -40,8 +40,7 @@ public abstract class OpenableBlockEntity extends BlockEntity implements Openabl
     }
 
     protected final boolean isValidAndPlayerInRange(Player player) {
-        //noinspection DataFlowIssue
-        return this.getLevel().getBlockEntity(this.getBlockPos()) == this && player.distanceToSqr(Vec3.atCenterOf(this.getBlockPos())) <= 64.0D;
+        return Container.stillValidBlockEntity(this, player);
     }
 
     @Override

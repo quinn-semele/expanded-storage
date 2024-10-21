@@ -102,13 +102,13 @@ public abstract class InventoryBlockEntity extends OpenableBlockEntity implement
 
         @Override
         public void startOpen(Player player) {
-            if (player.isSpectator() || observable == null) return;
+            if (player.isSpectator() || observable == null || InventoryBlockEntity.this.isRemoved()) return;
             observable.playerStartViewing(player);
         }
 
         @Override
         public void stopOpen(Player player) {
-            if (player.isSpectator() || observable == null) return;
+            if (player.isSpectator() || observable == null || InventoryBlockEntity.this.isRemoved()) return;
             observable.playerStopViewing(player);
         }
     };
