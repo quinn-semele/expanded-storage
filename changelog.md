@@ -1,3 +1,1 @@
-- Add the option to upgrade directly from Diamond -> Netherite
-- Add crafting recipes to wax blocks.
-- Add waxing and oxidization recipes for MI/EI and Mekanism.
+- Fix an issue where chests and barrels could still update when invalid.
