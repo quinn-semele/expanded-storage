@@ -1,9 +1,9 @@
 {
-  "itemGroup.expandedstorage.tab":                                        "Расширенное хранилище",
+  "itemGroup.expandedstorage.tab":                                        "Расширенное Хранилище",
   "container.expandedstorage.generic_double":                             "Большой %s",
   "tooltip.expandedstorage.alt_use":                                      "%1$s + %2$s",
   "tooltip.expandedstorage.added_by":                                     "Добавлено: %s",
-  "tooltip.expandedstorage.stores_x_stacks":                              "Хранит %s стаков",
+  "tooltip.expandedstorage.stores_x_stacks":                              "Хранит %s стопок",
 
   "item.expandedstorage.wood_to_copper_conversion_kit":                   "Улучшение из деревянного в медное хранилище",
   "item.expandedstorage.wood_to_iron_conversion_kit":                     "Улучшение из деревянного в железное хранилище",
@@ -254,10 +254,6 @@
   "item.expandedstorage.diamond_lock":                                    "Алмазный замок",
   "tooltip.expandedstorage.diamond_lock":                                 "Используйте на хранилище, чтобы запереть. Открыть его сможете только вы.",
 
-  "tag.expandedstorage.wooden_chests":                                    "Деревянные сундуки и разноуровневые эквиваленты «Расширенного хранилища»",
-  "tag.c.wooden_barrels":                                                 "Деревянные бочки",
-  "tag.c.bamboo":                                                         "Бамбук",
-
   "screen.expandedstorage.change_screen_button":                          "Изменить вид интерфейса",
   "screen.expandedstorage.screen_picker_title":                           "Выберите вид интерфейса",
   "screen.expandedstorage.page_screen":                                   "C разбивкой на страницы",
@@ -271,15 +267,16 @@
   "screen.expandedstorage.current_option_notice":                         "Текущий выбор.",
   "chat.expandedstorage.cannot_display_screen":                           "Невозможно открыть инвентарь типа «%s», попробуйте другой.",
 
-  "text.expandedstorage.disconnect.old_version":                          "Пожалуйста обновите «Расширенное хранилище».",
+  "text.expandedstorage.disconnect.old_version":                          "Пожалуйста обновите «Расширенное Хранилище».",
 
   "key.expandedstorage.config":                                           "[РХ] Экран выбора интерфейса",
   "text.expandedstorage.short_prefix":                                    "[РХ] ",
-  "text.expandedstorage.prefix":                                          "[Расширенное хранилище] %s",
+  "text.expandedstorage.prefix":                                          "[Расширенное Хранилище] %s",
   "text.expandedstorage.wrong_loader_warning":                            "Пожалуйста, установите версию %2$s этого мода. Она не была протестирована для %1$s, поэтому могут возникнуть проблемы, для которых в противном случае поддержка предоставляться не будет.",
 
   "tag.item.c.obsidians":                                                 "Обсидиановые блоки",
   "tag.item.c.bamboos":                                                   "Бамбуковые стебли",
   "tag.item.expandedstorage.chests.wooden":                               "Деревянные сундуки",
-  "tag.item.c.nuggets.iron":                                              "Кусочки железа"
+  "tag.item.c.nuggets.iron":                                              "Кусочки железа",
+  "tag.item.expandedstorage.prevent_oxidization":                         "Предметы, предотвращающие окисление"
 }
